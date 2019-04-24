@@ -18,9 +18,8 @@ import javax.swing.*;
 public class UserInterface extends JPanel {
 	private UserController controller; 
 
-	private ImageIcon btnImage = new ImageIcon(new ImageIcon("images/login_btn.png").getImage().getScaledInstance(200, 40, Image.SCALE_DEFAULT));
-	private JButton btnLogIn = new JButton(btnImage); //Log in display
-	private JButton btnCreateUser = new JButton("Create new user"); //Log in display
+	private JButton btnLogIn = new JButton(new ImageIcon(new ImageIcon("buttons/login_btn.png").getImage().getScaledInstance(200, 40, Image.SCALE_DEFAULT))); //Log in display
+	private JButton btnCreateUser = new JButton(new ImageIcon(new ImageIcon("buttons/createNewUser_btn.png").getImage().getScaledInstance(200, 40, Image.SCALE_DEFAULT)));//Log in display
 	private JButton btnConfirmUser = new JButton("Create user"); //Creates user after entering name and password 
 	private JButton btnConfirmLogIn = new JButton("Login"); //Check user name and password and logs in  
 	private JButton btnBackToStart = new JButton("Back"); //From login screen back to start screen
@@ -111,7 +110,7 @@ public class UserInterface extends JPanel {
 	}
 
 	public JPanel startScreen() {
-		ImageIcon image = new ImageIcon(new ImageIcon("images/BJ_logo_2.png").getImage().getScaledInstance(1000, 600, Image.SCALE_DEFAULT));
+		ImageIcon image = new ImageIcon(new ImageIcon("images/BJ_logo_2.1.png").getImage().getScaledInstance(1000, 600, Image.SCALE_DEFAULT));
 		JLabel logo = new JLabel();
 		logo.setIcon(image);
 
@@ -120,17 +119,19 @@ public class UserInterface extends JPanel {
 		logo.setLayout(new GridBagLayout());
 
 		cont.anchor = GridBagConstraints.CENTER;
-		cont.insets = new Insets(90,70,90,70);
+		cont.insets = new Insets(250,90,70,90);
 		
 		btnLogIn.setBorder(BorderFactory.createEmptyBorder());
 		btnLogIn.setContentAreaFilled(false);
+		btnCreateUser.setBorder(BorderFactory.createEmptyBorder());
+		btnCreateUser.setContentAreaFilled(false);
 
-		cont.gridx = 0;
-		cont.gridy = 1;
+		cont.gridx = 1;
+		cont.gridy = 0;
 		logo.add(btnLogIn, cont);
 
-		cont.gridx = 0;
-		cont.gridy = 2;
+		cont.gridx = 2;
+		cont.gridy = 0;
 		logo.add(btnCreateUser, cont);
 
 		pane.add(logo);
