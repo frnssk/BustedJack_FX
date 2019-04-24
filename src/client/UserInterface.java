@@ -127,11 +127,9 @@ public class UserInterface extends JPanel {
 		btnCreateUser.setContentAreaFilled(false);
 
 		cont.gridx = 1;
-		cont.gridy = 0;
 		logo.add(btnLogIn, cont);
 
 		cont.gridx = 2;
-		cont.gridy = 0;
 		logo.add(btnCreateUser, cont);
 
 		pane.add(logo);
