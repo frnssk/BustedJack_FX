@@ -319,6 +319,7 @@ public class Server {
 								}
 							}
 						}
+						
 						/*
 						 * Disconnects the client, and stops the current clienthandler-loop
 						 */
