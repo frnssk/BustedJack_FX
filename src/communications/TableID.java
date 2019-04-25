@@ -1,4 +1,4 @@
-package resources;
+package communications;
 
 import java.util.ArrayList;
 import java.util.Random;

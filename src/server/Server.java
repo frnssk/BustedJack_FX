@@ -14,11 +14,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
-import resources.GameInfo;
-import resources.LogOutRequest;
-import resources.LoginRequest;
+
+import communications.GameInfo;
+import communications.LogOutRequest;
+import communications.LoginRequest;
+import communications.RegisterRequest;
 import resources.Player;
-import resources.RegisterRequest;
 import resources.Table;
 import resources.User;
 

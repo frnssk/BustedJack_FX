@@ -2,6 +2,10 @@ package client;
 
 import java.io.IOException;
 
+import communications.GameInfo;
+import communications.LogOutRequest;
+import communications.LoginRequest;
+import communications.RegisterRequest;
 import resources.*;
 
 /**

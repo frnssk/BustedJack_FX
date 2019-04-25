@@ -6,10 +6,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import resources.GameInfo;
-import resources.LogOutRequest;
-import resources.LoginRequest;
-import resources.RegisterRequest;
+import communications.GameInfo;
+import communications.LogOutRequest;
+import communications.LoginRequest;
+import communications.RegisterRequest;
 import resources.User;
 
 /**
