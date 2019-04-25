@@ -15,6 +15,7 @@ import javax.swing.*;
  * @author Isak Eklund
  *
  */
+
 public class UserInterface extends JPanel {
 	private UserController controller; 
 
