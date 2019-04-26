@@ -20,6 +20,10 @@ public class CheatShoe implements Serializable {
 		}
 	}
 	
+	public Card dealCard() {
+		return cheatShoe.lastElement();
+	}
+	
 	/*
 	 * Adds a cheat-deck to the shoe
 	 */

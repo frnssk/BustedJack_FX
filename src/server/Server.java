@@ -212,8 +212,9 @@ public class Server {
 		 */
 		public boolean checkUsernameAvailability(String name) {
 			for(int i = 0; i < registeredUsers.size(); i++) {
-				User compare = registeredUsers.get(i);
-				String compareName = compare.getUsername();
+				String compareName = registeredUsers.get(i).getUsername();
+//				User compare = registeredUsers.get(i);
+//				String compareName = compare.getUsername();
 				if(compareName.equals(name)) {
 					return false;
 				}
@@ -344,6 +345,7 @@ public class Server {
 							Player player = new Player(user.getUsername());
 							table.addPlayer(player);
 							TextWindow.println(player.getUsername() + " tillagd på Table " + table.getTableId());
+							//send the tableId to the client
 						}
 						
 						/*

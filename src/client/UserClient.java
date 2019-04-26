@@ -178,7 +178,7 @@ public class UserClient {
 						String available = (String) obj; //byta namn? används till mer än att kolla namn
 						controller.checkCreatedUser(available);
 					}
-
+					
 				}catch(IOException | ClassNotFoundException exception) {
 					exception.printStackTrace();
 				}
