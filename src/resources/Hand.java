@@ -10,6 +10,7 @@ public class Hand implements Serializable {
 	private static final long serialVersionUID = 9072394852087177248L;
 	private ArrayList<Card> hand = new ArrayList<>(); //Holds the card in a hand
 	private boolean hasBlackjack;
+	private boolean bustedHand;
 //	private boolean handIsWin;
 	private boolean containsAce = false;
 	private boolean wantToSplit = false;
@@ -134,6 +135,14 @@ public class Hand implements Serializable {
 
 	public boolean hasBlackjack() {
 		return hasBlackjack;
+	}
+	
+	public void setBustedHand(boolean bustedHand) {
+		this.bustedHand = bustedHand;
+	}
+	
+	public boolean bustedHand() {
+		return bustedHand;
 	}
 
 	public int size() {

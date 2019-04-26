@@ -158,6 +158,30 @@ public class Table implements Serializable {
 			}
 		}
 	}
+	
+	// checks if firsts two cards has the value of 21
+	private void checkBlackJack() {		
+		for(int i = 0; i < playerList.size(); i++) {
+			int hands = playerList.get(i).getNumberOfHands();
+			for(int j = 0; j < hands; j++) {
+				if(playerList.get(i).getHand(j).size() == 2)
+					if(playerList.get(i).getHand(j).getCurrentScore() == 21){
+						playerList.get(i).getHand(j).setBlackjack(true);					
+					}
+			}
+		}
+	}
+	
+	private void checkIsPlayerBust() {
+		for(int i = 0; i < playerList.size(); i++) {
+			int hands = playerList.get(i).getNumberOfHands();
+			for(int j = 0; j < hands; j++) {
+					if(playerList.get(i).getHand(j).getCurrentScore() > 21){
+						playerList.get(i).getHand(j).setBustedHand(true);
+					}
+			}
+		}
+	}
 
 	//should flip the first card the dealer got
 	private void flipDealerCard() {
@@ -292,7 +316,8 @@ public class Table implements Serializable {
 			Thread.sleep(1500);
 		}
 	}
-
+	
+	
 	//compare the scores of all the players to the dealer
 	private void compareDealerToPlayers() {
 		//		boolean[] playerWin = new boolean[playerList.size()];
@@ -328,9 +353,10 @@ public class Table implements Serializable {
 			for(int j = 0; j < hands; j++) {
 				int win = playerList.get(i).getHand(j).isHandWin();
 				if(win == 1) {
+					int bet = playerList.get(i).getHand(j).getBet();
+					int payout = bet * 2;
 					if(playerList.get(i).getHand(j).hasBlackjack()) {
-						int bet = playerList.get(i).getHand(j).getBet();
-						int payout = bet + (bet/2);
+						payout = bet + (bet/2);
 
 						playerList.get(i).getHand(j).setPayout(payout);
 					}
