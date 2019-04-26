@@ -10,8 +10,18 @@ public class Hand implements Serializable {
 	private static final long serialVersionUID = 9072394852087177248L;
 	private ArrayList<Card> hand = new ArrayList<>(); //Holds the card in a hand
 	private boolean hasBlackjack;
-	private boolean handIsWin;
-	private boolean containsAce;
+//	private boolean handIsWin;
+	private boolean containsAce = false;
+	private boolean wantToSplit = false;
+	private boolean hasMadeSplitChoice = false;
+	private boolean hasMadeInsuranceChoice = false;
+	private boolean insuranceChoice = false;
+	private int handIsWin;
+	private int payout;
+	private int bet;
+	private int cheatHeat;
+	private int playChoice;
+	
 
 	/*
 	 * Adds a new card to the hand
@@ -20,7 +30,73 @@ public class Hand implements Serializable {
 		hand.add(card);
 		//		currentScore += card.getValue();
 	}
+	
+	public Card getCard() {
+		return hand.remove(0);
+	}
+	
+	public boolean ableToSplit() {
+		return hand.get(0).equals(hand.get(1));
+	}
+	
+	public void setSplitChoice() {
+		this.hasMadeSplitChoice = true;
+	}
+	
+	public boolean getSplitChoice() {
+		return hasMadeSplitChoice;
+	}
+	
+	public boolean wantToSplit() {
+		return wantToSplit;
+	}
+	
+	//ui have to send a boolean depending on what button the user presser
+	public void setWantToSplit(boolean wantToSplit) {
+		this.wantToSplit = wantToSplit;
+		setSplitChoice();
+	}
+	
+	public void setHasMadeInsuranceChoice() {
+		hasMadeInsuranceChoice = true;
+	}
+	
+	public void setInsuranceChoice(boolean choice) {
+		this.insuranceChoice = choice;
+		setHasMadeInsuranceChoice();
+	}
+	
+	public boolean getInsuranceChoice() {
+		return insuranceChoice;
+	}
+	
+	public boolean getHasMadeInsuranceChoice() {
+		return hasMadeInsuranceChoice;
+	}
 
+	public void setBet(int bet) {
+		this.bet = bet;
+	}
+	
+	public int getBet() {
+		return bet;
+	}
+	
+	public void setPayout(int payout) {
+		this.payout = payout;
+	}
+	
+	public void setPlayChoice(int choice) {
+		this.playChoice = choice;
+	}
+	
+	public int getPlayChoice() {
+		return playChoice;
+		//1 = hit
+		//2 = stay
+		//3 = double
+	}
+	
 	/*
 	 * Returns the current value of a hand
 	 */
@@ -41,12 +117,15 @@ public class Hand implements Serializable {
 		return contains;
 	}
 
-	public void setHandIsWin(boolean win) {
+	public void setHandIsWin(int win) {
 		handIsWin = win;
 	}
 
-	public boolean isHandWin() {
+	public int isHandWin() {
 		return handIsWin;
+		//1 = playerWin
+		//-1 = dealerWin
+		//0 - push
 	}
 
 	public void setBlackjack(boolean hasBlackjack) {

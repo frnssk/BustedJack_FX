@@ -12,10 +12,15 @@ public class Player {
 	private boolean hasMadeBet;
 	private ArrayList<Hand> hands = new ArrayList<>();
 	private int cheatHeat;
+	private int balance = 0;
 	
 	
 	public Player(String username) {
 		this.username = username;
+		hands.add(new Hand());
+	}
+	
+	public void addNewHand() {
 		hands.add(new Hand());
 	}
 	
@@ -59,6 +64,14 @@ public class Player {
 	
 	public int getBet() {
 		return betMade;
+	}
+	
+	public void setBalance(int newBalance) {
+		this.balance = newBalance;
+	}
+	
+	public int getBalance() {
+		return balance;
 	}
 	
 	//checks if the player has made a bet
