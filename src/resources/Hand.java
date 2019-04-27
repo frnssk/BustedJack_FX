@@ -31,6 +31,31 @@ public class Hand implements Serializable {
 		//		currentScore += card.getValue();
 	}
 	
+	/*
+	 * Needed to calculate the value of all cards, adjusted for ACE
+	 */
+	public int getCurrentScore() {
+		int currentScore = 0;
+		for(int i = 0; i < hand.size(); i++) {
+			currentScore += hand.get(i).getValue();
+			if(this.containsAce() && currentScore > 21) {
+				currentScore -= 10;
+			}
+		}
+		return currentScore;
+	}
+
+	/*
+	 * needed to adjust the value if a hand is soft/hard
+	 */
+	public boolean containsAce() {
+		boolean contains = false;
+		for(int i = 0; i < hand.size(); i++) {
+			contains = (hand.get(i).getRank() == Rank.ACE);
+		}
+		return contains;
+	}
+	
 	public Card getCard() {
 		return hand.remove(0);
 	}
@@ -97,26 +122,11 @@ public class Hand implements Serializable {
 		//3 = double
 	}
 	
+	
+
 	/*
-	 * Returns the current value of a hand
+	 * Needed to declare if a hand has beaten the dealer, saving for when the payout will happen
 	 */
-	public int getCurrentScore() {
-		int currentScore = 0;
-		for(int i = 0; i < hand.size(); i++) {
-			currentScore += hand.get(i).getValue();
-		}
-		return currentScore;
-	}
-
-	//checks if a hand contains an Ace, needed to adjust value
-	public boolean containsAce() {
-		boolean contains = false;
-		for(int i = 0; i < hand.size(); i++) {
-			contains = (hand.get(i).getRank() == Rank.ACE);
-		}
-		return contains;
-	}
-
 	public void setHandIsWin(int win) {
 		handIsWin = win;
 	}
@@ -128,6 +138,9 @@ public class Hand implements Serializable {
 		//0 - push
 	}
 
+	/*
+	 * Needed to to specify a win of 150%
+	 */
 	public void setBlackjack(boolean hasBlackjack) {
 		this.hasBlackjack = hasBlackjack;
 	}
@@ -136,6 +149,9 @@ public class Hand implements Serializable {
 		return hasBlackjack;
 	}
 
+	/*
+	 * Needed to count all the cards on the hand
+	 */
 	public int size() {
 		return hand.size();
 	}
