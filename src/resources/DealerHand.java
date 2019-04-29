@@ -2,6 +2,8 @@ package resources;
 
 import java.util.ArrayList;
 
+import resources.Card.Rank;
+
 public class DealerHand {
 	private ArrayList<Card> dealerHand;
 	private int currentScore;
@@ -24,5 +26,14 @@ public class DealerHand {
 		}
 		return currentScore;
 	}
+	
+	public boolean containsAce() {
+		boolean contains = false;
+		for(int i = 0; i < dealerHand.size(); i++) {
+			contains = (dealerHand.get(i).getRank() == Rank.ACE);
+		}
+		return contains;
+	}
+	
 
 }
