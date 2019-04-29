@@ -11,18 +11,32 @@ public class Card implements Serializable {
 	private final Suit SUIT;
 	private ImageIcon face;
 	private ImageIcon back;
+	private ImageIcon front;
 
 	
 	public Card(Rank rank, Suit suit){
 		RANK = rank;
 		SUIT = suit;
-		this.face = null;
+//		this.face = null;
+		this.back = new ImageIcon("cards/baksida.png");
+	}
+	
+	public ImageIcon getFront() {
+		return front;
 	}
 	
 	public void setFace(String image) {
 		this.face = new ImageIcon(image);
 	}
 
+	
+	public void setVisibility(boolean sideToShow) {
+		if(sideToShow) {
+			this.front = face;
+		}else {
+			this.front = back;
+		}
+	}
 	
 	public int getValue() {
 		return RANK.value;
@@ -36,14 +50,19 @@ public class Card implements Serializable {
 		return RANK + " of " + SUIT;
 	}
 	
+<<<<<<< HEAD
 	
 	public ImageIcon setVisibility(boolean visible) {
 		if(visible)
 			return face;
 		else
 			return back;
+=======
+	public Suit getSuit() {
+		return SUIT;
+>>>>>>> rasmus2.0
 	}
-	
+
 	/*
 	 * Different ranks a card can have, and the values of each rank
 	 */
