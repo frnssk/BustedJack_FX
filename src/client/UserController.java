@@ -20,20 +20,20 @@ public class UserController {
 	private User user;
 	private boolean nameOk = false;
 	private String[] titles = {"Godfather", "Boss", "Gentleman", 
-								"Grinder", "Gambler", "Peasant"}; 
-	
+			"Grinder", "Gambler", "Peasant"}; 
+
 	public UserController(UserClient client) {
 		this.client = client;
 		client.setUserController(this);
 	}
-	
+
 	public void setUI(UserInterface ui) {
 		this.ui = ui;
 	}
-	
+
 	public void setRankAndTitle(int rank) {
 		ui.setRank(rank);
-		
+
 		if(rank >= 1500) {
 			ui.setTitle(titles[1]);
 		} else if (rank >= 800) {
@@ -57,25 +57,25 @@ public class UserController {
 		RegisterRequest request = new RegisterRequest(username, password);
 		client.sendRegisterRequest(request);
 	}
-	
+
 	public void createLoginRequest(String username, char[] password) {
 		LoginRequest request = new LoginRequest(username, password);
 		client.sendLoginRequest(request);
 	}
-	
+
 	public void createLogOutRequest(String name) {
 		client.sendLogOutRequest(new LogOutRequest(name));
 	}
-	
+
 	public void createGameInfo(int time, int rounds, int balance, int minimumBet) {
 		GameInfo gameInfo = new GameInfo(time, rounds, balance, minimumBet);
 		client.sendGameInfo(gameInfo);
 	}
-	
+
 	public void checkTableId(int tableId) {
 		client.checkTableId(tableId);
 	}
-	
+
 	/**
 	 * If user name comes back ok, checks if the user name fulfills the requirements.
 	 * Shows error message if name is taken 
@@ -105,7 +105,8 @@ public class UserController {
 			//update ui
 		}
 	}
-	
+
+
 //	public void connect(User user) {
 //		try {
 //			client.connect(user);

@@ -10,6 +10,7 @@ public class Card implements Serializable {
 	private final Rank RANK;
 	private final Suit SUIT;
 	private ImageIcon face;
+
 	
 	public Card(Rank rank, Suit suit){
 		RANK = rank;
@@ -31,6 +32,13 @@ public class Card implements Serializable {
 	
 	public String toString() {
 		return RANK + " of " + SUIT;
+	}
+	
+	public void setVisibility(boolean visible) {
+		if(visible)
+			setFace(FRAMSIDA);
+		else
+			setFace(BAKSIDA);
 	}
 	
 	/*
