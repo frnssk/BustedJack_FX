@@ -15,12 +15,12 @@ import javax.swing.*;
  * @author Isak Eklund
  *
  */
-
 public class UserInterface extends JPanel {
 	private UserController controller; 
 
-	private JButton btnLogIn = new JButton(new ImageIcon(new ImageIcon("buttons/login_btn.png").getImage().getScaledInstance(200, 40, Image.SCALE_DEFAULT))); //Log in display
-	private JButton btnCreateUser = new JButton(new ImageIcon(new ImageIcon("buttons/createNewUser_btn.png").getImage().getScaledInstance(200, 40, Image.SCALE_DEFAULT)));//Log in display
+	private ImageIcon btnImage = new ImageIcon(new ImageIcon("images/login_btn.png").getImage().getScaledInstance(200, 40, Image.SCALE_DEFAULT));
+	private JButton btnLogIn = new JButton(btnImage); //Log in display
+	private JButton btnCreateUser = new JButton("Create new user"); //Log in display
 	private JButton btnConfirmUser = new JButton("Create user"); //Creates user after entering name and password 
 	private JButton btnConfirmLogIn = new JButton("Login"); //Check user name and password and logs in  
 	private JButton btnBackToStart = new JButton("Back"); //From login screen back to start screen
@@ -33,8 +33,15 @@ public class UserInterface extends JPanel {
 	private JButton btnRandomTable = new JButton("Random table"); //Send user to random table 
 	private JButton btnConfirmTable = new JButton("Create table"); //After making settings for creating a table 
 	private JButton btnMenu = new JButton("Main Menu"); //back to menu after a game 
+	private JButton btnGameDouble = new JButton("Double");
+	private JButton btnGameStop = new JButton("Stay");
+	private JButton btnGameHit = new JButton("Hit");
+	private JButton btnGameCheat = new JButton("Cheat!");
 	private JButton btnStartGame = new JButton("Start Game");// lets the table owner to start the game.
+	//	private JButton btnGameExit = new JButton("Exit game");
 
+	private JRadioButton radioBtnTime;
+	private JRadioButton radioBtnRounds;
 	private JRadioButton radioBtnPrivate;
 
 	private JTextField tfTime;
@@ -62,6 +69,10 @@ public class UserInterface extends JPanel {
 	private String currentTitle = "";
 	private String nextTitle = "";
 	private int lobbyPlayers = 0;
+	private int rounds;
+	private int time;
+	private int balance;
+	private int minBet;
 
 	private String strUsername; //During development to show user name in menu
 	private Color green = new Color(65,136,14);
@@ -111,7 +122,7 @@ public class UserInterface extends JPanel {
 	}
 
 	public JPanel startScreen() {
-		ImageIcon image = new ImageIcon(new ImageIcon("images/BJ_logo_2.1.png").getImage().getScaledInstance(1000, 600, Image.SCALE_DEFAULT));
+		ImageIcon image = new ImageIcon(new ImageIcon("images/BJ_logo_2.png").getImage().getScaledInstance(1000, 600, Image.SCALE_DEFAULT));
 		JLabel logo = new JLabel();
 		logo.setIcon(image);
 
@@ -120,17 +131,17 @@ public class UserInterface extends JPanel {
 		logo.setLayout(new GridBagLayout());
 
 		cont.anchor = GridBagConstraints.CENTER;
-		cont.insets = new Insets(250,90,70,90);
+		cont.insets = new Insets(90,70,90,70);
 		
 		btnLogIn.setBorder(BorderFactory.createEmptyBorder());
 		btnLogIn.setContentAreaFilled(false);
-		btnCreateUser.setBorder(BorderFactory.createEmptyBorder());
-		btnCreateUser.setContentAreaFilled(false);
 
-		cont.gridx = 1;
+		cont.gridx = 0;
+		cont.gridy = 1;
 		logo.add(btnLogIn, cont);
 
-		cont.gridx = 2;
+		cont.gridx = 0;
+		cont.gridy = 2;
 		logo.add(btnCreateUser, cont);
 
 		pane.add(logo);
@@ -523,7 +534,7 @@ public class UserInterface extends JPanel {
 	}
 
 	public JPanel gameScreen() {
-		JLabel lblGameScreen = new JLabel(new ImageIcon(new ImageIcon("images/spelbord_2.1.png").getImage().getScaledInstance(1000, 580, Image.SCALE_DEFAULT)));//Not code to be used later. This is just to get an idea of the game size
+		JLabel lblGameScreen = new JLabel(new ImageIcon(new ImageIcon("images/BJ_table.png").getImage().getScaledInstance(1000, 580, Image.SCALE_DEFAULT)));//Not code to be used later. This is just to get an idea of the game size
 		lblGameScreen.setLayout(new GridBagLayout());
 
 		GridBagConstraints cont = new GridBagConstraints();
@@ -531,6 +542,19 @@ public class UserInterface extends JPanel {
 
 		cont.anchor = GridBagConstraints.CENTER;
 		cont.insets = new Insets(480,50,10,50);
+
+		cont.gridx = 0;
+		cont.gridy = 0;
+		lblGameScreen.add(btnGameDouble, cont);
+
+		cont.gridx = 1;
+		lblGameScreen.add(btnGameStop, cont);
+
+		cont.gridx = 2;
+		lblGameScreen.add(btnGameHit, cont);
+
+		cont.gridx = 3;
+		lblGameScreen.add(btnGameCheat, cont);
 
 		pane.add(lblGameScreen);
 
@@ -654,25 +678,37 @@ public class UserInterface extends JPanel {
 	public void addListeners() {
 		ActionL listener = new ActionL();
 		btnLogIn.addActionListener(e -> updateUI(logInScreen()));
-		btnBackToStart.addActionListener(e -> updateUI(startScreen()));
-		btnCreateUser.addActionListener(e -> updateUI(createUserScreen()));
+		btnBackToStart.addActionListener(listener);
+		btnCreateUser.addActionListener(listener);
 		btnConfirmUser.addActionListener(listener);
 		btnConfirmLogIn.addActionListener(listener);
-		btnGoToTable.addActionListener(e -> updateUI(joinScreen()));
-		btnCreateTable.addActionListener(e -> updateUI(createTableScreen()));
-		btnLogOut.addActionListener(e -> updateUI(startScreen()));
-		btnAchievements.addActionListener(e -> updateUI(achievementsScreen()));
-		btnRank.addActionListener(e -> updateUI(rankScreen()));
+		btnGoToTable.addActionListener(listener);
+		btnCreateTable.addActionListener(listener);
+		btnLogOut.addActionListener(listener);
+		btnAchievements.addActionListener(listener);
+		btnRank.addActionListener(listener);
 		btnEnterTable.addActionListener(listener);
 		btnRandomTable.addActionListener(listener);
 		btnConfirmTable.addActionListener(listener);
-		btnStartGame.addActionListener(e -> updateUI(gameScreen()));
-		btnMenu.addActionListener(e -> updateUI(mainMenuScreen()));
+		btnMenu.addActionListener(listener);
+		btnGameDouble.addActionListener(listener);
+		btnGameStop.addActionListener(listener);
+		btnGameHit.addActionListener(listener);
+		btnGameCheat.addActionListener(listener);
 	}
 
 	private class ActionL implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
+//			if(e.getSource() == btnLogIn) {
+//				updateUI(logInScreen());
+//			}
+			if(e.getSource() == btnBackToStart) {
+				updateUI(startScreen());
+			}
+			if(e.getSource() == btnCreateUser) {
+				updateUI(createUserScreen());
+			}
 			if(e.getSource() == btnConfirmUser) {
 				controller.createRegisterRequest(tfUsernameCreate.getText(), pfPasswordCreate.getPassword());
 				strUsername = tfUsernameCreate.getText();
@@ -680,6 +716,22 @@ public class UserInterface extends JPanel {
 			if(e.getSource() == btnConfirmLogIn) {
 				controller.createLoginRequest(tfUsernameLogIn.getText(), pfPasswordLogIn.getPassword());
 				strUsername = tfUsernameLogIn.getText(); //During development to show user name in menu
+			}
+			if(e.getSource() == btnGoToTable) {
+				updateUI(joinScreen());
+			}
+			if(e.getSource() == btnCreateTable) {
+				updateUI(createTableScreen());
+			}
+			if(e.getSource() == btnLogOut) {
+				controller.createLogOutRequest(strUsername);
+				updateUI(startScreen());
+			}
+			if(e.getSource() == btnAchievements) {
+				updateUI(achievementsScreen());
+			}
+			if(e.getSource() == btnRank) {
+				updateUI(rankScreen());
 			}
 			if(e.getSource() == btnEnterTable) {
 				controller.checkTableId(Integer.parseInt(tfRoomCode.getText()));
@@ -691,6 +743,24 @@ public class UserInterface extends JPanel {
 			if(e.getSource() == btnConfirmTable) {
 				controller.createGameInfo(Integer.parseInt(tfTime.getText()), Integer.parseInt(tfRounds.getText()), Integer.parseInt(tfBalance.getText()), Integer.parseInt(tfMinBet.getText()));
 				updateUI(gameScreen());
+			}
+			if(e.getSource() == btnStartGame) {
+				updateUI(gameScreen());
+			}
+			if(e.getSource() == btnMenu) {
+				updateUI(mainMenuScreen());
+			}
+			if(e.getSource() == btnGameDouble) {
+				//code to come
+			}
+			if(e.getSource() == btnGameStop) {
+				//code to come
+			}
+			if(e.getSource() == btnGameHit) {
+				//code to come
+			}
+			if(e.getSource() == btnGameCheat) {
+				//code to come
 			}
 
 		}
