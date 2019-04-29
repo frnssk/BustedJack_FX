@@ -10,6 +10,7 @@ public class Card implements Serializable {
 	private final Rank RANK;
 	private final Suit SUIT;
 	private ImageIcon face;
+	private ImageIcon back;
 
 	
 	public Card(Rank rank, Suit suit){
@@ -18,8 +19,8 @@ public class Card implements Serializable {
 		this.face = null;
 	}
 	
-	public void setFace(ImageIcon image) {
-		this.face = image;
+	public void setFace(String image) {
+		this.face = new ImageIcon(image);
 	}
 	
 	public int getValue() {
