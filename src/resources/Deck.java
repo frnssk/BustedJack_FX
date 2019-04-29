@@ -17,7 +17,13 @@ public class Deck implements Serializable {
 	public Deck() {
 		for(Card.Suit suit : Card.Suit.values()) {
 			for(Card.Rank rank : Card.Rank.values()) {
-				deck.add(new Card(rank, suit));
+				Card card = new Card(rank, suit);
+				if(card.toString() == "hearts") {
+					card.setFace("cards/hjärter"+rank);
+				}
+				
+				deck.add(card);
+				
 			}
 		}
 	}

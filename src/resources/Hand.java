@@ -22,7 +22,16 @@ public class Hand implements Serializable {
 	private int bet;
 	private int cheatHeat;
 	private int playChoice;
+	private boolean hasMadeEndingChoice;
 	
+
+	public boolean getHasMadeEndingChoice() {
+		return hasMadeEndingChoice;
+	}
+
+	public void setHasMadeEndingChoice(boolean hasMadeEndingChoice) {
+		this.hasMadeEndingChoice = hasMadeEndingChoice;
+	}
 
 	/*
 	 * Adds a new card to the hand
