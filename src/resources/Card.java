@@ -22,6 +22,7 @@ public class Card implements Serializable {
 	public void setFace(String image) {
 		this.face = new ImageIcon(image);
 	}
+
 	
 	public int getValue() {
 		return RANK.value;
@@ -35,11 +36,12 @@ public class Card implements Serializable {
 		return RANK + " of " + SUIT;
 	}
 	
-	public void setVisibility(boolean visible) {
+	
+	public ImageIcon setVisibility(boolean visible) {
 		if(visible)
-			setFace(FRAMSIDA);
+			return face;
 		else
-			setFace(BAKSIDA);
+			return back;
 	}
 	
 	/*
