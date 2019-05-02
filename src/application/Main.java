@@ -22,75 +22,86 @@ public class Main extends Application {
 
 	public void start(Stage primaryStage) throws Exception {
 		client = new UserClient("localhost", 1200);
-        this.primaryStage = primaryStage;
-        showStartView();
+		this.primaryStage = primaryStage;
+		showStartView();
 	}
-	
+
 	public void showStartView() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("StartScreen.fxml"));
-        mainLayout = loader.load();
-        
-        StartScreenController controller = loader.getController();
-        controller.setMain(this);
-        
-        Scene scene = new Scene(mainLayout, 1000, 600);
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
+		mainLayout = loader.load();
+
+		StartScreenController controller = loader.getController();
+		controller.setMain(this);
+
+		Scene scene = new Scene(mainLayout, 1000, 600);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.show();
 	}
-	
+
 	public void showLoginView() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("LogIn.fxml"));
-        mainLayout = loader.load();
-        
-        LogInController controller = loader.getController();
-        controller.setClient(client);
-        controller.setMain(this);
-        
-        Scene scene = new Scene(mainLayout, 1000, 600);
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
+		mainLayout = loader.load();
+
+		LogInController controller = loader.getController();
+		controller.setClient(client);
+		controller.setMain(this);
+
+		Scene scene = new Scene(mainLayout, 1000, 600);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.show();
 	}
-	
+
 	public void showCreateNewUser() throws IOException {
-		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("CreateNewUser.fxml"));
+		mainLayout = loader.load();
+
+		CreateNewUserController controller = loader.getController();
+		controller.setClient(client);
+		controller.setMain(this);
+
+		Scene scene = new Scene(mainLayout, 1000, 600);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.show();
 	}
-	
+
 	public void showMainMenu() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("MainMenu.fxml"));
-        mainLayout = loader.load();
-        
-        MainMenuController controller = loader.getController();
-        controller.setClient(client);
-        controller.setMain(this);
-        
-        Scene scene = new Scene(mainLayout, 1000, 600);
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
+		mainLayout = loader.load();
+
+		MainMenuController controller = loader.getController();
+		controller.setClient(client);
+		controller.setMain(this);
+
+		Scene scene = new Scene(mainLayout, 1000, 600);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.show();
 	}
-	
+
 	public void showAlert(String title, String message) throws IOException {
 		Alert alert = new Alert(AlertType.INFORMATION);
-        alert.initOwner(getPrimaryStage());
-        alert.setTitle(title);
-        alert.setHeaderText("");
-        alert.setContentText(message);
-        alert.showAndWait();
+		alert.initOwner(getPrimaryStage());
+		alert.setTitle(title);
+		alert.setHeaderText("");
+		alert.setContentText(message);
+		alert.showAndWait();
 	}
-	
+
 	public Stage getPrimaryStage() {
 		return primaryStage;
 	}
-	
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}

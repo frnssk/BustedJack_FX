@@ -54,10 +54,17 @@ public class LogInController extends Dialog{
 				}
 			});
 		} else if(string.equals("LOGIN_FAIL")) {
-			System.out.println("fuck u");
 			Platform.runLater(() -> {
 				try {
 					mainApp.showAlert("Wrong password", "You have entered a incorrect password. Please try again.");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+		} else {
+			Platform.runLater(() -> {
+				try {
+					mainApp.showAlert("Error", "Unknown error. Try again");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
