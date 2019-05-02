@@ -143,7 +143,6 @@ public class Table implements Serializable {
 		Card card = regularShoe.dealCard();
 		card.setVisibility(false);
 		dealer.addCard(card);
-
 		//		dealer.addCard(regularShoe.dealCard().setVisibility(false));
 	}
 

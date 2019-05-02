@@ -1,8 +1,9 @@
 package resources;
 
 import java.io.Serializable;
-
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+import java.awt.image.*;
 
 public class Card implements Serializable {
 
@@ -29,6 +30,14 @@ public class Card implements Serializable {
 		this.face = new ImageIcon(image);
 	}
 	
+	public void setSize(int x, int y) {
+		ImageIcon card = this.getFront();
+		Image image = card.getImage();
+		Image newImage = image.getScaledInstance(x, y, java.awt.Image.SCALE_SMOOTH);
+		card = new ImageIcon(newImage);
+		
+	}
+	
 	public void setVisibility(boolean sideToShow) {
 		if(sideToShow) {
 			this.front = face;
@@ -52,6 +61,7 @@ public class Card implements Serializable {
 	public Suit getSuit() {
 		return SUIT;
 	}
+	
 
 	/*
 	 * Different ranks a card can have, and the values of each rank
