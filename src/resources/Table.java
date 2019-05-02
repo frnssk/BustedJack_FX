@@ -171,7 +171,7 @@ public class Table implements Serializable {
 			}
 		}
 	}
-	
+	// checks if a players is busted (hand value is higher than 21) 
 	private void checkIsPlayerBust() {
 		for(int i = 0; i < playerList.size(); i++) {
 			int hands = playerList.get(i).getNumberOfHands();
