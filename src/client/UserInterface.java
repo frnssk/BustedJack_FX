@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 import communications.PlayerChoice;
@@ -643,10 +645,27 @@ public class UserInterface extends JPanel {
 	JButton btnTable = new JButton("New table");
 
 	JLabel lblPlayer1 = new JLabel();
+	public void setPlayer1Name(String string) {
+		lblPlayer1.setText(string);
+	}
+	
 	JLabel lblPlayer2 = new JLabel();
+	public void setPlayer2Name(String string) {
+		lblPlayer1.setText(string);
+	}
 	JLabel lblPlayer3 = new JLabel();
+	public void setPlayer3Name(String string) {
+		lblPlayer1.setText(string);
+	}
 	JLabel lblPlayer4 = new JLabel();
+	public void setPlayer4Name(String string) {
+		lblPlayer1.setText(string);
+	}
 	JLabel lblPlayer5 = new JLabel();
+	public void setPlayer5Name(String string) {
+		lblPlayer1.setText(string);
+	}
+	
 	JLabel lblPlayer1Score = new JLabel();
 	JLabel lblPlayer2Score = new JLabel();
 	JLabel lblPlayer3Score = new JLabel();

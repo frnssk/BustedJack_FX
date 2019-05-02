@@ -39,6 +39,10 @@ public class Table implements Serializable {
 		playerList.add(player);
 	}
 	
+	public ArrayList<Player> getPlayerList(){
+		return playerList;
+	}
+	
 	public void addPlayerAndClient(Player player, ClientHandler clientHandler) {
 		playerHashMap.put(player, clientHandler);
 	}

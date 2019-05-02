@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import application.LogInController;
 import communications.GameInfo;
@@ -12,6 +13,7 @@ import communications.LogOutRequest;
 import communications.LoginRequest;
 import communications.PlayerChoice;
 import communications.RegisterRequest;
+import resources.Player;
 import resources.User;
 
 /**
@@ -51,7 +53,7 @@ public class UserClient {
 //					connection = new Connection(socket);
 //					connection.start();
 //				}
-		connect();
+//		connect();
 
 	}
 
@@ -185,10 +187,14 @@ public class UserClient {
 					//For checking user name availability
 					if(obj instanceof String) {
 						String available = (String) obj; //byta namn? används till mer än att kolla namn
-//						controller.checkCreatedUser(available);
-						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL")) {
-							LogInController.checkLogIn(available);
-						}
+						controller.checkCreatedUser(available);
+//						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL")) {
+//							LogInController.checkLogIn(available);
+//						}
+					}
+					if(obj instanceof ArrayList<?>) {
+						ArrayList<Player> playerList = (ArrayList)obj;
+						controller.updatePlayerList(playerList);
 					}
 					
 				}catch(IOException | ClassNotFoundException exception) {

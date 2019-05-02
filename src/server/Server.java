@@ -345,6 +345,8 @@ public class Server {
 							table.addPlayer(player);
 							table.addPlayerAndClient(player, this); //Assistance/testing
 							TextWindow.println(player.getUsername() + " tillagd på Table " + table.getTableId());
+							output.writeObject(table.getPlayerList());
+							output.flush();
 							//send the tableId to the client
 						}
 						
@@ -363,6 +365,8 @@ public class Server {
 									table.addPlayer(player);
 									table.addPlayerAndClient(player, this); //Assistance/testing
 									TextWindow.println(player.getUsername() + " tillagd på Table " + table.getTableId());
+									output.writeObject(table.getPlayerList());
+									output.flush();
 								}
 							}else {
 								choice = "TABLE_FALSE";
@@ -375,7 +379,7 @@ public class Server {
 						
 						else if(obj instanceof PlayerChoice) {
 							PlayerChoice playChoice = (PlayerChoice)obj;
-							TextWindow.println("NÅGON HAR TRYCKT" + playChoice.getChoice());
+							TextWindow.println("NÅGON HAR TRYCKT = " + playChoice.getChoice());
 						}
 
 					} catch (ClassNotFoundException | IOException e) {
