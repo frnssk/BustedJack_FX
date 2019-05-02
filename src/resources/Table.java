@@ -158,7 +158,7 @@ public class Table implements Serializable {
 			}
 		}
 	}
-	
+
 	// checks if firsts two cards has the value of 21
 	private void checkBlackJack() {		
 		for(int i = 0; i < playerList.size(); i++) {
@@ -171,14 +171,14 @@ public class Table implements Serializable {
 			}
 		}
 	}
-	// checks if a players is busted (hand value is higher than 21) 
+
 	private void checkIsPlayerBust() {
 		for(int i = 0; i < playerList.size(); i++) {
 			int hands = playerList.get(i).getNumberOfHands();
 			for(int j = 0; j < hands; j++) {
-					if(playerList.get(i).getHand(j).getCurrentScore() > 21){
-						playerList.get(i).getHand(j).setBustedHand(true);
-					}
+				if(playerList.get(i).getHand(j).getCurrentScore() > 21){
+					playerList.get(i).getHand(j).setBustedHand(true);
+				}
 			}
 		}
 	}
@@ -201,28 +201,28 @@ public class Table implements Serializable {
 						while(!playerList.get(i).getHand(j).getSplitChoice()) {
 							Thread.sleep(1000);
 						}
-						if(playerList.get(i).getHand(j).wantToSplit()) {			//checks if a player wants to split a hand
-							Card card = playerList.get(i).getHand(j).getCard();		//gets a card from the hand
-							playerList.get(i).addNewHand();								//creates new hand
-							int numberOfHands = playerList.get(i).getNumberOfHands();	//checks how many hands a player has
-							playerList.get(i).getHand(numberOfHands).addCard(card);		//adds the card to the newest hand
-							if(playerList.get(i).getHand(j).size() == 1) { 				//if a player only has one card in one hand - adds new card
+						if(playerList.get(i).getHand(j).wantToSplit()) {					//checks if a player wants to split a hand
+							Card card = playerList.get(i).getHand(j).getCard();				//gets a card from the hand
+							playerList.get(i).addNewHand();									//creates new hand
+							int numberOfHands = playerList.get(i).getNumberOfHands();		//checks how many hands a player has
+							playerList.get(i).getHand(numberOfHands).addCard(card);			//adds the card to the newest hand
+							if(playerList.get(i).getHand(j).size() == 1) { 					//if a player only has one card in one hand - adds new card
 								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());	//deals the actual card
 							}
 						}
 					}
 				}
 			}
-		}
-		int max = 0;
-		for (int i = 0; i < playerList.size(); i++){
-			for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
-				if(playerList.get(i).getNumberOfHands() > max)
-					max = playerList.get(i).getNumberOfHands();
+			int max = 0;
+			for (int i = 0; i < playerList.size(); i++){
+				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
+					if(playerList.get(i).getNumberOfHands() > max)
+						max = playerList.get(i).getNumberOfHands();
+				}
 			}
+			boolean[][] test = new boolean[playerList.size()][max];
+			allPlayersAllHandsChecked = areAllTrue2d(test);
 		}
-		boolean[][] test = new boolean[playerList.size()][max];
-		allPlayersAllHandsChecked = areAllTrue2d(test);
 	}
 
 	private void checkInsurance() throws InterruptedException {
@@ -251,23 +251,39 @@ public class Table implements Serializable {
 	private void checkPlayerChoices() {
 		boolean allPlayersReady = false;
 		boolean[] allPlayersAreReady = new boolean[playerList.size()];
+
 		while(!allPlayersReady) {
 			for(int i = 0; i < playerList.size(); i++) {
-				int choice = playerList.get(i).getHand(i).getPlayChoice();
-				if(choice == 1)	{		//hit
-					if(playerList.get(i).getCheatChoice())
-						playerList.get(i).getHand(i).addCard(cheatShoe.dealCard());
-					else
-						playerList.get(i).getHand(i).addCard(regularShoe.dealCard());
-				}else if(choice == 2) {
-					playerList.get(i).getHand(i).setGrayOut();
-				}else if(choice == 3) {
-					int bet = playerList.get(i).getHand(i).getBet();
-					playerList.get(i).getHand(i).setBet(bet * 2);
-					playerList.get(i).getHand(i).addCard(regularShoe.dealCard());
+				for(int j = 0; j <  playerList.get(i).getNumberOfHands(); j++) {
+					int choice = playerList.get(i).getHand(i).getPlayChoice();
+					int handValue = playerList.get(i).getHand(j).getCurrentScore();
+					boolean hasMadeEndingChoice = playerList.get(i).getHand(j).getHasMadeEndingChoice();
+					while(handValue < 21 || !hasMadeEndingChoice) {
+						if(choice == 1)	{		//hit
+							if(playerList.get(i).getCheatChoice())
+								playerList.get(i).getHand(j).addCard(cheatShoe.dealCard());
+							else
+								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());
+						}else if(choice == 2) {
+							playerList.get(i).getHand(j).setGrayOut();
+						}else if(choice == 3) {
+							int bet = playerList.get(i).getHand(i).getBet();
+							playerList.get(i).getHand(j).setBet(bet * 2);
+							playerList.get(i).getHand(j).addCard(regularShoe.dealCard());
+						}
+					}
+					playerList.get(i).getHand(j).setHasMadeEndingChoice(true);
 				}
 			}
-			allPlayersReady = areAllTrue(allPlayersAreReady);
+			int max = 0;
+			for (int i = 0; i < playerList.size(); i++){
+				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
+					if(playerList.get(i).getNumberOfHands() > max)
+						max = playerList.get(i).getNumberOfHands();
+				}
+			}
+			boolean[][] test = new boolean[playerList.size()][max];
+			allPlayersReady = areAllTrue2d(test);
 		}
 	}
 
@@ -316,8 +332,8 @@ public class Table implements Serializable {
 			Thread.sleep(1500);
 		}
 	}
-	
-	
+
+
 	//compare the scores of all the players to the dealer
 	private void compareDealerToPlayers() {
 		//		boolean[] playerWin = new boolean[playerList.size()];

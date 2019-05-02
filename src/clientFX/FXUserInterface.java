@@ -213,7 +213,8 @@ public class FXUserInterface extends Application {
     }
     
     public void setNextBet(int bet) {
-    	btnConfirmBet.setText("Confirm: " + (currentBet + bet));
+    	currentBet += bet;
+    	btnConfirmBet.setText("Confirm: " + currentBet);
     }
     
     public void setNextBet25() {
