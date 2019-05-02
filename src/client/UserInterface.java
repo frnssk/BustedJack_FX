@@ -20,7 +20,7 @@ import communications.PlayerChoice;
 public class UserInterface extends JPanel {
 	private UserController controller; 
 
-	private ImageIcon btnImage = new ImageIcon(new ImageIcon("images/login_btn.png").getImage().getScaledInstance(200, 40, Image.SCALE_DEFAULT));
+	private ImageIcon btnImage = new ImageIcon(new ImageIcon("buttons/login_btn.png").getImage().getScaledInstance(200, 40, Image.SCALE_DEFAULT));
 	private JButton btnLogIn = new JButton(btnImage); //Log in display
 	private JButton btnCreateUser = new JButton("Create new user"); //Log in display
 	private JButton btnConfirmUser = new JButton("Create user"); //Creates user after entering name and password 
