@@ -6,6 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import application.LogInController;
 import communications.GameInfo;
 import communications.LogOutRequest;
 import communications.LoginRequest;
@@ -184,7 +185,10 @@ public class UserClient {
 					//For checking user name availability
 					if(obj instanceof String) {
 						String available = (String) obj; //byta namn? används till mer än att kolla namn
-						controller.checkCreatedUser(available);
+//						controller.checkCreatedUser(available);
+						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL")) {
+							LogInController.checkLogIn(available);
+						}
 					}
 					
 				}catch(IOException | ClassNotFoundException exception) {
