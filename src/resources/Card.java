@@ -57,7 +57,7 @@ public class Card implements Serializable {
 	public String toString() {
 		return RANK + " of " + SUIT;
 	}
-	
+
 	public Suit getSuit() {
 		return SUIT;
 	}
