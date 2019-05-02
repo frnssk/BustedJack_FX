@@ -83,11 +83,16 @@ public class UserController {
 	}
 
 	public void updatePlayerList(ArrayList<Player> playerList) {
-		ui.setPlayer1Name(playerList.get(0).getUsername());
-		ui.setPlayer2Name(playerList.get(1).getUsername());
-		ui.setPlayer3Name(playerList.get(2).getUsername());
-		ui.setPlayer4Name(playerList.get(3).getUsername());
-		ui.setPlayer5Name(playerList.get(4).getUsername());
+		if(playerList.size() == 1)
+			ui.setPlayer1Name(playerList.get(0).getUsername());
+		if(playerList.size() == 2)
+			ui.setPlayer2Name(playerList.get(1).getUsername());
+		if(playerList.size() == 3)
+			ui.setPlayer3Name(playerList.get(2).getUsername());
+		if(playerList.size() == 4)
+			ui.setPlayer4Name(playerList.get(3).getUsername());
+		if(playerList.size() == 5)
+			ui.setPlayer5Name(playerList.get(4).getUsername());
 	}
 
 	/**

@@ -326,7 +326,7 @@ public class Server {
 						else if(obj instanceof LogOutRequest) {
 							LogOutRequest logout = (LogOutRequest)obj;
 							isOnline = false;
-//							TextWindow.println("Client disconnected.");
+							TextWindow.println("Client disconnected.");
 							String name = logout.getUserName();
 							User user = getUser(name);
 							UserHandler.removeActiveUser(this);
@@ -365,8 +365,8 @@ public class Server {
 									table.addPlayer(player);
 									table.addPlayerAndClient(player, this); //Assistance/testing
 									TextWindow.println(player.getUsername() + " tillagd på Table " + table.getTableId());
-									output.writeObject(table.getPlayerList());
-									output.flush();
+									
+//									output.writeObject(table.getPlayerList());
 								}
 							}else {
 								choice = "TABLE_FALSE";

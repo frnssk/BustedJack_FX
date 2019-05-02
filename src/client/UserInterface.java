@@ -648,22 +648,21 @@ public class UserInterface extends JPanel {
 	public void setPlayer1Name(String string) {
 		lblPlayer1.setText(string);
 	}
-	
 	JLabel lblPlayer2 = new JLabel();
 	public void setPlayer2Name(String string) {
-		lblPlayer1.setText(string);
+		lblPlayer2.setText(string);
 	}
 	JLabel lblPlayer3 = new JLabel();
 	public void setPlayer3Name(String string) {
-		lblPlayer1.setText(string);
+		lblPlayer3.setText(string);
 	}
 	JLabel lblPlayer4 = new JLabel();
 	public void setPlayer4Name(String string) {
-		lblPlayer1.setText(string);
+		lblPlayer4.setText(string);
 	}
 	JLabel lblPlayer5 = new JLabel();
 	public void setPlayer5Name(String string) {
-		lblPlayer1.setText(string);
+		lblPlayer5.setText(string);
 	}
 	
 	JLabel lblPlayer1Score = new JLabel();
@@ -977,7 +976,8 @@ public class UserInterface extends JPanel {
 			}
 			if(e.getSource() == btnEnterTable) {
 				controller.checkTableId(Integer.parseInt(tfRoomCode.getText()));
-				updateUI(lobbyScreen(Integer.parseInt(tfBalance.getText()), Integer.parseInt(tfMinBet.getText()), Integer.parseInt(tfRounds.getText()), Integer.parseInt(tfTime.getText())));
+				updateUI(testing());
+//				updateUI(lobbyScreen(Integer.parseInt(tfBalance.getText()), Integer.parseInt(tfMinBet.getText()), Integer.parseInt(tfRounds.getText()), Integer.parseInt(tfTime.getText())));
 			}
 			if(e.getSource() == btnRandomTable) {
 				updateUI(lobbyScreen(Integer.parseInt(tfBalance.getText()), Integer.parseInt(tfMinBet.getText()), Integer.parseInt(tfRounds.getText()), Integer.parseInt(tfTime.getText())));
