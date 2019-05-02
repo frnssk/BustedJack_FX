@@ -5,6 +5,7 @@ import java.io.IOException;
 import communications.GameInfo;
 import communications.LogOutRequest;
 import communications.LoginRequest;
+import communications.PlayerChoice;
 import communications.RegisterRequest;
 import resources.*;
 
@@ -74,6 +75,10 @@ public class UserController {
 
 	public void checkTableId(int tableId) {
 		client.checkTableId(tableId);
+	}
+	
+	public void sendPlayerChoice(PlayerChoice choice) {
+		client.sendPlayerChoice(choice);
 	}
 
 	/**

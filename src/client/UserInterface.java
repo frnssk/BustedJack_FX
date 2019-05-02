@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
 
+import communications.PlayerChoice;
+
 
 /**
  * Holds the Graphic User Interface
@@ -132,7 +134,7 @@ public class UserInterface extends JPanel {
 
 		cont.anchor = GridBagConstraints.CENTER;
 		cont.insets = new Insets(90,70,90,70);
-		
+
 		btnLogIn.setBorder(BorderFactory.createEmptyBorder());
 		btnLogIn.setContentAreaFilled(false);
 
@@ -371,7 +373,7 @@ public class UserInterface extends JPanel {
 
 		JLabel lblBackground = new JLabel(menuBackground);
 		lblBackground.setLayout(new GridBagLayout());
-		
+
 		tfRoomCode = new JTextField();
 		tfRoomCode.setPreferredSize(new Dimension(200,20));
 
@@ -395,7 +397,7 @@ public class UserInterface extends JPanel {
 		lblBackground.add(btnRandomTable, cont);
 
 		pane.add(lblBackground);
-		
+
 		return pane;
 	}
 
@@ -410,7 +412,7 @@ public class UserInterface extends JPanel {
 		lblBalance.setForeground(gold);
 		lblMinBet.setForeground(gold);
 		lblPrivateMatch.setForeground(gold);
-		
+
 		JLabel lblBackground = new JLabel(menuBackground);
 		lblBackground.setLayout(new GridBagLayout());
 
@@ -422,7 +424,7 @@ public class UserInterface extends JPanel {
 		tfRounds.setPreferredSize(new Dimension(80,20));
 		tfBalance.setPreferredSize(new Dimension(80,20));
 		tfMinBet.setPreferredSize(new Dimension(80,20));
-		
+
 		radioBtnPrivate = new JRadioButton();
 
 		GridBagConstraints cont = new GridBagConstraints();
@@ -465,12 +467,12 @@ public class UserInterface extends JPanel {
 
 		cont.gridx = 4;
 		lblBackground.add(btnConfirmTable, cont);
-		
+
 		pane.add(lblBackground);
 
 		return pane;
 	}
-	
+
 	public JPanel lobbyScreen(int balance, int minBet, int rounds, int time) {
 		JLabel lblRoomSize = new JLabel(lobbyPlayers + "/5");
 		JLabel lblGameSettings = new JLabel("Game Settings");
@@ -484,12 +486,12 @@ public class UserInterface extends JPanel {
 		lblTime.setForeground(gold);
 		lblBalance.setForeground(gold);
 		lblMinBet.setForeground(gold);
-		
+
 		taActiveLobbyPlayers = new JTextArea();
 		taActiveLobbyPlayers.setPreferredSize(new Dimension(200,200));
 		GridBagConstraints cont = new GridBagConstraints();
 		JPanel pane = new JPanel(new GridBagLayout());
-		
+
 		JLabel lblBackground = new JLabel(menuBackground);
 		lblBackground.setLayout(new GridBagLayout());
 
@@ -499,27 +501,27 @@ public class UserInterface extends JPanel {
 		cont.gridx = 0;
 		cont.gridy = 1;
 		lblBackground.add(btnStartGame, cont);
-		
+
 		cont.gridy = 2;
 		lblBackground.add(btnMenu, cont);
-		
+
 		cont.gridx = 1;
 		cont.gridy = 0;
 		lblBackground.add(lblRoomSize, cont);
-		
+
 		cont.gridx = 2;
 		cont.gridy = 1;
 		lblBackground.add(lblGameSettings, cont);
-		
+
 		cont.gridy = 2;
 		lblBackground.add(lblRounds, cont);
-		
+
 		cont.gridy = 3;
 		lblBackground.add(lblTime, cont);
-		
+
 		cont.gridy = 4;
 		lblBackground.add(lblBalance, cont);
-		
+
 		cont.gridy = 5;
 		lblBackground.add(lblMinBet, cont);
 
@@ -527,9 +529,9 @@ public class UserInterface extends JPanel {
 		cont.gridy = 1;
 		cont.gridheight = 5;
 		lblBackground.add(taActiveLobbyPlayers, cont);
-		
+
 		pane.add(lblBackground);
-				
+
 		return pane;
 	}
 
@@ -570,7 +572,7 @@ public class UserInterface extends JPanel {
 		lblPlayerRanks.setForeground(gold);
 		lblAchievements.setForeground(gold);
 		lblNewRank.setForeground(gold);
-		
+
 		JLabel lblBackground = new JLabel(menuBackground);
 		lblBackground.setLayout(new GridBagLayout());
 
@@ -624,10 +626,226 @@ public class UserInterface extends JPanel {
 
 		cont.gridy = 4;
 		lblBackground.add(btnMenu, cont);
-		
+
 		pane.add(lblBackground);
 
 		return pane;
+	}
+
+
+	JPanel panel = new JPanel();
+	JButton btnHit = new JButton("hit");
+	JButton btnStay = new JButton("stay");
+	JButton btnDouble = new JButton("double");
+	JButton btnSplit = new JButton("split");
+	JButton btnBust = new JButton("bust");
+	JButton btnCheat = new JButton("cheat");
+	JButton btnTable = new JButton("New table");
+
+	JLabel lblPlayer1 = new JLabel();
+	JLabel lblPlayer2 = new JLabel();
+	JLabel lblPlayer3 = new JLabel();
+	JLabel lblPlayer4 = new JLabel();
+	JLabel lblPlayer5 = new JLabel();
+	JLabel lblPlayer1Score = new JLabel();
+	JLabel lblPlayer2Score = new JLabel();
+	JLabel lblPlayer3Score = new JLabel();
+	JLabel lblPlayer4Score = new JLabel();
+	JLabel lblPlayer5Score = new JLabel();
+	JLabel lblPlayer1card = new JLabel();
+	JLabel lblPlayer2card = new JLabel();
+	JLabel lblPlayer3card = new JLabel();
+	JLabel lblPlayer4card = new JLabel();
+	JLabel lblPlayer5card = new JLabel();
+
+	JTextArea logg = new JTextArea();
+
+	JLabel lblDealer = new JLabel();
+	JLabel lblDealerScore = new JLabel();
+	JLabel lblCardHolder = new JLabel();
+
+	public JPanel testing() {
+
+		GridBagConstraints cont = new GridBagConstraints();
+		cont.anchor = GridBagConstraints.CENTER;
+		cont.insets = new Insets(10,10,10,10);
+		
+		panel.setPreferredSize(new Dimension(600,800));
+
+		cont.gridx = 0;
+		cont.gridy = 0;
+		lblPlayer1.setText("Player1");
+		panel.add(lblPlayer1, cont);
+
+		cont.gridx = 1;
+		cont.gridy = 0;
+		lblPlayer2.setText("Player2");
+		panel.add(lblPlayer2, cont);
+
+		cont.gridx = 2;
+		cont.gridy = 0;
+		lblPlayer3.setText("Player3");
+		panel.add(lblPlayer3, cont);
+
+		cont.gridx = 3;
+		cont.gridy = 0;
+		lblPlayer4.setText("Player4");
+		panel.add(lblPlayer4, cont);
+
+		cont.gridx = 4;
+		cont.gridy = 0;
+		lblPlayer5.setText("Player5");
+		panel.add(lblPlayer5, cont);
+
+		//scores
+		cont.gridx = 0;
+		cont.gridy = 1;
+		lblPlayer1Score.setText("score");
+		panel.add(lblPlayer1Score, cont);
+
+		cont.gridx = 1;
+		cont.gridy = 1;
+		lblPlayer2Score.setText("score");
+		panel.add(lblPlayer2Score, cont);
+
+		cont.gridx = 2;
+		cont.gridy = 1;
+		lblPlayer3Score.setText("score");
+		panel.add(lblPlayer3Score, cont);
+
+		cont.gridx = 3;
+		cont.gridy = 1;
+		lblPlayer4Score.setText("score");
+		panel.add(lblPlayer4Score, cont);
+
+		cont.gridx = 4;
+		cont.gridy = 1;
+		lblPlayer5Score.setText("score");
+		panel.add(lblPlayer5Score, cont);
+
+		//cards
+		cont.gridx = 0;
+		cont.gridy = 2;
+		lblPlayer1card.setText("kort");
+		panel.	add(lblPlayer1card, cont);
+
+		cont.gridx = 1;
+		cont.gridy = 2;
+		lblPlayer2card.setText("kort");
+		panel.	add(lblPlayer2card, cont);
+
+		cont.gridx = 2;
+		cont.gridy = 2;
+		lblPlayer3card.setText("kort");
+		panel.add(lblPlayer3card, cont);
+
+		cont.gridx = 3;
+		cont.gridy = 2;
+		lblPlayer4card.setText("kort");
+		panel.add(lblPlayer4card, cont);
+
+		cont.gridx = 4;
+		cont.gridy = 2;
+		lblPlayer5card.setText("kort");
+		panel.add(lblPlayer5card, cont);
+
+		//dealer
+		cont.gridx = 5;
+		cont.gridy = 0;
+		lblDealer.setText("DEALER");
+		panel.add(lblDealer, cont);
+
+		cont.gridx = 5;
+		cont.gridy = 1;
+		lblDealerScore.setText("dealer score");
+		panel.add(lblDealerScore, cont);
+
+		cont.gridx = 5;
+		cont.gridy = 2;
+		lblCardHolder.setText("kort");
+		panel.add(lblCardHolder, cont);
+
+		//BUTTTTONONOS
+		cont.gridx = 0;
+		cont.gridy = 3;
+		panel.add(btnHit, cont);
+
+		cont.gridx = 1;
+		cont.gridy = 3;
+		panel.add(btnStay, cont);
+
+		cont.gridx = 2;
+		cont.gridy = 3;
+		panel.add(btnDouble, cont);
+
+		cont.gridx = 3;
+		cont.gridy = 3;
+		panel.add(btnSplit, cont);
+
+		cont.gridx = 4;
+		cont.gridy = 3;		
+		panel.add(btnCheat, cont);
+
+		cont.gridx = 5;
+		cont.gridy = 3;
+		panel.add(btnBust, cont);
+
+		cont.gridx = 6;
+		cont.gridy = 3;
+		panel.add(btnTable, cont);
+
+		cont.gridx = 6;
+		cont.gridwidth = 3;
+		cont.gridy = 0;
+		cont.gridheight = 5;
+		panel.add(logg, cont);
+
+		ButtonListener listener = new ButtonListener();
+		btnBust.addActionListener(listener);
+		btnCheat.addActionListener(listener);
+		btnDouble.addActionListener(listener);
+		btnHit.addActionListener(listener);
+		btnSplit.addActionListener(listener);
+		btnStay.addActionListener(listener);
+		btnTable.addActionListener(listener);
+
+		return panel;
+	}
+
+	private class ButtonListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == btnHit) {
+				System.out.println("1");
+				PlayerChoice choice = new PlayerChoice(1);
+				System.out.println("2");
+				try {
+					controller.sendPlayerChoice(choice);
+				}catch(Exception ex) {
+					System.out.println("fuck");
+				}
+
+				logg.append("HIT ME \n");
+			}
+			if(e.getSource() == btnStay) {
+				logg.append("STAY ME \n");
+			}
+			if(e.getSource() == btnDouble) {
+				logg.append("DOUBLE ME \n");
+			}
+			if(e.getSource() == btnSplit) {
+				logg.append("SPLIT ME \n");
+			}
+			if(e.getSource() == btnCheat) {
+				logg.append("CHEAT ME \n");
+			}
+			if(e.getSource() == btnBust) {
+				logg.append("BUST ME \n");
+			}
+			if(e.getSource() == btnTable) {
+			}
+
+		}
+
 	}
 
 	public void errorMessageUsername() {
@@ -638,7 +856,7 @@ public class UserInterface extends JPanel {
 		JPanel pane = new JPanel(new GridBagLayout());
 		pane.setBackground(Color.BLACK);
 
-		
+
 		cont.anchor = GridBagConstraints.FIRST_LINE_START;
 		cont.insets = new Insets(10,10,10,10);
 
@@ -700,9 +918,9 @@ public class UserInterface extends JPanel {
 	private class ActionL implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-//			if(e.getSource() == btnLogIn) {
-//				updateUI(logInScreen());
-//			}
+			//			if(e.getSource() == btnLogIn) {
+			//				updateUI(logInScreen());
+			//			}
 			if(e.getSource() == btnBackToStart) {
 				updateUI(startScreen());
 			}
@@ -731,7 +949,7 @@ public class UserInterface extends JPanel {
 				updateUI(achievementsScreen());
 			}
 			if(e.getSource() == btnRank) {
-				updateUI(rankScreen());
+//				updateUI(testing());
 			}
 			if(e.getSource() == btnEnterTable) {
 				controller.checkTableId(Integer.parseInt(tfRoomCode.getText()));
@@ -742,7 +960,8 @@ public class UserInterface extends JPanel {
 			}
 			if(e.getSource() == btnConfirmTable) {
 				controller.createGameInfo(Integer.parseInt(tfTime.getText()), Integer.parseInt(tfRounds.getText()), Integer.parseInt(tfBalance.getText()), Integer.parseInt(tfMinBet.getText()));
-				updateUI(gameScreen());
+//				updateUI(gameScreen());
+				updateUI(testing());
 			}
 			if(e.getSource() == btnStartGame) {
 				updateUI(gameScreen());

@@ -1,11 +1,9 @@
 package server;
 
-import java.io.BufferedReader;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -18,6 +16,7 @@ import java.util.LinkedList;
 import communications.GameInfo;
 import communications.LogOutRequest;
 import communications.LoginRequest;
+import communications.PlayerChoice;
 import communications.RegisterRequest;
 import resources.Player;
 import resources.Table;
@@ -370,6 +369,11 @@ public class Server {
 							output.writeObject(choice);
 							output.flush();
 							TextWindow.println("GREAT SUCCES, TWO THUMBS UP - BORAT STYLE");
+						}
+						
+						else if(obj instanceof PlayerChoice) {
+							PlayerChoice playChoice = (PlayerChoice)obj;
+							TextWindow.println("NÅGON HAR TRYCKT" + playChoice.getChoice());
 						}
 
 					} catch (ClassNotFoundException | IOException e) {
