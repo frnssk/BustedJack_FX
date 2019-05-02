@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import client.UserClient;
 import communications.LoginRequest;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,12 +12,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class LogInController {
+public class LogInController extends Dialog{
 	@FXML
 	private Label lblUserName;
 	@FXML
@@ -43,14 +45,23 @@ public class LogInController {
 	
 	public static void checkLogIn(String string) throws IOException {
 		if(string.equals("LOGIN_SUCCES")) {
-			mainApp.showMainMenu();
+			Platform.runLater(() -> {
+				try {
+					mainApp.showMainMenu();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
 		} else if(string.equals("LOGIN_FAIL")) {
-			Alert alert = new Alert(AlertType.WARNING);
-	        alert.initOwner(mainApp.getPrimaryStage());
-	        alert.setTitle("Wrong password");
-	        alert.setHeaderText("Incoreect password");
-	        alert.setContentText("You have entered a incorrect password. Please try again.");
-	        alert.showAndWait();
+			System.out.println("fuck u");
+			Platform.runLater(() -> {
+				try {
+					mainApp.showAlert("Wrong password", "You have entered a incorrect password. Please try again.");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
 		}
 		
 	}
@@ -63,7 +74,13 @@ public class LogInController {
 	
 	@FXML
 	private void handleLogIn() throws Exception {
+		mainApp.setUsername(tfUsername.getText());
 		createLoginRequest(tfUsername.getText(), pfPassword.getText());
+	}
+	
+	@FXML
+	private void handleBackToStart() throws IOException {
+		mainApp.showStartView();
 	}
 	
 	public static void setMain(Main main) {

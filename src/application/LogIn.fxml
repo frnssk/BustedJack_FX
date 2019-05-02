@@ -27,8 +27,8 @@
             <Font name="Futura Medium" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="362.0" layoutY="403.0" mnemonicParsing="false" text="Menu" />
-      <Button layoutX="550.0" layoutY="403.0" mnemonicParsing="false" text="Log In" />
+      <Button fx:id="btnMenu" layoutX="362.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleBackToStart" text="Menu" />
+      <Button fx:id="btnLogIn" layoutX="550.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleLogIn" text="Log In" />
       <PasswordField fx:id="pfPassword" layoutX="495.0" layoutY="314.0" promptText="Enter password" />
    </children>
 </AnchorPane>
