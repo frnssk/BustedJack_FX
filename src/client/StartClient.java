@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 
 public class StartClient {
 	public static void main(String[] args) throws IOException {
-		UserClient client = new UserClient("localhost", 1200); //IP and port are hard coded for testing
+		UserClient client = new UserClient("10.2.15.40", 1200); //IP and port are hard coded for testing
 		UserController controller = new UserController(client);
 		
 		UserInterface gui = new UserInterface(controller);
