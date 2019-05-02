@@ -153,7 +153,7 @@ public class Server {
 	 * Starts a new Thread for every client
 	 * @author RasmusOberg
 	 */
-	private class ClientHandler extends Thread{
+	public class ClientHandler extends Thread{
 		private Socket socket;
 		private ObjectOutputStream output;
 		private ObjectInputStream input;
@@ -343,6 +343,7 @@ public class Server {
 							User user = UserHandler.getUser(this);
 							Player player = new Player(user.getUsername());
 							table.addPlayer(player);
+							table.addPlayerAndClient(player, this); //Assistance/testing
 							TextWindow.println(player.getUsername() + " tillagd på Table " + table.getTableId());
 							//send the tableId to the client
 						}
@@ -360,6 +361,7 @@ public class Server {
 									User user = UserHandler.getUser(this);
 									Player player = new Player(user.getUsername());
 									table.addPlayer(player);
+									table.addPlayerAndClient(player, this); //Assistance/testing
 									TextWindow.println(player.getUsername() + " tillagd på Table " + table.getTableId());
 								}
 							}else {

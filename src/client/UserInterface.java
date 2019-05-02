@@ -633,7 +633,7 @@ public class UserInterface extends JPanel {
 	}
 
 
-	JPanel panel = new JPanel();
+	
 	JButton btnHit = new JButton("hit");
 	JButton btnStay = new JButton("stay");
 	JButton btnDouble = new JButton("double");
@@ -666,11 +666,14 @@ public class UserInterface extends JPanel {
 
 	public JPanel testing() {
 
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridBagLayout());
 		GridBagConstraints cont = new GridBagConstraints();
 		cont.anchor = GridBagConstraints.CENTER;
 		cont.insets = new Insets(10,10,10,10);
 		
 		panel.setPreferredSize(new Dimension(600,800));
+		
 
 		cont.gridx = 0;
 		cont.gridy = 0;
@@ -808,6 +811,8 @@ public class UserInterface extends JPanel {
 		btnSplit.addActionListener(listener);
 		btnStay.addActionListener(listener);
 		btnTable.addActionListener(listener);
+		
+		
 
 		return panel;
 	}

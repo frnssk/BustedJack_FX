@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 
 import resources.Card.Rank;
+import server.Server.ClientHandler;
 
 public class Table implements Serializable {
 
@@ -21,7 +22,8 @@ public class Table implements Serializable {
 
 	private ArrayList<Player> playerList = new ArrayList<>(); //Holds all the players for the game
 	private ArrayList<Player> newPlayerList = new ArrayList<>();//holds an updated version of the PlayerList (players who get blackjack should not be able to continue playing)
-
+	private HashMap<Player, ClientHandler> playerHashMap = new HashMap<>();
+	
 	public Table(int numberOfMinutes, int numberOfRounds, int startingMoney, int minimumBet) {
 		//		this.numberOfPlayers = numberOfPlayers;
 		this.numberOfMinutes = numberOfMinutes;
@@ -35,6 +37,10 @@ public class Table implements Serializable {
 
 	public void addPlayer(Player player) {
 		playerList.add(player);
+	}
+	
+	public void addPlayerAndClient(Player player, ClientHandler clientHandler) {
+		playerHashMap.put(player, clientHandler);
 	}
 
 	public boolean checkTableStarted() {
