@@ -187,10 +187,10 @@ public class UserClient {
 					//For checking user name availability
 					if(obj instanceof String) {
 						String available = (String) obj; //byta namn? används till mer än att kolla namn
-						controller.checkCreatedUser(available);
-//						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL")) {
-//							LogInController.checkLogIn(available);
-//						}
+//						controller.checkCreatedUser(available);
+						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL")) {
+							LogInController.checkLogIn(available);
+						}
 					}
 					if(obj instanceof ArrayList<?>) {
 						ArrayList<Player> playerList = (ArrayList)obj;
