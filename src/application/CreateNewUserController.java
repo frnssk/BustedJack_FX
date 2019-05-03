@@ -33,7 +33,13 @@ public class CreateNewUserController {
 		mainApp.showStartView();
 	}
 	
-	public void checkRequest(String string) throws IOException {
+	@FXML
+	private void handleCreateUser() throws IOException {
+		createRegisterRequest(tfUsername.getText(), pfPassword.getText());
+		mainApp.setUsername(tfUsername.getText());
+	}
+	
+	public static void checkRequest(String string) {
 		if(string.equals("USERNAME_FALSE")) {
 			Platform.runLater(() -> {
 				try {
@@ -53,14 +59,19 @@ public class CreateNewUserController {
 		} else if(string.equals("USER_TRUE")) {
 			Platform.runLater(() -> {
 				try {
-					mainApp.setUsername(tfUsername.getText());
 					mainApp.showMainMenu();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			});
 		} else {
-			
+			Platform.runLater(() -> {
+				try {
+					mainApp.showAlert("Error", "Unknown error. Try again");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
 		}
 	}
 	
@@ -69,13 +80,8 @@ public class CreateNewUserController {
 		RegisterRequest request = new RegisterRequest(username, password);
 		client.sendRegisterRequest(request);
 	}
-	
-	@FXML
-	private void handleCreateUser() throws IOException {
-		createRegisterRequest(tfUsername.getText(), pfPassword.getText());
-	}
 
-	public static void setMain(Main main) {
+	public void setMain(Main main) {
 		mainApp = main;
 	}
 

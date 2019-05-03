@@ -20,20 +20,23 @@ public class MainMenuController {
 	private static Main mainApp;
 	private UserClient client;
 
+	@FXML
+	private void initialize() {
+	}
 	
 	@FXML
-	private void handleGoToTable() throws IOException {
-		
+	private void handleJoinTabel() throws IOException {
+		mainApp.showJoinTable();
 	}
 	
 	@FXML
 	private void handleCreateTable() throws IOException {
-		
+		mainApp.showCreateTabel();
 	}
 	
 	@FXML
 	private void handleProfile() throws IOException {
-		
+		mainApp.showProfile();
 	}
 	
 	@FXML
@@ -41,10 +44,6 @@ public class MainMenuController {
 		LogOutRequest req = new LogOutRequest(mainApp.getUsername());
 		client.sendLogOutRequest(req);
 		mainApp.showStartView();
-	}
-	
-	@FXML
-	private void initialize() {
 	}
 	
 	public static void setMain(Main main) {

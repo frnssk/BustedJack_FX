@@ -84,6 +84,33 @@ public class Main extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
+	
+	public void showJoinTable() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("JoinTable.fxml"));
+		mainLayout = loader.load();
+
+		JoinTableController controller = loader.getController();
+		controller.setClient(client);
+		controller.setMain(this);
+
+		Scene scene = new Scene(mainLayout, 1000, 600);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.show();
+	}
+	
+	public void showGame() throws IOException {
+		
+	}
+	
+	public void showCreateTabel() throws IOException {
+		
+	}
+	
+	public void showProfile() throws IOException {
+		
+	}
 
 	public void showAlert(String title, String message) throws IOException {
 		Alert alert = new Alert(AlertType.INFORMATION);

@@ -7,6 +7,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import application.CreateNewUserController;
+import application.JoinTableController;
 import application.LogInController;
 import communications.GameInfo;
 import communications.LogOutRequest;
@@ -190,6 +192,10 @@ public class UserClient {
 //						controller.checkCreatedUser(available);
 						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL")) {
 							LogInController.checkLogIn(available);
+						} else if(available.equals("USERNAME_FALSE") || available.equals("PASSWORD_FALSE") || available.equals("USER_TRUE")) {
+							CreateNewUserController.checkRequest(available);
+						} else if(available.equals("TABLE_TRUE") || available.equals("TABLE_FALSE")) {
+							JoinTableController.checkTableId(available);
 						}
 					}
 					if(obj instanceof ArrayList<?>) {
