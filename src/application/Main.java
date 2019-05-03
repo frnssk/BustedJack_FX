@@ -19,6 +19,7 @@ public class Main extends Application {
 	private static Stage primaryStage;
 	private static AnchorPane mainLayout;
 	private String username;
+	
 
 	public void start(Stage primaryStage) throws Exception {
 		client = new UserClient("localhost", 1200);
