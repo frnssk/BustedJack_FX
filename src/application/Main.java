@@ -106,10 +106,33 @@ public class Main extends Application {
 	}
 	
 	public void showCreateTabel() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("CreateTable.fxml"));
+		mainLayout = loader.load();
 		
+		CreateTableController controller = loader.getController();
+		controller.setClient(client);
+		controller.setMain(this);
+		
+		Scene scen = new Scene(mainLayout, 1000, 600);
+		primaryStage.setScene(scen);
+		primaryStage.setResizable(false);
+		primaryStage.show();
 	}
 	
 	public void showProfile() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("Profile.fxml"));
+		mainLayout = loader.load();
+		
+		ProfileController controller = loader.getController();
+		controller.setClient(client);
+		controller.setMain(this);
+		
+		Scene scen = new Scene(mainLayout, 1000, 600);
+		primaryStage.setScene(scen);
+		primaryStage.setResizable(false);
+		primaryStage.show();
 		
 	}
 
