@@ -5,11 +5,17 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
+import application.CreateNewUserController;
+import application.JoinTableController;
+import application.LogInController;
 import communications.GameInfo;
 import communications.LogOutRequest;
 import communications.LoginRequest;
+import communications.PlayerChoice;
 import communications.RegisterRequest;
+import resources.Player;
 import resources.User;
 
 /**
@@ -29,7 +35,6 @@ public class UserClient {
 	private Connection connection;
 	private Object obj;
 
-
 	/**
 	 * Constructs the UserCLient object and connects to server on give IP and port
 	 * @param ip - What IP address to connect to
@@ -39,17 +44,18 @@ public class UserClient {
 	public UserClient(String ip, int port) throws IOException{
 		this.ip = ip;
 		this.port = port;
-		//		try {
-		//			socket = new Socket(ip, port);
-		//			output = new ObjectOutputStream(socket.getOutputStream());
-		//			input = new ObjectInputStream(socket.getInputStream());
-		//		}catch(IOException ioException) {
-		//			ioException.printStackTrace();
-		//		}
-		//		if(connection == null) {
-		//			connection = new Connection();
-		//			connection.start();
-		//		}
+//				try {
+//					socket = new Socket(ip, port);
+//					output = new ObjectOutputStream(socket.getOutputStream());
+//					input = new ObjectInputStream(socket.getInputStream());
+//				}catch(IOException ioException) {
+//					ioException.printStackTrace();
+//				}
+//				if(connection == null) {
+//					connection = new Connection(socket);
+//					connection.start();
+//				}
+//		connect();
 
 	}
 
@@ -153,6 +159,13 @@ public class UserClient {
 			e.printStackTrace();
 		}
 	}
+	
+	public void sendPlayerChoice(PlayerChoice choice) {
+		try {
+			output.writeObject(choice);
+			output.flush();
+		}catch(IOException ioException) {}
+	}
 
 
 	/**
@@ -176,7 +189,18 @@ public class UserClient {
 					//For checking user name availability
 					if(obj instanceof String) {
 						String available = (String) obj; //byta namn? används till mer än att kolla namn
-						controller.checkCreatedUser(available);
+//						controller.checkCreatedUser(available);
+						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL")) {
+							LogInController.checkLogIn(available);
+						} else if(available.equals("USERNAME_FALSE") || available.equals("PASSWORD_FALSE") || available.equals("USER_TRUE")) {
+							CreateNewUserController.checkRequest(available);
+						} else if(available.equals("TABLE_TRUE") || available.equals("TABLE_FALSE")) {
+							JoinTableController.checkTableId(available);
+						}
+					}
+					if(obj instanceof ArrayList<?>) {
+						ArrayList<Player> playerList = (ArrayList)obj;
+						controller.updatePlayerList(playerList);
 					}
 					
 				}catch(IOException | ClassNotFoundException exception) {
@@ -185,5 +209,7 @@ public class UserClient {
 			}
 		}
 	}
+
+
 
 }

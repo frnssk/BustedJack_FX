@@ -1,12 +1,14 @@
 package client;
 
-import java.io.IOException;
+import java.util.ArrayList;
 
 import communications.GameInfo;
 import communications.LogOutRequest;
 import communications.LoginRequest;
+import communications.PlayerChoice;
 import communications.RegisterRequest;
-import resources.*;
+import resources.Player;
+import resources.User;
 
 /**
  * The main logic in the user application 
@@ -76,6 +78,23 @@ public class UserController {
 		client.checkTableId(tableId);
 	}
 
+	public void sendPlayerChoice(PlayerChoice choice) {
+		client.sendPlayerChoice(choice);
+	}
+
+	public void updatePlayerList(ArrayList<Player> playerList) {
+		if(playerList.size() == 1)
+			ui.setPlayer1Name(playerList.get(0).getUsername());
+		if(playerList.size() == 2)
+			ui.setPlayer2Name(playerList.get(1).getUsername());
+		if(playerList.size() == 3)
+			ui.setPlayer3Name(playerList.get(2).getUsername());
+		if(playerList.size() == 4)
+			ui.setPlayer4Name(playerList.get(3).getUsername());
+		if(playerList.size() == 5)
+			ui.setPlayer5Name(playerList.get(4).getUsername());
+	}
+
 	/**
 	 * If user name comes back ok, checks if the user name fulfills the requirements.
 	 * Shows error message if name is taken 
@@ -107,13 +126,13 @@ public class UserController {
 	}
 
 
-//	public void connect(User user) {
-//		try {
-//			client.connect(user);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	//	public void connect(User user) {
+	//		try {
+	//			client.connect(user);
+	//		} catch (IOException e) {
+	//			e.printStackTrace();
+	//		}
+	//	}
 
 
 }

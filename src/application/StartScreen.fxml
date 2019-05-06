@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StartScreenController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1000.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../../../Dropbox/Busted%20Jack/Design/BJ_logo_2.1_low.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnLogIn" mnemonicParsing="false" onAction="#handleLogIn" text="Log in" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="290.0" AnchorPane.rightAnchor="630.0" AnchorPane.topAnchor="380.0">
+         <font>
+            <Font name="Futura Medium" size="14.0" />
+         </font></Button>
+      <Button fx:id="btnCreateNewUser" mnemonicParsing="false" onAction="#handleCreateNewUser" text="Create new user" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="590.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="380.0">
+         <font>
+            <Font name="Futura Medium" size="14.0" />
+         </font></Button>
+   </children>
+</AnchorPane>
