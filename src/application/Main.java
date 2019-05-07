@@ -122,6 +122,7 @@ public class Main extends Application {
 	
 	public void showProfile() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
+<<<<<<< HEAD
 		loader.setLocation(Main.class.getResource("Profile.fxml"));
 		mainLayout = loader.load();
 		
@@ -134,6 +135,19 @@ public class Main extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.show();
 		
+=======
+		loader.setLocation(Main.class.getResource("ProfileScreen.fxml"));
+		mainLayout = loader.load();
+
+		MainMenuController controller = loader.getController();
+		controller.setClient(client);
+		controller.setMain(this);
+
+		Scene scene = new Scene(mainLayout, 1000, 600);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.show();
+>>>>>>> origin/Chof
 	}
 
 	public void showAlert(String title, String message) throws IOException {
