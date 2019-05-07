@@ -1,13 +1,12 @@
 package client;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import application.LogInController;
 import communications.GameInfo;
 import communications.LogOutRequest;
 import communications.LoginRequest;
@@ -15,6 +14,7 @@ import communications.PlayerChoice;
 import communications.RegisterRequest;
 import resources.Player;
 import resources.User;
+import server.Server.ClientHandler;
 
 /**
  *  Class responsible for all connection to the server, from the user side.  
@@ -195,10 +195,15 @@ public class UserClient {
 					if(obj instanceof ArrayList<?>) {
 						ArrayList<Player> playerList = (ArrayList)obj;
 						controller.updatePlayerList(playerList);
+						System.out.println("[CLIENT] == Lista mottagen, skickad till controller. Antal = " + playerList.size());
+					}
+					if(obj instanceof HashMap<?,?>) {
+						HashMap<ClientHandler, User> list = new HashMap<>();
+						System.out.println(list.toString());
 					}
 					
 				}catch(IOException | ClassNotFoundException exception) {
-					exception.printStackTrace();
+//					exception.printStackTrace();
 				}
 			}
 		}

@@ -83,16 +83,37 @@ public class UserController {
 	}
 
 	public void updatePlayerList(ArrayList<Player> playerList) {
+		System.out.println("[CONTROLLER] == Controller har mottagit lista. Antal = " + playerList.size());
+		
 		if(playerList.size() == 1)
 			ui.setPlayer1Name(playerList.get(0).getUsername());
-		if(playerList.size() == 2)
+			System.out.println("Testing 1 spelare");
+		if(playerList.size() == 2) {
+			ui.setPlayer1Name(playerList.get(0).getUsername());
 			ui.setPlayer2Name(playerList.get(1).getUsername());
-		if(playerList.size() == 3)
+			System.out.println("Testing 2 spelare");
+		}
+		if(playerList.size() == 3) {
+			ui.setPlayer1Name(playerList.get(0).getUsername());
+			ui.setPlayer2Name(playerList.get(1).getUsername());
 			ui.setPlayer3Name(playerList.get(2).getUsername());
-		if(playerList.size() == 4)
+			System.out.println("Testing 3 spelare");
+		}
+		if(playerList.size() == 4) {
+			ui.setPlayer1Name(playerList.get(0).getUsername());
+			ui.setPlayer2Name(playerList.get(1).getUsername());
+			ui.setPlayer3Name(playerList.get(2).getUsername());
 			ui.setPlayer4Name(playerList.get(3).getUsername());
-		if(playerList.size() == 5)
+			System.out.println("Testing 4 spelare");
+		}
+		if(playerList.size() == 5) {
+			ui.setPlayer1Name(playerList.get(0).getUsername());
+			ui.setPlayer2Name(playerList.get(1).getUsername());
+			ui.setPlayer3Name(playerList.get(2).getUsername());
+			ui.setPlayer4Name(playerList.get(3).getUsername());
 			ui.setPlayer5Name(playerList.get(4).getUsername());
+		}
+
 	}
 
 	/**

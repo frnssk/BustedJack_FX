@@ -26,22 +26,22 @@ public class Deck implements Serializable {
 					card.setFace("cards/hjärter" + i + ".png");
 					card.setVisibility(true);
 					card.setSize(50, 100);
-					System.out.println("cards/hjärter " + i);
+//					System.out.println("cards/hjärter " + i);
 				}
 				if(suit.toString().equalsIgnoreCase("spades")) {
 					card.setFace("cards/spader" + i + ".png");
 					card.setVisibility(true);
-					System.out.println("cards/spader " + i);
+//					System.out.println("cards/spader " + i);
 				}
 				if(suit.toString().equalsIgnoreCase("diamonds")) {
 					card.setFace("cards/ruter" + i + ".png");
 					card.setVisibility(true);
-					System.out.println("cards/ruter " + i);
+//					System.out.println("cards/ruter " + i);
 				}
 				if(suit.toString().equalsIgnoreCase("clubs")) {
 					card.setFace("cards/klöver" + i + ".png");
 					card.setVisibility(true);
-					System.out.println("cards/klöver " + i);
+//					System.out.println("cards/klöver " + i);
 				}
 				i++;
 				deck.add(card);
