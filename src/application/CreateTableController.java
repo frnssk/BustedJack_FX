@@ -1,14 +1,6 @@
 package application;
-<<<<<<< HEAD
 
 import client.UserClient;
-
-public class CreateTableController {
-	private static Main mainApp;
-	private UserClient client;
-
-	public void setMain(Main main) {
-=======
 import java.io.IOException;
 
 import client.UserClient;
@@ -18,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
-public class CreateTableController{
+public class CreateTableController {
 
     @FXML
     private TextField tfBalance;
@@ -44,30 +36,32 @@ public class CreateTableController{
     private static Main mainApp;
     private UserClient client;
     
-    @FXML
     public void createGameInfo(int rounds, int time, int minimumBet, int balance) {
     	GameInfo gameInfo = new GameInfo(rounds, time, minimumBet, balance);
     	client.sendGameInfo(gameInfo);
     }
+    
     @FXML
     public void handleBtnBack() throws IOException {
     	mainApp.showMainMenu();
     }
+    
     @FXML
     public void handleBtnCreateTable() throws IOException {
-    	mainApp.showGame();
+    	int rounds = Integer.parseInt(tfRounds.getText());
+    	int time = Integer.parseInt(tfTime.getText());
+    	int minimumBet = Integer.parseInt(tfMinimumBet.getText());
+    	int balance = Integer.parseInt(tfBalance.getText());
     	
+    	createGameInfo(rounds, time, minimumBet, balance);  
+    	mainApp.showGame();
     }
+    
 	public static void setMain(Main main) {
->>>>>>> origin/Chof
 		mainApp = main;
 	}
 
 	public void setClient(UserClient client) {
 		this.client = client;
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/Chof

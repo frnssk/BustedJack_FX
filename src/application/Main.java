@@ -102,12 +102,23 @@ public class Main extends Application {
 	}
 	
 	public void showGame() throws IOException {
-		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("GameTable.fxml"));
+		mainLayout = loader.load();
+
+		GameController controller = loader.getController();
+		controller.setClient(client);
+		controller.setMain(this);
+
+		Scene scene = new Scene(mainLayout, 1000, 600);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.show();
 	}
 	
 	public void showCreateTabel() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("CreateTable.fxml"));
+		loader.setLocation(Main.class.getResource("CreateTableScreen.fxml"));
 		mainLayout = loader.load();
 		
 		CreateTableController controller = loader.getController();
@@ -122,24 +133,10 @@ public class Main extends Application {
 	
 	public void showProfile() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-<<<<<<< HEAD
-		loader.setLocation(Main.class.getResource("Profile.fxml"));
-		mainLayout = loader.load();
-		
-		ProfileController controller = loader.getController();
-		controller.setClient(client);
-		controller.setMain(this);
-		
-		Scene scen = new Scene(mainLayout, 1000, 600);
-		primaryStage.setScene(scen);
-		primaryStage.setResizable(false);
-		primaryStage.show();
-		
-=======
 		loader.setLocation(Main.class.getResource("ProfileScreen.fxml"));
 		mainLayout = loader.load();
 
-		MainMenuController controller = loader.getController();
+		ProfileScreenController controller = loader.getController();
 		controller.setClient(client);
 		controller.setMain(this);
 
@@ -147,7 +144,6 @@ public class Main extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.show();
->>>>>>> origin/Chof
 	}
 
 	public void showAlert(String title, String message) throws IOException {

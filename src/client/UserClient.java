@@ -7,12 +7,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-<<<<<<< HEAD
 import application.CreateNewUserController;
 import application.JoinTableController;
 import application.LogInController;
-=======
->>>>>>> rasmus2.0
 import communications.GameInfo;
 import communications.LogOutRequest;
 import communications.LoginRequest;
@@ -204,7 +201,7 @@ public class UserClient {
 					}
 					if(obj instanceof ArrayList<?>) {
 						ArrayList<Player> playerList = (ArrayList)obj;
-						controller.updatePlayerList(playerList);
+//						controller.updatePlayerList(playerList);
 						System.out.println("[CLIENT] == Lista mottagen, skickad till controller. Antal = " + playerList.size());
 					}
 					if(obj instanceof HashMap<?,?>) {
