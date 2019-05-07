@@ -647,14 +647,17 @@ public class UserInterface extends JPanel {
 	JLabel lblPlayer1 = new JLabel();
 	public void setPlayer1Name(String string) {
 		lblPlayer1.setText(string);
+//		repaint();
 	}
 	JLabel lblPlayer2 = new JLabel();
 	public void setPlayer2Name(String string) {
 		lblPlayer2.setText(string);
+//		repaint();
 	}
 	JLabel lblPlayer3 = new JLabel();
 	public void setPlayer3Name(String string) {
 		lblPlayer3.setText(string);
+//		repaint();
 	}
 	JLabel lblPlayer4 = new JLabel();
 	public void setPlayer4Name(String string) {

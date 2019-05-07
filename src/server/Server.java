@@ -29,10 +29,16 @@ public class Server {
 
 	private LinkedList<User> registeredUsers = new LinkedList<>(); //LinkedList to hold all registered users
 	private HashMap<String, char[]> userPasswords = new HashMap<>(); //HashMap that holds all usernames and passwords
-	private UserHandler userHandler;
-	private ArrayList<Table> activeTables = new ArrayList<>();
+//	private UserHandler userHandler; //remove
+//	private ArrayList<Table> activeTables = new ArrayList<>(); //maybe remove
 	private HashMap<Integer, Table> activeTables2 = new HashMap<>();
 	private int tableIdCounter;
+	
+	//new stuff
+	private HashMap<Table, ArrayList<Player>> playersOnTable = new HashMap<>(); //holds a table and a list of all players on that table
+	private HashMap<Table, ArrayList<ClientHandler>> clientsOnTable = new HashMap<>(); //holds a table and a list of all clients
+	
+	private ArrayList<Player> testList;
 
 	//	private LinkedList<Callback> listeners = new LinkedList<>();
 
@@ -109,7 +115,7 @@ public class Server {
 		table.setTableId(tableIdCounter);
 		activeTables2.put(tableIdCounter, table);
 		tableIdCounter++;
-		activeTables.add(table);
+//		activeTables.add(table);
 	}
 
 	/*
@@ -164,21 +170,23 @@ public class Server {
 
 		public ClientHandler(Socket socket) throws IOException {
 			this.socket = socket;
+			output = new ObjectOutputStream(socket.getOutputStream());
+			input = new ObjectInputStream(socket.getInputStream());
 			start();
 			TextWindow.println("ClientHandler started");
 		}
 
-		/*
-		 * Never used
-		 */
-		public void updateActiveUsers(LinkedList<User> activeUsers) {
-			try {
-				output.writeObject(activeUsers);
-				output.flush();
-			}catch(IOException ioException) {
-				ioException.printStackTrace();
-			}
-		}
+//		/*
+//		 * Never used, maybe remove
+//		 */
+//		public void updateActiveUsers(LinkedList<User> activeUsers) {
+//			try {
+//				output.writeObject(activeUsers);
+//				output.flush();
+//			}catch(IOException ioException) {
+//				ioException.printStackTrace();
+//			}
+//		}
 
 
 		/*
@@ -212,8 +220,6 @@ public class Server {
 		public boolean checkUsernameAvailability(String name) {
 			for(int i = 0; i < registeredUsers.size(); i++) {
 				String compareName = registeredUsers.get(i).getUsername();
-//				User compare = registeredUsers.get(i);
-//				String compareName = compare.getUsername();
 				if(compareName.equals(name)) {
 					return false;
 				}
@@ -246,15 +252,35 @@ public class Server {
 				return true;
 			}
 		}
-
+		
+		public void updateList(ArrayList<ClientHandler> clientList, ArrayList<Player> playerList) {
+			for(int i = 0; i < clientList.size(); i++) {
+				try {
+					ClientHandler ch = clientList.get(i);
+					ch.output.writeObject(playerList);
+					ch.output.flush();
+				} catch (IOException e) {}
+			}
+		}
+		
+		public void updatePlayersOnTable(Table table, ArrayList<ClientHandler> clientList) {
+			for(int i = 0; i < clientList.size(); i++) {
+				try {
+					ClientHandler ch = clientList.get(i);
+					ch.output.writeObject(table.getPlayerList());
+					ch.output.flush();
+				} catch (IOException e) {}
+			
+			}
+		}
 
 		/*
 		 * Keeps on running as long as the client is still connected
 		 * Reads objects from the client and depending on the type of object the server acts accordingly
 		 */
 		public void run() {
-			try(ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
-					ObjectInputStream input = new ObjectInputStream(socket.getInputStream())){
+//			try(ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
+//					ObjectInputStream input = new ObjectInputStream(socket.getInputStream())){
 				while(isOnline) {
 					try {
 						obj = input.readObject();
@@ -272,21 +298,15 @@ public class Server {
 									TextWindow.println((registerRequest.getUsername()) + " har angett ett godkänt lösenord."); //Assistance
 									User temporary = new User(registerRequest.getUsername());
 									temporary.setPassword(registerRequest.getPassword());
-									//registeredUsers.add(temporary); //currently used elsewhere (in the uspdateUserDatabase())
 									userPasswords.put(registerRequest.getUsername(), registerRequest.getPassword());
 									updateUserDatabase(temporary);
-//									TextWindow.println("User-objekt skapat för " + registerRequest.getUsername());//Assistance
-
 									//Adds the user and client to the UserHandler-HashMap
-									UserHandler.newUserConnect(temporary, this); 
-//									TextWindow.println(temporary.getUsername() + " tillagd i UserHandler.");
-
+									UserHandler.newUserConnect(temporary, this);
 									choice = "USER_TRUE";
 								}else { 
 									TextWindow.println(registerRequest.getUsername() + " har angett ett icke godkänt lösenord."); //Assistance
 									choice = "PASSWORD_FALSE";
 								}
-
 							}else {
 								choice = "USERNAME_FALSE";
 							}
@@ -321,14 +341,14 @@ public class Server {
 						}
 						
 						/*
-						 * Disconnects the client, and stops the current clienthandler-loop
+						 * Disconnects the client, and stops the current client-handler-loop
 						 */
 						else if(obj instanceof LogOutRequest) {
 							LogOutRequest logout = (LogOutRequest)obj;
 							isOnline = false;
 							TextWindow.println("Client disconnected.");
 							String name = logout.getUserName();
-							User user = getUser(name);
+//							User user = getUser(name); //maybe remove
 							UserHandler.removeActiveUser(this);
 						}
 
@@ -339,14 +359,29 @@ public class Server {
 							GameInfo gameInfo = (GameInfo)obj;
 							Table table = new Table(gameInfo.getTime(), gameInfo.getRounds(), gameInfo.getBalance(), gameInfo.getMinBet());
 							setTableId(table);
-//							table.addPlayer(new Player(UserHandler.getUser(this).getUsername()));
 							User user = UserHandler.getUser(this);
 							Player player = new Player(user.getUsername());
 							table.addPlayer(player);
-							table.addPlayerAndClient(player, this); //Assistance/testing
+//							table.addPlayerAndClient(player, this); //Assistance/testing
+//							table.addClient(this);
 							TextWindow.println(player.getUsername() + " tillagd på Table " + table.getTableId());
-							output.writeObject(table.getPlayerList());
-							output.flush();
+					
+							ArrayList<Player> playerList = new ArrayList<>();
+//							ArrayList<Player> playerList = playersOnTable.get(table);
+							playerList.add(player);
+//							ArrayList<Player> playerList = table.getPlayerList(); //gets the list of players from table
+							playersOnTable.put(table, playerList); //adds the table and its list of player in a hash-map
+							
+//							playerList.add(player);
+//							playersOnTable.put(table, playerList);
+//							System.out.println("[SERVER] == Size of playersOnTable = " + playerList.size() + "\n " + playerList.toString());
+//							
+							ArrayList<ClientHandler> clientList = new ArrayList<>();
+							clientList.add(this); 
+							clientsOnTable.put(table, clientList);
+							
+							updateList(clientList, playerList);
+							
 							//send the tableId to the client
 						}
 						
@@ -363,10 +398,30 @@ public class Server {
 									User user = UserHandler.getUser(this);
 									Player player = new Player(user.getUsername());
 									table.addPlayer(player);
-									table.addPlayerAndClient(player, this); //Assistance/testing
 									TextWindow.println(player.getUsername() + " tillagd på Table " + table.getTableId());
 									
-//									output.writeObject(table.getPlayerList());
+									//gets the list of players for the table, adds the player
+									ArrayList<Player> playerList = playersOnTable.get(table);
+//									ArrayList<Player> playerList = table.getPlayerList();
+									playerList.add(player);
+									System.out.println("[SERVER] == Size of playerList on table " + playerList.size() + "\n " + playerList.toString());
+//									playersOnTable.put(table, playerList);
+//									
+									ArrayList<ClientHandler> clientList = clientsOnTable.get(table);
+									clientList.add(this);
+									
+//									clientsOnTable.put(table, clientList); //TRUBBEL
+									//Lägger till samma bord EN GÅNG TILL, istället för att uppdatera
+									//
+//									updateList(clientList, playerList);
+									
+									
+//									
+//									ArrayList<Player> playersOnTable = table.getPlayerList();
+//									playersOnTable.add(player);
+									updateList(clientList, playerList);
+//									updateList(clientList, table.getPlayerList());
+//									updatePlayersOnTable(table, clientList);
 								}
 							}else {
 								choice = "TABLE_FALSE";
@@ -382,19 +437,14 @@ public class Server {
 							TextWindow.println("NÅGON HAR TRYCKT = " + playChoice.getChoice());
 						}
 
-					} catch (ClassNotFoundException | IOException e) {
-						e.printStackTrace();
-						break;
-					}
+					} catch (ClassNotFoundException | IOException e) {}
 				}
-				TextWindow.println("DEAD");
+				TextWindow.println("DEAD"); //Assistance
 
-			}catch(Exception ioException) {
-				ioException.printStackTrace();
 			}
 		}
 
-	}
+//	}
 
 	/*
 	 * @author RasmusOberg
@@ -414,6 +464,10 @@ public class Server {
 			activeUsers.put(clientHandler, user);
 			TextWindow.println("NEW LOGIN = " + user.getUsername() + " är aktiv.");
 			//			updateActiveUsers();
+		}
+		
+		public synchronized static HashMap<ClientHandler, User> getActiveUsers(){
+			return activeUsers;
 		}
 
 		//Used to get which user is connected to a specific client / clienthandler
