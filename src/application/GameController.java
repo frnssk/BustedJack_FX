@@ -2,6 +2,7 @@ package application;
 
 import client.UserClient;
 import communications.PlayerChoice;
+import communications.StartGameRequest;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -94,7 +95,8 @@ public class GameController {
 	@FXML
 	private Button btnClearBet;
 	
-
+	@FXML
+	private Button btnStartGame;
 
 	private static Main mainApp;
 	private UserClient client;
@@ -136,6 +138,11 @@ public class GameController {
     public void setTime(int time) {
     	//Code to come
     	lblTime.setText("Time: " + time);
+    }
+    
+    @FXML
+    private void handleStartGame() {
+    	client.sendStartGame(new StartGameRequest());
     }
 	
 	@FXML
