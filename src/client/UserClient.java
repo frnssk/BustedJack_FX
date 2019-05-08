@@ -10,6 +10,7 @@ import java.util.HashMap;
 import application.CreateNewUserController;
 import application.JoinTableController;
 import application.LogInController;
+import application.Main;
 import communications.GameInfo;
 import communications.LogOutRequest;
 import communications.LoginRequest;
@@ -37,6 +38,7 @@ public class UserClient {
 	private boolean receiving = true;
 	private Connection connection;
 	private Object obj;
+	private Main mainApp;
 
 	/**
 	 * Constructs the UserCLient object and connects to server on give IP and port
@@ -60,6 +62,10 @@ public class UserClient {
 //				}
 //		connect();
 
+	}
+	
+	public void setMain(Main main) {
+		this.mainApp = main;
 	}
 
 	public void setUser(User user) {
