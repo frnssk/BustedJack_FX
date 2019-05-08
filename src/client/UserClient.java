@@ -200,8 +200,10 @@ public class UserClient {
 	
 	public void sendStartGame(StartGameRequest request) {
 		try {
+			System.out.println("[CLIENT] == Klient mottagit StartGameRequest, skickar till server.");
 			output.writeObject(request);
 			output.flush();
+			System.out.println("[CLIENT] == Skickat.");
 		}catch(IOException ioException) {}
 	}
 

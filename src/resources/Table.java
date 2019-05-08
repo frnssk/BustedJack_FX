@@ -130,10 +130,11 @@ public class Table extends Thread implements Serializable {
 	}
 
 	private void startGame() {
+		System.out.println("[TABLE] == Spelrunda startad");
 		for(int i = 0; i < playerList.size(); i++) {
 			playerList.get(i).setStartingBalance(startingMoney);
 		}
-		updateTableInformation();
+//		updateTableInformation();
 	}
 
 	//checks that all players has made a choice to cheat or not

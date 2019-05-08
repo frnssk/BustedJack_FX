@@ -186,7 +186,7 @@ public class GameController {
 
 	@FXML
 	private void handleStartGame() {
-		client.sendStartGame(new StartGameRequest());
+		client.sendStartGame(new StartGameRequest(1));
 	}
 
 	@FXML

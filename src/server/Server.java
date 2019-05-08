@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -134,7 +135,11 @@ public class Server {
 	 * Starts a new Thread for every client
 	 * @author RasmusOberg
 	 */
-	public class ClientHandler extends Thread{
+	public class ClientHandler extends Thread implements Serializable{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private Socket socket;
 		private ObjectOutputStream output;
 		private ObjectInputStream input;
@@ -199,6 +204,7 @@ public class Server {
 					}
 					
 					else if(obj instanceof StartGameRequest) {
+						System.out.println("[SERVER] == StartGameRequest mottagen.");
 						Table table = clientAndTable.get(this);
 						table.start();
 					}
