@@ -229,6 +229,7 @@ public class UserClient {
 					}
 					if(obj instanceof ArrayList<?>) {
 						ArrayList<Player> playerList = (ArrayList)obj;
+						System.out.println("[CLIENT] == Antal spelare i PlayerList = " + playerList.size());
 
 						GameController.updatePlayerList(playerList);
 //						controller.updatePlayerList(playerList);
