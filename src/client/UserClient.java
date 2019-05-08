@@ -216,10 +216,13 @@ public class UserClient {
 						String available = (String) obj; //byta namn? används till mer än att kolla namn
 //						controller.checkCreatedUser(available);
 						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL")) {
+							System.out.println("[CLIENT] == " + available);
 							LogInController.checkLogIn(available);
 						} else if(available.equals("USERNAME_FALSE") || available.equals("PASSWORD_FALSE") || available.equals("USER_TRUE")) {
+							System.out.println("[CLIENT] == " + available);
 							CreateNewUserController.checkRequest(available);
 						} else if(available.equals("TABLE_TRUE") || available.equals("TABLE_FALSE") || available.equals("RANDOM_FALSE") || available.equals("RANDOM_TRUE")) {
+							System.out.println("[CLIENT] == " + available);
 							JoinTableController.checkTableId(available);
 						} 
 					}
