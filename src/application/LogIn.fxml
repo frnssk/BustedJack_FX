@@ -17,6 +17,7 @@
          </image>
       </ImageView>
       <TextField fx:id="tfUsername" layoutX="496.0" layoutY="259.0" promptText="Enter username" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="259.0" />
+      <PasswordField fx:id="pfPassword" layoutX="495.0" layoutY="314.0" promptText="Enter password" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="314.0" />
       <Label fx:id="lblUsername" layoutX="337.0" layoutY="257.0" text="Username" textAlignment="RIGHT" textFill="#f5e65d" AnchorPane.bottomAnchor="311.0" AnchorPane.leftAnchor="337.0" AnchorPane.rightAnchor="553.0" AnchorPane.topAnchor="257.0">
          <font>
             <Font name="Futura Medium" size="24.0" />
@@ -35,6 +36,5 @@
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font></Button>
-      <PasswordField fx:id="pfPassword" layoutX="495.0" layoutY="314.0" promptText="Enter password" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="314.0" />
    </children>
 </AnchorPane>
