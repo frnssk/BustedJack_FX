@@ -15,9 +15,9 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
-	private static UserClient client;
-	private static Stage primaryStage;
-	private static AnchorPane mainLayout;
+	private UserClient client;
+	private Stage primaryStage;
+	private AnchorPane mainLayout;
 	private String username;
 	
 
@@ -94,6 +94,7 @@ public class Main extends Application {
 		JoinTableController controller = loader.getController();
 		controller.setClient(client);
 		controller.setMain(this);
+		client.setJoinTableController(controller);
 
 		Scene scene = new Scene(mainLayout, 1000, 600);
 		primaryStage.setScene(scene);
@@ -107,9 +108,10 @@ public class Main extends Application {
 		mainLayout = loader.load();
 
 		GameController controller = loader.getController();
-		client.setGameController(controller);
+		
 		controller.setClient(client);
 		controller.setMain(this);
+		client.setGameController(controller);
 
 		Scene scene = new Scene(mainLayout, 1000, 600);
 		primaryStage.setScene(scene);

@@ -21,6 +21,7 @@ import communications.RegisterRequest;
 import communications.StartGameRequest;
 import javafx.application.Platform;
 import resources.Player;
+import resources.Table;
 import resources.User;
 import server.Server.ClientHandler;
 
@@ -42,6 +43,7 @@ public class UserClient {
 	private Object obj;
 	private Main mainApp;
 	private GameController gameController;
+	private JoinTableController joinTableController;
 
 	/**
 	 * Constructs the UserCLient object and connects to server on give IP and port
@@ -73,6 +75,10 @@ public class UserClient {
 	
 	public void setGameController(GameController controller) {
 		this.gameController = controller;
+	}
+	
+	public void setJoinTableController(JoinTableController controller) {
+		this.joinTableController = controller;
 	}
 
 	public void setUser(User user) {
@@ -221,7 +227,6 @@ public class UserClient {
 					//For checking user name availability
 					if(obj instanceof String) {
 						String available = (String) obj; //byta namn? används till mer än att kolla namn
-//						controller.checkCreatedUser(available);
 						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL")) {
 							System.out.println("[CLIENT] == " + available);
 							LogInController.checkLogIn(available);
@@ -230,28 +235,27 @@ public class UserClient {
 							CreateNewUserController.checkRequest(available);
 						} else if(available.equals("TABLE_TRUE") || available.equals("TABLE_FALSE") || available.equals("RANDOM_FALSE") || available.equals("RANDOM_TRUE")) {
 							System.out.println("[CLIENT] == " + available);
-							JoinTableController.checkTableId(available);
+							joinTableController.checkTableId(available);
 						} 
 					}
 					if(obj instanceof ArrayList<?>) {
 						ArrayList<Player> playerList = (ArrayList)obj;
 
 						Platform.runLater(() -> {
-							gameController.updatePlayerList(playerList);
+								gameController.updatePlayerList(playerList);			
 						});
-						
-//						controller.updatePlayerList(playerList);
 
 						System.out.println("[CLIENT] == Lista mottagen, skickad till controller. Antal = " + playerList.size());
 						try {
 							Thread.sleep(500);
 						}catch(InterruptedException ex) {}
-//						controller.updatePlayerList(playerList);
-						
 					}
 					if(obj instanceof HashMap<?,?>) {
 						HashMap<ClientHandler, User> list = new HashMap<>();
 						System.out.println(list.toString());
+					}
+					if(obj instanceof Table) {
+						Table table = (Table) obj;
 					}
 				}catch(IOException | ClassNotFoundException exception) {
 					exception.printStackTrace();

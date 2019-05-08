@@ -21,7 +21,7 @@ public class JoinTableController {
 	@FXML
 	private Button btnMenu;
 
-	private static Main mainApp;
+	private Main mainApp;
 	private UserClient client;
 
 	@FXML
@@ -54,7 +54,7 @@ public class JoinTableController {
 		mainApp.showMainMenu();
 	}
 
-	public static void checkTableId(String string) {
+	public void checkTableId(String string) {
 		if(string.equals("TABLE_FALSE")) {
 			Platform.runLater(() -> {
 				try {
