@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="1000.0" layoutX="233.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../../../Dropbox/Busted%20Jack/Design/Table/Spelbord_2.1.png" />
+            <Image url="@../../images/Spelbord_2.1.png" />
          </image>
       </ImageView>
       <Label fx:id="lblPlayer1" layoutX="479.0" layoutY="465.0" text="Player 1" textAlignment="CENTER" textFill="#f5e65d">
@@ -79,7 +79,7 @@
             <Font name="Futura Medium" size="13.0" />
          </font>
       </Button>
-      <Label fx:id="lblCheatHeatPersentPersent" layoutX="297.0" layoutY="544.0" text="25%" textFill="#f5e65d" />
+      <Label fx:id="lblCheatHeatPersent" layoutX="297.0" layoutY="544.0" text="25%" textFill="#f5e65d" />
       <Button fx:id="btnBust" layoutX="171.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleBust" text="BUST!" textAlignment="CENTER">
          <font>
             <Font name="Futura Medium" size="13.0" />
