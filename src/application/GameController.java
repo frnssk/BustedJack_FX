@@ -68,18 +68,18 @@ public class GameController {
 	private Label lblCheatHeatPersent;
 	
 	@FXML
-	private Button cheat;
+	private Button btnCheat;
 	@FXML
-	private Button bust;
+	private Button btnBust;
 	
 	@FXML
-	private Button split;
+	private Button btnSplit;
 	@FXML
-	private Button doubleBet;
+	private Button btnDouble;
 	@FXML
-	private Button stay;
+	private Button btnStay;
 	@FXML
-	private Button hit;
+	private Button btnHit;
 	
 	@FXML
 	private Button btnIncreaseBet25;
@@ -103,7 +103,10 @@ public class GameController {
 	private int minimumBet = 0;
 	private int currentBet = 0;
 	private int time = 0;
+	
 	private int rounds = 0;
+	private int numberOfCheats = 0;
+	private int cheatHeat = numberOfCheats / rounds;
 
 	@FXML
 	private void initialize() {
@@ -143,11 +146,11 @@ public class GameController {
 
 	@FXML
 	private void confirmBet() {
-		PlayerChoice choice = new PlayerChoice(4);
-		choice.setBet(currentBet);
-    	//Send update to client and server 
+		PlayerChoice choice = new PlayerChoice(4, cheatHeat);
+		choice.setBet(currentBet); 
     	lblPlayer1Bet.setText("Bet: " + currentBet);
     	updateBalance();
+    	client.sendPlayerChoice(choice);
 	}
 
 	@FXML
@@ -176,7 +179,7 @@ public class GameController {
 	
 	@FXML 
 	private void handleCheat() {
-		
+		client.sendPlayerChoice(new PlayerChoice(5, cheatHeat));
 	}
 	
 	@FXML 
@@ -191,17 +194,17 @@ public class GameController {
 	
 	@FXML 
 	private void handleDouble() {
-		
+		client.sendPlayerChoice(new PlayerChoice(3, cheatHeat));
 	}
 	
 	@FXML 
 	private void handleStay() {
-		
+		client.sendPlayerChoice(new PlayerChoice(2, cheatHeat));
 	}
 	
 	@FXML 
 	private void handleHit() {
-		
+		client.sendPlayerChoice(new PlayerChoice(1, cheatHeat));
 	}
 	
 	public void setCheatHeat(int valueInPercent) {
