@@ -29,11 +29,12 @@ public class Table extends Thread implements Serializable {
 	private HashMap<ClientHandler, Player> playerAndClient = new HashMap<>();
 	private ArrayList<ClientHandler> clientList = new ArrayList<>();
 	
-	public Table(int numberOfMinutes, int numberOfRounds, int startingMoney, int minimumBet) {
+	public Table(int numberOfMinutes, int numberOfRounds, int startingMoney, int minimumBet, boolean privateStatus) {
 		this.numberOfMinutes = numberOfMinutes;
 		this.numberOfRounds = numberOfRounds;
 		this.startingMoney = startingMoney;
 		this.minimumBet = minimumBet;
+		this.privateStatus = privateStatus;
 		cheatShoe = new CheatShoe(6);
 		regularShoe = new Shoe(6);
 		tableRunning = false;

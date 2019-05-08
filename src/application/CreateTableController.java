@@ -36,11 +36,6 @@ public class CreateTableController {
     private static Main mainApp;
     private UserClient client;
     
-    public void createGameInfo(int rounds, int time, int minimumBet, int balance) {
-    	GameInfo gameInfo = new GameInfo(rounds, time, minimumBet, balance);
-    	client.sendGameInfo(gameInfo);
-    }
-    
     @FXML
     public void handleBtnBack() throws IOException {
     	mainApp.showMainMenu();
@@ -52,8 +47,10 @@ public class CreateTableController {
     	int time = Integer.parseInt(tfTime.getText());
     	int minimumBet = Integer.parseInt(tfMinimumBet.getText());
     	int balance = Integer.parseInt(tfBalance.getText());
+    	boolean privateMatch = checkBoxPrivateMatch.isSelected();
     	
-    	createGameInfo(rounds, time, minimumBet, balance);  
+    	GameInfo gameInfo = new GameInfo(rounds, time, minimumBet, balance, privateMatch);
+    	client.sendGameInfo(gameInfo);
     	mainApp.showGame();
     }
     

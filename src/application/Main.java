@@ -22,7 +22,7 @@ public class Main extends Application {
 	
 
 	public void start(Stage primaryStage) throws Exception {
-		client = new UserClient("localhost", 1200);
+		client = new UserClient("10.2.15.40", 1200);
 		this.primaryStage = primaryStage;
 		showStartView();
 	}
@@ -137,7 +137,6 @@ public class Main extends Application {
 		mainLayout = loader.load();
 
 		ProfileScreenController controller = loader.getController();
-		controller.setClient(client);
 		controller.setMain(this);
 
 		Scene scene = new Scene(mainLayout, 1000, 600);
