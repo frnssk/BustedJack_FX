@@ -12,11 +12,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Random;
 
 import communications.GameInfo;
 import communications.LogOutRequest;
 import communications.LoginRequest;
 import communications.PlayerChoice;
+import communications.RandomTableRequest;
 import communications.RegisterRequest;
 import resources.Player;
 import resources.Table;
@@ -184,6 +186,10 @@ public class Server {
 					else if(obj instanceof Integer) {
 						int tableId = (Integer)obj;
 						choice = addPlayerToTable(tableId, this);
+					}
+					
+					else if(obj instanceof RandomTableRequest) {
+						choice = addPlayerOnRandomTable(this);
 					}
 
 					else if(obj instanceof PlayerChoice) {
@@ -381,6 +387,23 @@ public class Server {
 			clientList.add(clientHandler);
 			clientAndTable.put(clientHandler, table);
 			updateList(clientList, playerList);
+		}
+		
+		public String addPlayerOnRandomTable(ClientHandler clientHandler) {
+			String choice = "";
+			User user = UserHandler.getUser(clientHandler);
+			Player player = new Player(user.getUsername());
+			int numberOfTables = activeTables2.size();
+			Random rand = new Random();
+			int randomTable = rand.nextInt(numberOfTables);
+			Table table = activeTables2.get(randomTable);
+			if(!table.getPrivateStatus()) {
+				table.addPlayer(player);
+				choice = "RANDOM_SUCCES";
+			}else {
+				choice = "RANDOM_FAIL";
+			}
+			return choice;
 		}
 
 		/*

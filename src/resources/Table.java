@@ -22,6 +22,7 @@ public class Table extends Thread implements Serializable {
 	private DealerHand dealer;
 	private int tableID;
 	private boolean tableRunning;
+	private boolean privateStatus;
 
 	private ArrayList<Player> playerList = new ArrayList<>(); //Holds all the players for the game
 //	private ArrayList<Player> newPlayerList = new ArrayList<>();//holds an updated version of the PlayerList (players who get blackjack should not be able to continue playing)
@@ -36,6 +37,14 @@ public class Table extends Thread implements Serializable {
 		cheatShoe = new CheatShoe(6);
 		regularShoe = new Shoe(6);
 		tableRunning = false;
+	}
+	
+	public void setPrivateStatus(boolean bool) {
+		this.privateStatus = bool;
+	}
+	
+	public boolean getPrivateStatus() {
+		return privateStatus;
 	}
 	
 	public void addClient(ClientHandler clientHandler) {
@@ -129,12 +138,12 @@ public class Table extends Thread implements Serializable {
 //			playerList.get(i).setGrayOut(true);
 //		}
 		for(int i = 0; i < playerList.size(); i++) {
-			playerList.get(i).setGrayOut(false);
+			playerList.get(i).setButtonsAreGray(false);
 			while(!playerList.get(i).hasMadeBet()) {
 				int bet = playerList.get(i).getBet();
 				
 			}
-			playerList.get(i).setGrayOut(true);
+			playerList.get(i).setButtonsAreGray(true);
 		}
 		updateTableInformation();
 	}

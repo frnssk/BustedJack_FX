@@ -983,6 +983,7 @@ public class UserInterface extends JPanel {
 //				updateUI(lobbyScreen(Integer.parseInt(tfBalance.getText()), Integer.parseInt(tfMinBet.getText()), Integer.parseInt(tfRounds.getText()), Integer.parseInt(tfTime.getText())));
 			}
 			if(e.getSource() == btnRandomTable) {
+				controller.joinRandomTable();
 				updateUI(lobbyScreen(Integer.parseInt(tfBalance.getText()), Integer.parseInt(tfMinBet.getText()), Integer.parseInt(tfRounds.getText()), Integer.parseInt(tfTime.getText())));
 			}
 			if(e.getSource() == btnConfirmTable) {

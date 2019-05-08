@@ -81,6 +81,10 @@ public class UserController {
 	public void sendPlayerChoice(PlayerChoice choice) {
 		client.sendPlayerChoice(choice);
 	}
+	
+	public void joinRandomTable() {
+		client.sendRandomTableRequest();
+	}
 
 	public void updatePlayerList(ArrayList<Player> playerList) {
 		System.out.println("[CONTROLLER] == Controller har mottagit lista. Antal = " + playerList.size());
@@ -143,6 +147,8 @@ public class UserController {
 		}else if(available.equals("TABLE_FALSE")) {
 			System.out.println("RoomId inte ok");
 			//update ui
+		}else if(available.equals("RANDOM_TRUE")) {
+			System.out.println("du är tilllagd på bordet");
 		}
 	}
 

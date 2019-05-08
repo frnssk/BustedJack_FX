@@ -11,6 +11,7 @@ import communications.GameInfo;
 import communications.LogOutRequest;
 import communications.LoginRequest;
 import communications.PlayerChoice;
+import communications.RandomTableRequest;
 import communications.RegisterRequest;
 import resources.Player;
 import resources.User;
@@ -154,6 +155,15 @@ public class UserClient {
 			output.writeObject(tableId);
 			output.flush();
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sendRandomTableRequest() {
+		try {
+			output.writeObject(new RandomTableRequest());
+			output.flush();
+		}catch(IOException e) {
 			e.printStackTrace();
 		}
 	}

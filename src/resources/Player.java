@@ -25,6 +25,10 @@ public class Player implements Serializable{
 	private PlayerChoice playerChoice;
 	private boolean buttonsAreGray;
 	
+	public Player(String username) {
+		this.username = username;
+		hands.add(new Hand());
+	}
 	
 	public boolean isButtonsAreGray() {
 		return buttonsAreGray;
@@ -32,11 +36,6 @@ public class Player implements Serializable{
 
 	public void setButtonsAreGray(boolean buttonsAreGray) {
 		this.buttonsAreGray = buttonsAreGray;
-	}
-
-	public Player(String username) {
-		this.username = username;
-		hands.add(new Hand());
 	}
 	
 	public void setPlayerChoice(PlayerChoice playerChoice) {
