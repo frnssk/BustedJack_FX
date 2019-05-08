@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GameController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1000.0" layoutX="233.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../../../Dropbox/Busted%20Jack/Design/Table/Spelbord_2.1.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblPlayer1" layoutX="479.0" layoutY="465.0" text="Player 1" textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPlayer2" layoutX="205.0" layoutY="390.0" text="Player 2" textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPlayer4" layoutX="76.0" layoutY="240.0" text="Player 4" textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPlayer3" layoutX="725.0" layoutY="390.0" text="Player 3" textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPlayer5" layoutX="845.0" layoutY="240.0" text="Player 5" textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="18.0" />
+         </font>
+      </Label>
+    <Button fx:id="btnSplit" layoutX="380.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleSplit" text="Split" textAlignment="CENTER">
+         <font>
+            <Font name="Futura Medium" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnDouble" layoutX="442.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleDouble" text="Double" textAlignment="CENTER">
+         <font>
+            <Font name="Futura Medium" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnStay" layoutX="522.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleStay" text="Stay" textAlignment="CENTER">
+         <font>
+            <Font name="Futura Medium" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnHit" layoutX="586.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleHit" text="Hit" textAlignment="CENTER">
+         <font>
+            <Font name="Futura Medium" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCheat" layoutX="89.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleCheat" text="CHEAT!" textAlignment="CENTER" textFill="#d30f0f">
+         <font>
+            <Font name="Futura Medium" size="13.0" />
+         </font>
+         <tooltip>
+            <Tooltip text="this is cheat" />
+         </tooltip>
+      </Button>
+      <Button fx:id="btnIncrease25" layoutX="752.0" layoutY="497.0" mnemonicParsing="false" onAction="#setNextBet25" text="25$" textAlignment="CENTER">
+         <font>
+            <Font name="Futura Medium" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnConfirmBet" alignment="TOP_LEFT" layoutX="751.0" layoutY="539.0" mnemonicParsing="false" onAction="#confirmBet" prefHeight="28.0" prefWidth="145.0" text="Confirm:">
+         <font>
+            <Font name="Futura Medium" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="lblCheatHeatPersentPersent" layoutX="297.0" layoutY="544.0" text="25%" textFill="#f5e65d" />
+      <Button fx:id="btnBust" layoutX="171.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleBust" text="BUST!" textAlignment="CENTER">
+         <font>
+            <Font name="Futura Medium" size="13.0" />
+         </font>
+         <tooltip>
+            <Tooltip text="this is cheat" />
+         </tooltip>
+      </Button>
+      <ProgressBar fx:id="cheatHeatProgressBar" layoutX="35.0" layoutY="543.0" prefHeight="20.0" prefWidth="254.0" progress="0.25" />
+      <Label fx:id="lblPlayer4CardSum" layoutX="183.0" layoutY="257.0" rotate="62.0" text="18" textFill="WHITE" />
+      <Label fx:id="lblPlayer2CardSum" layoutX="308.0" layoutY="383.0" rotate="32.0" text="18" textFill="WHITE" />
+      <Label fx:id="lblPlayer1CardSum" layoutX="493.0" layoutY="436.0" text="18" textFill="WHITE" />
+      <Label fx:id="lblPlayer3CardSum" layoutX="679.0" layoutY="383.0" rotate="-32.0" text="18" textFill="WHITE" />
+      <Label fx:id="lblPlayer5CardSum" layoutX="803.0" layoutY="257.0" rotate="-62.0" text="18" textFill="WHITE" />
+      <Label fx:id="lblPlayer4Bet" alignment="TOP_LEFT" layoutX="76.0" layoutY="285.0" text="Bet: " textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPlayer2Balance" alignment="TOP_LEFT" layoutX="205.0" layoutY="415.0" text="Balance:" textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPlayer1Bet" alignment="TOP_LEFT" layoutX="479.0" layoutY="510.0" text="Bet: " textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPlayer3Bet" alignment="TOP_LEFT" layoutX="725.0" layoutY="435.0" text="Bet: " textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPlayer5Bet" alignment="TOP_LEFT" layoutX="845.0" layoutY="285.0" text="Bet: " textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDealer" layoutX="463.0" layoutY="38.0" text="Dealer" textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDealerCardSum" layoutX="493.0" layoutY="96.0" text="18" textFill="WHITE" />
+      <Label fx:id="lblTime" layoutX="680.0" layoutY="38.0" text="Time:" textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblRounds" layoutX="823.0" layoutY="38.0" text="Rounds:" textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnIncreaseBet50" layoutX="799.0" layoutY="497.0" mnemonicParsing="false" onAction="#setNextBet50" text="50$" textAlignment="CENTER">
+         <font>
+            <Font name="Futura Medium" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnIncreaseBet100" layoutX="846.0" layoutY="497.0" mnemonicParsing="false" onAction="#setNextBet100" text="100$" textAlignment="CENTER">
+         <font>
+            <Font name="Futura Medium" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnIncreaseBet500" layoutX="900.0" layoutY="497.0" mnemonicParsing="false" onAction="#setNextBet500" text="500$" textAlignment="CENTER">
+         <font>
+            <Font name="Futura Medium" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnClearBet" layoutX="900.0" layoutY="539.0" mnemonicParsing="false" onAction="#clearCurrentBet" text="Clear" textAlignment="CENTER">
+         <font>
+            <Font name="Futura Medium" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="lblPlayer4Balance" alignment="TOP_LEFT" layoutX="76.0" layoutY="265.0" text="Balance: " textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPlayer2Bet" alignment="TOP_LEFT" layoutX="205.0" layoutY="435.0" text="Bet: " textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPlayer1Balance" alignment="TOP_LEFT" layoutX="479.0" layoutY="490.0" text="Balance:" textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPlayer3Balance" alignment="TOP_LEFT" layoutX="725.0" layoutY="415.0" text="Balance:" textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPlayer5Balance" alignment="TOP_LEFT" layoutX="845.0" layoutY="265.0" text="Balance:" textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

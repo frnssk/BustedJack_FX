@@ -102,15 +102,48 @@ public class Main extends Application {
 	}
 	
 	public void showGame() throws IOException {
-		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("GameTable.fxml"));
+		mainLayout = loader.load();
+
+		GameController controller = loader.getController();
+		controller.setClient(client);
+		controller.setMain(this);
+
+		Scene scene = new Scene(mainLayout, 1000, 600);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.show();
 	}
 	
 	public void showCreateTabel() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("CreateTableScreen.fxml"));
+		mainLayout = loader.load();
 		
+		CreateTableController controller = loader.getController();
+		controller.setClient(client);
+		controller.setMain(this);
+		
+		Scene scen = new Scene(mainLayout, 1000, 600);
+		primaryStage.setScene(scen);
+		primaryStage.setResizable(false);
+		primaryStage.show();
 	}
 	
 	public void showProfile() throws IOException {
-		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("ProfileScreen.fxml"));
+		mainLayout = loader.load();
+
+		ProfileScreenController controller = loader.getController();
+		controller.setClient(client);
+		controller.setMain(this);
+
+		Scene scene = new Scene(mainLayout, 1000, 600);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.show();
 	}
 
 	public void showAlert(String title, String message) throws IOException {
