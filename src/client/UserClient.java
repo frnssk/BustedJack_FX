@@ -14,6 +14,7 @@ import communications.GameInfo;
 import communications.LogOutRequest;
 import communications.LoginRequest;
 import communications.PlayerChoice;
+import communications.RandomTableRequest;
 import communications.RegisterRequest;
 import resources.Player;
 import resources.User;
@@ -161,6 +162,15 @@ public class UserClient {
 		}
 	}
 	
+	public void sendRandomTableRequest() {
+		try {
+			output.writeObject(new RandomTableRequest());
+			output.flush();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void sendPlayerChoice(PlayerChoice choice) {
 		try {
 			output.writeObject(choice);
@@ -201,8 +211,16 @@ public class UserClient {
 					}
 					if(obj instanceof ArrayList<?>) {
 						ArrayList<Player> playerList = (ArrayList)obj;
+<<<<<<< HEAD
 //						controller.updatePlayerList(playerList);
+=======
+>>>>>>> rasmus2.0
 						System.out.println("[CLIENT] == Lista mottagen, skickad till controller. Antal = " + playerList.size());
+						try {
+							Thread.sleep(500);
+						}catch(InterruptedException ex) {}
+						controller.updatePlayerList(playerList);
+						
 					}
 					if(obj instanceof HashMap<?,?>) {
 						HashMap<ClientHandler, User> list = new HashMap<>();
@@ -210,7 +228,7 @@ public class UserClient {
 					}
 					
 				}catch(IOException | ClassNotFoundException exception) {
-//					exception.printStackTrace();
+					exception.printStackTrace();
 				}
 			}
 		}
