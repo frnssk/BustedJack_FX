@@ -333,7 +333,7 @@ public class Server {
 		 * used to create a new table
 		 */
 		public void createNewTableAndAddPlayer(ClientHandler clientHandler, GameInfo gameInfo) {
-			Table table = new Table(gameInfo.getTime(), gameInfo.getRounds(), gameInfo.getBalance(), gameInfo.getMinBet());
+			Table table = new Table(gameInfo.getTime(), gameInfo.getRounds(), gameInfo.getBalance(), gameInfo.getMinBet(), gameInfo.getPrivateMatchStatus());
 			setTableId(table);
 			User user = UserHandler.getUser(this);
 			Player player = new Player(user.getUsername());
