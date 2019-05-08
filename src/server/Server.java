@@ -20,6 +20,7 @@ import communications.LoginRequest;
 import communications.PlayerChoice;
 import communications.RandomTableRequest;
 import communications.RegisterRequest;
+import communications.StartGameRequest;
 import resources.Player;
 import resources.Table;
 import resources.User;
@@ -195,6 +196,13 @@ public class Server {
 						PlayerChoice playerChoice = (PlayerChoice)obj;
 						makePlayerChoice(playerChoice, this);
 						TextWindow.println(UserHandler.getUser(this).getUsername() + " HAR TRYCKT = " + playerChoice.getChoice());
+					}
+					
+					else if(obj instanceof StartGameRequest) {
+//						StartGameRequest startGameRequest = (StartGameRequest)obj;
+//						User user = UserHandler.getUser(this);
+						Table table = clientAndTable.get(this);
+						table.start();
 					}
 
 					output.writeObject(choice);
