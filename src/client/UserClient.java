@@ -225,7 +225,6 @@ public class UserClient {
 						HashMap<ClientHandler, User> list = new HashMap<>();
 						System.out.println(list.toString());
 					}
-					
 				}catch(IOException | ClassNotFoundException exception) {
 					exception.printStackTrace();
 				}
