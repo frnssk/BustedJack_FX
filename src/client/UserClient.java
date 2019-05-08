@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import application.CreateNewUserController;
+import application.GameController;
 import application.JoinTableController;
 import application.LogInController;
 import application.Main;
@@ -229,6 +230,7 @@ public class UserClient {
 					if(obj instanceof ArrayList<?>) {
 						ArrayList<Player> playerList = (ArrayList)obj;
 
+						GameController.updatePlayerList(playerList);
 //						controller.updatePlayerList(playerList);
 
 						System.out.println("[CLIENT] == Lista mottagen, skickad till controller. Antal = " + playerList.size());
