@@ -7,18 +7,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import application.CreateNewUserController;
 import application.JoinTableController;
 import application.LogInController;
->>>>>>> master
-=======
-import application.CreateNewUserController;
-import application.JoinTableController;
-import application.LogInController;
->>>>>>> master
 import communications.GameInfo;
 import communications.LogOutRequest;
 import communications.LoginRequest;
@@ -234,7 +225,6 @@ public class UserClient {
 						HashMap<ClientHandler, User> list = new HashMap<>();
 						System.out.println(list.toString());
 					}
-					
 				}catch(IOException | ClassNotFoundException exception) {
 					exception.printStackTrace();
 				}
