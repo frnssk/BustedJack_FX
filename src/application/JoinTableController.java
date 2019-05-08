@@ -46,7 +46,7 @@ public class JoinTableController {
 
 	@FXML
 	private void handleRandomTable() throws IOException {
-
+		client.sendRandomTableRequest();
 	}
 
 	@FXML
@@ -67,6 +67,22 @@ public class JoinTableController {
 			Platform.runLater(() -> {
 				try {
 					mainApp.showGame();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+		} else if(string.equals("RANDOM_TRUE")) {
+			Platform.runLater(() -> {
+				try {
+					mainApp.showGame();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+		} else if(string.equals("RANDOM_FALSE")) {
+			Platform.runLater(() -> {
+				try {
+					mainApp.showAlert("No available rooms", "No available open rooms at the moment. Please try again later");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

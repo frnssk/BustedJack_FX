@@ -219,7 +219,7 @@ public class UserClient {
 							LogInController.checkLogIn(available);
 						} else if(available.equals("USERNAME_FALSE") || available.equals("PASSWORD_FALSE") || available.equals("USER_TRUE")) {
 							CreateNewUserController.checkRequest(available);
-						} else if(available.equals("TABLE_TRUE") || available.equals("TABLE_FALSE")) {
+						} else if(available.equals("TABLE_TRUE") || available.equals("TABLE_FALSE") || available.equals("RANDOM_FALSE") || available.equals("RADNOM_TRUE")) {
 							JoinTableController.checkTableId(available);
 						}
 					}
