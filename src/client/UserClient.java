@@ -257,6 +257,12 @@ public class UserClient {
 					}
 					if(obj instanceof Table) {
 						Table table = (Table) obj;
+						int rounds = table.getRounds();
+						int time = table.getMinutes();
+						int minBet = table.getMinimumBet();
+						int startingMoney = table.getStartingMoney();
+						gameController.updateGameStart(rounds, time, minBet, startingMoney);
+						
 					}
 				}catch(IOException | ClassNotFoundException exception) {
 					exception.printStackTrace();

@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import client.UserClient;
@@ -157,6 +158,14 @@ public class GameController {
 		balance -= currentBet;
 		lblPlayer1Balance.setText("Balance: " + balance);
 	}
+	
+	
+	public void updateGameStart(int rounds, int minutes, int minimumBet, int startingMoney) {
+		setRounds(rounds);
+		setTime(time);
+		setMinimumBet(minimumBet);
+		updateStartingMoney(startingMoney);
+	}
 
 	//true will disable, false will enable
 	public void disableAllButtons(boolean bool) { 
@@ -188,6 +197,13 @@ public class GameController {
 
 	@FXML
 	private void confirmBet() {
+		if(currentBet < minimumBet) {
+			try {
+				mainApp.showAlert("Bet to low", "Minimum bet for this table is " + minimumBet);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		PlayerChoice choice = new PlayerChoice(4, cheatHeat);
 		choice.setBet(currentBet); 
 		lblPlayer1Bet.setText("Bet: " + currentBet);
@@ -283,8 +299,34 @@ public class GameController {
 
 	}
 	
-	public void updateGameStart() {
-		
+	public void updateStartingMoney(int startingMoney) {
+
+		if(numberOfPlayers == 1) {
+			lblPlayer1Balance.setText("Balance: " + startingMoney);
+		}
+		if(numberOfPlayers == 2) {
+			lblPlayer1Balance.setText("Balance: " + startingMoney);
+			lblPlayer2Balance.setText("Balance: " + startingMoney);
+		}
+		if(numberOfPlayers == 3) {
+			lblPlayer1Balance.setText("Balance: " + startingMoney);
+			lblPlayer2Balance.setText("Balance: " + startingMoney);
+			lblPlayer3Balance.setText("Balance: " + startingMoney);
+		}
+		if(numberOfPlayers == 4) {
+			lblPlayer1Balance.setText("Balance: " + startingMoney);
+			lblPlayer2Balance.setText("Balance: " + startingMoney);
+			lblPlayer3Balance.setText("Balance: " + startingMoney);
+			lblPlayer4Balance.setText("Balance: " + startingMoney);
+		}
+		if(numberOfPlayers == 5) {
+			lblPlayer1Balance.setText("Balance: " + startingMoney);
+			lblPlayer2Balance.setText("Balance: " + startingMoney);
+			lblPlayer3Balance.setText("Balance: " + startingMoney);
+			lblPlayer4Balance.setText("Balance: " + startingMoney);
+			lblPlayer5Balance.setText("Balance: " + startingMoney);
+		}
+
 	}
 
 	public void updatePlayerInfo(int player, int balance, int currentBet, int cardValue, int cheatHeat) {
