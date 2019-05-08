@@ -10,39 +10,50 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class JoinTableController {
-    @FXML
-    private Label lblEnterRoomId;
-    @FXML
-    private TextField tfRoomId;
-    @FXML
-    private Button btnGoToTable;
-    @FXML
-    private Button btnRandomTable;
-    @FXML
-    private Button btnMenu;
-    
+	@FXML
+	private Label lblEnterRoomId;
+	@FXML
+	private TextField tfRoomId;
+	@FXML
+	private Button btnGoToTable;
+	@FXML
+	private Button btnRandomTable;
+	@FXML
+	private Button btnMenu;
+
 	private static Main mainApp;
 	private UserClient client;
-	
+
 	@FXML
 	private void initialize() {
 	}
-	
+
 	@FXML
 	private void handleGoToTable() throws IOException {
-		client.checkTableId(Integer.parseInt(tfRoomId.getText()));
+		String tableId = tfRoomId.getText();
+		if(tableId == null) {
+			Platform.runLater(() -> {
+				try {
+					mainApp.showAlert("Wrong Table ID", "You did not enter a number. Please enter a number and try again");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+		} else {
+			client.checkTableId(Integer.parseInt(tableId));
+		}
 	}
-	
+
 	@FXML
 	private void handleRandomTable() throws IOException {
-		
+
 	}
-	
+
 	@FXML
 	private void handleMenu() throws IOException {
 		mainApp.showMainMenu();
 	}
-	
+
 	public static void checkTableId(String string) {
 		if(string.equals("TABLE_FALSE")) {
 			Platform.runLater(() -> {
@@ -70,11 +81,11 @@ public class JoinTableController {
 			});
 		}
 	}
-	
+
 	public void setMain(Main main) {
 		mainApp = main;
 	}
-	
+
 	public void setClient(UserClient client) {
 		this.client = client;
 	}
