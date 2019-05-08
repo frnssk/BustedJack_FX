@@ -218,7 +218,7 @@ public class UserClient {
 						try {
 							Thread.sleep(500);
 						}catch(InterruptedException ex) {}
-						controller.updatePlayerList(playerList);
+//						controller.updatePlayerList(playerList);
 						
 					}
 					if(obj instanceof HashMap<?,?>) {
