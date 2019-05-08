@@ -160,8 +160,7 @@ public class Server {
 
 					/**
 					 * This is used to decode what the client is sending
-					 * Depending on what kind of object, the server responds
-					 * accordingly
+					 * Depending on what kind of object, the server responds accordingly
 					 */
 					if(obj instanceof RegisterRequest) {
 						RegisterRequest registerRequest = (RegisterRequest)obj;
@@ -201,7 +200,7 @@ public class Server {
 					output.writeObject(choice);
 					output.flush();
 				} catch (ClassNotFoundException | IOException e) {
-					e.printStackTrace();
+//					e.printStackTrace();
 				}
 			}
 		}

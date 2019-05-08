@@ -842,10 +842,10 @@ public class UserInterface extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == btnHit) {
 				System.out.println("1");
-				PlayerChoice choice = new PlayerChoice(1);
+//				PlayerChoice choice = new PlayerChoice(1);
 				System.out.println("2");
 				try {
-					controller.sendPlayerChoice(choice);
+//					controller.sendPlayerChoice(choice);
 				}catch(Exception ex) {
 					System.out.println("fuck");
 				}
