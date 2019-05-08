@@ -1,6 +1,7 @@
 package application;
 
 import client.UserClient;
+import communications.PlayerChoice;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -142,6 +143,8 @@ public class GameController {
 
 	@FXML
 	private void confirmBet() {
+		PlayerChoice choice = new PlayerChoice(4);
+		choice.setBet(currentBet);
     	//Send update to client and server 
     	lblPlayer1Bet.setText("Bet: " + currentBet);
     	updateBalance();
