@@ -1,12 +1,15 @@
 package resources;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 
+import communications.PlayerChoice;
 import resources.Card.Rank;
 import server.Server.ClientHandler;
 
-public class Table implements Serializable {
+public class Table extends Thread implements Serializable {
 
 	private static final long serialVersionUID = 8653911597750749092L;
 	private int numberOfPlayers;
@@ -21,12 +24,11 @@ public class Table implements Serializable {
 	private boolean tableRunning;
 
 	private ArrayList<Player> playerList = new ArrayList<>(); //Holds all the players for the game
-	private ArrayList<Player> newPlayerList = new ArrayList<>();//holds an updated version of the PlayerList (players who get blackjack should not be able to continue playing)
-	private HashMap<Player, ClientHandler> playerHashMap = new HashMap<>();
-	private ArrayList<ClientHandler> connections = new ArrayList<>();
+//	private ArrayList<Player> newPlayerList = new ArrayList<>();//holds an updated version of the PlayerList (players who get blackjack should not be able to continue playing)
+	private HashMap<ClientHandler, Player> playerAndClient = new HashMap<>();
+	private ArrayList<ClientHandler> clientList = new ArrayList<>();
 	
 	public Table(int numberOfMinutes, int numberOfRounds, int startingMoney, int minimumBet) {
-		//		this.numberOfPlayers = numberOfPlayers;
 		this.numberOfMinutes = numberOfMinutes;
 		this.numberOfRounds = numberOfRounds;
 		this.startingMoney = startingMoney;
@@ -37,8 +39,11 @@ public class Table implements Serializable {
 	}
 	
 	public void addClient(ClientHandler clientHandler) {
-		connections.add(clientHandler);
-		System.out.println("clients" + connections.size());
+		clientList.add(clientHandler);
+	}
+	
+	public HashMap<ClientHandler, Player> getPlayerAndClient(){
+		return playerAndClient;
 	}
 
 	public void addPlayer(Player player) {
@@ -65,8 +70,19 @@ public class Table implements Serializable {
 	public int getNumberOfPlayers() {
 		return this.playerList.size();
 	}
+	
+	//TESTING
+	public void setPlayerChoice(Player player, PlayerChoice playerChoice) {
+		player.setPlayerChoice(playerChoice);
+	}
+	
+	public void updateTableInformation() {
+		for(int i = 0; i < clientList.size(); i++) {
+			clientList.get(i).updateTableInformation(this);
+		}
+	}
 
-	public void run() throws InterruptedException {
+	public void run() {
 		startGame();				//starts game and sets the balance for every player
 		checkCheatChoice();			//controls that every player made a choice
 		checkBetsMade();			//controls that every player made a bet
@@ -91,6 +107,7 @@ public class Table implements Serializable {
 		for(int i = 0; i < playerList.size(); i++) {
 			playerList.get(i).setStartingBalance(startingMoney);
 		}
+		updateTableInformation();
 	}
 
 	//checks that all players has made a choice to cheat or not
@@ -103,9 +120,25 @@ public class Table implements Serializable {
 			}
 			allPlayersReady = areAllTrue(allPlayerChoices);
 		}
-
+		updateTableInformation();
 	}
 
+	//the new, updated method to use
+	private void checkBets() {
+//		for(int i = 0; i < playerList.size(); i++) {
+//			playerList.get(i).setGrayOut(true);
+//		}
+		for(int i = 0; i < playerList.size(); i++) {
+			playerList.get(i).setGrayOut(false);
+			while(!playerList.get(i).hasMadeBet()) {
+				int bet = playerList.get(i).getBet();
+				
+			}
+			playerList.get(i).setGrayOut(true);
+		}
+		updateTableInformation();
+	}
+	
 	//checks that all players has made a bet
 	private void checkBetsMade() {
 		boolean allPlayersMadeBet = false;
@@ -119,17 +152,21 @@ public class Table implements Serializable {
 	}
 
 	//used to set the bet for each player
-	private void checkWhatPlayerBet() throws InterruptedException {
+	private void checkWhatPlayerBet(){
 		int[] betAmount = new int[playerList.size()];
 		for(int i = 0; i < playerList.size(); i++) {
 			betAmount[i] = playerList.get(i).getBet();
-			Thread.sleep(1500);
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 		//should update the UI for every player with what bet they made
 	}
 
 	//deals a single card to each of the players, depending on what choice they made
-	private void dealCardToPlayers() throws InterruptedException {
+	private void dealCardToPlayers() {
 		for(int i = 0; i < playerList.size(); i++) {
 			int hands = playerList.get(i).getNumberOfHands();
 			for(int j = 0; j < hands; j++) {
@@ -139,7 +176,11 @@ public class Table implements Serializable {
 				}else {
 					playerList.get(i).getHand(j).addCard(regularShoe.dealCard());
 				}
-				Thread.sleep(1500);
+				try {
+					Thread.sleep(1500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -200,7 +241,7 @@ public class Table implements Serializable {
 		dealer.getCard(0).setVisibility(true);
 	}
 
-	private void checkForSplit() throws InterruptedException {
+	private void checkForSplit(){
 		//		boolean allTrue = false;
 		boolean[] allPlayerReady = null;
 		boolean allPlayersAllHandsChecked = false;
@@ -211,7 +252,11 @@ public class Table implements Serializable {
 					if(playerList.get(i).getHand(j).ableToSplit()) {				//checks if a player can split a hand
 						//wait until player has made a choice
 						while(!playerList.get(i).getHand(j).getSplitChoice()) {
-							Thread.sleep(1000);
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 						}
 						if(playerList.get(i).getHand(j).wantToSplit()) {					//checks if a player wants to split a hand
 							Card card = playerList.get(i).getHand(j).getCard();				//gets a card from the hand
@@ -237,13 +282,17 @@ public class Table implements Serializable {
 		}
 	}
 
-	private void checkInsurance() throws InterruptedException {
+	private void checkInsurance(){
 		if(dealer.getCard(0).getRank() == Rank.ACE) {
 			for(int i = 0; i < playerList.size(); i++) {
 				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
 					//					boolean hasMadeChoice = playerLi;
 					while(!playerList.get(i).getHand(j).getHasMadeInsuranceChoice()) {
-						Thread.sleep(1000);
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 					}
 					if(playerList.get(i).getHand(j).getInsuranceChoice()) {
 						int insuranceCost = playerList.get(i).getHand(j).getBet()/2;
@@ -338,10 +387,14 @@ public class Table implements Serializable {
 	}
 
 	//as long as the dealer has less than 17, keeps on adding a card
-	private void letDealerPlay() throws InterruptedException {
+	private void letDealerPlay(){
 		while(dealer.getValue() < 17) {
 			dealer.addCard(regularShoe.dealCard());
-			Thread.sleep(1500);
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

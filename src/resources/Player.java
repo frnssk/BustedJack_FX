@@ -3,6 +3,8 @@ package resources;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import communications.PlayerChoice;
+
 public class Player implements Serializable{
 	
 	/**
@@ -19,11 +21,38 @@ public class Player implements Serializable{
 	private ArrayList<Hand> hands = new ArrayList<>();
 	private int cheatHeat;
 	private int balance = 0;
+	private Table table;
+	private PlayerChoice playerChoice;
+	private boolean buttonsAreGray;
 	
 	
+	public boolean isButtonsAreGray() {
+		return buttonsAreGray;
+	}
+
+	public void setButtonsAreGray(boolean buttonsAreGray) {
+		this.buttonsAreGray = buttonsAreGray;
+	}
+
 	public Player(String username) {
 		this.username = username;
 		hands.add(new Hand());
+	}
+	
+	public void setPlayerChoice(PlayerChoice playerChoice) {
+		this.playerChoice = playerChoice;
+	}
+	
+	public PlayerChoice getPlayerChoice() {
+		return playerChoice;
+	}
+	
+	public void setTable(Table table) {
+		this.table = table;
+	}
+	
+	public Table getTable() {
+		return table;
 	}
 	
 	public void addNewHand() {
@@ -48,6 +77,7 @@ public class Player implements Serializable{
 	}
 	
 	//should be called by UI when a player presses "Cheat" or "No Cheat"
+	//CORRECTION == should be determined by "setPlayerChoice"
 	public void setCheatChoice(boolean choiceMade) {
 		cheatChoice = choiceMade;
 		hasMadeCheatChoice = true;

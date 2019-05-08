@@ -194,8 +194,12 @@ public class UserClient {
 					}
 					if(obj instanceof ArrayList<?>) {
 						ArrayList<Player> playerList = (ArrayList)obj;
-						controller.updatePlayerList(playerList);
 						System.out.println("[CLIENT] == Lista mottagen, skickad till controller. Antal = " + playerList.size());
+						try {
+							Thread.sleep(500);
+						}catch(InterruptedException ex) {}
+						controller.updatePlayerList(playerList);
+						
 					}
 					if(obj instanceof HashMap<?,?>) {
 						HashMap<ClientHandler, User> list = new HashMap<>();
@@ -203,7 +207,7 @@ public class UserClient {
 					}
 					
 				}catch(IOException | ClassNotFoundException exception) {
-//					exception.printStackTrace();
+					exception.printStackTrace();
 				}
 			}
 		}
