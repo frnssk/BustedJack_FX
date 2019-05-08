@@ -408,6 +408,9 @@ public class Server {
 				table.addPlayer(player);
 				TextWindow.println(player.getUsername() + " tillagd på Table " + table.getTableId());
 				ArrayList<Player> playerList = playersOnTable.get(table);
+				ArrayList<ClientHandler> clientList = clientsOnTable.get(table);
+				clientList.add(clientHandler);
+				clientAndTable.put(clientHandler, table);
 				playerList.add(player);
 				choice = "RANDOM_TRUE";
 			}else {
