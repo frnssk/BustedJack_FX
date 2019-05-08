@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="1000.0" layoutX="319.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../../../Dropbox/Busted%20Jack/Design/BJ_menu.png" />
+            <Image url="@../../../../Dropbox/Busted%20Jack/Design/BJ_menu_2.0.png" />
          </image>
       </ImageView>
       <Label fx:id="lblUsername" layoutX="316.0" layoutY="232.0" text="Username" textFill="#f5e65d" AnchorPane.leftAnchor="337.0" AnchorPane.topAnchor="257.0">
