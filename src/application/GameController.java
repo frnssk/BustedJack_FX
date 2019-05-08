@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import client.UserClient;
 import communications.PlayerChoice;
 import communications.StartGameRequest;
@@ -7,18 +9,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import resources.Player;
 
 public class GameController {
 	@FXML
-	private Label lblPlayer1;
+	private static Label lblPlayer1;
 	@FXML
-	private Label lblPlayer2;
+	private static Label lblPlayer2;
 	@FXML
-	private Label lblPlayer3;
+	private static Label lblPlayer3;
 	@FXML
-	private Label lblPlayer4;
+	private static Label lblPlayer4;
 	@FXML
-	private Label lblPlayer5;
+	private static Label lblPlayer5;
 	
 	@FXML
 	private Label lblPlayer1CardSum;
@@ -244,6 +247,36 @@ public class GameController {
 	@FXML 
 	private void handleHit() {
 		client.sendPlayerChoice(new PlayerChoice(1, cheatHeat));
+	}
+	
+	public static void updatePlayerList(ArrayList<Player> playerList) {
+		System.out.println("[GAME_CONTROLLER] == GameController har mottagit lista. Antal = " + playerList.size());
+		
+		if(playerList.size() == 1) 
+			lblPlayer1.setText(playerList.get(0).getUsername());
+		if(playerList.size() == 2) {
+			lblPlayer1.setText(playerList.get(0).getUsername());
+			lblPlayer2.setText(playerList.get(1).getUsername());
+		}
+		if(playerList.size() == 3) {
+			lblPlayer1.setText(playerList.get(0).getUsername());
+			lblPlayer2.setText(playerList.get(1).getUsername());
+			lblPlayer3.setText(playerList.get(2).getUsername());
+		}
+		if(playerList.size() == 4) {
+			lblPlayer1.setText(playerList.get(0).getUsername());
+			lblPlayer2.setText(playerList.get(1).getUsername());
+			lblPlayer3.setText(playerList.get(2).getUsername());
+			lblPlayer4.setText(playerList.get(3).getUsername());
+		}
+		if(playerList.size() == 5) {
+			lblPlayer1.setText(playerList.get(0).getUsername());
+			lblPlayer2.setText(playerList.get(1).getUsername());
+			lblPlayer3.setText(playerList.get(2).getUsername());
+			lblPlayer4.setText(playerList.get(3).getUsername());
+			lblPlayer5.setText(playerList.get(4).getUsername());
+		}
+		
 	}
     
     public void setPlayerName(int number, String username) {
