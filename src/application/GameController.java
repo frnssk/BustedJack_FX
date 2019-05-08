@@ -106,7 +106,7 @@ public class GameController {
 	private int currentBet = 0;
 	private int time = 0;
 	
-	private int rounds = 0;
+	private int rounds = 1;
 	private int numberOfCheats = 0;
 	private int cheatHeat = numberOfCheats / rounds;
 
