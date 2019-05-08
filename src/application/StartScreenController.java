@@ -15,7 +15,7 @@ public class StartScreenController {
 	@FXML
 	private Button btnCreateNewUser;
 
-	private Main main;
+	private Main mainApp;
 
 	public StartScreenController() {
 	}
@@ -27,15 +27,15 @@ public class StartScreenController {
 
 	@FXML
 	private void handleLogIn() throws Exception {
-		main.showLoginView();
+		mainApp.showLoginView();
 	}
 
 	@FXML
 	private void handleCreateNewUser() throws Exception {
-		main.showCreateNewUser();
+		mainApp.showCreateNewUser();
 	}
 
 	public void setMain(Main main) {
-		this.main = main;
+		this.mainApp = main;
 	}
 }

@@ -16,19 +16,25 @@
             <Image url="@../../../../Dropbox/Busted%20Jack/Design/BJ_menu.png" />
          </image>
       </ImageView>
-      <TextField fx:id="tfUsername" layoutX="496.0" layoutY="259.0" promptText="Enter username" />
-      <Label fx:id="lblUsername" layoutX="337.0" layoutY="257.0" text="Username" textAlignment="RIGHT" textFill="WHITE">
+      <TextField fx:id="tfUsername" layoutX="496.0" layoutY="259.0" promptText="Enter username" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="259.0" />
+      <Label fx:id="lblUsername" layoutX="337.0" layoutY="257.0" text="Username" textAlignment="RIGHT" textFill="#f5e65d" AnchorPane.bottomAnchor="311.0" AnchorPane.leftAnchor="337.0" AnchorPane.rightAnchor="553.0" AnchorPane.topAnchor="257.0">
          <font>
             <Font name="Futura Medium" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lblPassword" layoutX="340.0" layoutY="311.0" text="Password" textAlignment="RIGHT" textFill="WHITE">
+      <Label fx:id="lblPassword" layoutX="340.0" layoutY="311.0" text="Password" textAlignment="RIGHT" textFill="#f5e65d" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="311.0">
          <font>
             <Font name="Futura Medium" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="362.0" layoutY="403.0" mnemonicParsing="false" text="Menu" />
-      <Button layoutX="550.0" layoutY="403.0" mnemonicParsing="false" text="Log In" />
-      <PasswordField fx:id="pfPassword" layoutX="495.0" layoutY="314.0" promptText="Enter password" />
+      <Button fx:id="btnMenu" layoutX="366.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleBackToStart" text="Back" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="366.0" AnchorPane.topAnchor="403.0">
+         <font>
+            <Font name="Futura Medium" size="14.0" />
+         </font></Button>
+      <Button fx:id="btnLogIn" layoutX="530.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleLogIn" text="Log In" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="530.0" AnchorPane.rightAnchor="370.0" AnchorPane.topAnchor="403.0">
+         <font>
+            <Font name="Futura Medium" size="14.0" />
+         </font></Button>
+      <PasswordField fx:id="pfPassword" layoutX="495.0" layoutY="314.0" promptText="Enter password" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="314.0" />
    </children>
 </AnchorPane>
