@@ -2,6 +2,7 @@ package application;
 
 import client.UserClient;
 import communications.PlayerChoice;
+import communications.StartGameRequest;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -141,7 +142,7 @@ public class GameController {
     
     @FXML
     private void handleStartGame() {
-    	
+    	client.sendStartGame(new StartGameRequest());
     }
 	
 	@FXML

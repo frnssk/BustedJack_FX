@@ -16,6 +16,7 @@ import communications.LoginRequest;
 import communications.PlayerChoice;
 import communications.RandomTableRequest;
 import communications.RegisterRequest;
+import communications.StartGameRequest;
 import resources.Player;
 import resources.User;
 import server.Server.ClientHandler;
@@ -174,6 +175,13 @@ public class UserClient {
 	public void sendPlayerChoice(PlayerChoice choice) {
 		try {
 			output.writeObject(choice);
+			output.flush();
+		}catch(IOException ioException) {}
+	}
+	
+	public void sendStartGame(StartGameRequest request) {
+		try {
+			output.writeObject(request);
 			output.flush();
 		}catch(IOException ioException) {}
 	}
