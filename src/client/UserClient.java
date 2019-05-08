@@ -238,9 +238,10 @@ public class UserClient {
 							joinTableController.checkTableId(available);
 						} 
 					}
-					if(obj instanceof ArrayList<?>) {
+					else if(obj instanceof ArrayList<?>) {
 						ArrayList<Player> playerList = (ArrayList)obj;
-
+						System.out.println("[CLIENT] == Antal spelare i PlayerList = " + playerList.size());
+						
 						Platform.runLater(() -> {
 								gameController.updatePlayerList(playerList);			
 						});
@@ -250,7 +251,7 @@ public class UserClient {
 							Thread.sleep(500);
 						}catch(InterruptedException ex) {}
 					}
-					if(obj instanceof HashMap<?,?>) {
+					else if(obj instanceof HashMap<?,?>) {
 						HashMap<ClientHandler, User> list = new HashMap<>();
 						System.out.println(list.toString());
 					}

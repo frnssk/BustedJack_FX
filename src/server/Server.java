@@ -185,7 +185,7 @@ public class Server {
 
 					else if(obj instanceof Integer) {
 						int tableId = (Integer)obj;
-						choice = addPlayerToTable(tableId, this);
+						addPlayerToTable(tableId, this);
 					}
 					
 					else if(obj instanceof RandomTableRequest) {
@@ -199,14 +199,13 @@ public class Server {
 					}
 					
 					else if(obj instanceof StartGameRequest) {
-//						StartGameRequest startGameRequest = (StartGameRequest)obj;
-//						User user = UserHandler.getUser(this);
 						Table table = clientAndTable.get(this);
 						table.start();
 					}
 
 					output.writeObject(choice);
 					output.flush();
+					
 				} catch (ClassNotFoundException | IOException e) {
 //					e.printStackTrace();
 				}
@@ -363,20 +362,28 @@ public class Server {
 		 * used to find the table corresponding to the ID provided by the user
 		 * checks if the table even exists, if it does and all conditions are met - tries to add the player
 		 */
-		public String addPlayerToTable(int tableId, ClientHandler clientHandler) {
+		public void addPlayerToTable(int tableId, ClientHandler clientHandler) {
 			String choice = "";
 			if(doesTableExist(tableId)) {
 				TextWindow.println("Bord med id: " + tableId + " finns.");
 				choice = "TABLE_TRUE";
+				
+				try {
+					clientHandler.output.writeObject(choice);
+				} catch (IOException e) {}
+				
 				Table table = activeTables2.get(tableId);
 				if(table.getNumberOfPlayers() < 5 && !table.checkTableStarted()) {
 					addPlayerOnExistingTable(this, table);
 				}
 			}else {
 				choice = "TABLE_FALSE";
+				try {
+					clientHandler.output.writeObject(choice);
+				} catch (IOException e) {}
 				TextWindow.println("Bord med id: " + tableId + " finns ej.");
 			}
-			return choice;
+//			return choice;
 		}
 		
 		/*
@@ -404,8 +411,14 @@ public class Server {
 			Random rand = new Random();
 			int randomTable = rand.nextInt(numberOfTables);
 			Table table = activeTables2.get(randomTable);
-			if(!table.getPrivateStatus()) {
+			if(!table.getPrivateStatus() && (table.getPlayerList().size() < 5)) {
 				table.addPlayer(player);
+				TextWindow.println(player.getUsername() + " tillagd på Table " + table.getTableId());
+				ArrayList<Player> playerList = playersOnTable.get(table);
+				ArrayList<ClientHandler> clientList = clientsOnTable.get(table);
+				clientList.add(clientHandler);
+				clientAndTable.put(clientHandler, table);
+				playerList.add(player);
 				choice = "RANDOM_TRUE";
 			}else {
 				choice = "RANDOM_FALSE";
