@@ -94,7 +94,8 @@ public class GameController {
 	@FXML
 	private Button btnClearBet;
 	
-
+	@FXML
+	private Button btnStartGame;
 
 	private static Main mainApp;
 	private UserClient client;
@@ -136,6 +137,11 @@ public class GameController {
     public void setTime(int time) {
     	//Code to come
     	lblTime.setText("Time: " + time);
+    }
+    
+    @FXML
+    private void handleStartGame() {
+    	
     }
 	
 	@FXML

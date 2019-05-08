@@ -180,5 +180,6 @@
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
+      <Button fx:id="btnStartGame" layoutX="78.0" layoutY="41.0" mnemonicParsing="false" onAction="#handleStartGame" text="Start game" />
    </children>
 </AnchorPane>
