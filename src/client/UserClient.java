@@ -7,6 +7,12 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+<<<<<<< HEAD
+=======
+import application.CreateNewUserController;
+import application.JoinTableController;
+import application.LogInController;
+>>>>>>> master
 import communications.GameInfo;
 import communications.LogOutRequest;
 import communications.LoginRequest;
@@ -197,10 +203,14 @@ public class UserClient {
 					//For checking user name availability
 					if(obj instanceof String) {
 						String available = (String) obj; //byta namn? används till mer än att kolla namn
-						controller.checkCreatedUser(available);
-//						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL")) {
-//							LogInController.checkLogIn(available);
-//						}
+//						controller.checkCreatedUser(available);
+						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL")) {
+							LogInController.checkLogIn(available);
+						} else if(available.equals("USERNAME_FALSE") || available.equals("PASSWORD_FALSE") || available.equals("USER_TRUE")) {
+							CreateNewUserController.checkRequest(available);
+						} else if(available.equals("TABLE_TRUE") || available.equals("TABLE_FALSE")) {
+							JoinTableController.checkTableId(available);
+						}
 					}
 					if(obj instanceof ArrayList<?>) {
 						ArrayList<Player> playerList = (ArrayList)obj;
