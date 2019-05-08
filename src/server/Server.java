@@ -404,8 +404,11 @@ public class Server {
 			Random rand = new Random();
 			int randomTable = rand.nextInt(numberOfTables);
 			Table table = activeTables2.get(randomTable);
-			if(!table.getPrivateStatus()) {
+			if(!table.getPrivateStatus() && (table.getPlayerList().size() < 5)) {
 				table.addPlayer(player);
+				TextWindow.println(player.getUsername() + " tillagd på Table " + table.getTableId());
+				ArrayList<Player> playerList = playersOnTable.get(table);
+				playerList.add(player);
 				choice = "RANDOM_TRUE";
 			}else {
 				choice = "RANDOM_FALSE";
