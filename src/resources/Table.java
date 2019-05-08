@@ -44,6 +44,22 @@ public class Table extends Thread implements Serializable {
 		this.privateStatus = bool;
 	}
 	
+	public int getMinutes() {
+		return numberOfMinutes;
+	}
+	
+	public int getRounds() {
+		return numberOfRounds;
+	}
+	
+	public int getMinimumBet() {
+		return minimumBet;
+	}
+	
+	public int getStartingMoney() {
+		return startingMoney;
+	}
+	
 	public boolean getPrivateStatus() {
 		return privateStatus;
 	}
