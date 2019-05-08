@@ -406,9 +406,9 @@ public class Server {
 			Table table = activeTables2.get(randomTable);
 			if(!table.getPrivateStatus()) {
 				table.addPlayer(player);
-				choice = "RANDOM_SUCCES";
+				choice = "RANDOM_TRUE";
 			}else {
-				choice = "RANDOM_FAIL";
+				choice = "RANDOM_FALSE";
 			}
 			return choice;
 		}

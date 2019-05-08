@@ -221,7 +221,7 @@ public class UserClient {
 							CreateNewUserController.checkRequest(available);
 						} else if(available.equals("TABLE_TRUE") || available.equals("TABLE_FALSE")) {
 							JoinTableController.checkTableId(available);
-						}
+						} 
 					}
 					if(obj instanceof ArrayList<?>) {
 						ArrayList<Player> playerList = (ArrayList)obj;
