@@ -79,7 +79,7 @@
             <Font name="Futura Medium" size="13.0" />
          </font>
       </Button>
-      <Label fx:id="lblCheatHeatPersent" layoutX="297.0" layoutY="544.0" text="25%" textFill="#f5e65d" />
+      <Label fx:id="lblCheatHeatPersent" layoutX="297.0" layoutY="544.0" text="0%" textFill="#f5e65d" />
       <Button fx:id="btnBust" layoutX="171.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleBust" text="BUST!" textAlignment="CENTER">
          <font>
             <Font name="Futura Medium" size="13.0" />
@@ -88,12 +88,12 @@
             <Tooltip text="this is cheat" />
          </tooltip>
       </Button>
-      <ProgressBar fx:id="cheatHeatProgressBar" layoutX="35.0" layoutY="543.0" prefHeight="20.0" prefWidth="254.0" progress="0.25" />
-      <Label fx:id="lblPlayer4CardSum" layoutX="183.0" layoutY="257.0" rotate="62.0" text="18" textFill="WHITE" />
-      <Label fx:id="lblPlayer2CardSum" layoutX="308.0" layoutY="383.0" rotate="32.0" text="18" textFill="WHITE" />
-      <Label fx:id="lblPlayer1CardSum" layoutX="493.0" layoutY="436.0" text="18" textFill="WHITE" />
-      <Label fx:id="lblPlayer3CardSum" layoutX="679.0" layoutY="383.0" rotate="-32.0" text="18" textFill="WHITE" />
-      <Label fx:id="lblPlayer5CardSum" layoutX="803.0" layoutY="257.0" rotate="-62.0" text="18" textFill="WHITE" />
+      <ProgressBar fx:id="cheatHeatProgressBar" layoutX="35.0" layoutY="543.0" prefHeight="20.0" prefWidth="254.0" progress="0.0" />
+      <Label fx:id="lblPlayer4CardSum" layoutX="183.0" layoutY="257.0" rotate="62.0" text="0" textFill="WHITE" />
+      <Label fx:id="lblPlayer2CardSum" layoutX="308.0" layoutY="383.0" rotate="32.0" text="0" textFill="WHITE" />
+      <Label fx:id="lblPlayer1CardSum" layoutX="493.0" layoutY="436.0" text="0" textFill="WHITE" />
+      <Label fx:id="lblPlayer3CardSum" layoutX="679.0" layoutY="383.0" rotate="-32.0" text="0" textFill="WHITE" />
+      <Label fx:id="lblPlayer5CardSum" layoutX="803.0" layoutY="257.0" rotate="-62.0" text="0" textFill="WHITE" />
       <Label fx:id="lblPlayer4Bet" alignment="TOP_LEFT" layoutX="76.0" layoutY="285.0" text="Bet: " textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
@@ -124,7 +124,7 @@
             <Font name="Futura Medium" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lblDealerCardSum" layoutX="493.0" layoutY="96.0" text="18" textFill="WHITE" />
+      <Label fx:id="lblDealerCardSum" layoutX="493.0" layoutY="96.0" text="0" textFill="WHITE" />
       <Label fx:id="lblTime" layoutX="680.0" layoutY="38.0" text="Time:" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="24.0" />

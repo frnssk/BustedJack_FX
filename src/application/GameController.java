@@ -106,9 +106,10 @@ public class GameController {
 	private int currentBet = 0;
 	private int time = 0;
 	
-	private int rounds = 1;
+	private int rounds = 0;
+	private int currentRound = 1;
 	private int numberOfCheats = 0;
-	private int cheatHeat = numberOfCheats / rounds;
+	private int cheatHeat = numberOfCheats / currentRound;
 
 	@FXML
 	private void initialize() {
@@ -133,11 +134,40 @@ public class GameController {
     
     public void updateRounds() {
     	lblRounds.setText("Rounds: " + (rounds--));
+    	currentRound ++;
+    	setCheatHeat(cheatHeat);
     }
     
     public void setTime(int time) {
     	//Code to come
     	lblTime.setText("Time: " + time);
+    }
+    
+	public void setCheatHeat(int valueInPercent) {
+		cheatHeatProgressBar.setProgress(valueInPercent);
+		lblCheatHeatPersent.setText(valueInPercent + "%");
+	}
+	
+    private void updateBalance() {
+    	balance -= currentBet;
+    	lblPlayer1Balance.setText("Balance: " + balance);
+    }
+    
+  //true will disable, false will enable
+    public void disableAllButtons(boolean bool) { 
+    	btnCheat.setDisable(bool);
+    	btnBust.setDisable(bool);
+    	btnSplit.setDisable(bool);
+    	btnDouble.setDisable(bool);
+    	btnStay.setDisable(bool);
+    	btnHit.setDisable(bool);
+    	btnIncreaseBet25.setDisable(bool);
+    	btnIncreaseBet50.setDisable(bool);
+    	btnIncreaseBet100.setDisable(bool);
+    	btnIncreaseBet500.setDisable(bool);
+    	btnConfirmBet.setDisable(bool);
+    	btnClearBet.setDisable(bool);
+    	btnStartGame.setDisable(bool);
     }
     
     @FXML
@@ -186,6 +216,8 @@ public class GameController {
 	
 	@FXML 
 	private void handleCheat() {
+		numberOfCheats++;
+		setCheatHeat(cheatHeat);
 		client.sendPlayerChoice(new PlayerChoice(5, cheatHeat));
 	}
 	
@@ -213,17 +245,6 @@ public class GameController {
 	private void handleHit() {
 		client.sendPlayerChoice(new PlayerChoice(1, cheatHeat));
 	}
-	
-	public void setCheatHeat(int valueInPercent) {
-		cheatHeatProgressBar.setProgress(valueInPercent);
-		lblCheatHeatPersent.setText(valueInPercent + "%");
-	}
-	
-    private void updateBalance() {
-    	balance -= currentBet;
-    	lblPlayer1Balance.setText("Balance: " + balance);
-    }
-   
     
     public void setPlayerName(int number, String username) {
     	switch(number) {
