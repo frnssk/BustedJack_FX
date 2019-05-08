@@ -211,10 +211,9 @@ public class UserClient {
 					}
 					if(obj instanceof ArrayList<?>) {
 						ArrayList<Player> playerList = (ArrayList)obj;
-<<<<<<< HEAD
+
 //						controller.updatePlayerList(playerList);
-=======
->>>>>>> rasmus2.0
+
 						System.out.println("[CLIENT] == Lista mottagen, skickad till controller. Antal = " + playerList.size());
 						try {
 							Thread.sleep(500);
