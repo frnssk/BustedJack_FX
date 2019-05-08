@@ -107,6 +107,7 @@ public class Main extends Application {
 		mainLayout = loader.load();
 
 		GameController controller = loader.getController();
+		client.setGameController(controller);
 		controller.setClient(client);
 		controller.setMain(this);
 
