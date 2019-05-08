@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import application.CreateNewUserController;
+import application.GameController;
 import application.JoinTableController;
 import application.LogInController;
 import application.Main;
@@ -216,16 +217,20 @@ public class UserClient {
 						String available = (String) obj; //byta namn? används till mer än att kolla namn
 //						controller.checkCreatedUser(available);
 						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL")) {
+							System.out.println("[CLIENT] == " + available);
 							LogInController.checkLogIn(available);
 						} else if(available.equals("USERNAME_FALSE") || available.equals("PASSWORD_FALSE") || available.equals("USER_TRUE")) {
+							System.out.println("[CLIENT] == " + available);
 							CreateNewUserController.checkRequest(available);
 						} else if(available.equals("TABLE_TRUE") || available.equals("TABLE_FALSE") || available.equals("RANDOM_FALSE") || available.equals("RANDOM_TRUE")) {
+							System.out.println("[CLIENT] == " + available);
 							JoinTableController.checkTableId(available);
 						} 
 					}
 					if(obj instanceof ArrayList<?>) {
 						ArrayList<Player> playerList = (ArrayList)obj;
 
+						GameController.updatePlayerList(playerList);
 //						controller.updatePlayerList(playerList);
 
 						System.out.println("[CLIENT] == Lista mottagen, skickad till controller. Antal = " + playerList.size());
