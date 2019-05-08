@@ -19,6 +19,7 @@ import communications.PlayerChoice;
 import communications.RandomTableRequest;
 import communications.RegisterRequest;
 import communications.StartGameRequest;
+import javafx.application.Platform;
 import resources.Player;
 import resources.User;
 import server.Server.ClientHandler;
@@ -40,6 +41,7 @@ public class UserClient {
 	private Connection connection;
 	private Object obj;
 	private Main mainApp;
+	private GameController gameController;
 
 	/**
 	 * Constructs the UserCLient object and connects to server on give IP and port
@@ -67,6 +69,10 @@ public class UserClient {
 	
 	public void setMain(Main main) {
 		this.mainApp = main;
+	}
+	
+	public void setGameController(GameController controller) {
+		this.gameController = controller;
 	}
 
 	public void setUser(User user) {
@@ -231,7 +237,10 @@ public class UserClient {
 						ArrayList<Player> playerList = (ArrayList)obj;
 						System.out.println("[CLIENT] == Antal spelare i PlayerList = " + playerList.size());
 
-						GameController.updatePlayerList(playerList);
+						Platform.runLater(() -> {
+							gameController.updatePlayerList(playerList);
+						});
+						
 //						controller.updatePlayerList(playerList);
 
 						System.out.println("[CLIENT] == Lista mottagen, skickad till controller. Antal = " + playerList.size());

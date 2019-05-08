@@ -13,15 +13,15 @@ import resources.Player;
 
 public class GameController {
 	@FXML
-	private static Label lblPlayer1;
+	private Label lblPlayer1;
 	@FXML
-	private static Label lblPlayer2;
+	private Label lblPlayer2;
 	@FXML
-	private static Label lblPlayer3;
+	private Label lblPlayer3;
 	@FXML
-	private static Label lblPlayer4;
+	private Label lblPlayer4;
 	@FXML
-	private static Label lblPlayer5;
+	private Label lblPlayer5;
 	
 	@FXML
 	private Label lblPlayer1CardSum;
@@ -249,7 +249,7 @@ public class GameController {
 		client.sendPlayerChoice(new PlayerChoice(1, cheatHeat));
 	}
 	
-	public static void updatePlayerList(ArrayList<Player> playerList) {
+	public void updatePlayerList(ArrayList<Player> playerList) {
 		System.out.println("[GAME_CONTROLLER] == GameController har mottagit lista. Antal = " + playerList.size());
 		
 		if(playerList.size() == 1) 
