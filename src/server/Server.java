@@ -201,7 +201,7 @@ public class Server {
 					output.writeObject(choice);
 					output.flush();
 				} catch (ClassNotFoundException | IOException e) {
-					e.printStackTrace();
+//					e.printStackTrace();
 				}
 			}
 		}
