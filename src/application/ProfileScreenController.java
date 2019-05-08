@@ -24,9 +24,6 @@ public class ProfileScreenController {
 
 	private static Main mainApp;
 
-	private UserClient client;
-
-
 	@FXML
 	private void handleMenu() {
 		try {
@@ -38,9 +35,5 @@ public class ProfileScreenController {
 	
 	public static void setMain(Main main) {
 		mainApp = main;
-	}
-
-	public void setClient(UserClient client) {
-		this.client = client;
 	}
 }
