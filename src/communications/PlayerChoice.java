@@ -12,13 +12,19 @@ public class PlayerChoice implements Serializable{
 	//4 = bet, + setBet
 	//5 = cheat
 	private int bet;
+	private int cheatHeat;
 	
-	public PlayerChoice(int choice) {
+	public PlayerChoice(int choice, int cheatHeat) {
 		this.choice = choice;
+		this.cheatHeat = cheatHeat;
 	}
 	
 	public int getChoice() {
 		return choice;
+	}
+	
+	public int getCheatHeat() {
+		return cheatHeat;
 	}
 	
 	public void setChoice(int choice) {

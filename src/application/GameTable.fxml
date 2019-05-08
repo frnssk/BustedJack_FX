@@ -69,7 +69,7 @@
             <Tooltip text="this is cheat" />
          </tooltip>
       </Button>
-      <Button fx:id="btnIncrease25" layoutX="752.0" layoutY="497.0" mnemonicParsing="false" onAction="#setNextBet25" text="25$" textAlignment="CENTER">
+      <Button fx:id="btnIncreaseBet25" layoutX="752.0" layoutY="497.0" mnemonicParsing="false" onAction="#setNextBet25" text="25$" textAlignment="CENTER">
          <font>
             <Font name="Futura Medium" size="13.0" />
          </font>
