@@ -361,7 +361,7 @@ public class Server {
 			clientsOnTable.put(table, clientList);
 			clientAndTable.put(clientHandler, table);
 			try {
-				clientHandler.output.writeObject(new TableID(tableIdCounter));
+				clientHandler.output.writeObject(new TableID(table.getTableId()));
 				clientHandler.output.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -397,6 +397,12 @@ public class Server {
 					addPlayerOnExistingTable(this, table);
 				}else
 					choice = "TABLE_FULL";
+				try {
+					clientHandler.output.writeObject(new TableID(table.getTableId()));
+					clientHandler.output.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}else {
 				choice = "TABLE_FALSE";
 				try {

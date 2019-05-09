@@ -22,7 +22,7 @@ public class Main extends Application {
 	
 
 	public void start(Stage primaryStage) throws Exception {
-		client = new UserClient("localhost", 1200);
+		client = new UserClient("10.2.15.40", 1200);
 		this.primaryStage = primaryStage;
 		showStartView();
 	}
@@ -116,7 +116,7 @@ public class Main extends Application {
 		controller.setMain(this);
 		client.setGameController(controller);
 
-		Scene scene = new Scene(mainLayout, 1200, 800);
+		Scene scene = new Scene(mainLayout, 1200, 700);
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(true);
 		primaryStage.show();
