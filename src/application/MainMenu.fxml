@@ -30,6 +30,9 @@
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font></Button>
-      <Label fx:id="lblWelcome" layoutX="451.0" layoutY="114.0" text="Welcome player" textAlignment="CENTER" textFill="#f5e65d" />
+      <Label fx:id="lblWelcome" layoutX="410.0" layoutY="107.0" text="Welcome player" textAlignment="CENTER" textFill="#f5e65d">
+         <font>
+            <Font name="Futura Medium" size="24.0" />
+         </font></Label>
    </children>
 </AnchorPane>
