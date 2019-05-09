@@ -34,7 +34,7 @@ public class JoinTableController {
 		if(tableId == null) {
 			Platform.runLater(() -> {
 				try {
-					mainApp.showAlert("Wrong Table ID", "You did not enter a number. Please enter a number and try again");
+					mainApp.showAlert("Wrong Table ID", "You did not enter a number. \nPlease enter a number and try again");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -58,7 +58,7 @@ public class JoinTableController {
 		if(string.equals("TABLE_FALSE")) {
 			Platform.runLater(() -> {
 				try {
-					mainApp.showAlert("Wrong Table ID", "The table is full or the ID is incorrect. Please try again");
+					mainApp.showAlert("Wrong Table ID", "The table is full or the ID is incorrect.\nPlease try again");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -82,7 +82,7 @@ public class JoinTableController {
 		} else if(string.equals("RANDOM_FALSE")) {
 			Platform.runLater(() -> {
 				try {
-					mainApp.showAlert("No available rooms", "No available open rooms at the moment. Please try again later");
+					mainApp.showAlert("No available rooms", "No available open rooms at the moment.\nPlease try again later");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
