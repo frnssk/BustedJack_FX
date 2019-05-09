@@ -19,6 +19,7 @@ import communications.PlayerChoice;
 import communications.RandomTableRequest;
 import communications.RegisterRequest;
 import communications.StartGameRequest;
+import communications.TableID;
 import javafx.application.Platform;
 import resources.Player;
 import resources.Table;
@@ -257,12 +258,6 @@ public class UserClient {
 						Platform.runLater(() -> {
 								gameController.updatePlayerList(playerList);			
 						});
-
-//						controller.updatePlayerList(playerList);
-						
-
-
-
 						System.out.println("[CLIENT] == Lista mottagen, skickad till controller. Antal = " + playerList.size());
 						try {
 							Thread.sleep(500);
@@ -272,14 +267,18 @@ public class UserClient {
 						HashMap<ClientHandler, User> list = new HashMap<>();
 						System.out.println(list.toString());
 					}
-					if(obj instanceof Table) {
+					else if(obj instanceof Table) {
 						Table table = (Table) obj;
 						int rounds = table.getRounds();
 						int time = table.getMinutes();
 						int minBet = table.getMinimumBet();
 						int startingMoney = table.getStartingMoney();
 						gameController.updateGameStart(rounds, time, minBet, startingMoney);
-						
+					}
+					else if(obj instanceof TableID) {
+						TableID tableID = (TableID)obj;
+						int tableIdToShow = tableID.getID();
+						System.out.println("[CLIENT] == TABLE ID TO JOIN ON = " + tableIdToShow);
 					}
 				}catch(IOException | ClassNotFoundException e) {
 					e.printStackTrace();

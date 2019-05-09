@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import communications.PlayerChoice;
+import communications.TableID;
 import resources.Card.Rank;
 import server.Server.ClientHandler;
 
@@ -23,6 +24,7 @@ public class Table extends Thread implements Serializable {
 	private int tableID;
 	private boolean tableRunning;
 	private boolean privateStatus;
+	private TableID tableIDtest;
 
 	private ArrayList<Player> playerList = new ArrayList<>(); //Holds all the players for the game
 //	private ArrayList<Player> newPlayerList = new ArrayList<>();//holds an updated version of the PlayerList (players who get blackjack should not be able to continue playing)
