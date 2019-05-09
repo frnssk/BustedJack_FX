@@ -247,11 +247,11 @@ public class UserClient {
 						Platform.runLater(() -> {
 								gameController.updatePlayerList(playerList);			
 						});
-<<<<<<< HEAD
+
 //						controller.updatePlayerList(playerList);
 						
-=======
->>>>>>> rasmus2.0
+
+
 
 						System.out.println("[CLIENT] == Lista mottagen, skickad till controller. Antal = " + playerList.size());
 						try {
