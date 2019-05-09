@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -22,6 +21,7 @@ import communications.PlayerChoice;
 import communications.RandomTableRequest;
 import communications.RegisterRequest;
 import communications.StartGameRequest;
+import communications.TableID;
 import resources.Player;
 import resources.Table;
 import resources.User;
@@ -38,6 +38,7 @@ public class Server {
 	private HashMap<Table, ArrayList<Player>> playersOnTable = new HashMap<>();//holds a table and a list of all players on that table
 	private HashMap<Table, ArrayList<ClientHandler>> clientsOnTable = new HashMap<>();//holds a table and a list of all clients
 	private HashMap<ClientHandler, Table> clientAndTable = new HashMap<>();
+	private TableID tableID;
 
 	/*
 	 * Constructor to instantiate the server
@@ -358,6 +359,12 @@ public class Server {
 			clientList.add(this); 
 			clientsOnTable.put(table, clientList);
 			clientAndTable.put(clientHandler, table);
+			try {
+				clientHandler.output.writeObject(new TableID(tableIdCounter));
+				clientHandler.output.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			updateList(clientList, playerList);
 		}
 		
