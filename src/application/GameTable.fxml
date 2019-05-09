@@ -41,22 +41,22 @@
             <Font name="Futura Medium" size="18.0" />
          </font>
       </Label>
-    <Button fx:id="btnSplit" layoutX="380.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleSplit" text="Split" textAlignment="CENTER">
+    <Button fx:id="btnSplit" layoutX="578.0" layoutY="538.0" mnemonicParsing="false" onAction="#handleSplit" text="Split" textAlignment="CENTER">
          <font>
             <Font name="Futura Medium" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="btnDouble" layoutX="442.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleDouble" text="Double" textAlignment="CENTER">
+      <Button fx:id="btnDouble" layoutX="505.0" layoutY="538.0" mnemonicParsing="false" onAction="#handleDouble" text="Double" textAlignment="CENTER">
          <font>
             <Font name="Futura Medium" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="btnStay" layoutX="522.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleStay" text="Stay" textAlignment="CENTER">
+      <Button fx:id="btnStay" layoutX="453.0" layoutY="538.0" mnemonicParsing="false" onAction="#handleStay" text="Stay" textAlignment="CENTER">
          <font>
             <Font name="Futura Medium" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="btnHit" layoutX="586.0" layoutY="539.0" mnemonicParsing="false" onAction="#handleHit" text="Hit" textAlignment="CENTER">
+      <Button fx:id="btnHit" layoutX="410.0" layoutY="538.0" mnemonicParsing="false" onAction="#handleHit" text="Hit" textAlignment="CENTER">
          <font>
             <Font name="Futura Medium" size="13.0" />
          </font>

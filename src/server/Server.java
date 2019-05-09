@@ -58,20 +58,23 @@ public class Server {
 			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 			boolean keepReading = true;
 			TextWindow.println("----------------------------");
-			TextWindow.println("ALLA REGISTRERADE ANVÄNDARE");
+			TextWindow.println("ALLA REGISTRERADE ANVÄNDARE.");
 			TextWindow.println("----------------------------");
+			int i = 1;
 			try {
 				while(keepReading) {
 					User user = (User)objectIn.readObject();
 					registeredUsers.add(user);
 					userPasswords.put(user.getUsername(), user.getPassword());
+					TextWindow.println(i + "	" + user.getUsername());
+					i++;
 					objectIn = new ObjectInputStream(fileIn);
-					TextWindow.println(user.getUsername());
 				}
 			}catch(EOFException e) {
 				keepReading = false;
 				TextWindow.println("------------------");
 				TextWindow.println("SLUT PÅ ANVÄNDARE.");
+				TextWindow.println("TOTALT ANTAL REGISTRERADE ANVÄNDARE = " + registeredUsers.size());
 				TextWindow.println("------------------");
 			}
 		}catch (Exception ex) {
@@ -83,7 +86,7 @@ public class Server {
 	 * Called every time a new user is registered, to keep the offline-list of users up to date
 	 */
 	public void updateUserDatabase(User user) {
-		try(FileOutputStream fos = new FileOutputStream("files/userlist.dat", true);
+		try(FileOutputStream fos = new FileOutputStream("files/userlist.dat");
 				ObjectOutputStream oos = new ObjectOutputStream(fos)){
 			registeredUsers.add(user);
 			oos.writeObject(user);
@@ -382,9 +385,10 @@ public class Server {
 				} catch (IOException e) {}
 				
 				Table table = activeTables2.get(tableId);
-				if(table.getNumberOfPlayers() < 5 && !table.checkTableStarted()) {
+				if(table.getNumberOfPlayers() < 5) {
 					addPlayerOnExistingTable(this, table);
-				}
+				}else
+					choice = "TABLE_FULL";
 			}else {
 				choice = "TABLE_FALSE";
 				try {
@@ -461,6 +465,7 @@ public class Server {
 					ClientHandler ch = clientList.get(i);
 					ch.output.writeObject((ArrayList<Player>)playerList.clone());
 					ch.output.flush();
+					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
