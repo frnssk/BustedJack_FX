@@ -259,6 +259,8 @@ public class Server {
 					choice = "LOGIN_FAIL";
 					TextWindow.println(loginRequest.getUsername() + " entered the wrong password."); //Assistance
 				}
+			}else {
+				choice = "LOGIN_NOT_EXIST";
 			}
 			return choice;
 		}
