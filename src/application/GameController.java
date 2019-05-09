@@ -66,6 +66,8 @@ public class GameController {
 	private Label lblTime;
 	@FXML
 	private Label lblRounds;
+	@FXML
+	private Label lblTableId;
 
 	@FXML
 	private ProgressBar cheatHeatProgressBar;
@@ -161,6 +163,9 @@ public class GameController {
 		lblPlayer1Balance.setText("Balance: " + balance);
 	}
 	
+	public void setTableId(int tableId) {
+		lblTableId.setText("Table ID: " + tableId);
+	}
 	
 	public void updateGameStart(int rounds, int minutes, int minimumBet, int startingMoney) {
 		setRounds(rounds);

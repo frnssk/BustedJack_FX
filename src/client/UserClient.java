@@ -278,6 +278,7 @@ public class UserClient {
 					else if(obj instanceof TableID) {
 						TableID tableID = (TableID)obj;
 						int tableIdToShow = tableID.getID();
+						gameController.setTableId(tableIdToShow);
 						System.out.println("[CLIENT] == TABLE ID TO JOIN ON = " + tableIdToShow);
 					}
 				}catch(IOException | ClassNotFoundException e) {

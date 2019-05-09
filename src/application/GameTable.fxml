@@ -180,7 +180,7 @@
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="702.0" layoutY="730.0" text="Room ID:" textFill="#f5e65d">
+      <Label fx:id="lblTableId" layoutX="702.0" layoutY="730.0" text="Table ID:" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="24.0" />
          </font>
