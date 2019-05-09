@@ -86,7 +86,7 @@ public class Server {
 	 * Called every time a new user is registered, to keep the offline-list of users up to date
 	 */
 	public void updateUserDatabase(User user) {
-		try(FileOutputStream fos = new FileOutputStream("files/userlist.dat");
+		try(FileOutputStream fos = new FileOutputStream("files/userlist.dat", true);
 				ObjectOutputStream oos = new ObjectOutputStream(fos)){
 			registeredUsers.add(user);
 			oos.writeObject(user);
@@ -196,7 +196,7 @@ public class Server {
 					}
 					
 					else if(obj instanceof RandomTableRequest) {
-						choice = addPlayerOnRandomTable(this);
+						addPlayerOnRandomTable(this);
 					}
 
 					else if(obj instanceof PlayerChoice) {
@@ -398,7 +398,6 @@ public class Server {
 			}
 //			return choice;
 		}
-		
 		/*
 		 * used to add a player to an existing table
 		 */
@@ -416,7 +415,7 @@ public class Server {
 			updateList(clientList, playerList);
 		}
 		
-		public String addPlayerOnRandomTable(ClientHandler clientHandler) {
+		public void addPlayerOnRandomTable(ClientHandler clientHandler) {
 			String choice = "";
 			User user = UserHandler.getUser(clientHandler);
 			Player player = new Player(user.getUsername());
@@ -424,19 +423,33 @@ public class Server {
 			Random rand = new Random();
 			int randomTable = rand.nextInt(numberOfTables);
 			Table table = activeTables2.get(randomTable);
+			ArrayList<Player> playerList = null;
+			ArrayList<ClientHandler> clientList = null;
 			if(!table.getPrivateStatus() && (table.getPlayerList().size() < 5)) {
 				table.addPlayer(player);
 				TextWindow.println(player.getUsername() + " tillagd på Table " + table.getTableId());
-				ArrayList<Player> playerList = playersOnTable.get(table);
-				ArrayList<ClientHandler> clientList = clientsOnTable.get(table);
+				playerList = playersOnTable.get(table);
+				clientList = clientsOnTable.get(table);
 				clientList.add(clientHandler);
 				clientAndTable.put(clientHandler, table);
 				playerList.add(player);
 				choice = "RANDOM_TRUE";
+				try {
+					clientHandler.output.writeObject(choice);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
 			}else {
 				choice = "RANDOM_FALSE";
+				try {
+					clientHandler.output.writeObject(choice);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
-			return choice;
+			updateList(clientList, playerList);
+//			return choice;
 		}
 
 		/*
