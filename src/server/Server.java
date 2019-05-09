@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -134,7 +135,11 @@ public class Server {
 	 * Starts a new Thread for every client
 	 * @author RasmusOberg
 	 */
-	public class ClientHandler extends Thread{
+	public class ClientHandler extends Thread implements Serializable{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private Socket socket;
 		private ObjectOutputStream output;
 		private ObjectInputStream input;
@@ -185,7 +190,7 @@ public class Server {
 
 					else if(obj instanceof Integer) {
 						int tableId = (Integer)obj;
-						choice = addPlayerToTable(tableId, this);
+						addPlayerToTable(tableId, this);
 					}
 					
 					else if(obj instanceof RandomTableRequest) {
@@ -199,14 +204,14 @@ public class Server {
 					}
 					
 					else if(obj instanceof StartGameRequest) {
-//						StartGameRequest startGameRequest = (StartGameRequest)obj;
-//						User user = UserHandler.getUser(this);
+						System.out.println("[SERVER] == StartGameRequest mottagen.");
 						Table table = clientAndTable.get(this);
 						table.start();
 					}
 
 					output.writeObject(choice);
 					output.flush();
+					
 				} catch (ClassNotFoundException | IOException e) {
 //					e.printStackTrace();
 				}
@@ -363,20 +368,28 @@ public class Server {
 		 * used to find the table corresponding to the ID provided by the user
 		 * checks if the table even exists, if it does and all conditions are met - tries to add the player
 		 */
-		public String addPlayerToTable(int tableId, ClientHandler clientHandler) {
+		public void addPlayerToTable(int tableId, ClientHandler clientHandler) {
 			String choice = "";
 			if(doesTableExist(tableId)) {
 				TextWindow.println("Bord med id: " + tableId + " finns.");
 				choice = "TABLE_TRUE";
+				
+				try {
+					clientHandler.output.writeObject(choice);
+				} catch (IOException e) {}
+				
 				Table table = activeTables2.get(tableId);
 				if(table.getNumberOfPlayers() < 5 && !table.checkTableStarted()) {
 					addPlayerOnExistingTable(this, table);
 				}
 			}else {
 				choice = "TABLE_FALSE";
+				try {
+					clientHandler.output.writeObject(choice);
+				} catch (IOException e) {}
 				TextWindow.println("Bord med id: " + tableId + " finns ej.");
 			}
-			return choice;
+//			return choice;
 		}
 		
 		/*
