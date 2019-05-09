@@ -34,16 +34,25 @@ public class LogInController extends Dialog{
 	
 	private UserClient client;
 	
-	private static Main mainApp;
-	
-	private static String available = "";
+	private Main mainApp;
 	
 	@FXML
 	private void initialize() {
 		
 	}
 	
-	public static void checkLogIn(String string) throws IOException {
+	@FXML
+	private void handleLogIn() throws Exception {
+		mainApp.setUsername(tfUsername.getText());
+		createLoginRequest(tfUsername.getText(), pfPassword.getText());
+	}
+	
+	@FXML
+	private void handleBackToStart() throws IOException {
+		mainApp.showStartView();
+	}
+	
+	public void checkLogIn(String string) throws IOException {
 		if(string.equals("LOGIN_SUCCES")) {
 			Platform.runLater(() -> {
 				try {
@@ -56,7 +65,15 @@ public class LogInController extends Dialog{
 		} else if(string.equals("LOGIN_FAIL")) {
 			Platform.runLater(() -> {
 				try {
-					mainApp.showAlert("Wrong password", "You have entered a incorrect password. Please try again.");
+					mainApp.showAlert("Wrong password", "You have entered an incorrect password. Please try again.");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+		} else if(string.equals("LOGIN_NOT_EXIST")) {
+			Platform.runLater(() -> {
+				try {
+					mainApp.showAlert("Wrong username", "The username do not exist. Please try again.");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -79,18 +96,7 @@ public class LogInController extends Dialog{
 		client.sendLoginRequest(request);
 	}
 	
-	@FXML
-	private void handleLogIn() throws Exception {
-		mainApp.setUsername(tfUsername.getText());
-		createLoginRequest(tfUsername.getText(), pfPassword.getText());
-	}
-	
-	@FXML
-	private void handleBackToStart() throws IOException {
-		mainApp.showStartView();
-	}
-	
-	public static void setMain(Main main) {
+	public void setMain(Main main) {
 		mainApp = main;
 	}
 	

@@ -44,6 +44,8 @@ public class UserClient {
 	private Main mainApp;
 	private GameController gameController;
 	private JoinTableController joinTableController;
+	private LogInController logInController;
+	private CreateNewUserController createNewUserController;
 
 	/**
 	 * Constructs the UserCLient object and connects to server on give IP and port
@@ -80,6 +82,10 @@ public class UserClient {
 	public void setJoinTableController(JoinTableController controller) {
 		this.joinTableController = controller;
 	}
+	
+	public void setLogInController(LogInController controller) {
+		this.logInController = controller;
+	}
 
 	public void setUser(User user) {
 		this.user = user;
@@ -87,6 +93,10 @@ public class UserClient {
 
 	public void setUserController(UserController userController) {
 		this.controller = userController;
+	}
+	
+	public void setCreateNewUserController(CreateNewUserController controller) {
+		this.createNewUserController = controller;
 	}
 
 	/**
@@ -229,12 +239,12 @@ public class UserClient {
 					//For checking user name availability
 					if(obj instanceof String) {
 						String available = (String) obj; //byta namn? används till mer än att kolla namn
-						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL")) {
+						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL") || available.equals("LOGIN_NOT_EXIST")) {
 							System.out.println("[CLIENT] == " + available);
-							LogInController.checkLogIn(available);
+							logInController.checkLogIn(available);
 						} else if(available.equals("USERNAME_FALSE") || available.equals("PASSWORD_FALSE") || available.equals("USER_TRUE")) {
 							System.out.println("[CLIENT] == " + available);
-							CreateNewUserController.checkRequest(available);
+							createNewUserController.checkRequest(available);
 						} else if(available.equals("TABLE_TRUE") || available.equals("TABLE_FALSE") || available.equals("RANDOM_FALSE") || available.equals("RANDOM_TRUE")) {
 							System.out.println("[CLIENT] == " + available);
 							joinTableController.checkTableId(available);
@@ -271,8 +281,8 @@ public class UserClient {
 						gameController.updateGameStart(rounds, time, minBet, startingMoney);
 						
 					}
-				}catch(IOException | ClassNotFoundException exception) {
-					exception.printStackTrace();
+				}catch(IOException | ClassNotFoundException e) {
+					e.printStackTrace();
 				}
 			}
 		}

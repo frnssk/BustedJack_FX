@@ -25,7 +25,7 @@ public class CreateNewUserController {
 	@FXML
 	private Button btnCreateUser;
 
-	private static Main mainApp;
+	private Main mainApp;
 	private UserClient client;
 
 	@FXML
@@ -39,7 +39,7 @@ public class CreateNewUserController {
 		mainApp.setUsername(tfUsername.getText());
 	}
 	
-	public static void checkRequest(String string) {
+	public void checkRequest(String string) {
 		if(string.equals("USERNAME_FALSE")) {
 			Platform.runLater(() -> {
 				try {
