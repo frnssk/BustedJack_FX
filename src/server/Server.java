@@ -465,6 +465,7 @@ public class Server {
 					ClientHandler ch = clientList.get(i);
 					ch.output.writeObject((ArrayList<Player>)playerList.clone());
 					ch.output.flush();
+					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

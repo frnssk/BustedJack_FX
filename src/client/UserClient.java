@@ -258,6 +258,11 @@ public class UserClient {
 								gameController.updatePlayerList(playerList);			
 						});
 
+//						controller.updatePlayerList(playerList);
+						
+
+
+
 						System.out.println("[CLIENT] == Lista mottagen, skickad till controller. Antal = " + playerList.size());
 						try {
 							Thread.sleep(500);
