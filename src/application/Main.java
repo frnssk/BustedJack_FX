@@ -49,6 +49,7 @@ public class Main extends Application {
 		LogInController controller = loader.getController();
 		controller.setClient(client);
 		controller.setMain(this);
+		client.setLogInController(controller);
 
 		Scene scene = new Scene(mainLayout, 1000, 600);
 		primaryStage.setScene(scene);
@@ -64,6 +65,7 @@ public class Main extends Application {
 		CreateNewUserController controller = loader.getController();
 		controller.setClient(client);
 		controller.setMain(this);
+		client.setCreateNewUserController(controller);
 
 		Scene scene = new Scene(mainLayout, 1000, 600);
 		primaryStage.setScene(scene);

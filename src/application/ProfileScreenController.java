@@ -22,18 +22,14 @@ public class ProfileScreenController {
 	@FXML
 	private Button btnMenu;
 
-	private static Main mainApp;
+	private Main mainApp;
 
 	@FXML
-	private void handleMenu() {
-		try {
-			mainApp.showMainMenu();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	private void handleMenu() throws IOException {
+		mainApp.showMainMenu();
 	}
 	
-	public static void setMain(Main main) {
+	public void setMain(Main main) {
 		mainApp = main;
 	}
 }

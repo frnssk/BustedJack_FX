@@ -17,7 +17,7 @@ public class MainMenuController {
 	@FXML
 	private Button btnQuit;
 	
-	private static Main mainApp;
+	private Main mainApp;
 	private UserClient client;
 
 	@FXML
@@ -46,7 +46,7 @@ public class MainMenuController {
 		mainApp.showStartView();
 	}
 	
-	public static void setMain(Main main) {
+	public void setMain(Main main) {
 		mainApp = main;
 	}
 	
