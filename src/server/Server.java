@@ -135,11 +135,10 @@ public class Server {
 	 * Starts a new Thread for every client
 	 * @author RasmusOberg
 	 */
-	public class ClientHandler extends Thread implements Serializable{
+	public class ClientHandler extends Thread {
 		/**
 		 * 
 		 */
-		private static final long serialVersionUID = 1L;
 		private Socket socket;
 		private ObjectOutputStream output;
 		private ObjectInputStream input;
@@ -199,6 +198,7 @@ public class Server {
 
 					else if(obj instanceof PlayerChoice) {
 						PlayerChoice playerChoice = (PlayerChoice)obj;
+						System.out.println("[SERVER] == PlayerChoice mottagit, av typen " + playerChoice.getChoice());
 						makePlayerChoice(playerChoice, this);
 						TextWindow.println(UserHandler.getUser(this).getUsername() + " HAR TRYCKT = " + playerChoice.getChoice());
 					}
@@ -259,6 +259,8 @@ public class Server {
 					choice = "LOGIN_FAIL";
 					TextWindow.println(loginRequest.getUsername() + " entered the wrong password."); //Assistance
 				}
+			}else {
+				choice = "LOGIN_NOT_EXIST";
 			}
 			return choice;
 		}
@@ -344,6 +346,7 @@ public class Server {
 			Player player = new Player(user.getUsername());
 			table.addPlayer(player);
 			table.addClient(this);
+			table.addClientAndPlayer(clientHandler, player);
 			TextWindow.println(player.getUsername() + " tillagd på Table " + table.getTableId());
 			ArrayList<Player> playerList = new ArrayList<>();
 			playerList.add(player);

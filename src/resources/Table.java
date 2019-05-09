@@ -68,6 +68,10 @@ public class Table extends Thread implements Serializable {
 		clientList.add(clientHandler);
 	}
 	
+	public void addClientAndPlayer(ClientHandler clientHandler, Player player) {
+		playerAndClient.put(clientHandler, player);
+	}
+	
 	public HashMap<ClientHandler, Player> getPlayerAndClient(){
 		return playerAndClient;
 	}

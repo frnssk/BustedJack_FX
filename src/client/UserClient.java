@@ -267,7 +267,7 @@ public class UserClient {
 						
 					}
 				}catch(IOException | ClassNotFoundException exception) {
-					exception.printStackTrace();
+//					exception.printStackTrace();
 				}
 			}
 		}

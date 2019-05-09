@@ -265,6 +265,7 @@ public class GameController {
 	@FXML 
 	private void handleHit() {
 		client.sendPlayerChoice(new PlayerChoice(1, cheatHeat));
+		System.out.println("[CLIENT] == Någon har tryck HIT.");
 	}
 
 	public void updatePlayerList(ArrayList<Player> playerList) {
