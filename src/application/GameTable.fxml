@@ -79,7 +79,7 @@
             <Font name="Futura Medium" size="13.0" />
          </font>
       </Button>
-      <Label fx:id="lblCheatHeatPersent" layoutX="326.0" layoutY="610.0" text="25%" textFill="#f5e65d" />
+      <Label fx:id="lblCheatHeatPersent" layoutX="326.0" layoutY="610.0" text="0%" textFill="#f5e65d" />
       <Button fx:id="btnBust" layoutX="194.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleBust" text="BUST!" textAlignment="CENTER">
          <font>
             <Font name="Futura Medium" size="13.0" />
@@ -88,7 +88,7 @@
             <Tooltip text="this is cheat" />
          </tooltip>
       </Button>
-      <ProgressBar fx:id="cheatHeatProgressBar" layoutX="64.0" layoutY="609.0" prefHeight="20.0" prefWidth="254.0" progress="0.25" />
+      <ProgressBar fx:id="cheatHeatProgressBar" layoutX="64.0" layoutY="609.0" prefHeight="20.0" prefWidth="254.0" progress="0.0" />
       <Label fx:id="lblPlayer4CardSum" layoutX="282.0" layoutY="239.0" rotate="62.0" text="18" textFill="WHITE" />
       <Label fx:id="lblPlayer2CardSum" layoutX="407.0" layoutY="365.0" rotate="32.0" text="18" textFill="WHITE" />
       <Label fx:id="lblPlayer1CardSum" layoutX="592.0" layoutY="418.0" text="18" textFill="WHITE" />
@@ -180,7 +180,7 @@
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="702.0" layoutY="730.0" text="Room ID:" textFill="#f5e65d">
+      <Label fx:id="lblTableId" layoutX="702.0" layoutY="730.0" text="Table ID:" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="24.0" />
          </font>
