@@ -61,6 +61,14 @@ public class LogInController extends Dialog{
 					e.printStackTrace();
 				}
 			});
+		} else if(string.equals("LOGIN_NOT_EXIST")) {
+			Platform.runLater(() -> {
+				try {
+					mainApp.showAlert("Wrong username", "The username do not exist. Please try again.");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
 		} else {
 			Platform.runLater(() -> {
 				try {

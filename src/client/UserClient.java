@@ -229,7 +229,7 @@ public class UserClient {
 					//For checking user name availability
 					if(obj instanceof String) {
 						String available = (String) obj; //byta namn? används till mer än att kolla namn
-						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL")) {
+						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL") || available.equals("LOGIN_NOT_EXIST")) {
 							System.out.println("[CLIENT] == " + available);
 							LogInController.checkLogIn(available);
 						} else if(available.equals("USERNAME_FALSE") || available.equals("PASSWORD_FALSE") || available.equals("USER_TRUE")) {
