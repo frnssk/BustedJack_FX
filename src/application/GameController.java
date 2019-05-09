@@ -66,6 +66,8 @@ public class GameController {
 	private Label lblTime;
 	@FXML
 	private Label lblRounds;
+	@FXML
+	private Label lblTableId;
 
 	@FXML
 	private ProgressBar cheatHeatProgressBar;
@@ -101,6 +103,8 @@ public class GameController {
 
 	@FXML
 	private Button btnStartGame;
+	@FXML
+	private Button btnExit;
 
 	private Main mainApp;
 	private UserClient client;
@@ -159,6 +163,9 @@ public class GameController {
 		lblPlayer1Balance.setText("Balance: " + balance);
 	}
 	
+	public void setTableId(int tableId) {
+		lblTableId.setText("Table ID: " + tableId);
+	}
 	
 	public void updateGameStart(int rounds, int minutes, int minimumBet, int startingMoney) {
 		setRounds(rounds);
@@ -185,8 +192,13 @@ public class GameController {
 	}
 
 	@FXML
-	private void handleStartGame() {
+	private void handleStartGame() throws IOException {
 		client.sendStartGame(new StartGameRequest(1));
+	}
+	
+	@FXML
+	private void handleExit() throws IOException {
+		mainApp.showMainMenu();
 	}
 
 	@FXML
