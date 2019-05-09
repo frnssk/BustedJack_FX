@@ -65,7 +65,7 @@ public class LogInController extends Dialog{
 		} else if(string.equals("LOGIN_FAIL")) {
 			Platform.runLater(() -> {
 				try {
-					mainApp.showAlert("Wrong password", "You have entered an incorrect password. Please try again.");
+					mainApp.showAlert("Wrong password", "You have entered an incorrect password.\nPlease try again.");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -73,7 +73,7 @@ public class LogInController extends Dialog{
 		} else if(string.equals("LOGIN_NOT_EXIST")) {
 			Platform.runLater(() -> {
 				try {
-					mainApp.showAlert("Wrong username", "The username do not exist. Please try again.");
+					mainApp.showAlert("Wrong username", "The username does not exist.\nPlease try again.");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

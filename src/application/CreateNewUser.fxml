@@ -17,7 +17,7 @@
          </image>
       </ImageView>
       <TextField fx:id="tfUsername" layoutX="496.0" layoutY="260.0" promptText="Enter a username" />
-      <PasswordField fx:id="pfPassword" layoutX="496.0" layoutY="314.0" promptText="Create a password" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="314.0" />
+      <PasswordField fx:id="pfPassword" layoutX="496.0" layoutY="314.0" promptText="6-12 characters" AnchorPane.leftAnchor="496.0" AnchorPane.topAnchor="314.0" />
       <Label fx:id="lblUsername" layoutX="316.0" layoutY="232.0" text="Username" textFill="#f5e65d" AnchorPane.leftAnchor="337.0" AnchorPane.topAnchor="257.0">
          <font>
             <Font name="Futura Medium" size="24.0" />
