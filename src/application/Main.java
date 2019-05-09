@@ -116,9 +116,9 @@ public class Main extends Application {
 		controller.setMain(this);
 		client.setGameController(controller);
 
-		Scene scene = new Scene(mainLayout, 1000, 600);
+		Scene scene = new Scene(mainLayout, 1200, 800);
 		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
+		primaryStage.setResizable(true);
 		primaryStage.show();
 	}
 	

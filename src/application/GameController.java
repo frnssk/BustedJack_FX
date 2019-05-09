@@ -101,6 +101,8 @@ public class GameController {
 
 	@FXML
 	private Button btnStartGame;
+	@FXML
+	private Button btnExit;
 
 	private Main mainApp;
 	private UserClient client;
@@ -185,8 +187,13 @@ public class GameController {
 	}
 
 	@FXML
-	private void handleStartGame() {
+	private void handleStartGame() throws IOException {
 		client.sendStartGame(new StartGameRequest(1));
+	}
+	
+	@FXML
+	private void handleExit() throws IOException {
+		mainApp.showMainMenu();
 	}
 
 	@FXML
