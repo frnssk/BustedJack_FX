@@ -33,7 +33,7 @@ public class CreateTableController {
     @FXML
     private CheckBox checkBoxPrivateMatch;
     
-    private static Main mainApp;
+    private Main mainApp;
     private UserClient client;
     
     @FXML
@@ -54,7 +54,7 @@ public class CreateTableController {
     	mainApp.showGame();
     }
     
-	public static void setMain(Main main) {
+	public void setMain(Main main) {
 		mainApp = main;
 	}
 
