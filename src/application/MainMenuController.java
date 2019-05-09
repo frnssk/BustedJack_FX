@@ -6,6 +6,7 @@ import client.UserClient;
 import communications.LogOutRequest;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 public class MainMenuController {
 	@FXML
@@ -16,6 +17,8 @@ public class MainMenuController {
 	private Button btnProfile;
 	@FXML
 	private Button btnQuit;
+	@FXML
+	private Label lblWelcome;
 	
 	private Main mainApp;
 	private UserClient client;
@@ -44,6 +47,10 @@ public class MainMenuController {
 		LogOutRequest req = new LogOutRequest(mainApp.getUsername());
 		client.sendLogOutRequest(req);
 		mainApp.showStartView();
+	}
+	
+	public void setWelcome(String name) {
+		lblWelcome.setText("Welcome " + name);
 	}
 	
 	public void setMain(Main main) {

@@ -43,7 +43,7 @@ public class CreateNewUserController {
 		if(string.equals("USERNAME_FALSE")) {
 			Platform.runLater(() -> {
 				try {
-					mainApp.showAlert("Username taken", "The usernam is already taken. Please try again with a new username");
+					mainApp.showAlert("Username taken", "The usernam is already taken.\nPlease try again with a new username");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -51,7 +51,7 @@ public class CreateNewUserController {
 		} else if(string.equals("PASSWORD_FALSE")) {
 			Platform.runLater(() -> {
 				try {
-					mainApp.showAlert("Wrong password", "You have entered an incorrect password. \nPassword needs to be 6-12 characters");
+					mainApp.showAlert("Wrong password", "You have entered an incorrect password.\nPassword needs to be 6-12 characters");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

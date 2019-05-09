@@ -15,7 +15,7 @@
             <Image url="@../../images/BJ_menu_2.0.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblEnterRoomId" layoutX="422.0" layoutY="153.0" text="Enter Room ID" textFill="#f5e65d">
+      <Label fx:id="lblEnterRoomId" layoutX="422.0" layoutY="153.0" text="Enter Table ID" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="24.0" />
          </font>
