@@ -48,8 +48,8 @@ public class Hand implements Serializable {
 		int currentScore = 0;
 		for(int i = 0; i < hand.size(); i++) {
 			currentScore += hand.get(i).getValue();
-			if(this.containsAce() && currentScore > 21) {
-				currentScore -= 10;
+			if(this.containsAce() && currentScore < 21) {
+				currentScore += 10;
 			}
 		}
 		return currentScore;
@@ -179,6 +179,14 @@ public class Hand implements Serializable {
 	 */
 	public void clear() {
 		hand.clear();
+	}
+	
+	public String toString() {
+		String string = "";
+		for(int i = 0; i < size(); i++) {
+			string += hand.get(i).toString() + ", ";
+		}
+		return string;
 	}
 
 }

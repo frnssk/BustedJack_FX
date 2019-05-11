@@ -30,7 +30,7 @@ public class Player implements Serializable{
 		hands.add(new Hand());
 	}
 	
-	public boolean isButtonsAreGray() {
+	public boolean areButtonsGray() {
 		return buttonsAreGray;
 	}
 
@@ -40,32 +40,54 @@ public class Player implements Serializable{
 	
 	public void setPlayerChoice(PlayerChoice playerChoice) {
 		this.playerChoice = playerChoice;
+		int choice = playerChoice.getChoice();
+		if(choice == 1) {
+			//hit
+		}else if(choice == 2) {
+			//stay
+		}else if(choice == 3) {
+			//double
+		}else if(choice == 4) {
+			//bet
+			setHasMadeBet(true);
+			setBet(playerChoice.getBet());
+		}else if(choice == 5) {
+			//cheat
+			boolean cheatChoice = playerChoice.getCheatChoice();
+			setCheatChoice(cheatChoice);
+		}
+		
 	}
 	
 	public PlayerChoice getPlayerChoice() {
 		return playerChoice;
 	}
 	
-	public void setTable(Table table) {
-		this.table = table;
-	}
+//	public void setTable(Table table) {
+//		this.table = table;
+//	}
 	
-	public Table getTable() {
-		return table;
-	}
+//	public Table getTable() {
+//		return table;
+//	}
 	
+	//used to add a new hand when player is splitting
 	public void addNewHand() {
 		hands.add(new Hand());
 	}
-	
+	//used to know how many hands a player is playing
 	public int getNumberOfHands() {
 		return hands.size();
 	}
-	
+	//used to make plays on one specific hand
 	public Hand getHand(int index) {
 		return hands.get(index);
 	}
 	
+	//used to set/get the players cheat-heat
+	public void setCheatHeat(int cheatHeat) {
+		this.cheatHeat = cheatHeat;
+	}
 	public int getCheatHeat() {
 		return cheatHeat;
 	}
@@ -92,21 +114,27 @@ public class Player implements Serializable{
 		return cheatChoice;
 	}
 	
-	//used by UI to set how much the player wants to bet
+	//used by server to set how much the player wants to bet
 	public void setBet(int betMade) {
 		this.betMade = betMade;
 	}
-	
 	public int getBet() {
 		return betMade;
 	}
 	
+	//used by the table when the round starts to set a balance
 	public void setBalance(int newBalance) {
 		this.balance = newBalance;
 	}
-	
 	public int getBalance() {
 		return balance;
+	}
+	
+	public void setHasMadeBet(boolean choice) {
+		this.hasMadeBet = choice;
+	}
+	public boolean getHasMadeBet() {
+		return hasMadeBet;
 	}
 	
 	//checks if the player has made a bet

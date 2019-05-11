@@ -21,7 +21,9 @@ public class CheatShoe implements Serializable {
 	}
 	
 	public Card dealCard() {
-		return cheatShoe.lastElement();
+		Card card = cheatShoe.lastElement();
+		cheatShoe.remove(cheatShoe.lastElement());
+		return card;
 	}
 	
 	/*
