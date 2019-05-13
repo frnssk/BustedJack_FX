@@ -284,7 +284,7 @@ public class UserClient {
 						System.out.println("[CLIENT] == TABLE ID TO JOIN ON = " + tableIdToShow);
 					}
 				}catch(IOException | ClassNotFoundException e) {
-					e.printStackTrace();
+//					e.printStackTrace();
 				}
 			}
 		}
