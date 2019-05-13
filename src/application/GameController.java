@@ -419,7 +419,7 @@ public class GameController {
 	
 
 	public void updateStartingMoney(int startingMoney) {
-		balance = startingMoney;
+		this.balance = startingMoney;
 
 		if(numberOfPlayers == 1) {
 			lblPlayer1Balance.setText("Balance: " + startingMoney);
