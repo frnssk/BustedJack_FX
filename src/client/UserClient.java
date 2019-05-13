@@ -21,7 +21,9 @@ import communications.RegisterRequest;
 import communications.StartGameRequest;
 import communications.StartingInformation;
 import communications.TableID;
+import communications.UpdateClientInformation;
 import javafx.application.Platform;
+import resources.DealerHand;
 import resources.Player;
 import resources.Table;
 import resources.User;
@@ -285,6 +287,14 @@ public class UserClient {
 							gameController.setTableId(tableIdToShow);			
 						});
 						System.out.println("[CLIENT] == TABLE ID TO JOIN ON = " + tableIdToShow);
+					}
+					else if(obj instanceof UpdateClientInformation) {
+						UpdateClientInformation updateClientInformation = (UpdateClientInformation)obj;
+						ArrayList<Player> playerList = 	updateClientInformation.getPlayerList();
+						DealerHand dealer = updateClientInformation.getDealerHand();
+						Platform.runLater(() -> {
+							gameController.updateRoundInformation(playerList, dealer);
+						});
 					}
 				}catch(IOException | ClassNotFoundException e) {
 //					e.printStackTrace();
