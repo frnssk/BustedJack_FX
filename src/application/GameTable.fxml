@@ -16,27 +16,27 @@
             <Image url="@../../images/Spelbord_3.1.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblPlayer1" layoutX="578.0" layoutY="447.0" text="Player 1" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer1" layoutX="578.0" layoutY="447.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer2" layoutX="304.0" layoutY="372.0" text="Player 2" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer2" layoutX="304.0" layoutY="372.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer4" layoutX="175.0" layoutY="222.0" text="Player 4" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer4" layoutX="175.0" layoutY="222.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer3" layoutX="824.0" layoutY="372.0" text="Player 3" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer3" layoutX="824.0" layoutY="372.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer5" layoutX="944.0" layoutY="222.0" text="Player 5" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer5" layoutX="944.0" layoutY="222.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="18.0" />
          </font>
@@ -89,32 +89,32 @@
          </tooltip>
       </Button>
       <ProgressBar fx:id="cheatHeatProgressBar" layoutX="44.0" layoutY="556.0" prefHeight="20.0" prefWidth="254.0" progress="0.0" />
-      <Label fx:id="lblPlayer4CardSum" layoutX="282.0" layoutY="239.0" rotate="62.0" text="18" textFill="WHITE" />
-      <Label fx:id="lblPlayer2CardSum" layoutX="407.0" layoutY="365.0" rotate="32.0" text="18" textFill="WHITE" />
-      <Label fx:id="lblPlayer1CardSum" layoutX="592.0" layoutY="418.0" text="18" textFill="WHITE" />
-      <Label fx:id="lblPlayer3CardSum" layoutX="778.0" layoutY="365.0" rotate="-32.0" text="18" textFill="WHITE" />
-      <Label fx:id="lblPlayer5CardSum" layoutX="902.0" layoutY="239.0" rotate="-62.0" text="18" textFill="WHITE" />
-      <Label fx:id="lblPlayer4Bet" alignment="TOP_LEFT" layoutX="175.0" layoutY="267.0" text="Bet: " textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer4CardSum" layoutX="282.0" layoutY="239.0" rotate="62.0" text="0" textFill="WHITE" />
+      <Label fx:id="lblPlayer2CardSum" layoutX="407.0" layoutY="365.0" rotate="32.0" text="0" textFill="WHITE" />
+      <Label fx:id="lblPlayer1CardSum" layoutX="592.0" layoutY="418.0" text="0" textFill="WHITE" />
+      <Label fx:id="lblPlayer3CardSum" layoutX="778.0" layoutY="365.0" rotate="-32.0" text="0" textFill="WHITE" />
+      <Label fx:id="lblPlayer5CardSum" layoutX="902.0" layoutY="239.0" rotate="-62.0" text="0" textFill="WHITE" />
+      <Label fx:id="lblPlayer4Bet" alignment="TOP_LEFT" layoutX="175.0" layoutY="267.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer2Balance" alignment="TOP_LEFT" layoutX="304.0" layoutY="397.0" text="Balance:" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer2Balance" alignment="TOP_LEFT" layoutX="304.0" layoutY="397.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer1Bet" alignment="TOP_LEFT" layoutX="578.0" layoutY="492.0" text="Bet: " textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer1Bet" alignment="TOP_LEFT" layoutX="578.0" layoutY="492.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer3Bet" alignment="TOP_LEFT" layoutX="824.0" layoutY="417.0" text="Bet: " textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer3Bet" alignment="TOP_LEFT" layoutX="824.0" layoutY="417.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer5Bet" alignment="TOP_LEFT" layoutX="944.0" layoutY="267.0" text="Bet: " textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer5Bet" alignment="TOP_LEFT" layoutX="944.0" layoutY="267.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
@@ -124,7 +124,7 @@
             <Font name="Futura Medium" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lblDealerCardSum" layoutX="592.0" layoutY="78.0" text="18" textFill="WHITE" />
+      <Label fx:id="lblDealerCardSum" layoutX="592.0" layoutY="78.0" text="0" textFill="WHITE" />
       <Label fx:id="lblTime" layoutX="936.0" layoutY="612.0" text="Time:" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="24.0" />
@@ -155,27 +155,27 @@
             <Font name="Futura Medium" size="13.0" />
          </font>
       </Button>
-      <Label fx:id="lblPlayer4Balance" alignment="TOP_LEFT" layoutX="175.0" layoutY="247.0" text="Balance: " textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer4Balance" alignment="TOP_LEFT" layoutX="175.0" layoutY="247.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer2Bet" alignment="TOP_LEFT" layoutX="304.0" layoutY="417.0" text="Bet: " textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer2Bet" alignment="TOP_LEFT" layoutX="304.0" layoutY="417.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer1Balance" alignment="TOP_LEFT" layoutX="578.0" layoutY="472.0" text="Balance:" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer1Balance" alignment="TOP_LEFT" layoutX="578.0" layoutY="472.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer3Balance" alignment="TOP_LEFT" layoutX="824.0" layoutY="397.0" text="Balance:" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer3Balance" alignment="TOP_LEFT" layoutX="824.0" layoutY="397.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer5Balance" alignment="TOP_LEFT" layoutX="944.0" layoutY="247.0" text="Balance:" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer5Balance" alignment="TOP_LEFT" layoutX="944.0" layoutY="247.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
