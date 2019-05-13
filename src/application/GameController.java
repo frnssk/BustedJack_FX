@@ -329,9 +329,6 @@ public class GameController {
 		}
 
 	}
-<<<<<<< HEAD
-
-=======
 	
 	public void updateRoundInformation(ArrayList<Player> playerList, DealerHand dealer) {
 		
@@ -410,7 +407,7 @@ public class GameController {
 		
 	}
 	
->>>>>>> origin/simon3.0
+
 	public void updateStartingMoney(int startingMoney) {
 
 		if(numberOfPlayers == 1) {
