@@ -339,7 +339,10 @@ public class GameController {
 	
 	public void updateRoundInformation(ArrayList<Player> playerList, DealerHand dealer) {
 		System.out.println("[GAME_CONTROLLER] == GameController har mottagit updateRoundInformation");
-
+		
+		this.balance = playerList.get(0).getBalance();
+		System.out.println("[GAME_CONTROLLER] == Balance = " + balance);
+		
 		if(numberOfPlayers == 2) {
 			lblPlayer1Balance.setText("Balance: " + playerList.get(0).getBalance());
 			lblPlayer1Bet.setText("Bet: " + playerList.get(0).getBet());
@@ -418,8 +421,10 @@ public class GameController {
 	}
 	
 
+	//Never used?
 	public void updateStartingMoney(int startingMoney) {
 		this.balance = startingMoney;
+		System.out.println("[GAME_CONTROLLER] == Balance = " + startingMoney);
 
 		if(numberOfPlayers == 1) {
 			lblPlayer1Balance.setText("Balance: " + startingMoney);
