@@ -24,6 +24,9 @@ public class GameController {
 	private Label lblPlayer4;
 	@FXML
 	private Label lblPlayer5;
+	
+//	@FXML
+//	private Label lblPlayerArray[];
 
 	@FXML
 	private Label lblPlayer1CardSum;
@@ -118,7 +121,7 @@ public class GameController {
 	private int minimumBet = 0;
 	private int currentBet = 0;
 	private int time = 0;
-	
+
 	private int numberOfPlayers = 0;
 
 	private int rounds = 0;
@@ -159,21 +162,21 @@ public class GameController {
 		lblCheatHeatPersent.setText(valueInPercent + "%");
 	}
 
-	private void updateBalance() {
-		balance -= currentBet;
-		lblPlayer1Balance.setText("Balance: " + balance);
-	}
-	
+	//	private void updateBalance() {
+	//		balance -= currentBet;
+	//		lblPlayer1Balance.setText("Balance: " + balance);
+	//	}
+
 	public void setTableId(int tableId) {
 		lblTableId.setText("Table ID: " + tableId);
 	}
-	
+
 	public void setStartingInformation(int rounds, int minutes, int minimumBet) {
 		setRounds(rounds);
 		setTime(minutes);
 		this.minimumBet = minimumBet;
 		lblMinimumBet.setText("Minimum bet: " + minimumBet);
-		
+
 	}
 
 	//true will disable, false will enable
@@ -197,7 +200,7 @@ public class GameController {
 	private void handleStartGame() throws IOException {
 		client.sendStartGame(new StartGameRequest(1));
 	}
-	
+
 	@FXML
 	private void handleExit() throws IOException {
 		//Code for exiting game
@@ -218,12 +221,13 @@ public class GameController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		} else {
+			PlayerChoice choice = new PlayerChoice(4, cheatHeat);
+			choice.setBet(currentBet); 
+			lblPlayer1Bet.setText("Bet: " + currentBet);
+			//updateBalance();
+			client.sendPlayerChoice(choice);
 		}
-		PlayerChoice choice = new PlayerChoice(4, cheatHeat);
-		choice.setBet(currentBet); 
-		lblPlayer1Bet.setText("Bet: " + currentBet);
-		updateBalance();
-		client.sendPlayerChoice(choice);
 	}
 
 	@FXML
@@ -258,7 +262,7 @@ public class GameController {
 		choice.setCheatChoice(true);
 		client.sendPlayerChoice(choice);
 	}
-	
+
 	@FXML
 	private void handleDoNotCheat() {
 		setCheatHeat(cheatHeat);
@@ -290,13 +294,14 @@ public class GameController {
 	@FXML 
 	private void handleHit() {
 		client.sendPlayerChoice(new PlayerChoice(1, cheatHeat));
-		System.out.println("[CLIENT] == Någon har tryck HIT.");
+		System.out.println("[GAME_CONTORLLER] == Någon har tryck HIT.");
 	}
 
 	public void updatePlayerList(ArrayList<Player> playerList) {
 		System.out.println("[GAME_CONTROLLER] == GameController har mottagit lista. Antal = " + playerList.size());
 		numberOfPlayers = playerList.size();
-		
+//		lblPlayerArray = new Label[numberOfPlayers];
+
 		if(numberOfPlayers == 1) {
 			lblPlayer1.setText(playerList.get(0).getUsername());
 		}
@@ -402,6 +407,7 @@ public class GameController {
 		
 	}
 	
+
 	public void updateStartingMoney(int startingMoney) {
 
 		if(numberOfPlayers == 1) {
