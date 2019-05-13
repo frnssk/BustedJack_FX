@@ -1,10 +1,13 @@
 package resources;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import resources.Card.Rank;
 
-public class DealerHand {
+public class DealerHand implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Card> dealerHand;
 	private int currentScore;
 	
