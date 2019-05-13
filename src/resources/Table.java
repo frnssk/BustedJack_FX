@@ -146,7 +146,6 @@ public class Table extends Thread implements Serializable {
 		UpdateClientInformation updateClientInformation = new UpdateClientInformation(playerList, dealer);
 		for(int i = 0; i < clientList.size(); i++) {
 			clientList.get(i).output(updateClientInformation);
-			
 		}
 	}
 
@@ -228,6 +227,7 @@ public class Table extends Thread implements Serializable {
 		}
 		TextWindow.println("[TABLE=" + getTableId() + "] metod 2 avslutad.");
 		TextWindow.println("[TABLE=" + getTableId() + "] >> GREAT SUCCES");
+		updateTableInformation();
 		
 	}
 
@@ -244,7 +244,7 @@ public class Table extends Thread implements Serializable {
 		}
 		TextWindow.println("[TABLE=" + getTableId() + "] metod 2 (kollar fusk-val) avslutad.");
 		TextWindow.println("[TABLE=" + getTableId() + "] >> GREAT SUCCES");
-//		updateTableInformation();
+		updateTableInformation();
 	}
 
 	//the new, updated method to use
@@ -272,7 +272,7 @@ public class Table extends Thread implements Serializable {
 			
 		}
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 3 (kollar insatser) avslutad.");
-//		updateTableInformation();
+		updateTableInformation();
 	}
 	
 	//checks that all players has made a bet
