@@ -154,6 +154,15 @@ public class Server {
 			start();
 			TextWindow.println("[SERVER] >> New ClientHandler started");
 		}
+		
+		public void output(Object obj) {
+			try {
+				output.writeObject(obj);
+				output.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+		}
 
 		/*
 		 * Keeps on running as long as the client is still connected
