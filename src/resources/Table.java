@@ -172,7 +172,7 @@ public class Table extends Thread implements Serializable {
 //		checkForSplit();			//check all the players and if they can split, and lets them if they want
 		checkInsurance();			//checks if the dealer got an ace, and if any player wants to buy insurance
 		checkPlayerChoices();		//lets the players play each hand
-		letPlayerBust();			//lets the players bust each other
+//		letPlayerBust();			//lets the players bust each other
 		letDealerPlay();			//if the dealer is <17, he keeps on hitting
 		compareDealerToPlayers();	//checks whether or not the players beat the dealer
 		payout();					//pays out if players won, takes the money if they lost
@@ -196,12 +196,12 @@ public class Table extends Thread implements Serializable {
 	private void startGame() {
 		TextWindow.println("[TABLE=" + getTableId() + "]" + " metod 1 (sätter startsumma) startad.");
 		for(int i = 0; i < playerList.size(); i++) {
-			playerList.get(i).setStartingBalance(startingMoney);
+			playerList.get(i).setBalance(startingMoney);
 		}
 		regularShoe.shuffle();
 		cheatShoe.shuffle();
 		TextWindow.println("[TABLE=" + getTableId() + "]" + " metod 1 avslutad, spelarnas startsumma satt till: " + startingMoney);
-//		updateTableInformation();
+		updateTableInformation();
 	}
 	
 	/*
@@ -230,7 +230,6 @@ public class Table extends Thread implements Serializable {
 		TextWindow.println("[TABLE=" + getTableId() + "] metod 2 avslutad.");
 		TextWindow.println("[TABLE=" + getTableId() + "] >> GREAT SUCCES");
 		updateTableInformation();
-		
 	}
 
 	//checks that all players has made a choice to cheat or not
@@ -258,12 +257,13 @@ public class Table extends Thread implements Serializable {
 		for(int i = 0; i < playerList.size(); i++) {
 //			playerList.get(i).setButtonsAreGray(false);
 			TextWindow.println("Inside for-loop");
-			while(!playerList.get(i).getHasMadeBet()) {
+			Player player = playerList.get(i);
+			while(!player.getHasMadeBet()) {
 				TextWindow.println("Inside while-loop");
-				int bet = playerList.get(i).getBet();
-				int newBalance = playerList.get(i).getBalance() - bet;
-				playerList.get(i).setBalance(newBalance);
-				TextWindow.println("End of while-loop");
+				int bet = player.getBet();
+				int newBalance = player.getBalance() - bet;
+				player.setBalance(newBalance);
+				TextWindow.println("[TABLE] >> " + player.getUsername() + ", summa = " + player.getBalance());
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
@@ -503,7 +503,7 @@ public class Table extends Thread implements Serializable {
 							else
 								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());
 						}else if(choice == 2) {
-							playerList.get(i).getHand(j).setGrayOut();
+//							playerList.get(i).getHand(j).setGrayOut();
 						}else if(choice == 3) {
 							int bet = playerList.get(i).getHand(i).getBet();
 							playerList.get(i).getHand(j).setBet(bet * 2);
@@ -526,22 +526,22 @@ public class Table extends Thread implements Serializable {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 11 (kollar vilka val spelare har gjort) avslutad.");
 	}
 
-	private void letPlayerBust() {
-		for(int i = 0; i < playerList.size(); i++) {
-			Player player = playerList.get(i);
-			if(player.getBustChoice()) {
-				Player playerToBust = player.getPlayerToBust();
-				Player bustedPlayer = bustPlayer(player, playerToBust);
-				if(playerToBust.getBustedStatus()) {
-					//player already busted, can't bust twice
-				}
-				if(bustedPlayer == null) {
-					//both players okey
-				}
-			}
-
-		}
-	}
+//	private void letPlayerBust() {
+//		for(int i = 0; i < playerList.size(); i++) {
+//			Player player = playerList.get(i);
+//			if(player.getBustChoice()) {
+//				Player playerToBust = player.getPlayerToBust();
+//				Player bustedPlayer = bustPlayer(player, playerToBust);
+//				if(playerToBust.getBustedStatus()) {
+//					//player already busted, can't bust twice
+//				}
+//				if(bustedPlayer == null) {
+//					//both players okey
+//				}
+//			}
+//
+//		}
+//	}
 
 	//the "battle" between the player who busted another, and the busted
 	private Player bustPlayer(Player player1, Player player2) {
