@@ -138,9 +138,9 @@ public class GameController {
 		lblDealerCardSum.setText("" + value);
 	}
 
-	public void setStartingBalance(int balance) {
-		this.balance = balance;
-	}
+//	public void setStartingBalance(int balance) {
+//		this.balance = balance;
+//	}
 
 	public void setRounds(int rounds) {
 		this.rounds = rounds;
@@ -163,10 +163,10 @@ public class GameController {
 		lblCheatHeatPersent.setText(valueInPercent + "%");
 	}
 
-	//	private void updateBalance() {
-	//		balance -= currentBet;
-	//		lblPlayer1Balance.setText("Balance: " + balance);
-	//	}
+		private void updateBalance() {
+			balance -= currentBet;
+//			lblPlayer1Balance.setText("Balance: " + balance);
+		}
 
 	public void setTableId(int tableId) {
 		lblTableId.setText("Table ID: " + tableId);
@@ -222,11 +222,17 @@ public class GameController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		} else if(currentBet > balance) {
+			try {
+				mainApp.showAlert("Bet to high", "Your current balance is " + balance);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else {
 			PlayerChoice choice = new PlayerChoice(4, cheatHeat);
 			choice.setBet(currentBet); 
-			lblPlayer1Bet.setText("Bet: " + currentBet);
-			//updateBalance();
+//			lblPlayer1Bet.setText("Bet: " + currentBet);
+			updateBalance();
 			client.sendPlayerChoice(choice);
 		}
 	}
@@ -413,6 +419,7 @@ public class GameController {
 	
 
 	public void updateStartingMoney(int startingMoney) {
+		balance = startingMoney;
 
 		if(numberOfPlayers == 1) {
 			lblPlayer1Balance.setText("Balance: " + startingMoney);
