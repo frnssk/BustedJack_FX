@@ -289,11 +289,14 @@ public class UserClient {
 						System.out.println("[CLIENT] == TABLE ID TO JOIN ON = " + tableIdToShow);
 					}
 					else if(obj instanceof UpdateClientInformation) {
+						System.out.println("[CLIENT] == UpdateRoundInfo mottagen");
 						UpdateClientInformation updateClientInformation = (UpdateClientInformation)obj;
 						ArrayList<Player> playerList = 	updateClientInformation.getPlayerList();
 						DealerHand dealer = updateClientInformation.getDealerHand();
 						Platform.runLater(() -> {
+							
 							gameController.updateRoundInformation(playerList, dealer);
+							System.out.println("[CLIENT] == UpdateRoundInfo skickad till gameController");
 						});
 					}
 				}catch(IOException | ClassNotFoundException e) {
