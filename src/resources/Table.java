@@ -8,6 +8,7 @@ import java.util.Random;
 import communications.PlayerChoice;
 import communications.StartingInformation;
 import communications.TableID;
+import communications.UpdateClientInformation;
 import resources.Card.Rank;
 import server.Server.ClientHandler;
 import server.TextWindow;
@@ -142,7 +143,7 @@ public class Table extends Thread implements Serializable {
 	 * should be updated with the correct object
 	 */
 	public void updateTableInformation() {
-		UpdateClientinformation updateClientinformation = new UpdateClientInformatin(playerList, dealer);
+		UpdateClientInformation updateClientinformation = new UpdateClientInformatin(playerList, dealer);
 		for(int i = 0; i < clientList.size(); i++) {
 			
 		}
