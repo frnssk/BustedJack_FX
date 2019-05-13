@@ -11,7 +11,7 @@ public class Player implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int startingBalance;
+//	private int startingBalance;
 	private int betMade;
 //	private Hand hand;
 	private String username;
@@ -93,9 +93,9 @@ public class Player implements Serializable{
 	}
 	
 	//Used by table when a player joins to get money to play with
-	public void setStartingBalance(int startingBalance) {
-		this.startingBalance = startingBalance;
-	}
+//	public void setStartingBalance(int startingBalance) {
+//		this.startingBalance = startingBalance;
+//	}
 	
 	//should be called by UI when a player presses "Cheat" or "No Cheat"
 	//CORRECTION == should be determined by "setPlayerChoice"
