@@ -49,7 +49,7 @@ public class CreateTableController {
     	int balance = Integer.parseInt(tfBalance.getText());
     	boolean privateMatch = checkBoxPrivateMatch.isSelected();
     	
-    	GameInfo gameInfo = new GameInfo(rounds, time, minimumBet, balance, privateMatch);
+    	GameInfo gameInfo = new GameInfo(time, rounds, balance, minimumBet, privateMatch);
     	client.sendGameInfo(gameInfo);
     	mainApp.showGame();
     }
