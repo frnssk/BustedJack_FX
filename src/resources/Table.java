@@ -28,9 +28,8 @@ public class Table extends Thread implements Serializable {
 	private TableID tableIDtest;
 
 	private ArrayList<Player> playerList = new ArrayList<>(); //Holds all the players for the game
-//	private ArrayList<Player> newPlayerList = new ArrayList<>();//holds an updated version of the PlayerList (players who get blackjack should not be able to continue playing)
-	private HashMap<ClientHandler, Player> playerAndClient = new HashMap<>();
-	private ArrayList<ClientHandler> clientList = new ArrayList<>();
+	private ArrayList<ClientHandler> clientList = new ArrayList<>(); //Holds all the clientHandlers
+	private HashMap<ClientHandler, Player> playerAndClient = new HashMap<>(); //Holds all the clientHandlers, with corresponding players
 	
 	public Table(int numberOfMinutes, int numberOfRounds, int startingMoney, int minimumBet, boolean privateStatus) {
 		this.numberOfMinutes = numberOfMinutes;
@@ -47,69 +46,100 @@ public class Table extends Thread implements Serializable {
 	public void setPrivateStatus(boolean bool) {
 		this.privateStatus = bool;
 	}
-	
+	/*
+	 * Returns the game-information
+	 */
 	public int getMinutes() {
 		return numberOfMinutes;
 	}
-	
 	public int getRounds() {
 		return numberOfRounds;
 	}
-	
 	public int getMinimumBet() {
 		return minimumBet;
 	}
-	
 	public int getStartingMoney() {
 		return startingMoney;
 	}
-	
 	public boolean getPrivateStatus() {
 		return privateStatus;
 	}
 	
-	public void addClient(ClientHandler clientHandler) {
-		clientList.add(clientHandler);
-	}
-	
-	public void addClientAndPlayer(ClientHandler clientHandler, Player player) {
-		playerAndClient.put(clientHandler, player);
-	}
-	
-	public HashMap<ClientHandler, Player> getPlayerAndClient(){
-		return playerAndClient;
-	}
-
+	/*
+	 * Adds a new player to the table 
+	 */
 	public void addPlayer(Player player) {
 		playerList.add(player);
 		System.out.println("[TABLE] == Antal på bord = " + playerList.size());
 	}
 	
+	/*
+	 * Adds a new client to the table
+	 */
+	public void addClient(ClientHandler clientHandler) {
+		clientList.add(clientHandler);
+	}
+	
+	/*
+	 * Adds a client+player
+	 */
+	public void addClientAndPlayer(ClientHandler clientHandler, Player player) {
+		playerAndClient.put(clientHandler, player);
+	}
+	
+	/*
+	 * Returns the hashMap containing clients/players
+	 */
+	public HashMap<ClientHandler, Player> getPlayerAndClient(){
+		return playerAndClient;
+	}
+
+	/*
+	 * returns the arrayList of players
+	 */
 	public ArrayList<Player> getPlayerList(){
 		return playerList;
 	}
 
+	/*
+	 * returns if the table-thread is running
+	 */
 	public boolean checkTableStarted() {
-		return tableRunning;
+		return this.isAlive();
 	}
 
+	/*
+	 * Used by server to set the ID
+	 */
 	public void setTableId(int id) {
 		this.tableID = id;
 	}
 
+	/*
+	 * returns the ID
+	 */
 	public int getTableId() {
 		return tableID;
 	}
 
+	/*
+	 * returns the amount of players, used to not add to many
+	 */
 	public int getNumberOfPlayers() {
 		return this.playerList.size();
 	}
 	
 	//TESTING
+	/*
+	 * Never used?
+	 */
 	public void setPlayerChoice(Player player, PlayerChoice playerChoice) {
 		player.setPlayerChoice(playerChoice);
 	}
 	
+	/*
+	 * should be updated with the correct object
+	 */
 	public void updateTableInformation() {
 		for(int i = 0; i < clientList.size(); i++) {
 //			clientList.get(i).updateTableInformation(playerList); //already sending ArrayList with another purpose
@@ -143,6 +173,9 @@ public class Table extends Thread implements Serializable {
 		}catch(InterruptedException e) {}
 	}
 	
+	/*
+	 * Used to test that the deal-methods are working
+	 */
 	private void printAllCards() {
 		for(int i = 0; i < playerList.size(); i++) {
 			TextWindow.println("Antal kort på handen för " + playerList.get(i).getUsername() + ": " + playerList.get(i).getHand(0).size());
@@ -151,6 +184,9 @@ public class Table extends Thread implements Serializable {
 		}
 	}
 
+	/*
+	 * Starts the game, sets all the balances and shuffles the shoes
+	 */
 	private void startGame() {
 		TextWindow.println("[TABLE=" + getTableId() + "]" + " metod 1 (sätter startsumma) startad.");
 		for(int i = 0; i < playerList.size(); i++) {
@@ -162,6 +198,9 @@ public class Table extends Thread implements Serializable {
 //		updateTableInformation();
 	}
 	
+	/*
+	 * Checks if all the players has decided to cheat or not
+	 */
 	private void testingChoices() {
 		TextWindow.println("[TABLE=" + getTableId() + "]" + " metod 2 startad.");
 		boolean allPlayersReady = false;

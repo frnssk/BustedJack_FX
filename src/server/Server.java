@@ -200,18 +200,16 @@ public class Server {
 
 					else if(obj instanceof PlayerChoice) {
 						PlayerChoice playerChoice = (PlayerChoice)obj;
-						TextWindow.println("[SERVER] >> PlayerChoice mottagit, av typen " + playerChoice.getChoice());
-						System.out.println("Choice = " + playerChoice.toString());
-						System.out.println("Client = " + this.toString());
+						TextWindow.println("[SERVER] >> \"" + UserHandler.getUser(this).getUsername() + "\" har tryckt = " + playerChoice.getChoice() + " (1 - hit, 2 - stay, 3 - double, 4 - bet, 5 - cheat)");
+//						System.out.println("Choice = " + playerChoice.toString());
+//						System.out.println("Client = " + this.toString());
 						makePlayerChoice(playerChoice, this);
-//						makePlayerChoice(playerChoice, (ClientHandler) this.clone());
-						TextWindow.println("[SERVER] >> " + UserHandler.getUser(this).getUsername() + " har tryckt = " + playerChoice.getChoice());
 					}
 					
 					else if(obj instanceof StartGameRequest) {
-						TextWindow.println("[SERVER] >> StartGameRequest mottagen.");
 						Table table = clientAndTable.get(this);
 						table.start();
+						TextWindow.println("[SERVER] >> StartGameRequest mottagen, startar bord: " + table.getTableId() + ".");
 					}
 
 					output.writeObject(choice);
@@ -226,7 +224,7 @@ public class Server {
 		/*
 		 * used when a new user connects
 		 */
-		public String registerNewUser(RegisterRequest registerRequest) {
+		public synchronized String registerNewUser(RegisterRequest registerRequest) {
 			String choice = "";
 			if(checkUsernameAvailability(registerRequest.getUsername())) {
 				TextWindow.println("[SERVER] >> " + registerRequest.getUsername() + " är ledigt."); //Assistance
@@ -252,7 +250,7 @@ public class Server {
 		/*
 		 * used to log in existing users
 		 */
-		public String loginUser(LoginRequest loginRequest) {
+		public synchronized String loginUser(LoginRequest loginRequest) {
 			String choice = "";
 			if(isUserRegistered(loginRequest.getUsername())) {
 				TextWindow.println("[SERVER] >> " + loginRequest.getUsername() + " is a registered user."); //Assistance
@@ -344,7 +342,7 @@ public class Server {
 		/*
 		 * used to create a new table
 		 */
-		public void createNewTableAndAddPlayer(ClientHandler clientHandler, GameInfo gameInfo) {
+		public synchronized void createNewTableAndAddPlayer(ClientHandler clientHandler, GameInfo gameInfo) {
 			Table table = new Table(gameInfo.getTime(), gameInfo.getRounds(), gameInfo.getBalance(), gameInfo.getMinBet(), gameInfo.getPrivateMatchStatus());
 			setTableId(table);
 			User user = UserHandler.getUser(this);
@@ -383,7 +381,7 @@ public class Server {
 		 * used to find the table corresponding to the ID provided by the user
 		 * checks if the table even exists, if it does and all conditions are met - tries to add the player
 		 */
-		public void addPlayerToTable(int tableId, ClientHandler clientHandler) {
+		public synchronized void addPlayerToTable(int tableId, ClientHandler clientHandler) {
 			String choice = "";
 			if(doesTableExist(tableId)) {
 				TextWindow.println("[SERVER] >> Bord med id: " + tableId + " finns.");
@@ -415,7 +413,7 @@ public class Server {
 		/*
 		 * used to add a player to an existing table
 		 */
-		public void addPlayerOnExistingTable(ClientHandler clientHandler, Table table) {
+		public synchronized void addPlayerOnExistingTable(ClientHandler clientHandler, Table table) {
 			User user = UserHandler.getUser(clientHandler);
 			Player player = new Player(user.getUsername());
 			table.addPlayer(player);
@@ -456,7 +454,12 @@ public class Server {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				
+				try {
+					clientHandler.output.writeObject(new TableID(table.getTableId()));
+					clientHandler.output.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}else {
 				choice = "RANDOM_FALSE";
 				try {
