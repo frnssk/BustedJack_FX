@@ -225,7 +225,7 @@ public class Server {
 					output.flush();
 					
 				} catch (ClassNotFoundException | IOException e) {
-					e.printStackTrace();
+//					e.printStackTrace();
 				}
 			}
 		}
