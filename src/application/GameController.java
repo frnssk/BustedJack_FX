@@ -77,6 +77,8 @@ public class GameController {
 	@FXML
 	private Button btnCheat;
 	@FXML
+	private Button btnDoNotCheat;
+	@FXML
 	private Button btnBust;
 
 	@FXML
@@ -133,10 +135,6 @@ public class GameController {
 		this.balance = balance;
 	}
 
-	public void setMinimumBet(int minBet) {
-		this.minimumBet = minBet;
-	}
-
 	public void setRounds(int rounds) {
 		this.rounds = rounds;
 		lblRounds.setText("Rounds: " + rounds);
@@ -167,11 +165,10 @@ public class GameController {
 		lblTableId.setText("Table ID: " + tableId);
 	}
 	
-	public void updateGameStart(int rounds, int minutes, int minimumBet, int startingMoney) {
+	public void setStartingInformation(int rounds, int minutes, int minimumBet) {
 		setRounds(rounds);
-		setTime(time);
-		setMinimumBet(minimumBet);
-		updateStartingMoney(startingMoney);
+		setTime(minutes);
+		this.minimumBet = minimumBet;
 	}
 
 	//true will disable, false will enable
@@ -198,6 +195,7 @@ public class GameController {
 	
 	@FXML
 	private void handleExit() throws IOException {
+		//Code for exiting game
 		mainApp.showMainMenu();
 	}
 
@@ -251,7 +249,17 @@ public class GameController {
 	private void handleCheat() {
 		numberOfCheats++;
 		setCheatHeat(cheatHeat);
-		client.sendPlayerChoice(new PlayerChoice(5, cheatHeat));
+		PlayerChoice choice = new PlayerChoice(5, cheatHeat);
+		choice.setCheatChoice(true);
+		client.sendPlayerChoice(choice);
+	}
+	
+	@FXML
+	private void handleDoNotCheat() {
+		setCheatHeat(cheatHeat);
+		PlayerChoice choice = new PlayerChoice(5, cheatHeat);
+		choice.setCheatChoice(false);
+		client.sendPlayerChoice(choice);
 	}
 
 	@FXML 
