@@ -77,6 +77,8 @@ public class GameController {
 	@FXML
 	private Button btnCheat;
 	@FXML
+	private Button btnDoNotCheat;
+	@FXML
 	private Button btnBust;
 
 	@FXML
@@ -169,7 +171,7 @@ public class GameController {
 	
 	public void updateGameStart(int rounds, int minutes, int minimumBet, int startingMoney) {
 		setRounds(rounds);
-		setTime(time);
+		setTime(minutes);
 		setMinimumBet(minimumBet);
 		updateStartingMoney(startingMoney);
 	}
@@ -198,6 +200,7 @@ public class GameController {
 	
 	@FXML
 	private void handleExit() throws IOException {
+		//Code for exiting game
 		mainApp.showMainMenu();
 	}
 
@@ -251,6 +254,8 @@ public class GameController {
 	private void handleCheat() {
 		numberOfCheats++;
 		setCheatHeat(cheatHeat);
+		PlayerChoice choice = new PlayerChoice(5, cheatHeat);
+		
 		client.sendPlayerChoice(new PlayerChoice(5, cheatHeat));
 	}
 
