@@ -1,6 +1,10 @@
 package communications;
 
-public class StartingInformation {
+import java.io.Serializable;
+
+public class StartingInformation implements Serializable {
+
+	private static final long serialVersionUID = 1863310895253088079L;
 	private int numberOfMinutes;
 	private int numberOfRounds;
 	private int minimumBet;

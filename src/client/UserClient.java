@@ -273,7 +273,9 @@ public class UserClient {
 						int rounds = info.getNumberOfRounds();
 						int time = info.getNumberOfMinutes();
 						int minBet = info.getMinimumBet();
-						gameController.setStartingInformation(rounds, time, minBet);
+						Platform.runLater(() -> {
+							gameController.setStartingInformation(rounds, time, minBet);
+						});
 					}
 					else if(obj instanceof TableID) {
 						TableID tableID = (TableID)obj;
