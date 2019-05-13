@@ -331,7 +331,8 @@ public class GameController {
 	}
 	
 	public void updateRoundInformation(ArrayList<Player> playerList, DealerHand dealer) {
-		
+		System.out.println("[GAME_CONTROLLER] == GameController har mottagit updateRoundInformation");
+
 		if(numberOfPlayers == 2) {
 			lblPlayer1Balance.setText("Balance: " + playerList.get(0).getBalance());
 			lblPlayer1Bet.setText("Bet :" + playerList.get(0).getBet());
