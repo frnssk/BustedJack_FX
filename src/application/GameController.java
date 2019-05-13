@@ -23,6 +23,9 @@ public class GameController {
 	private Label lblPlayer4;
 	@FXML
 	private Label lblPlayer5;
+	
+//	@FXML
+//	private Label lblPlayerArray[];
 
 	@FXML
 	private Label lblPlayer1CardSum;
@@ -296,6 +299,7 @@ public class GameController {
 	public void updatePlayerList(ArrayList<Player> playerList) {
 		System.out.println("[GAME_CONTROLLER] == GameController har mottagit lista. Antal = " + playerList.size());
 		numberOfPlayers = playerList.size();
+//		lblPlayerArray = new Label[numberOfPlayers];
 
 		if(numberOfPlayers == 1) {
 			lblPlayer1.setText(playerList.get(0).getUsername());
