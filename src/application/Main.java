@@ -105,23 +105,6 @@ public class Main extends Application {
 		primaryStage.show();
 	}
 	
-	public void showGame() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("GameTable.fxml"));
-		mainLayout = loader.load();
-
-		GameController controller = loader.getController();
-		
-		controller.setClient(client);
-		controller.setMain(this);
-		client.setGameController(controller);
-
-		Scene scene = new Scene(mainLayout, 1200, 700);
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(true);
-		primaryStage.show();
-	}
-	
 	public void showCreateTabel() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("CreateTableScreen.fxml"));
@@ -148,6 +131,23 @@ public class Main extends Application {
 		Scene scene = new Scene(mainLayout, 1000, 600);
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
+		primaryStage.show();
+	}
+	
+	public void showGame() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("GameTable.fxml"));
+		mainLayout = loader.load();
+
+		GameController controller = loader.getController();
+		
+		controller.setClient(client);
+		controller.setMain(this);
+		client.setGameController(controller);
+
+		Scene scene = new Scene(mainLayout, 1200, 700);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(true);
 		primaryStage.show();
 	}
 

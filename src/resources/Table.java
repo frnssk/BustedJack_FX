@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import communications.PlayerChoice;
+import communications.StartingInformation;
 import communications.TableID;
 import resources.Card.Rank;
 import server.Server.ClientHandler;
@@ -150,6 +151,7 @@ public class Table extends Thread implements Serializable {
 		try {
 		TextWindow.println("[TABLE=" + getTableId() + "]"+ " >> tråd för bordet startad.");
 		startGame();				//starts game and sets the balance for every player
+		sendStartingInformation();	//updates all the clients with time/rounds/miniBet
 		testingChoices();
 		checkCheatChoice();			//controls that every player made a choice
 		checkBets();
@@ -196,6 +198,16 @@ public class Table extends Thread implements Serializable {
 		cheatShoe.shuffle();
 		TextWindow.println("[TABLE=" + getTableId() + "]" + " metod 1 avslutad, spelarnas startsumma satt till: " + startingMoney);
 //		updateTableInformation();
+	}
+	
+	/*
+	 * send timer + rounds + minibet
+	 */
+	public void sendStartingInformation() {
+		StartingInformation startInfo = new StartingInformation(this.getMinutes(), this.getRounds(), this.getMinimumBet());
+		for(int i = 0; i < clientList.size(); i++) {
+			clientList.get(i).output(startInfo);
+		}
 	}
 	
 	/*
