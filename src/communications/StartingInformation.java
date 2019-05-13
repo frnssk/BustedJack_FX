@@ -10,5 +10,17 @@ public class StartingInformation {
 		this.numberOfRounds = rounds;
 		this.minimumBet = miniBet;
 	}
+	
+	public int getNumberOfMinutes() {
+		return numberOfMinutes;
+	}
+	
+	public int getNumberOfRounds() {
+		return numberOfRounds;
+	}
+	
+	public int getMinimumBet() {
+		return minimumBet;
+	}
 
 }
