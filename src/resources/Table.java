@@ -402,6 +402,7 @@ public class Table extends Thread implements Serializable {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 8 (flippar dealerns första kort) startad.");
 		dealer.getCard(0).setVisibility(true);
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 8 (flippar dealerns första kort) avslutad.");
+		TextWindow.println("[TABLE=" + getTableId() + "] >> DEALER = " + dealer.getValue());
 	}
 
 	private void checkForSplit(){
