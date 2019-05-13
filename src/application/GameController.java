@@ -230,6 +230,7 @@ public class GameController {
 			}
 		} else {
 			btnConfirmBet.setText("Waiting...");
+			btnConfirmBet.setDisable(true);
 			PlayerChoice choice = new PlayerChoice(4, cheatHeat);
 			choice.setBet(currentBet); 
 			//lblPlayer1Bet.setText("Bet: " + currentBet);
@@ -345,6 +346,7 @@ public class GameController {
 		System.out.println("[GAME_CONTROLLER] == Balance = " + balance);
 		
 		btnConfirmBet.setText("Confirm: ");
+		btnConfirmBet.setDisable(false);
 
 		if(numberOfPlayers == 2) {
 			lblPlayer1Balance.setText("Balance: " + playerList.get(0).getBalance());
