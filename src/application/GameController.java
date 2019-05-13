@@ -25,9 +25,9 @@ public class GameController {
 	private Label lblPlayer4;
 	@FXML
 	private Label lblPlayer5;
-	
-//	@FXML
-//	private Label lblPlayerArray[];
+
+	//	@FXML
+	//	private Label lblPlayerArray[];
 
 	@FXML
 	private Label lblPlayer1CardSum;
@@ -138,9 +138,9 @@ public class GameController {
 		lblDealerCardSum.setText("" + value);
 	}
 
-//	public void setStartingBalance(int balance) {
-//		this.balance = balance;
-//	}
+	//	public void setStartingBalance(int balance) {
+	//		this.balance = balance;
+	//	}
 
 	public void setRounds(int rounds) {
 		this.rounds = rounds;
@@ -163,10 +163,10 @@ public class GameController {
 		lblCheatHeatPersent.setText(valueInPercent + "%");
 	}
 
-		private void updateBalance() {
-			balance -= currentBet;
-//			lblPlayer1Balance.setText("Balance: " + balance);
-		}
+	private void updateBalance() {
+		balance -= currentBet;
+		//			lblPlayer1Balance.setText("Balance: " + balance);
+	}
 
 	public void setTableId(int tableId) {
 		lblTableId.setText("Table ID: " + tableId);
@@ -229,9 +229,10 @@ public class GameController {
 				e.printStackTrace();
 			}
 		} else {
+			btnConfirmBet.setText("Waiting...");
 			PlayerChoice choice = new PlayerChoice(4, cheatHeat);
 			choice.setBet(currentBet); 
-//			lblPlayer1Bet.setText("Bet: " + currentBet);
+			//lblPlayer1Bet.setText("Bet: " + currentBet);
 			updateBalance();
 			client.sendPlayerChoice(choice);
 		}
@@ -307,7 +308,7 @@ public class GameController {
 	public void updatePlayerList(ArrayList<Player> playerList) {
 		System.out.println("[GAME_CONTROLLER] == GameController har mottagit lista. Antal = " + playerList.size());
 		numberOfPlayers = playerList.size();
-//		lblPlayerArray = new Label[numberOfPlayers];
+		//		lblPlayerArray = new Label[numberOfPlayers];
 
 		if(numberOfPlayers == 1) {
 			lblPlayer1.setText(playerList.get(0).getUsername());
@@ -336,90 +337,92 @@ public class GameController {
 		}
 
 	}
-	
+
 	public void updateRoundInformation(ArrayList<Player> playerList, DealerHand dealer) {
 		System.out.println("[GAME_CONTROLLER] == GameController har mottagit updateRoundInformation");
-		
+
 		this.balance = playerList.get(0).getBalance();
 		System.out.println("[GAME_CONTROLLER] == Balance = " + balance);
 		
+		btnConfirmBet.setText("Confirm: ");
+
 		if(numberOfPlayers == 2) {
 			lblPlayer1Balance.setText("Balance: " + playerList.get(0).getBalance());
 			lblPlayer1Bet.setText("Bet: " + playerList.get(0).getBet());
 			lblPlayer1CardSum.setText("" + playerList.get(0).getHand(0).getCurrentScore());
 			System.out.println(playerList.get(0).getUsername() + ", SUMMA= " + playerList.get(0).getBalance() + ", BET= " + playerList.get(0).getBet());
-			
+
 			lblPlayer2Balance.setText("Balance: " + playerList.get(1).getBalance());
 			lblPlayer2Bet.setText("Bet: " + playerList.get(1).getBet());
 			lblPlayer2CardSum.setText("" + playerList.get(1).getHand(0).getCurrentScore());
 			System.out.println(playerList.get(1).getUsername() + ", SUMMA= " + playerList.get(1).getBalance() + ", BET= " + playerList.get(1).getBet());
-			
+
 			lblDealerCardSum.setText("" + dealer.getValue());
-		
+
 		}
 		if(numberOfPlayers == 3) {
 			lblPlayer1Balance.setText("Balance: " + playerList.get(0).getBalance());
 			lblPlayer1Bet.setText("Bet: " + playerList.get(0).getBet());
 			lblPlayer1CardSum.setText("" + playerList.get(0).getHand(0).getCurrentScore());
-			
+
 			lblPlayer2Balance.setText("Balance: " + playerList.get(1).getBalance());
 			lblPlayer2Bet.setText("Bet: " + playerList.get(1).getBet());
 			lblPlayer2CardSum.setText("" + playerList.get(1).getHand(0).getCurrentScore());
-			
+
 			lblPlayer3Balance.setText("Balance: " + playerList.get(2).getBalance());
 			lblPlayer3Bet.setText("Bet: " + playerList.get(2).getBet());
 			lblPlayer3CardSum.setText("" + playerList.get(2).getHand(0).getCurrentScore());
-			
+
 			lblDealerCardSum.setText("" + dealer.getValue());
 		}
 		if(numberOfPlayers == 4) {
 			lblPlayer1Balance.setText("Balance: " + playerList.get(0).getBalance());
 			lblPlayer1Bet.setText("Bet: " + playerList.get(0).getBet());
 			lblPlayer1CardSum.setText("" + playerList.get(0).getHand(0).getCurrentScore());
-			
+
 			lblPlayer2Balance.setText("Balance: " + playerList.get(1).getBalance());
 			lblPlayer2Bet.setText("Bet: " + playerList.get(1).getBet());
 			lblPlayer2CardSum.setText("" + playerList.get(1).getHand(0).getCurrentScore());
-			
+
 			lblPlayer3Balance.setText("Balance: " + playerList.get(2).getBalance());
 			lblPlayer3Bet.setText("Bet: " + playerList.get(2).getBet());
 			lblPlayer3CardSum.setText("" + playerList.get(2).getHand(0).getCurrentScore());
-			
+
 			lblPlayer4Balance.setText("Balance: " + playerList.get(3).getBalance());
 			lblPlayer4Bet.setText("Bet: " + playerList.get(3).getBet());
 			lblPlayer4CardSum.setText("" + playerList.get(3).getHand(0).getCurrentScore());
-			
+
 			lblDealerCardSum.setText("" + dealer.getValue());
 		}
 		if(numberOfPlayers == 5) {
 			lblPlayer1Balance.setText("Balance: " + playerList.get(0).getBalance());
 			lblPlayer1Bet.setText("Bet: " + playerList.get(0).getBet());
 			lblPlayer1CardSum.setText("" + playerList.get(0).getHand(0).getCurrentScore());
-			
+
 			lblPlayer2Balance.setText("Balance: " + playerList.get(1).getBalance());
 			lblPlayer2Bet.setText("Bet: " + playerList.get(1).getBet());
 			lblPlayer2CardSum.setText("" + playerList.get(1).getHand(0).getCurrentScore());
-			
+
 			lblPlayer3Balance.setText("Balance: " + playerList.get(2).getBalance());
 			lblPlayer3Bet.setText("Bet: " + playerList.get(2).getBet());
 			lblPlayer3CardSum.setText("" + playerList.get(2).getHand(0).getCurrentScore());
-			
+
 			lblPlayer4Balance.setText("Balance: " + playerList.get(3).getBalance());
 			lblPlayer4Bet.setText("Bet: " + playerList.get(3).getBet());
 			lblPlayer4CardSum.setText("" + playerList.get(3).getHand(0).getCurrentScore());
-			
+
 			lblPlayer5Balance.setText("Balance: " + playerList.get(4).getBalance());
 			lblPlayer5Bet.setText("Bet: " + playerList.get(4).getBet());
 			lblPlayer5CardSum.setText("" + playerList.get(4).getHand(0).getCurrentScore());
-			
+
 			lblDealerCardSum.setText("" + dealer.getValue());
-			
-			
+
+
 		}
-		
-		
+
+
 	}
-	
+
 
 	//Never used?
 	public void updateStartingMoney(int startingMoney) {
