@@ -143,8 +143,9 @@ public class Table extends Thread implements Serializable {
 	 * should be updated with the correct object
 	 */
 	public void updateTableInformation() {
-		UpdateClientInformation updateClientinformation = new UpdateClientInformatin(playerList, dealer);
+		UpdateClientInformation updateClientInformation = new UpdateClientInformation(playerList, dealer);
 		for(int i = 0; i < clientList.size(); i++) {
+			clientList.get(i).output(updateClientInformation);
 			
 		}
 	}
