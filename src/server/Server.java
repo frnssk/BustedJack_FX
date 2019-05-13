@@ -160,6 +160,7 @@ public class Server {
 			try {
 				output.writeObject(obj);
 				output.flush();
+				output.reset();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}	
