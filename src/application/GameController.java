@@ -225,7 +225,7 @@ public class GameController {
 		} else {
 			PlayerChoice choice = new PlayerChoice(4, cheatHeat);
 			choice.setBet(currentBet); 
-			lblPlayer1Bet.setText("Bet: " + currentBet);
+//			lblPlayer1Bet.setText("Bet: " + currentBet);
 			//updateBalance();
 			client.sendPlayerChoice(choice);
 		}
