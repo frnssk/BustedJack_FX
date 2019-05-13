@@ -68,6 +68,8 @@ public class GameController {
 	private Label lblRounds;
 	@FXML
 	private Label lblTableId;
+	@FXML
+	private Label lblMinimumBet;
 
 	@FXML
 	private ProgressBar cheatHeatProgressBar;
@@ -169,6 +171,8 @@ public class GameController {
 		setRounds(rounds);
 		setTime(minutes);
 		this.minimumBet = minimumBet;
+		lblMinimumBet.setText("Minimum bet: " + minimumBet);
+		
 	}
 
 	//true will disable, false will enable

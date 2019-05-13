@@ -187,7 +187,7 @@
       </Label>
       <Button fx:id="btnStartGame" layoutX="174.0" layoutY="641.0" mnemonicParsing="false" onAction="#handleStartGame" text="Start game" />
       <Button fx:id="btnExit" layoutX="50.0" layoutY="641.0" mnemonicParsing="false" onAction="#handleExit" text="Exit game" />
-      <Label layoutX="682.0" layoutY="656.0" text="Minimum bet:" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblMinimumBet" layoutX="682.0" layoutY="656.0" text="Minimum bet:" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="24.0" />
          </font>
