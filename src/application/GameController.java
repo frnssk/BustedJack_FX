@@ -255,8 +255,16 @@ public class GameController {
 		numberOfCheats++;
 		setCheatHeat(cheatHeat);
 		PlayerChoice choice = new PlayerChoice(5, cheatHeat);
-		
-		client.sendPlayerChoice(new PlayerChoice(5, cheatHeat));
+		choice.setCheatChoice(true);
+		client.sendPlayerChoice(choice);
+	}
+	
+	@FXML
+	private void handleDoNotCheat() {
+		setCheatHeat(cheatHeat);
+		PlayerChoice choice = new PlayerChoice(5, cheatHeat);
+		choice.setCheatChoice(false);
+		client.sendPlayerChoice(choice);
 	}
 
 	@FXML 
