@@ -71,6 +71,7 @@ public class Server {
 				}
 			}catch(EOFException e) {
 				keepReading = false;
+				
 				TextWindow.println("------------------");
 				TextWindow.println("SLUT PÅ ANVÄNDARE.");
 				TextWindow.println("TOTALT ANTAL REGISTRERADE ANVÄNDARE = " + registeredUsers.size());
