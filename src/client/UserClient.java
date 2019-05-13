@@ -19,6 +19,7 @@ import communications.PlayerChoice;
 import communications.RandomTableRequest;
 import communications.RegisterRequest;
 import communications.StartGameRequest;
+import communications.StartingInformation;
 import communications.TableID;
 import javafx.application.Platform;
 import resources.Player;
@@ -267,13 +268,12 @@ public class UserClient {
 						HashMap<ClientHandler, User> list = new HashMap<>();
 						System.out.println(list.toString());
 					}
-					else if(obj instanceof Table) {
-						Table table = (Table) obj;
-						int rounds = table.getRounds();
-						int time = table.getMinutes();
-						int minBet = table.getMinimumBet();
-						int startingMoney = table.getStartingMoney();
-						gameController.updateGameStart(rounds, time, minBet, startingMoney);
+					else if(obj instanceof StartingInformation) {
+						StartingInformation info = (StartingInformation) obj;
+						int rounds = info.getNumberOfRounds();
+						int time = info.getNumberOfMinutes();
+						int minBet = info.getMinimumBet();
+						gameController.setStartingInformation(rounds, time, minBet);
 					}
 					else if(obj instanceof TableID) {
 						TableID tableID = (TableID)obj;

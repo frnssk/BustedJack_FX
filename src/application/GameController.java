@@ -135,10 +135,6 @@ public class GameController {
 		this.balance = balance;
 	}
 
-	public void setMinimumBet(int minBet) {
-		this.minimumBet = minBet;
-	}
-
 	public void setRounds(int rounds) {
 		this.rounds = rounds;
 		lblRounds.setText("Rounds: " + rounds);
@@ -169,11 +165,10 @@ public class GameController {
 		lblTableId.setText("Table ID: " + tableId);
 	}
 	
-	public void updateGameStart(int rounds, int minutes, int minimumBet, int startingMoney) {
+	public void setStartingInformation(int rounds, int minutes, int minimumBet) {
 		setRounds(rounds);
 		setTime(minutes);
-		setMinimumBet(minimumBet);
-		updateStartingMoney(startingMoney);
+		this.minimumBet = minimumBet;
 	}
 
 	//true will disable, false will enable
