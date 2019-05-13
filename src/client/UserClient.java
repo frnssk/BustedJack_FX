@@ -269,6 +269,7 @@ public class UserClient {
 						System.out.println(list.toString());
 					}
 					else if(obj instanceof StartingInformation) {
+						System.out.println("[CLIENT] == Recieved Startin Information");
 						StartingInformation info = (StartingInformation) obj;
 						int rounds = info.getNumberOfRounds();
 						int time = info.getNumberOfMinutes();
