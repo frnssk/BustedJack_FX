@@ -29,6 +29,7 @@ public class Hand implements Serializable {
 	private int betMade;
 	private boolean cheatChoice;
 	private boolean hasMadeBet;
+	private boolean hasMadePlayChoice;
 	
 	
 	public Hand() {
@@ -38,6 +39,14 @@ public class Hand implements Serializable {
 	public void setPlayerChoice(PlayerChoice playerChoice) {
 		this.playerChoice = playerChoice;
 		setPlayChoice(playerChoice.getChoice());
+		hasMadePlayChoice = true;
+	}
+	
+	public void setHasMadePlayChoice(boolean bool) {
+		this.hasMadePlayChoice = bool;
+	}
+	public boolean getHasMadePlayChoice() {
+		return hasMadePlayChoice;
 	}
 	
 	public PlayerChoice getPlayerChoice() {
