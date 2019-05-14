@@ -490,11 +490,17 @@ public class Table extends Thread implements Serializable {
 		while(!allPlayersReady) {
 			for(int i = 0; i < playerList.size(); i++) {
 				for(int j = 0; j <  playerList.get(i).getNumberOfHands(); j++) {
+					playerList.get(i).getHand(j).setHasMadePlayChoice(false);
 //					PlayerChoice playerChoice = playerList.get(i).getPlayerChoice();
 //					int choice = playerChoice.getChoice();
+					TextWindow.println("NU FÅR DU VÄLJA");
+					while(!playerList.get(i).getHand(j).getHasMadePlayChoice()) {
+						
+					}
 					int choice = playerList.get(i).getHand(j).getPlayChoice();
 					int handValue = playerList.get(i).getHand(j).getCurrentScore();
 					boolean hasMadeEndingChoice = playerList.get(i).getHand(j).getHasMadeEndingChoice();
+					TextWindow.println("Delar ut kort till: " + playerList.get(i).getUsername());
 					while(handValue < 21 || !hasMadeEndingChoice) {
 						if(choice == 1)	{		
 							//hit
@@ -508,8 +514,10 @@ public class Table extends Thread implements Serializable {
 							int bet = playerList.get(i).getHand(i).getBet();
 							playerList.get(i).getHand(j).setBet(bet * 2);
 							playerList.get(i).getHand(j).addCard(regularShoe.dealCard());
+							playerList.get(i).getHand(j).setHasMadeEndingChoice(true);
 						}
 					}
+					TextWindow.println("Lämnat while-loop");
 //					playerList.get(i).getHand(j).setHasMadeEndingChoice(true);
 				}
 			}
