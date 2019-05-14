@@ -30,13 +30,13 @@ public class Player implements Serializable{
 		hands.add(new Hand());
 	}
 	
-	public boolean areButtonsGray() {
-		return buttonsAreGray;
-	}
-
-	public void setButtonsAreGray(boolean buttonsAreGray) {
-		this.buttonsAreGray = buttonsAreGray;
-	}
+//	public boolean areButtonsGray() {
+//		return buttonsAreGray;
+//	}
+//
+//	public void setButtonsAreGray(boolean buttonsAreGray) {
+//		this.buttonsAreGray = buttonsAreGray;
+//	}
 	
 	public void setPlayerChoice(PlayerChoice playerChoice) {
 		this.playerChoice = playerChoice;

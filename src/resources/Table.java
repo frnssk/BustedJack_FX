@@ -490,11 +490,14 @@ public class Table extends Thread implements Serializable {
 		while(!allPlayersReady) {
 			for(int i = 0; i < playerList.size(); i++) {
 				for(int j = 0; j <  playerList.get(i).getNumberOfHands(); j++) {
-					int choice = playerList.get(i).getHand(i).getPlayChoice();
+					PlayerChoice playerChoice = playerList.get(i).getPlayerChoice();
+					int choice = playerChoice.getChoice();
+//					int choice = playerList.get(i).getHand(i).getPlayChoice();
 					int handValue = playerList.get(i).getHand(j).getCurrentScore();
 					boolean hasMadeEndingChoice = playerList.get(i).getHand(j).getHasMadeEndingChoice();
 					while(handValue < 21 || !hasMadeEndingChoice) {
-						if(choice == 1)	{		//hit
+						if(choice == 1)	{		
+							//hit
 							if(playerList.get(i).getCheatChoice())
 								playerList.get(i).getHand(j).addCard(cheatShoe.dealCard());
 							else
