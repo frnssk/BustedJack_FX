@@ -11,9 +11,7 @@ public class Player implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-//	private int startingBalance;
 	private int betMade;
-//	private Hand hand;
 	private String username;
 	private boolean hasMadeCheatChoice;
 	private boolean cheatChoice;
@@ -21,56 +19,46 @@ public class Player implements Serializable{
 	private ArrayList<Hand> hands = new ArrayList<>();
 	private int cheatHeat;
 	private int balance = 0;
-	private Table table;
-	private PlayerChoice playerChoice;
-	private boolean buttonsAreGray;
+//	private PlayerChoice playerChoice;
 	
 	public Player(String username) {
 		this.username = username;
 		hands.add(new Hand());
 	}
 	
-//	public boolean areButtonsGray() {
-//		return buttonsAreGray;
-//	}
-//
-//	public void setButtonsAreGray(boolean buttonsAreGray) {
-//		this.buttonsAreGray = buttonsAreGray;
-//	}
-	
 	public void setPlayerChoice(PlayerChoice playerChoice) {
-		this.playerChoice = playerChoice;
-		int choice = playerChoice.getChoice();
-		if(choice == 1) {
-			//hit
-		}else if(choice == 2) {
-			//stay
-		}else if(choice == 3) {
-			//double
-		}else if(choice == 4) {
-			//bet
+		if(playerChoice.getChoice() == 4) {
 			setHasMadeBet(true);
 			setBet(playerChoice.getBet());
-		}else if(choice == 5) {
-			//cheat
-			boolean cheatChoice = playerChoice.getCheatChoice();
-			setCheatChoice(cheatChoice);
 		}
+		if(playerChoice.getChoice() == 5) {
+			setCheatChoice(playerChoice.getCheatChoice());
+		}
+		hands.get(0).setPlayerChoice(playerChoice);
+	}
+//		this.playerChoice = playerChoice;
+//		int choice = playerChoice.getChoice();
+//		if(choice == 1) {
+//			//hit
+//		}else if(choice == 2) {
+//			//stay
+//		}else if(choice == 3) {
+//			//double
+//		}else if(choice == 4) {
+//			//bet
+//			setHasMadeBet(true);
+//			setBet(playerChoice.getBet());
+//		}else if(choice == 5) {
+//			//cheat
+//			boolean cheatChoice = playerChoice.getCheatChoice();
+//			setCheatChoice(cheatChoice);
+//		}
 		
-	}
 	
-	public PlayerChoice getPlayerChoice() {
-		return playerChoice;
-	}
-	
-//	public void setTable(Table table) {
-//		this.table = table;
+//	public PlayerChoice getPlayerChoice() {
+//		return playerChoice;
 //	}
-	
-//	public Table getTable() {
-//		return table;
-//	}
-	
+		
 	//used to add a new hand when player is splitting
 	public void addNewHand() {
 		hands.add(new Hand());
