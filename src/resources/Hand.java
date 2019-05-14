@@ -48,9 +48,8 @@ public class Hand implements Serializable {
 		int currentScore = 0;
 		for(int i = 0; i < hand.size(); i++) {
 			currentScore += hand.get(i).getValue();
-//			TextWindow.println("CARD= " + hand.get(i).toString() + "VALUE= " + hand.get(i).getValue() + "CURRENTSCORE= " + currentScore);
 		}
-		if(this.containsAce() && (currentScore + 10) < 21) {
+		if(this.containsAce() && (currentScore + 10) <= 21) {
 			currentScore += 10;
 		}
 		return currentScore;
