@@ -24,7 +24,6 @@ public class Hand implements Serializable {
 	private int cheatHeat;
 	private int playChoice;
 	private boolean hasMadeEndingChoice;
-	
 
 	public boolean getHasMadeEndingChoice() {
 		return hasMadeEndingChoice;
@@ -62,6 +61,8 @@ public class Hand implements Serializable {
 		boolean contains = false;
 		for(int i = 0; i < hand.size(); i++) {
 			contains = (hand.get(i).getRank() == Rank.ACE);
+			if(contains)
+				break;
 		}
 		return contains;
 	}
