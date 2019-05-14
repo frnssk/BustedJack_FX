@@ -9,7 +9,7 @@ public class DealerHand implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Card> dealerHand;
-	private int currentScore;
+//	private int currentScore;
 	
 	public DealerHand() {
 		this.dealerHand = new ArrayList<>();
@@ -24,8 +24,12 @@ public class DealerHand implements Serializable{
 	}
 	
 	public int getValue() {
+		int currentScore = 0;
 		for(int i = 0; i < dealerHand.size(); i++) {
 			currentScore += dealerHand.get(i).getValue();
+			if(this.containsAce() && currentScore < 21) {
+				currentScore += 10;
+			}
 		}
 		return currentScore;
 	}
@@ -36,6 +40,14 @@ public class DealerHand implements Serializable{
 			contains = (dealerHand.get(i).getRank() == Rank.ACE);
 		}
 		return contains;
+	}
+	
+	public String toString() {
+		String string = "";
+		for(int i = 0; i < dealerHand.size(); i++) {
+			string += dealerHand.get(i).toString() + ", ";
+		}
+		return string;
 	}
 	
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 
 import resources.Card.Rank;
+import server.TextWindow;
 
 public class Hand implements Serializable {
 
@@ -38,7 +39,6 @@ public class Hand implements Serializable {
 	 */
 	public void addCard(Card card) {
 		hand.add(card);
-		//		currentScore += card.getValue();
 	}
 	
 	/*
@@ -48,9 +48,10 @@ public class Hand implements Serializable {
 		int currentScore = 0;
 		for(int i = 0; i < hand.size(); i++) {
 			currentScore += hand.get(i).getValue();
-			if(this.containsAce() && currentScore < 21) {
-				currentScore += 10;
-			}
+//			TextWindow.println("CARD= " + hand.get(i).toString() + "VALUE= " + hand.get(i).getValue() + "CURRENTSCORE= " + currentScore);
+		}
+		if(this.containsAce() && (currentScore + 10) < 21) {
+			currentScore += 10;
 		}
 		return currentScore;
 	}

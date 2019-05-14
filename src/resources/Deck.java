@@ -26,22 +26,18 @@ public class Deck implements Serializable {
 					card.setFace("cards/hjärter" + i + ".png");
 					card.setVisibility(true);
 					card.setSize(50, 100);
-//					System.out.println("cards/hjärter " + i);
 				}
 				if(suit.toString().equalsIgnoreCase("spades")) {
 					card.setFace("cards/spader" + i + ".png");
 					card.setVisibility(true);
-//					System.out.println("cards/spader " + i);
 				}
 				if(suit.toString().equalsIgnoreCase("diamonds")) {
 					card.setFace("cards/ruter" + i + ".png");
 					card.setVisibility(true);
-//					System.out.println("cards/ruter " + i);
 				}
 				if(suit.toString().equalsIgnoreCase("clubs")) {
 					card.setFace("cards/klöver" + i + ".png");
 					card.setVisibility(true);
-//					System.out.println("cards/klöver " + i);
 				}
 				i++;
 				deck.add(card);
@@ -74,23 +70,23 @@ public class Deck implements Serializable {
 		return str;
 	}
 	
-	public void showCards(){
-		for(int i = 0; i < deck.size(); i++) {
-			ImageIcon image = deck.get(i).getFront();
+//	public void showCards(){
+//		for(int i = 0; i < deck.size(); i++) {
+//			ImageIcon image = deck.get(i).getFront();
 //			JOptionPane.showMessageDialog(null, new ImageIcon("cards/baksida.png"));
-			JOptionPane.showMessageDialog(null, image);
+//			JOptionPane.showMessageDialog(null, image);
 //			try {
 //				Thread.sleep(1000);
 //			} catch (InterruptedException e) {
 //				e.printStackTrace();
 //			}
-		}
-	}
-
-	public static void main(String[] args) {
-		Deck deck = new Deck();
-		System.out.println(deck.toString());
-		deck.showCards();
-	}
+//		}
+//	}
+//
+//	public static void main(String[] args) {
+//		Deck deck = new Deck();
+//		System.out.println(deck.toString());
+//		deck.showCards();
+//	}
 
 }
