@@ -47,4 +47,8 @@ public class PlayerChoice implements Serializable{
 	public int getBet() {
 		return bet;
 	}	
+	
+	public String toString() {
+		return "int choice" + choice;
+	}
 }
