@@ -16,27 +16,27 @@
             <Image url="@../../images/Spelbord_3.1.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblPlayer1" layoutX="175.0" layoutY="222.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer1" layoutX="160.0" layoutY="222.0" prefHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer2" layoutX="304.0" layoutY="372.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer2" layoutX="294.0" layoutY="382.0" minHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer4" layoutX="824.0" layoutY="372.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer3" layoutX="578.0" layoutY="454.0" minHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer3" layoutX="578.0" layoutY="447.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer4" layoutX="839.0" layoutY="382.0" minHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer5" layoutX="944.0" layoutY="222.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer5" layoutX="967.0" layoutY="222.0" minHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="18.0" />
          </font>
@@ -94,27 +94,27 @@
       <Label fx:id="lblPlayer1CardSum" layoutX="282.0" layoutY="239.0" rotate="62.0" text="0" textFill="WHITE" />
       <Label fx:id="lblPlayer3CardSum" layoutX="596.0" layoutY="418.0" text="0" textFill="WHITE" />
       <Label fx:id="lblPlayer5CardSum" layoutX="902.0" layoutY="239.0" rotate="-62.0" text="0" textFill="WHITE" />
-      <Label fx:id="lblPlayer4Bet" alignment="TOP_LEFT" layoutX="824.0" layoutY="417.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer1Bet" alignment="TOP_LEFT" layoutX="160.0" layoutY="267.0" minHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer2Balance" alignment="TOP_LEFT" layoutX="304.0" layoutY="397.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer2Balance" alignment="TOP_LEFT" layoutX="294.0" layoutY="407.0" minHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer1Bet" alignment="TOP_LEFT" layoutX="175.0" layoutY="267.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer3Bet" alignment="TOP_LEFT" layoutX="578.0" layoutY="499.0" minHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer3Bet" alignment="TOP_LEFT" layoutX="578.0" layoutY="492.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer4Bet" alignment="TOP_LEFT" layoutX="839.0" layoutY="427.0" minHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer5Bet" alignment="TOP_LEFT" layoutX="944.0" layoutY="267.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer5Bet" alignment="TOP_LEFT" layoutX="967.0" layoutY="267.0" minHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
@@ -155,27 +155,27 @@
             <Font name="Futura Medium" size="13.0" />
          </font>
       </Button>
-      <Label fx:id="lblPlayer4Balance" alignment="TOP_LEFT" layoutX="824.0" layoutY="397.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer1Balance" alignment="TOP_LEFT" layoutX="160.0" layoutY="247.0" prefHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer2Bet" alignment="TOP_LEFT" layoutX="304.0" layoutY="417.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer2Bet" alignment="TOP_LEFT" layoutX="294.0" layoutY="427.0" minHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer1Balance" alignment="TOP_LEFT" layoutX="175.0" layoutY="247.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer3Balance" alignment="TOP_LEFT" layoutX="578.0" layoutY="479.0" minHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer3Balance" alignment="TOP_LEFT" layoutX="578.0" layoutY="472.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer4Balance" alignment="TOP_LEFT" layoutX="839.0" layoutY="407.0" minHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblPlayer5Balance" alignment="TOP_LEFT" layoutX="944.0" layoutY="247.0" textAlignment="CENTER" textFill="#f5e65d">
+      <Label fx:id="lblPlayer5Balance" alignment="TOP_LEFT" layoutX="967.0" layoutY="247.0" minHeight="20.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f5e65d">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
@@ -193,5 +193,35 @@
          </font>
       </Label>
       <Button fx:id="btnDoNotCheat" layoutX="121.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleDoNotCheat" text="Do NOT cheat" />
+      <ImageView fx:id="iwPlayer1Card1" fitHeight="55.0" fitWidth="40.0" layoutX="308.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true" rotate="62.0">
+         <image>
+            <Image url="@../../cards/hjärter2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="iwPlayer1Card2" fitHeight="55.0" fitWidth="40.0" layoutX="326.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" rotate="60.0">
+         <image>
+            <Image url="@../../cards/hjärter8.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="iwPlayer2Card1" fitHeight="55.0" fitWidth="40.0" layoutX="418.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true" rotate="32.0">
+         <image>
+            <Image url="@../../cards/klöver1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="iwPlayer2Card2" fitHeight="55.0" fitWidth="40.0" layoutX="436.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true" rotate="32.0">
+         <image>
+            <Image url="@../../cards/spader5.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="iwPlayer3Card1" fitHeight="55.0" fitWidth="40.0" layoutX="581.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../cards/spader5.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="iwPlayer3Card2" fitHeight="55.0" fitWidth="40.0" layoutX="594.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../cards/spader5.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
