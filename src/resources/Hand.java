@@ -1,15 +1,15 @@
 package resources;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
 
+import communications.PlayerChoice;
 import resources.Card.Rank;
-import server.TextWindow;
 
 public class Hand implements Serializable {
 
 	private static final long serialVersionUID = 9072394852087177248L;
-	private ArrayList<Card> hand = new ArrayList<>(); //Holds the card in a hand
+	private ArrayList<Card> hand; //Holds the card in a hand
 	private boolean hasBlackjack;
 	private boolean bustedHand;
 //	private boolean handIsWin;
@@ -22,13 +22,48 @@ public class Hand implements Serializable {
 	private int payout;
 	private int bet;
 	private int cheatHeat;
-	private int playChoice;
 	private boolean hasMadeEndingChoice;
+	
+	private PlayerChoice playerChoice;
+	private int playChoice;
+	private int betMade;
+	private boolean cheatChoice;
+	private boolean hasMadeBet;
+	
+	
+	public Hand() {
+		hand = new ArrayList<>();
+	}
+	
+	public void setPlayerChoice(PlayerChoice playerChoice) {
+		this.playerChoice = playerChoice;
+		setPlayChoice(playerChoice.getChoice());
+	}
+	
+	public PlayerChoice getPlayerChoice() {
+		return playerChoice;
+	}
+	
+	public void setPlayChoice(int choice) {
+		this.playChoice = choice;
+//		if(choice == 4) {
+//			//bet
+//			setHasMadeBet(true);
+//			setBet(playerChoice.getBet());
+//		}
+	}
+	
+	public int getPlayChoice() {
+		return playChoice;
+	}
+	
+	public void setHasMadeBet(boolean bool) {
+		this.hasMadeBet = bool;
+	}
 
 	public boolean getHasMadeEndingChoice() {
 		return hasMadeEndingChoice;
 	}
-
 	public void setHasMadeEndingChoice(boolean hasMadeEndingChoice) {
 		this.hasMadeEndingChoice = hasMadeEndingChoice;
 	}
@@ -122,19 +157,6 @@ public class Hand implements Serializable {
 		this.payout = payout;
 	}
 	
-	public void setPlayChoice(int choice) {
-		this.playChoice = choice;
-	}
-	
-	public int getPlayChoice() {
-		return playChoice;
-		//1 = hit
-		//2 = stay
-		//3 = double
-	}
-	
-	
-
 	/*
 	 * Needed to declare if a hand has beaten the dealer, saving for when the payout will happen
 	 */
