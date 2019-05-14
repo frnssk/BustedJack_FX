@@ -134,7 +134,7 @@ public class GameController {
 
 	@FXML
 	private void initialize() {
-		disableAllButtons(true);
+//		disableAllButtons(true);
 		btnStartGame.setDisable(false);
 	}
 
