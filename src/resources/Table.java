@@ -233,13 +233,14 @@ public class Table extends Thread implements Serializable {
 	}
 
 	//checks that all players has made a choice to cheat or not
-	private void checkCheatChoice() {
+	private void checkCheatChoice() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "]" + " metod 2 (kollar fusk-val) startad.");
 		boolean allPlayersReady = false;
 		boolean[] allPlayerChoices = new boolean[playerList.size()];
 		while(!allPlayersReady) {
 			for(int i = 0; i < playerList.size(); i++) {
 				allPlayerChoices[i] = playerList.get(i).getHasMadeCheatChoice();
+				Thread.sleep(1000);
 				updateTableInformation();
 			}
 			allPlayersReady = areAllTrue(allPlayerChoices);
@@ -262,7 +263,7 @@ public class Table extends Thread implements Serializable {
 				player.setBalance(newBalance);
 				TextWindow.println("[TABLE] >> " + player.getUsername() + ", summa = " + player.getBalance());
 				try {
-					Thread.sleep(100);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -320,7 +321,7 @@ public class Table extends Thread implements Serializable {
 					TextWindow.println("Lägger till kort , " + card.toString() + " från vanlig lek hos: " + playerList.get(i).getUsername());
 				}
 				try {
-					Thread.sleep(1500);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

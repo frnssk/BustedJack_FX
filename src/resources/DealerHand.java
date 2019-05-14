@@ -38,6 +38,8 @@ public class DealerHand implements Serializable{
 		boolean contains = false;
 		for(int i = 0; i < dealerHand.size(); i++) {
 			contains = (dealerHand.get(i).getRank() == Rank.ACE);
+			if(contains)
+				break;
 		}
 		return contains;
 	}
