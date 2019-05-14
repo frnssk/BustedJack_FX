@@ -12,8 +12,6 @@ public class Hand implements Serializable {
 	private ArrayList<Card> hand; //Holds the card in a hand
 	private boolean hasBlackjack;
 	private boolean bustedHand;
-//	private boolean handIsWin;
-	private boolean containsAce = false;
 	private boolean wantToSplit = false;
 	private boolean hasMadeSplitChoice = false;
 	private boolean hasMadeInsuranceChoice = false;
@@ -21,7 +19,6 @@ public class Hand implements Serializable {
 	private int handIsWin;
 	private int payout;
 	private int bet;
-	private int cheatHeat;
 	private boolean hasMadeEndingChoice;
 	
 	private PlayerChoice playerChoice;
@@ -31,17 +28,30 @@ public class Hand implements Serializable {
 	private boolean hasMadeBet;
 	private boolean hasMadePlayChoice;
 	
-	
+	/*
+	 * Constructor
+	 */
 	public Hand() {
 		hand = new ArrayList<>();
 	}
 	
+	/*
+	 * Used by the server --> player to set a choice for the hand
+	 */
 	public void setPlayerChoice(PlayerChoice playerChoice) {
 		this.playerChoice = playerChoice;
-		setPlayChoice(playerChoice.getChoice());
-		hasMadePlayChoice = true;
+		int choice = this.playerChoice.getChoice();
+		setPlayChoice(choice);
+//		setHasMadePlayChoice(true);
+	}
+
+	public PlayerChoice getPlayerChoice() {
+		return playerChoice;
 	}
 	
+	/*
+	 * Used to know that a player has made a choice, and is ready
+	 */
 	public void setHasMadePlayChoice(boolean bool) {
 		this.hasMadePlayChoice = bool;
 	}
@@ -49,11 +59,8 @@ public class Hand implements Serializable {
 		return hasMadePlayChoice;
 	}
 	
-	public PlayerChoice getPlayerChoice() {
-		return playerChoice;
-	}
-	
 	public void setPlayChoice(int choice) {
+		setHasMadePlayChoice(true);
 		this.playChoice = choice;
 //		if(choice == 4) {
 //			//bet
