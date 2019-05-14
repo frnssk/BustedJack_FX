@@ -233,7 +233,6 @@ public class GameController {
 			btnConfirmBet.setDisable(true);
 			PlayerChoice choice = new PlayerChoice(4, cheatHeat);
 			choice.setBet(currentBet); 
-			//lblPlayer1Bet.setText("Bet: " + currentBet);
 			updateBalance();
 			client.sendPlayerChoice(choice);
 		}
@@ -269,6 +268,8 @@ public class GameController {
 		setCheatHeat(cheatHeat);
 		PlayerChoice choice = new PlayerChoice(5, cheatHeat);
 		choice.setCheatChoice(true);
+		btnConfirmBet.setText("Confirm: ");
+		btnConfirmBet.setDisable(false);
 		client.sendPlayerChoice(choice);
 	}
 
@@ -277,6 +278,8 @@ public class GameController {
 		setCheatHeat(cheatHeat);
 		PlayerChoice choice = new PlayerChoice(5, cheatHeat);
 		choice.setCheatChoice(false);
+		btnConfirmBet.setText("Confirm: ");
+		btnConfirmBet.setDisable(false);
 		client.sendPlayerChoice(choice);
 	}
 
@@ -344,9 +347,6 @@ public class GameController {
 
 		this.balance = playerList.get(0).getBalance();
 		System.out.println("[GAME_CONTROLLER] == Balance = " + balance);
-		
-		btnConfirmBet.setText("Confirm: ");
-		btnConfirmBet.setDisable(false);
 
 		if(numberOfPlayers == 2) {
 			lblPlayer1Balance.setText("Balance: " + playerList.get(0).getBalance());
