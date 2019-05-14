@@ -163,9 +163,9 @@ public class Table extends Thread implements Serializable {
 		dealCardToPlayers();		//deals 1 card each
 		dealCardToDealer();			//deals one face-down-card to the dealer
 		dealCardToPlayers();		//deals a second card to all the players
-		printAllCards();			//TESTING
 		resetPlayerCheatChoice();	//resets the cheat-choice for everyone
 		dealCardToDealer();			//deals a second face-down-card to the dealer
+		printAllCards();			//TESTING
 		checkForBlackjack();		//checks if anyone hit 21 in their first 2 cards
 		flipDealerCard();			//flips the first card the dealer got, face-up
 //		checkForSplit();			//check all the players and if they can split, and lets them if they want
@@ -187,7 +187,7 @@ public class Table extends Thread implements Serializable {
 			TextWindow.println("Korten: " + playerList.get(i).getHand(0).toString());
 			TextWindow.println("Summa: " + playerList.get(i).getHand(0).getCurrentScore());
 		}
-		TextWindow.println("Summa dealer: " + dealer.getValue());
+		TextWindow.println("Summa dealer: " + dealer.getValue() + ", KORT= " + dealer.toString());
 	}
 
 	/*
