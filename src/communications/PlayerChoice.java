@@ -12,12 +12,10 @@ public class PlayerChoice implements Serializable{
 	//4 = bet, + setBet
 	//5 = cheat
 	private int bet;
-	private int cheatHeat;
 	private boolean cheatChoice = true; //remove =true
 	
-	public PlayerChoice(int choice, int cheatHeat) {
+	public PlayerChoice(int choice) {
 		this.choice = choice;
-		this.cheatHeat = cheatHeat;
 	}
 	
 	public void setCheatChoice(boolean choice) {
@@ -30,10 +28,6 @@ public class PlayerChoice implements Serializable{
 	
 	public int getChoice() {
 		return choice;
-	}
-	
-	public int getCheatHeat() {
-		return cheatHeat;
 	}
 	
 	public void setChoice(int choice) {

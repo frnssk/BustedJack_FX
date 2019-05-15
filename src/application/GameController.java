@@ -239,7 +239,7 @@ public class GameController {
 			btnConfirmBet.setDisable(true);
 			btnCheat.setDisable(true);
 			btnDoNotCheat.setDisable(true);
-			PlayerChoice choice = new PlayerChoice(4, cheatHeat);
+			PlayerChoice choice = new PlayerChoice(4);
 			choice.setBet(currentBet); 
 			updateBalance();
 			client.sendPlayerChoice(choice);
@@ -274,7 +274,7 @@ public class GameController {
 	private void handleCheat() {
 		numberOfCheats++;
 		setCheatHeat(cheatHeat);
-		PlayerChoice choice = new PlayerChoice(5, cheatHeat);
+		PlayerChoice choice = new PlayerChoice(5);
 		choice.setCheatChoice(true); //Tells server that we will cheat 
 
 		btnIncreaseBet25.setDisable(false);
@@ -291,7 +291,7 @@ public class GameController {
 	@FXML
 	private void handleDoNotCheat() {
 		setCheatHeat(cheatHeat);
-		PlayerChoice choice = new PlayerChoice(5, cheatHeat);
+		PlayerChoice choice = new PlayerChoice(5);
 		choice.setCheatChoice(false);//Tells server that we will NOT cheat 
 
 		btnIncreaseBet25.setDisable(false);
@@ -317,17 +317,17 @@ public class GameController {
 
 	@FXML 
 	private void handleDouble() {
-		client.sendPlayerChoice(new PlayerChoice(3, cheatHeat));
+		client.sendPlayerChoice(new PlayerChoice(3));
 	}
 
 	@FXML 
 	private void handleStay() {
-		client.sendPlayerChoice(new PlayerChoice(2, cheatHeat));
+		client.sendPlayerChoice(new PlayerChoice(2));
 	}
 
 	@FXML 
 	private void handleHit() {
-		client.sendPlayerChoice(new PlayerChoice(1, cheatHeat));
+		client.sendPlayerChoice(new PlayerChoice(1));
 		System.out.println("[GAME_CONTORLLER] == Någon har tryck HIT.");
 	}
 
