@@ -505,7 +505,8 @@ public class Table extends Thread implements Serializable {
 						playerList.get(i).getHand(j).addCard(card);
 						TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername());
 						TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
-						if(playerList.get(i).getHand(j).getCurrentScore() > 21)
+						playerList.get(i).setPlayerChoice(new PlayerChoice(0));
+						if(playerList.get(i).getHand(j).getCurrentScore() >= 21)
 							keepPlaying = false;
 					}else if(choice == 2) {
 						keepPlaying = false;
@@ -523,56 +524,10 @@ public class Table extends Thread implements Serializable {
 					updateTableInformation();
 					TextWindow.println("Tråd sover 2 sekunder.");
 					Thread.sleep(2000);
-					
-//					playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-//					choice = 0;
 					 
 				}
 			}
 		}
-
-//		while(!allPlayersReady) {
-//			for(int i = 0; i < playerList.size(); i++) {
-//				for(int j = 0; j <  playerList.get(i).getNumberOfHands(); j++) {
-//					playerList.get(i).getHand(j).setHasMadePlayChoice(false);
-//					//					PlayerChoice playerChoice = playerList.get(i).getPlayerChoice();
-//					//					int choice = playerChoice.getChoice();
-//					TextWindow.println("Dags för " + playerList.get(i).getUsername());
-//					while(!playerList.get(i).getHand(j).getHasMadePlayChoice()) {
-//						int choice = playerList.get(i).getHand(j).getPlayChoice();
-//						int handValue = playerList.get(i).getHand(j).getCurrentScore();
-//						boolean hasMadeEndingChoice = playerList.get(i).getHand(j).getHasMadeEndingChoice();
-//						TextWindow.println("Delar ut kort till: " + playerList.get(i).getUsername());
-//						while(handValue < 21 || !hasMadeEndingChoice) {
-//							if(choice == 1)	{		
-//								//hit
-//								if(playerList.get(i).getCheatChoice())
-//									playerList.get(i).getHand(j).addCard(cheatShoe.dealCard());
-//								else
-//									playerList.get(i).getHand(j).addCard(regularShoe.dealCard());
-//							}else if(choice == 2) {
-//								playerList.get(i).getHand(j).setHasMadeEndingChoice(true);
-//							}else if(choice == 3) {
-//								int bet = playerList.get(i).getHand(i).getBet();
-//								playerList.get(i).getHand(j).setBet(bet * 2);
-//								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());
-//								playerList.get(i).getHand(j).setHasMadeEndingChoice(true);
-//							}
-//						}
-//					}
-//					TextWindow.println("Lämnat while-loop");
-//				}
-//			}
-//			int max = 0;
-//			for (int i = 0; i < playerList.size(); i++){
-//				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
-//					if(playerList.get(i).getNumberOfHands() > max)
-//						max = playerList.get(i).getNumberOfHands();
-//				}
-//			}
-//			boolean[][] test = new boolean[playerList.size()][max];
-//			allPlayersReady = areAllTrue2d(test);
-//		}
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 11 (kollar vilka val spelare har gjort) avslutad.");
 	}
 
