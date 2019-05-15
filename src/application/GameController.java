@@ -27,8 +27,6 @@ public class GameController {
 	private Label lblPlayer5;
 
 	private Label[] lblPlayersArray;
-	//	@FXML
-	//	private Label lblPlayerArray[];
 
 	@FXML
 	private Label lblPlayer1CardSum;
@@ -160,6 +158,7 @@ public class GameController {
 	private void initialize() {
 		//		disableAllButtons(true);
 		btnStartGame.setDisable(false);
+
 		iwCardsArray = new ImageView[10];
 		iwCardsArray[0] = iwPlayer1Card1;
 		iwCardsArray[1] = iwPlayer1Card2;
@@ -171,6 +170,13 @@ public class GameController {
 		iwCardsArray[7] = iwPlayer4Card2;
 		iwCardsArray[8] = iwPlayer5Card1;
 		iwCardsArray[9] = iwPlayer5Card2;
+
+		lblPlayersArray = new Label[5];
+		lblPlayersArray[0] = lblPlayer1;
+		lblPlayersArray[1] = lblPlayer2;
+		lblPlayersArray[2] = lblPlayer3;
+		lblPlayersArray[3] = lblPlayer4;
+		lblPlayersArray[4] = lblPlayer5;
 
 	}
 
@@ -193,9 +199,8 @@ public class GameController {
 		setCheatHeat(cheatHeat);
 	}
 
-	public void setTime(int time) {
-		//Code to come
-		lblTime.setText("Time: " + time);
+	public void setTime(int min, int sec) {
+		lblTime.setText("Time: " + min + ":" + sec);
 	}
 
 	public void setCheatHeat(int valueInPercent) {
@@ -214,23 +219,10 @@ public class GameController {
 
 	public void setStartingInformation(int rounds, int minutes, int minimumBet) {
 		setRounds(rounds);
-		setTime(minutes);
+		lblTime.setText("Timer: " + minutes);
 		this.minimumBet = minimumBet;
 		lblMinimumBet.setText("Minimum bet: " + minimumBet);
 
-	}
-
-	private void setPlayersLabel(int numberOfPlayers, ArrayList<Player> playerList) {
-		lblPlayersArray = new Label[5];
-		lblPlayersArray[0] = lblPlayer1;
-		lblPlayersArray[1] = lblPlayer2;
-		lblPlayersArray[2] = lblPlayer3;
-		lblPlayersArray[3] = lblPlayer4;
-		lblPlayersArray[4] = lblPlayer5;
-
-		for(int i = 0; i < numberOfPlayers; i++) {
-			lblPlayersArray[i].setText(playerList.get(i).getUsername());
-		}
 	}
 
 	//true will disable, false will enable
@@ -397,6 +389,12 @@ public class GameController {
 			setPlayersLabel(5, playerList);
 	}
 
+	private void setPlayersLabel(int numberOfPlayers, ArrayList<Player> playerList) {
+		for(int i = 0; i < numberOfPlayers; i++) {
+			lblPlayersArray[i].setText(playerList.get(i).getUsername());
+		}
+	}
+
 	public void updateRoundInformation(ArrayList<Player> playerList, DealerHand dealer) {
 		System.out.println("[GAME_CONTROLLER] == GameController har mottagit updateRoundInformation");
 
@@ -408,6 +406,7 @@ public class GameController {
 			btnDoNotCheat.setDisable(false);
 			btnStartGame.setDisable(true);
 			firstRound = false;
+			System.out.println("[GAME_CONTROLLER] == FirstRounds initiated");
 		}
 
 		if(numberOfPlayers == 2) {
