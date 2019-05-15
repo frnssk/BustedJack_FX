@@ -35,7 +35,12 @@ public class Player implements Serializable{
 	public void setPlayerChoice(PlayerChoice playerChoice) {
 		this.playerChoice = playerChoice;
 		System.out.println("PlayerChoice mottagit = " + this.playerChoice.getChoice());
-		hands.get(0).setPlayerChoice(this.playerChoice);
+//		hands.get(0).setPlayerChoice(this.playerChoice);
+		for(int i = 0; i < hands.size(); i++) {
+			while(!hands.get(i).getFinished()) {
+				hands.get(i).setPlayerChoice(playerChoice);
+			}
+		}
 		
 		if(this.playerChoice.getChoice() == 4) {
 			setHasMadeBet(true);

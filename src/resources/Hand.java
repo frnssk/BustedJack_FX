@@ -12,8 +12,8 @@ public class Hand implements Serializable {
 	private ArrayList<Card> hand; //Holds the card in a hand
 	private boolean hasBlackjack;
 	private boolean bustedHand;
-	private boolean wantToSplit = false;
-	private boolean hasMadeSplitChoice = false;
+//	private boolean wantToSplit = false;
+//	private boolean hasMadeSplitChoice = false;
 	private boolean hasMadeInsuranceChoice = false;
 	private boolean insuranceChoice = false;
 	private int handIsWin;
@@ -27,6 +27,7 @@ public class Hand implements Serializable {
 	private boolean cheatChoice;
 	private boolean hasMadeBet;
 	private boolean hasMadePlayChoice;
+	private boolean finished = true;
 	
 	/*
 	 * Constructor
@@ -67,6 +68,14 @@ public class Hand implements Serializable {
 //			setHasMadeBet(true);
 //			setBet(playerChoice.getBet());
 //		}
+	}
+	
+	public void setFinished(boolean bool) {
+		finished = bool;
+	}
+	
+	public boolean getFinished() {
+		return finished;
 	}
 	
 	public int getPlayChoice() {
@@ -126,23 +135,23 @@ public class Hand implements Serializable {
 		return hand.get(0).equals(hand.get(1));
 	}
 	
-	public void setSplitChoice() {
-		this.hasMadeSplitChoice = true;
-	}
+//	public void setSplitChoice() {
+//		this.hasMadeSplitChoice = true;
+//	}
 	
 	public boolean getSplitChoice() {
-		return hasMadeSplitChoice;
+		return playerChoice.getSplitChoice();
 	}
-	
-	public boolean wantToSplit() {
-		return wantToSplit;
-	}
-	
-	//ui have to send a boolean depending on what button the user presser
-	public void setWantToSplit(boolean wantToSplit) {
-		this.wantToSplit = wantToSplit;
-		setSplitChoice();
-	}
+//	
+//	public boolean wantToSplit() {
+//		return wantToSplit;
+//	}
+//	
+//	//ui have to send a boolean depending on what button the user presser
+//	public void setWantToSplit(boolean wantToSplit) {
+//		this.wantToSplit = wantToSplit;
+//		setSplitChoice();
+//	}
 	
 	public void setHasMadeInsuranceChoice() {
 		hasMadeInsuranceChoice = true;
