@@ -211,9 +211,6 @@ public class Server {
 
 					else if(obj instanceof PlayerChoice) {
 						PlayerChoice playerChoice = (PlayerChoice)obj;
-						TextWindow.println("[SERVER] >> \"" + UserHandler.getUser(this).getUsername() + "\" har tryckt = " + playerChoice.getChoice() + " (1 - hit, 2 - stay, 3 - double, 4 - bet, 5 - cheat)");
-//						System.out.println("Choice = " + playerChoice.toString());
-//						System.out.println("Client = " + this.toString());
 						makePlayerChoice(playerChoice, this);
 					}
 					
@@ -225,7 +222,7 @@ public class Server {
 
 					output.writeObject(choice);
 					output.flush();
-					
+					input.reset();
 				} catch (ClassNotFoundException | IOException e) {
 //					e.printStackTrace();
 				}
@@ -498,9 +495,7 @@ public class Server {
 		public void makePlayerChoice(PlayerChoice playerChoice, ClientHandler clientHandler) {
 			Table table = clientAndTable.get(clientHandler);
 			HashMap<ClientHandler, Player> clientAndPlayer = table.getPlayerAndClient();
-//			Player player = table.getPlayerAndClient().get(clientHandler);
 			Player player = clientAndPlayer.get(clientHandler);
-			System.out.println("Player = null ? == " + (player == null));
 			player.setPlayerChoice(playerChoice);
 			TextWindow.println("[SERVER] >> " + player.getUsername() + " har gjort ett val: " + playerChoice.getChoice());
 		}
