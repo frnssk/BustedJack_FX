@@ -169,7 +169,7 @@ public class Table extends Thread implements Serializable {
 			checkForBlackjack();		//checks if anyone hit 21 in their first 2 cards
 			flipDealerCard();			//flips the first card the dealer got, face-up
 			//		checkForSplit();			//check all the players and if they can split, and lets them if they want
-			checkInsurance();			//checks if the dealer got an ace, and if any player wants to buy insurance
+			checkInsurance();	//checks if the dealer got an ace, and if any player wants to buy insurance
 			checkPlayerChoices();		//lets the players play each hand
 			//		letPlayerBust();			//lets the players bust each other
 			letDealerPlay();			//if the dealer is <17, he keeps on hitting
@@ -247,7 +247,7 @@ public class Table extends Thread implements Serializable {
 		}
 		TextWindow.println("[TABLE=" + getTableId() + "] metod 2 (kollar fusk-val) avslutad.");
 		TextWindow.println("[TABLE=" + getTableId() + "] >> GREAT SUCCES");
-		//		updateTableInformation();
+			updateTableInformation();
 	}
 
 	//the new, updated method to use
@@ -485,22 +485,31 @@ public class Table extends Thread implements Serializable {
 	private void checkPlayerChoices() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 11 (kollar vilka val spelare har gjort) startad.");
 //		boolean allPlayersReady = false;
+		for(int i = 0; i < playerList.size(); i++) {
+			playerList.get(i).setHasMadeBet(false);
+		}
 		
 		for(int i = 0; i < playerList.size(); i++) {
 			TextWindow.println("[TABLE=" + getTableId() + "] >> " + playerList.get(i).getUsername() + "s tur.");
 			for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
 				boolean test = playerList.get(i).getHand(j).getHasMadePlayChoice();
-				while(!test) {
-					test = playerList.get(i).getHand(j).getHasMadePlayChoice();
-				}
-				int choice = playerList.get(i).getHand(j).getPlayerChoice().getChoice();
+//				int choice = playerList.get(i).getHand(j).getPlayerChoice().getChoice();
 				boolean keepPlaying = true;
 				while(keepPlaying) {
+					
+					while(!playerList.get(i).getHasMadeChoice()) {
+						
+					}
+					
+					int choice = playerList.get(i).getHand(j).getPlayerChoice().getChoice();
 					TextWindow.println("while-keepPlaying");
 					TextWindow.println("int choice = " + choice);
 					if(choice == 1) {
+						Card card = regularShoe.dealCard();
 						TextWindow.println(playerList.get(i).getUsername() + " har valt HIT");
-						playerList.get(i).getHand(j).addCard(regularShoe.dealCard());
+						playerList.get(i).getHand(j).addCard(card);
+						TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername());
+						TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
 						if(playerList.get(i).getHand(j).getCurrentScore() > 21)
 							keepPlaying = false;
 					}else if(choice == 2) {
@@ -508,9 +517,16 @@ public class Table extends Thread implements Serializable {
 					}else if(choice == 3) {
 						int bet = playerList.get(i).getBet();
 						playerList.get(i).getHand(j).setBet(bet*2);
-						playerList.get(i).getHand(j).addCard(regularShoe.dealCard());
+						Card card = regularShoe.dealCard();
+						playerList.get(i).getHand(j).addCard(card);
+						TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername());
+						TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
 						keepPlaying = false;
 					}
+//					playerList.get(i).resetPlayerChoice();
+					if(!keepPlaying)
+						TextWindow.println("[TABLE] Runda slut för: " + playerList.get(i).getUsername());
+					updateTableInformation();
 					TextWindow.println("Tråd sover 2 sekunder.");
 					Thread.sleep(2000);
 				}

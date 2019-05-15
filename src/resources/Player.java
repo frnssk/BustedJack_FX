@@ -20,6 +20,7 @@ public class Player implements Serializable{
 	private int cheatHeat;
 	private int balance = 0;
 	private PlayerChoice playerChoice;
+	private boolean hasMadeChoice;
 	
 	public Player(String username) {
 		hands = new ArrayList<>();
@@ -44,6 +45,18 @@ public class Player implements Serializable{
 			setCheatChoice(cheatChoice);
 		}
 		System.out.println("playerChoice = " + playerChoice.toString());
+	}
+	
+	public PlayerChoice getPlayerChoice() {
+		return playerChoice;
+	}
+	
+	public void setHasMadeChoice(boolean bool) {
+		this.hasMadeChoice = bool;
+	}
+	
+	public boolean getHasMadeChoice() {
+		return hasMadeChoice;
 	}
 	
 //		this.playerChoice = playerChoice;
