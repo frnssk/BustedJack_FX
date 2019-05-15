@@ -39,9 +39,10 @@ public class Player implements Serializable{
 		for(int i = 0; i < hands.size(); i++) {
 			boolean handIsReady = false;
 			while(!handIsReady) {
+				hands.get(i).setPlayerChoice(playerChoice);
 				handIsReady = hands.get(i).getFinished();
 			}
-			hands.get(i).setPlayerChoice(playerChoice);
+			
 		}
 		
 		if(this.playerChoice.getChoice() == 4) {

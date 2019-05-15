@@ -507,12 +507,12 @@ public class Table extends Thread implements Serializable {
 						TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
 						playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 						if(playerList.get(i).getHand(j).getCurrentScore() >= 21) {
-							playerList.get(i).getHand(j).setFinished(true);
+//							playerList.get(i).getHand(j).setFinished(true);
 							keepPlaying = false;
 						}
 					}else if(choice == 2) {
 						playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-						playerList.get(i).getHand(j).setFinished(true);
+//						playerList.get(i).getHand(j).setFinished(true);
 						keepPlaying = false;
 					}else if(choice == 3) {
 						int bet = playerList.get(i).getBet();
@@ -522,7 +522,7 @@ public class Table extends Thread implements Serializable {
 						TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername());
 						TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
 						playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-						playerList.get(i).getHand(j).setFinished(true);
+//						playerList.get(i).getHand(j).setFinished(true);
 						keepPlaying = false;
 					}else if(choice == 6) {
 						boolean splitChoice = playerList.get(i).getHand(j).getSplitChoice();
@@ -536,7 +536,7 @@ public class Table extends Thread implements Serializable {
 							playerList.get(i).getHand(j).addCard(regularShoe.dealCard());
 							playerList.get(i).getHand(j+1).addCard(regularShoe.dealCard());
 							TextWindow.println("Antal händer= " + playerList.get(i).getNumberOfHands());
-							
+							updateTableInformation();
 //							if(playerList.get(i).getHand(j).size() == 1) { 					//if a player only has one card in one hand - adds new card
 //								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());	//deals the actual card
 //							}
@@ -544,12 +544,12 @@ public class Table extends Thread implements Serializable {
 						}
 					}
 					if(!keepPlaying) {
-						TextWindow.println("[TABLE] Runda slut för: " + playerList.get(i).getUsername());
+						TextWindow.println("[TABLE] " + playerList.get(i).getUsername() + " har spelat klart hand: " + j);
 						playerList.get(i).getHand(j).setFinished(true);
 					}
 					updateTableInformation();
 					TextWindow.println("Tråd sover 2 sekunder.");
-					Thread.sleep(2000);
+					Thread.sleep(4000);
 					 
 				}
 				TextWindow.println("Runda slut för " + playerList.get(i).getUsername());
@@ -648,7 +648,6 @@ public class Table extends Thread implements Serializable {
 					int payout = bet * 2;
 					if(playerList.get(i).getHand(j).hasBlackjack()) {
 						payout = bet + (bet/2);
-
 						playerList.get(i).getHand(j).setPayout(payout);
 					}
 				}
