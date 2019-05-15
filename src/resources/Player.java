@@ -20,6 +20,7 @@ public class Player implements Serializable{
 	private int cheatHeat;
 	private int balance = 0;
 	private PlayerChoice playerChoice;
+	private boolean hasMadeChoice;
 	
 	public Player(String username) {
 		hands = new ArrayList<>();
@@ -46,23 +47,17 @@ public class Player implements Serializable{
 		System.out.println("playerChoice = " + playerChoice.toString());
 	}
 	
-//		this.playerChoice = playerChoice;
-//		int choice = playerChoice.getChoice();
-//		if(choice == 1) {
-//			//hit
-//		}else if(choice == 2) {
-//			//stay
-//		}else if(choice == 3) {
-//			//double
-//		}else if(choice == 4) {
-//			//bet
-//			setHasMadeBet(true);
-//			setBet(playerChoice.getBet());
-//		}else if(choice == 5) {
-//			//cheat
-//			boolean cheatChoice = playerChoice.getCheatChoice();
-//			setCheatChoice(cheatChoice);
-//		}
+	public PlayerChoice getPlayerChoice() {
+		return playerChoice;
+	}
+	
+	public void setHasMadeChoice(boolean bool) {
+		this.hasMadeChoice = bool;
+	}
+	
+	public boolean getHasMadeChoice() {
+		return hasMadeChoice;
+	}
 	
 	//used to add a new hand when player is splitting
 	public void addNewHand() {
