@@ -10,9 +10,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.ImageView;
 import resources.DealerHand;
 import resources.Player;
-import server.TextWindow;
 
 public class GameController {
 	@FXML
@@ -26,6 +26,7 @@ public class GameController {
 	@FXML
 	private Label lblPlayer5;
 
+	private Label[] lblPlayersArray;
 	//	@FXML
 	//	private Label lblPlayerArray[];
 
@@ -66,6 +67,29 @@ public class GameController {
 	private Label lblDealer;
 	@FXML
 	private Label lblDealerCardSum;
+
+	@FXML
+	private ImageView iwPlayer1Card1;
+	@FXML
+	private ImageView iwPlayer1Card2;
+	@FXML
+	private ImageView iwPlayer2Card1;
+	@FXML
+	private ImageView iwPlayer2Card2;
+	@FXML
+	private ImageView iwPlayer3Card1;
+	@FXML
+	private ImageView iwPlayer3Card2;
+	@FXML
+	private ImageView iwPlayer4Card1;
+	@FXML
+	private ImageView iwPlayer4Card2;
+	@FXML
+	private ImageView iwPlayer5Card1;
+	@FXML
+	private ImageView iwPlayer5Card2;
+
+	private ImageView[] iwCardsArray;
 
 	@FXML
 	private Label lblTime;
@@ -117,7 +141,7 @@ public class GameController {
 
 	private Main mainApp;
 	private UserClient client;
-	
+
 	private boolean firstRound = true;
 
 	private int balance = 0;
@@ -134,8 +158,20 @@ public class GameController {
 
 	@FXML
 	private void initialize() {
-//		disableAllButtons(true);
+		//		disableAllButtons(true);
 		btnStartGame.setDisable(false);
+		iwCardsArray = new ImageView[10];
+		iwCardsArray[0] = iwPlayer1Card1;
+		iwCardsArray[1] = iwPlayer1Card2;
+		iwCardsArray[2] = iwPlayer2Card1;
+		iwCardsArray[3] = iwPlayer2Card2;
+		iwCardsArray[4] = iwPlayer3Card1;
+		iwCardsArray[5] = iwPlayer3Card2;
+		iwCardsArray[6] = iwPlayer4Card1;
+		iwCardsArray[7] = iwPlayer4Card2;
+		iwCardsArray[8] = iwPlayer5Card1;
+		iwCardsArray[9] = iwPlayer5Card2;
+
 	}
 
 	public void setDealerCardValue(int value) {
@@ -182,6 +218,19 @@ public class GameController {
 		this.minimumBet = minimumBet;
 		lblMinimumBet.setText("Minimum bet: " + minimumBet);
 
+	}
+
+	private void setPlayersLabel(int numberOfPlayers, ArrayList<Player> playerList) {
+		lblPlayersArray = new Label[5];
+		lblPlayersArray[0] = lblPlayer1;
+		lblPlayersArray[1] = lblPlayer2;
+		lblPlayersArray[2] = lblPlayer3;
+		lblPlayersArray[3] = lblPlayer4;
+		lblPlayersArray[4] = lblPlayer5;
+
+		for(int i = 0; i < numberOfPlayers; i++) {
+			lblPlayersArray[i].setText(playerList.get(i).getUsername());
+		}
 	}
 
 	//true will disable, false will enable
@@ -299,7 +348,7 @@ public class GameController {
 		btnIncreaseBet100.setDisable(false);
 		btnIncreaseBet500.setDisable(false);
 		btnClearBet.setDisable(false);
-		
+
 		btnConfirmBet.setText("Confirm: ");
 		btnConfirmBet.setDisable(false);
 		client.sendPlayerChoice(choice);
@@ -334,34 +383,18 @@ public class GameController {
 	public void updatePlayerList(ArrayList<Player> playerList) {
 		System.out.println("[GAME_CONTROLLER] == GameController har mottagit lista. Antal = " + playerList.size());
 		numberOfPlayers = playerList.size();
-		//		lblPlayerArray = new Label[numberOfPlayers];
+		setPlayersLabel(1, playerList);
 
-		if(numberOfPlayers == 1) {
-			lblPlayer1.setText(playerList.get(0).getUsername());
-		}
-		if(numberOfPlayers == 2) {
-			lblPlayer1.setText(playerList.get(0).getUsername());
-			lblPlayer2.setText(playerList.get(1).getUsername());
-		}
-		if(numberOfPlayers == 3) {
-			lblPlayer1.setText(playerList.get(0).getUsername());
-			lblPlayer2.setText(playerList.get(1).getUsername());
-			lblPlayer3.setText(playerList.get(2).getUsername());
-		}
-		if(numberOfPlayers == 4) {
-			lblPlayer1.setText(playerList.get(0).getUsername());
-			lblPlayer2.setText(playerList.get(1).getUsername());
-			lblPlayer3.setText(playerList.get(2).getUsername());
-			lblPlayer4.setText(playerList.get(3).getUsername());
-		}
-		if(numberOfPlayers == 5) {
-			lblPlayer1.setText(playerList.get(0).getUsername());
-			lblPlayer2.setText(playerList.get(1).getUsername());
-			lblPlayer3.setText(playerList.get(2).getUsername());
-			lblPlayer4.setText(playerList.get(3).getUsername());
-			lblPlayer5.setText(playerList.get(4).getUsername());
-		}
-
+		if(numberOfPlayers == 1) 
+			setPlayersLabel(1, playerList);
+		if(numberOfPlayers == 2) 
+			setPlayersLabel(2, playerList);
+		if(numberOfPlayers == 3) 
+			setPlayersLabel(3, playerList);
+		if(numberOfPlayers == 4) 
+			setPlayersLabel(4, playerList);
+		if(numberOfPlayers == 5) 
+			setPlayersLabel(5, playerList);
 	}
 
 	public void updateRoundInformation(ArrayList<Player> playerList, DealerHand dealer) {
@@ -447,45 +480,7 @@ public class GameController {
 			lblPlayer5CardSum.setText("" + playerList.get(4).getHand(0).getCurrentScore());
 
 			lblDealerCardSum.setText("" + dealer.getValue());
-
-
 		}
-
-
-	}
-
-
-	//Never used?
-	public void updateStartingMoney(int startingMoney) {
-		this.balance = startingMoney;
-		System.out.println("[GAME_CONTROLLER] == Balance = " + startingMoney);
-
-		if(numberOfPlayers == 1) {
-			lblPlayer1Balance.setText("Balance: " + startingMoney);
-		}
-		if(numberOfPlayers == 2) {
-			lblPlayer1Balance.setText("Balance: " + startingMoney);
-			lblPlayer2Balance.setText("Balance: " + startingMoney);
-		}
-		if(numberOfPlayers == 3) {
-			lblPlayer1Balance.setText("Balance: " + startingMoney);
-			lblPlayer2Balance.setText("Balance: " + startingMoney);
-			lblPlayer3Balance.setText("Balance: " + startingMoney);
-		}
-		if(numberOfPlayers == 4) {
-			lblPlayer1Balance.setText("Balance: " + startingMoney);
-			lblPlayer2Balance.setText("Balance: " + startingMoney);
-			lblPlayer3Balance.setText("Balance: " + startingMoney);
-			lblPlayer4Balance.setText("Balance: " + startingMoney);
-		}
-		if(numberOfPlayers == 5) {
-			lblPlayer1Balance.setText("Balance: " + startingMoney);
-			lblPlayer2Balance.setText("Balance: " + startingMoney);
-			lblPlayer3Balance.setText("Balance: " + startingMoney);
-			lblPlayer4Balance.setText("Balance: " + startingMoney);
-			lblPlayer5Balance.setText("Balance: " + startingMoney);
-		}
-
 	}
 
 	public void updatePlayerInfo(int player, int balance, int currentBet, int cardValue, int cheatHeat) {
