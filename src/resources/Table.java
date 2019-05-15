@@ -168,7 +168,7 @@ public class Table extends Thread implements Serializable {
 			printAllCards();			//TESTING
 			checkForBlackjack();		//checks if anyone hit 21 in their first 2 cards
 			flipDealerCard();			//flips the first card the dealer got, face-up
-			//		checkForSplit();			//check all the players and if they can split, and lets them if they want
+			checkForSplit();			//check all the players and if they can split, and lets them if they want
 //			checkInsurance();	//checks if the dealer got an ace, and if any player wants to buy insurance
 			checkPlayerChoices();		//lets the players play each hand
 			//		letPlayerBust();			//lets the players bust each other
@@ -401,57 +401,57 @@ public class Table extends Thread implements Serializable {
 		updateTableInformation();
 	}
 
-	private void checkForSplit(){
-		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 9 (kollar efter split) startad.");
-		//		boolean allTrue = false;
-		//		boolean[] allPlayerReady = null;
-		boolean allPlayersAllHandsChecked = false;
-
-		while(!allPlayersAllHandsChecked) {
-			for(int i = 0; i < playerList.size(); i++) {							//loops all the players
-				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {		//loops all the hand of all the players
-					TextWindow.println("Inside inner for-loop...");
-					if(playerList.get(i).getHand(j).ableToSplit()) {				//checks if a player can split a hand
-						TextWindow.println(playerList.get(i).getUsername() + " kan splitta sin hand.");
-						//wait until player has made a choice
-						while(!playerList.get(i).getHand(j).getSplitChoice()) {
-							try {
-								Thread.sleep(1000);
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-						}
-						if(playerList.get(i).getHand(j).wantToSplit()) {					//checks if a player wants to split a hand
-							Card card = playerList.get(i).getHand(j).getCard();				//gets a card from the hand
-							playerList.get(i).addNewHand();									//creates new hand
-							int numberOfHands = playerList.get(i).getNumberOfHands();		//checks how many hands a player has
-							playerList.get(i).getHand(numberOfHands).addCard(card);			//adds the card to the newest hand
-							if(playerList.get(i).getHand(j).size() == 1) { 					//if a player only has one card in one hand - adds new card
-								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());	//deals the actual card
-							}
-						}
-					}
-				}
-			}
-			int max = 0;
-			for (int i = 0; i < playerList.size(); i++){
-				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
-					if(playerList.get(i).getNumberOfHands() > max)
-						max = playerList.get(i).getNumberOfHands();
-				}
-			}
-			boolean[][] test = new boolean[playerList.size()][max];
-			//makes new array but loads no values into it
-			allPlayersAllHandsChecked = areAllTrue2d(test);
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			TextWindow.println("[TABLE=" + getTableId() + "] kollar efter splits...");
-		}
-		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 9 (kollar efter split) avslutad.");
-	}
+//	private void checkForSplit(){
+//		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 9 (kollar efter split) startad.");
+//		//		boolean allTrue = false;
+//		//		boolean[] allPlayerReady = null;
+//		boolean allPlayersAllHandsChecked = false;
+//
+//		while(!allPlayersAllHandsChecked) {
+//			for(int i = 0; i < playerList.size(); i++) {							//loops all the players
+//				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {		//loops all the hand of all the players
+//					TextWindow.println("Inside inner for-loop...");
+//					if(playerList.get(i).getHand(j).ableToSplit()) {				//checks if a player can split a hand
+//						TextWindow.println(playerList.get(i).getUsername() + " kan splitta sin hand.");
+//						//wait until player has made a choice
+//						while(!playerList.get(i).getHand(j).getSplitChoice()) {
+//							try {
+//								Thread.sleep(1000);
+//							} catch (InterruptedException e) {
+//								e.printStackTrace();
+//							}
+//						}
+//						if(playerList.get(i).getHand(j).wantToSplit()) {					//checks if a player wants to split a hand
+//							Card card = playerList.get(i).getHand(j).getCard();				//gets a card from the hand
+//							playerList.get(i).addNewHand();									//creates new hand
+//							int numberOfHands = playerList.get(i).getNumberOfHands();		//checks how many hands a player has
+//							playerList.get(i).getHand(numberOfHands).addCard(card);			//adds the card to the newest hand
+//							if(playerList.get(i).getHand(j).size() == 1) { 					//if a player only has one card in one hand - adds new card
+//								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());	//deals the actual card
+//							}
+//						}
+//					}
+//				}
+//			}
+//			int max = 0;
+//			for (int i = 0; i < playerList.size(); i++){
+//				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
+//					if(playerList.get(i).getNumberOfHands() > max)
+//						max = playerList.get(i).getNumberOfHands();
+//				}
+//			}
+//			boolean[][] test = new boolean[playerList.size()][max];
+//			//makes new array but loads no values into it
+//			allPlayersAllHandsChecked = areAllTrue2d(test);
+//			try {
+//				Thread.sleep(2000);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//			TextWindow.println("[TABLE=" + getTableId() + "] kollar efter splits...");
+//		}
+//		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 9 (kollar efter split) avslutad.");
+//	}
 
 	private void checkInsurance(){
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 10 (kollar om insurance behövs) startad.");
@@ -517,9 +517,23 @@ public class Table extends Thread implements Serializable {
 						TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername());
 						TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
 						keepPlaying = false;
+					}else if(choice == 6) {
+						boolean splitChoice = playerList.get(i).getHand(j).getSplitChoice();
+						if(splitChoice) {					//checks if a player wants to split a hand
+							Card card = playerList.get(i).getHand(j).getCard();				//gets a card from the hand
+							playerList.get(i).addNewHand();									//creates new hand
+							int numberOfHands = playerList.get(i).getNumberOfHands();		//checks how many hands a player has
+							playerList.get(i).getHand(numberOfHands).addCard(card);			//adds the card to the newest hand
+							if(playerList.get(i).getHand(j).size() == 1) { 					//if a player only has one card in one hand - adds new card
+								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());	//deals the actual card
+							}
+							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
+						}
 					}
-					if(!keepPlaying)
+					if(!keepPlaying) {
 						TextWindow.println("[TABLE] Runda slut för: " + playerList.get(i).getUsername());
+						playerList.get(i).getHand(j).setFinished(true);
+					}
 					updateTableInformation();
 					TextWindow.println("Tråd sover 2 sekunder.");
 					Thread.sleep(2000);

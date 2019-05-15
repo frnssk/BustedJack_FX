@@ -353,7 +353,9 @@ public class GameController {
 
 	@FXML 
 	private void handleSplit() {
-
+		PlayerChoice playerChoice = new PlayerChoice(6);
+		playerChoice.setSplitChoice(true);
+		client.sendPlayerChoice(playerChoice);
 	}
 
 	@FXML 
