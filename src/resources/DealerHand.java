@@ -27,9 +27,9 @@ public class DealerHand implements Serializable{
 		int currentScore = 0;
 		for(int i = 0; i < dealerHand.size(); i++) {
 			currentScore += dealerHand.get(i).getValue();
-			if(this.containsAce() && currentScore < 21) {
-				currentScore += 10;
-			}
+		}
+		if(this.containsAce() && (currentScore + 10) <= 21) {
+			currentScore += 10;
 		}
 		return currentScore;
 	}
@@ -38,6 +38,8 @@ public class DealerHand implements Serializable{
 		boolean contains = false;
 		for(int i = 0; i < dealerHand.size(); i++) {
 			contains = (dealerHand.get(i).getRank() == Rank.ACE);
+			if(contains)
+				break;
 		}
 		return contains;
 	}

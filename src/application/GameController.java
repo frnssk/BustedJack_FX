@@ -117,6 +117,8 @@ public class GameController {
 
 	private Main mainApp;
 	private UserClient client;
+	
+	private boolean firstRound = true;
 
 	private int balance = 0;
 	private int minimumBet = 0;
@@ -132,6 +134,8 @@ public class GameController {
 
 	@FXML
 	private void initialize() {
+//		disableAllButtons(true);
+		btnStartGame.setDisable(false);
 	}
 
 	public void setDealerCardValue(int value) {
@@ -183,6 +187,7 @@ public class GameController {
 	//true will disable, false will enable
 	public void disableAllButtons(boolean bool) { 
 		btnCheat.setDisable(bool);
+		btnDoNotCheat.setDisable(bool);
 		btnBust.setDisable(bool);
 		btnSplit.setDisable(bool);
 		btnDouble.setDisable(bool);
@@ -195,6 +200,7 @@ public class GameController {
 		btnConfirmBet.setDisable(bool);
 		btnClearBet.setDisable(bool);
 		btnStartGame.setDisable(bool);
+		btnExit.setDisable(bool);
 	}
 
 	@FXML
@@ -231,7 +237,9 @@ public class GameController {
 		} else {
 			btnConfirmBet.setText("Waiting...");
 			btnConfirmBet.setDisable(true);
-			PlayerChoice choice = new PlayerChoice(4, cheatHeat);
+			btnCheat.setDisable(true);
+			btnDoNotCheat.setDisable(true);
+			PlayerChoice choice = new PlayerChoice(4);
 			choice.setBet(currentBet); 
 			updateBalance();
 			client.sendPlayerChoice(choice);
@@ -266,8 +274,15 @@ public class GameController {
 	private void handleCheat() {
 		numberOfCheats++;
 		setCheatHeat(cheatHeat);
-		PlayerChoice choice = new PlayerChoice(5, cheatHeat);
-		choice.setCheatChoice(true);
+		PlayerChoice choice = new PlayerChoice(5);
+		choice.setCheatChoice(true); //Tells server that we will cheat 
+
+		btnIncreaseBet25.setDisable(false);
+		btnIncreaseBet50.setDisable(false);
+		btnIncreaseBet100.setDisable(false);
+		btnIncreaseBet500.setDisable(false);
+		btnClearBet.setDisable(false);
+
 		btnConfirmBet.setText("Confirm: ");
 		btnConfirmBet.setDisable(false);
 		client.sendPlayerChoice(choice);
@@ -276,8 +291,15 @@ public class GameController {
 	@FXML
 	private void handleDoNotCheat() {
 		setCheatHeat(cheatHeat);
-		PlayerChoice choice = new PlayerChoice(5, cheatHeat);
-		choice.setCheatChoice(false);
+		PlayerChoice choice = new PlayerChoice(5);
+		choice.setCheatChoice(false);//Tells server that we will NOT cheat 
+
+		btnIncreaseBet25.setDisable(false);
+		btnIncreaseBet50.setDisable(false);
+		btnIncreaseBet100.setDisable(false);
+		btnIncreaseBet500.setDisable(false);
+		btnClearBet.setDisable(false);
+		
 		btnConfirmBet.setText("Confirm: ");
 		btnConfirmBet.setDisable(false);
 		client.sendPlayerChoice(choice);
@@ -295,17 +317,17 @@ public class GameController {
 
 	@FXML 
 	private void handleDouble() {
-		client.sendPlayerChoice(new PlayerChoice(3, cheatHeat));
+		client.sendPlayerChoice(new PlayerChoice(3));
 	}
 
 	@FXML 
 	private void handleStay() {
-		client.sendPlayerChoice(new PlayerChoice(2, cheatHeat));
+		client.sendPlayerChoice(new PlayerChoice(2));
 	}
 
 	@FXML 
 	private void handleHit() {
-		client.sendPlayerChoice(new PlayerChoice(1, cheatHeat));
+		client.sendPlayerChoice(new PlayerChoice(1));
 		System.out.println("[GAME_CONTORLLER] == Någon har tryck HIT.");
 	}
 
@@ -347,6 +369,13 @@ public class GameController {
 
 		this.balance = playerList.get(0).getBalance();
 		System.out.println("[GAME_CONTROLLER] == Balance = " + balance);
+
+		if(firstRound) {
+			btnCheat.setDisable(false);
+			btnDoNotCheat.setDisable(false);
+			btnStartGame.setDisable(true);
+			firstRound = false;
+		}
 
 		if(numberOfPlayers == 2) {
 			lblPlayer1Balance.setText("Balance: " + playerList.get(0).getBalance());
