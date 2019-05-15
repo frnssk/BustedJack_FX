@@ -59,24 +59,6 @@ public class Player implements Serializable{
 		return hasMadeChoice;
 	}
 	
-//		this.playerChoice = playerChoice;
-//		int choice = playerChoice.getChoice();
-//		if(choice == 1) {
-//			//hit
-//		}else if(choice == 2) {
-//			//stay
-//		}else if(choice == 3) {
-//			//double
-//		}else if(choice == 4) {
-//			//bet
-//			setHasMadeBet(true);
-//			setBet(playerChoice.getBet());
-//		}else if(choice == 5) {
-//			//cheat
-//			boolean cheatChoice = playerChoice.getCheatChoice();
-//			setCheatChoice(cheatChoice);
-//		}
-	
 	//used to add a new hand when player is splitting
 	public void addNewHand() {
 		hands.add(new Hand());
