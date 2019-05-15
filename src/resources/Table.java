@@ -505,7 +505,7 @@ public class Table extends Thread implements Serializable {
 						playerList.get(i).getHand(j).addCard(card);
 						TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername());
 						TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
-						if(playerList.get(i).getHand(j).getCurrentScore() > 21)
+						if(playerList.get(i).getHand(j).getCurrentScore() >= 21)
 							keepPlaying = false;
 					}else if(choice == 2) {
 						keepPlaying = false;
@@ -524,7 +524,8 @@ public class Table extends Thread implements Serializable {
 					TextWindow.println("Tråd sover 2 sekunder.");
 					Thread.sleep(2000);
 					
-//					playerList.get(i).setPlayerChoice(new PlayerChoice(0));
+					playerList.get(i).setPlayerChoice(new PlayerChoice(0));
+					TextWindow.println("Test choice" + playerList.get(i).getHand(j).getPlayerChoice().getChoice());
 //					choice = 0;
 					 
 				}
