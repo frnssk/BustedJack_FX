@@ -208,7 +208,7 @@ public class Table extends Thread implements Serializable {
 	 * send timer + rounds + minibet
 	 */
 	public void sendStartingInformation() {
-		StartingInformation startInfo = new StartingInformation(this.getMinutes(), this.getRounds(), this.getMinimumBet());
+		StartingInformation startInfo = new StartingInformation(this.getMinutes(), this.getRounds(), this.getMinimumBet(), this.getStartingMoney());
 		for(int i = 0; i < clientList.size(); i++) {
 			clientList.get(i).output(startInfo);
 		}
@@ -258,10 +258,6 @@ public class Table extends Thread implements Serializable {
 			Player player = playerList.get(i);
 			while(!player.getHasMadeBet()) {
 				TextWindow.println("Inside while-loop");
-				int bet = player.getBet();
-				int newBalance = player.getBalance() - bet;
-				player.setBalance(newBalance);
-				TextWindow.println("[TABLE] >> " + player.getUsername() + ", summa = " + player.getBalance());
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -269,6 +265,12 @@ public class Table extends Thread implements Serializable {
 				}
 				updateTableInformation();
 			}
+			int bet = player.getBet();
+			TextWindow.println("[TABLE] >> " + player.getUsername() + ", bet = " + player.getBet());
+			int newBalance = player.getBalance();
+			newBalance -= bet;
+			player.setBalance(newBalance);
+			TextWindow.println("[TABLE] >> " + player.getUsername() + ", summa = " + player.getBalance());
 		}
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 3 (kollar insatser) avslutad.");
 		//		updateTableInformation();

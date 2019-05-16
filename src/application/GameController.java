@@ -153,6 +153,7 @@ public class GameController {
 	private int currentRound = 1;
 	private int numberOfCheats = 0;
 	private int cheatHeat = numberOfCheats / currentRound;
+	private int counter = 0;
 
 	@FXML
 	private void initialize() {
@@ -217,8 +218,9 @@ public class GameController {
 		lblTableId.setText("Table ID: " + tableId);
 	}
 
-	public void setStartingInformation(int rounds, int minutes, int minimumBet) {
+	public void setStartingInformation(int rounds, int minutes, int minimumBet, int balance) {
 		setRounds(rounds);
+		this.balance = balance;
 		lblTime.setText("Timer: " + minutes);
 		this.minimumBet = minimumBet;
 		lblMinimumBet.setText("Minimum bet: " + minimumBet);
@@ -408,8 +410,8 @@ public class GameController {
 	public void updateRoundInformation(ArrayList<Player> playerList, DealerHand dealer) {
 		System.out.println("[GAME_CONTROLLER] == GameController har mottagit updateRoundInformation");
 
-		this.balance = playerList.get(0).getBalance();
-		System.out.println("[GAME_CONTROLLER] == Balance = " + balance);
+	//	this.balance = playerList.get(0).getBalance();
+	//	System.out.println("[GAME_CONTROLLER] == Balance = " + balance);
 
 		if(firstRound) {
 			btnCheat.setDisable(false);

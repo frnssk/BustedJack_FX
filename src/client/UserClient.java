@@ -276,8 +276,9 @@ public class UserClient {
 						int rounds = info.getNumberOfRounds();
 						int time = info.getNumberOfMinutes();
 						int minBet = info.getMinimumBet();
+						int balance = info.getStartingMoney();
 						Platform.runLater(() -> {
-							gameController.setStartingInformation(rounds, time, minBet);
+							gameController.setStartingInformation(rounds, time, minBet, balance);
 						});
 					}
 					else if(obj instanceof TableID) {

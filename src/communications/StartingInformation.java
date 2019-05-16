@@ -8,11 +8,13 @@ public class StartingInformation implements Serializable {
 	private int numberOfMinutes;
 	private int numberOfRounds;
 	private int minimumBet;
+	private int startingMoney;
 	
-	public StartingInformation(int minutes, int rounds, int miniBet) {
+	public StartingInformation(int minutes, int rounds, int miniBet, int startingMoney) {
 		this.numberOfMinutes = minutes;
 		this.numberOfRounds = rounds;
 		this.minimumBet = miniBet;
+		this.startingMoney = startingMoney;
 	}
 	
 	public int getNumberOfMinutes() {
@@ -25,6 +27,9 @@ public class StartingInformation implements Serializable {
 	
 	public int getMinimumBet() {
 		return minimumBet;
+	}
+	public int getStartingMoney() {
+		return startingMoney;
 	}
 
 }
