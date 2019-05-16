@@ -246,9 +246,17 @@ public class GameController {
 
 	@FXML
 	private void handleStartGame() throws IOException {
-		client.sendStartGame(new StartGameRequest(1));
+		if(numberOfPlayers < 2) {
+			try {
+				mainApp.showAlert("Alert", "You need atleast two players to start the game");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			btnStartGame.setDisable(true);
+		}else {
+			client.sendStartGame(new StartGameRequest(1));
+		}
 	}
-
 	@FXML
 	private void handleExit() throws IOException {
 		//Code for exiting game
