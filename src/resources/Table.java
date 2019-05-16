@@ -499,8 +499,8 @@ public class Table extends Thread implements Serializable {
 				boolean keepPlaying = true;
 				while(keepPlaying) {
 					if(playerList.get(i).getHand(j).hasBlackjack()) {
-						keepPlaying = false;
 						TextWindow.println("[TABLE=" + getTableId() + "] >> " + playerList.get(i).getUsername() + " har blackjack");
+						keepPlaying = false;
 					}
 					int choice = playerList.get(i).getHand(j).getPlayerChoice().getChoice();
 					TextWindow.println("while-keepPlaying");
