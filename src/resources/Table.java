@@ -259,7 +259,7 @@ public class Table extends Thread implements Serializable {
 			while(!player.getHasMadeBet()) {
 				TextWindow.println("Inside while-loop");
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(2000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -498,6 +498,10 @@ public class Table extends Thread implements Serializable {
 //				int choice = playerList.get(i).getHand(j).getPlayerChoice().getChoice();
 				boolean keepPlaying = true;
 				while(keepPlaying) {
+					if(playerList.get(i).getHand(j).hasBlackjack()) {
+						keepPlaying = false;
+						TextWindow.println("[TABLE=" + getTableId() + "] >> " + playerList.get(i).getUsername() + " har blackjack");
+					}
 					int choice = playerList.get(i).getHand(j).getPlayerChoice().getChoice();
 					TextWindow.println("while-keepPlaying");
 					TextWindow.println("int choice = " + choice);
@@ -655,8 +659,12 @@ public class Table extends Thread implements Serializable {
 
 	//as long as the dealer has less than 17, keeps on adding a card
 	private void letDealerPlay(){
+		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 12 (låter dealer spela) startad.");
 		while(dealer.getValue() < 17) {
-			dealer.addCard(regularShoe.dealCard());
+			Card card = regularShoe.dealCard();
+			dealer.addCard(card);
+			TextWindow.println("Dealern får " + card.toString());
+			updateTableInformation();
 			try {
 				Thread.sleep(1500);
 			} catch (InterruptedException e) {
@@ -668,6 +676,7 @@ public class Table extends Thread implements Serializable {
 
 	//compare the scores of all the players to the dealer
 	private void compareDealerToPlayers() {
+		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 13 (jämför spelare mot dealer) startar.");
 		//		boolean[] playerWin = new boolean[playerList.size()];
 		for(int i = 0; i < playerList.size(); i++) {
 			int hands = playerList.get(i).getNumberOfHands();
@@ -696,20 +705,26 @@ public class Table extends Thread implements Serializable {
 	}
 
 	private void payout() {
+		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 13 (delar ut pengar) startar.");
 		for(int i = 0; i < playerList.size(); i++) {
 			int hands = playerList.get(i).getNumberOfHands();
 			for(int j = 0; j < hands; j++) {
 				int win = playerList.get(i).getHand(j).isHandWin();
 				if(win == 1) {
-					int bet = playerList.get(i).getHand(j).getBet();
+					int bet = playerList.get(i).getBet();
 					int payout = bet * 2;
+					playerList.get(i).setBalance(playerList.get(i).getBalance() + payout);
+					TextWindow.println(playerList.get(i).getUsername() + " vann");
 					if(playerList.get(i).getHand(j).hasBlackjack()) {
 						payout = bet + (bet/2);
 						playerList.get(i).getHand(j).setPayout(payout);
+						playerList.get(i).setBalance(playerList.get(i).getBalance() + payout);
+						TextWindow.println(playerList.get(i).getUsername() + " fick black jack");
 					}
 				}
 			}
 		}
+		updateTableInformation();
 	}
 
 	//checks if all the values in a boolean array are true
