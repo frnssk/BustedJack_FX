@@ -37,9 +37,12 @@ public class Player implements Serializable{
 		System.out.println("PlayerChoice mottagit = " + this.playerChoice.getChoice());
 //		hands.get(0).setPlayerChoice(this.playerChoice);
 		for(int i = 0; i < hands.size(); i++) {
-			while(!hands.get(i).getFinished()) {
+			boolean handIsReady = false;
+			while(!handIsReady) {
 				hands.get(i).setPlayerChoice(playerChoice);
+				handIsReady = hands.get(i).getFinished();
 			}
+			
 		}
 		
 		if(this.playerChoice.getChoice() == 4) {

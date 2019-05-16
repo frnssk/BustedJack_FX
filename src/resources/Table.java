@@ -168,7 +168,7 @@ public class Table extends Thread implements Serializable {
 			printAllCards();			//TESTING
 			checkForBlackjack();		//checks if anyone hit 21 in their first 2 cards
 			flipDealerCard();			//flips the first card the dealer got, face-up
-			checkForSplit();			//check all the players and if they can split, and lets them if they want
+//			checkForSplit();			//check all the players and if they can split, and lets them if they want
 //			checkInsurance();	//checks if the dealer got an ace, and if any player wants to buy insurance
 			checkPlayerChoices();		//lets the players play each hand
 			//		letPlayerBust();			//lets the players bust each other
@@ -505,9 +505,18 @@ public class Table extends Thread implements Serializable {
 						playerList.get(i).getHand(j).addCard(card);
 						TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername());
 						TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
+<<<<<<< HEAD
 						if(playerList.get(i).getHand(j).getCurrentScore() >= 21)
+=======
+						playerList.get(i).setPlayerChoice(new PlayerChoice(0));
+						if(playerList.get(i).getHand(j).getCurrentScore() >= 21) {
+//							playerList.get(i).getHand(j).setFinished(true);
+>>>>>>> rasmus2.0
 							keepPlaying = false;
+						}
 					}else if(choice == 2) {
+						playerList.get(i).setPlayerChoice(new PlayerChoice(0));
+//						playerList.get(i).getHand(j).setFinished(true);
 						keepPlaying = false;
 					}else if(choice == 3) {
 						int bet = playerList.get(i).getBet();
@@ -516,33 +525,46 @@ public class Table extends Thread implements Serializable {
 						playerList.get(i).getHand(j).addCard(card);
 						TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername());
 						TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
+						playerList.get(i).setPlayerChoice(new PlayerChoice(0));
+//						playerList.get(i).getHand(j).setFinished(true);
 						keepPlaying = false;
 					}else if(choice == 6) {
 						boolean splitChoice = playerList.get(i).getHand(j).getSplitChoice();
+						TextWindow.println("SplitChoice = " + splitChoice);
 						if(splitChoice) {					//checks if a player wants to split a hand
+							TextWindow.println("Inside if-statement");
 							Card card = playerList.get(i).getHand(j).getCard();				//gets a card from the hand
 							playerList.get(i).addNewHand();									//creates new hand
 							int numberOfHands = playerList.get(i).getNumberOfHands();		//checks how many hands a player has
-							playerList.get(i).getHand(numberOfHands).addCard(card);			//adds the card to the newest hand
-							if(playerList.get(i).getHand(j).size() == 1) { 					//if a player only has one card in one hand - adds new card
-								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());	//deals the actual card
-							}
+							playerList.get(i).getHand(numberOfHands-1).addCard(card);			//adds the card to the newest hand
+							playerList.get(i).getHand(j).addCard(regularShoe.dealCard());
+							playerList.get(i).getHand(j+1).addCard(regularShoe.dealCard());
+							TextWindow.println("Antal händer= " + playerList.get(i).getNumberOfHands());
+							updateTableInformation();
+//							if(playerList.get(i).getHand(j).size() == 1) { 					//if a player only has one card in one hand - adds new card
+//								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());	//deals the actual card
+//							}
 							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 						}
 					}
 					if(!keepPlaying) {
-						TextWindow.println("[TABLE] Runda slut för: " + playerList.get(i).getUsername());
+						TextWindow.println("[TABLE] " + playerList.get(i).getUsername() + " har spelat klart hand: " + j);
 						playerList.get(i).getHand(j).setFinished(true);
 					}
 					updateTableInformation();
 					TextWindow.println("Tråd sover 2 sekunder.");
+<<<<<<< HEAD
 					Thread.sleep(2000);
 					
 					playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 					TextWindow.println("Test choice" + playerList.get(i).getHand(j).getPlayerChoice().getChoice());
 //					choice = 0;
+=======
+					Thread.sleep(4000);
+>>>>>>> rasmus2.0
 					 
 				}
+				TextWindow.println("Runda slut för " + playerList.get(i).getUsername());
 			}
 		}
 
@@ -681,7 +703,6 @@ public class Table extends Thread implements Serializable {
 					int payout = bet * 2;
 					if(playerList.get(i).getHand(j).hasBlackjack()) {
 						payout = bet + (bet/2);
-
 						playerList.get(i).getHand(j).setPayout(payout);
 					}
 				}
