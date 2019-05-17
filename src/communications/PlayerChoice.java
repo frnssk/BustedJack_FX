@@ -55,4 +55,9 @@ public class PlayerChoice implements Serializable{
 	public String toString() {
 		return "int choice" + choice;
 	}
+	public void reset() {
+		this.bet = 0;
+		this.choice = 0;
+		this.splitChoice = false;
+	}
 }

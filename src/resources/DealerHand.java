@@ -51,6 +51,9 @@ public class DealerHand implements Serializable{
 		}
 		return string;
 	}
+	public void clear() {
+		dealerHand.clear();
+	}
 	
 
 }

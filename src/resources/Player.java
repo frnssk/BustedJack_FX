@@ -99,6 +99,10 @@ public class Player implements Serializable{
 		return hasMadeCheatChoice;
 	}
 	
+	public void setHasMadeCheatChoice(boolean bool) {
+		this.hasMadeCheatChoice = bool;
+	}
+	
 	//used by table to decide if the player wants card from regular or cheat deck
 	public boolean getCheatChoice() {
 		return cheatChoice;
@@ -138,6 +142,9 @@ public class Player implements Serializable{
 	 */
 	public String getUsername() {
 		return username;
+	}
+	public void removeHands() {
+		hands.clear();
 	}
 
 }

@@ -288,12 +288,13 @@ public class GameController {
 		} else {
 			btnConfirmBet.setText("Waiting...");
 			btnConfirmBet.setDisable(true);
-			btnCheat.setDisable(true);
-			btnDoNotCheat.setDisable(true);
+	//		btnCheat.setDisable(true);
+	//		btnDoNotCheat.setDisable(true);
 			PlayerChoice choice = new PlayerChoice(4);
 			choice.setBet(currentBet); 
 			updateBalance();
 			client.sendPlayerChoice(choice);
+			currentBet = 0;
 		}
 	}
 
