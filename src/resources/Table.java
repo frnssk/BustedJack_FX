@@ -157,9 +157,7 @@ public class Table extends Thread implements Serializable {
 			sendStartingInformation();	//updates all the clients with time/rounds/miniBet
 			int i = 0;
 			int rounds = numberOfRounds;
-			while( i <= rounds) {
-				
-				
+			while( i <= rounds) {			
 			
 			//		testingChoices();
 			checkCheatChoice();			//controls that every player made a choice
@@ -268,7 +266,7 @@ public class Table extends Thread implements Serializable {
 			TextWindow.println("Inside for-loop");
 			Player player = playerList.get(i);
 			while(!player.getHasMadeBet()) {
-				TextWindow.println("Inside while-loop");
+				TextWindow.println("Inside while-loop, wating for bets");
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
@@ -363,6 +361,7 @@ public class Table extends Thread implements Serializable {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 6 (dealer får kort " + card.toString());
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 6 (delar ut kort till dealer) avslutad.");
 		Thread.sleep(2000);
+		updateTableInformation();
 	}
 
 	//checks if a player has BlackJack, hand by hand, if not - he can continue playing
