@@ -21,7 +21,7 @@ public class Player implements Serializable{
 	private int balance = 0;
 	private PlayerChoice playerChoice;
 	private boolean hasMadeChoice;
-//	private boolean 
+	private boolean playerIsOut;
 	
 	public Player(String username) {
 		hands = new ArrayList<>();
@@ -146,6 +146,14 @@ public class Player implements Serializable{
 	}
 	public void removeHands() {
 		hands.clear();
+	}
+
+	public boolean isPlayerIsOut() {
+		return playerIsOut;
+	}
+
+	public void setPlayerIsOut(boolean playerIsOut) {
+		this.playerIsOut = playerIsOut;
 	}
 
 }
