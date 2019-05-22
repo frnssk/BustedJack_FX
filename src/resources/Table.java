@@ -153,6 +153,7 @@ public class Table extends Thread implements Serializable {
 	public void run() {
 		try {
 			TextWindow.println("[TABLE=" + getTableId() + "]"+ " >> tråd för bordet startad.");
+			TextWindow.println("[TABLE=" + getTableId() + "]"+ " >> BustedJack 2019.");
 			startGame();				//starts game and sets the balance for every player
 			sendStartingInformation();	//updates all the clients with time/rounds/miniBet
 			int i = 0;
