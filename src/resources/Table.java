@@ -238,7 +238,7 @@ public class Table extends Thread implements Serializable {
 			for(int i = 0; i < playerList.size(); i++) {
 				if(!playerList.get(i).isPlayerIsOut()) {
 					allPlayerChoices[i] = playerList.get(i).getHasMadeCheatChoice();
-					Thread.sleep(1000);
+					Thread.sleep(500);
 					updateTableInformation();
 				}
 			}
@@ -262,7 +262,7 @@ public class Table extends Thread implements Serializable {
 				while(!player.getHasMadeBet()) {
 					TextWindow.println("Inside while-loop, wating for bets");
 					try {
-						Thread.sleep(2000);
+						Thread.sleep(500);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -277,7 +277,6 @@ public class Table extends Thread implements Serializable {
 			}
 		}
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 3 (kollar insatser) avslutad.");
-		//		updateTableInformation();
 		for(int i = 0; i < clientList.size(); i++) {
 			clientList.get(i).output(new UpdateUI("Dealing cards..."));
 		}
@@ -298,14 +297,14 @@ public class Table extends Thread implements Serializable {
 						Card card = cheatShoe.dealCard();
 						playerList.get(i).getHand(j).addCard(card);
 						TextWindow.println("Lägger till kort, " + card.toString() + " från fusklek hos: " + playerList.get(i).getUsername());
-						Thread.sleep(1000);
+						Thread.sleep(500);
 					}else{
 						Card card = regularShoe.dealCard();
 						playerList.get(i).getHand(j).addCard(card);
 						TextWindow.println("Lägger till kort , " + card.toString() + " från vanlig lek hos: " + playerList.get(i).getUsername());
 					}
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(500);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -324,7 +323,7 @@ public class Table extends Thread implements Serializable {
 				playerList.get(i).setCheatChoice(false);
 		}
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 5 (reset playerChoice avslutad.");
-		Thread.sleep(2000);
+		Thread.sleep(500);
 	}
 
 	//deals a single card to the dealer
@@ -335,7 +334,7 @@ public class Table extends Thread implements Serializable {
 		dealer.addCard(card);
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 6 (dealer f�r kort " + card.toString());
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 6 (delar ut kort till dealer) avslutad.");
-		Thread.sleep(2000);
+		Thread.sleep(500);
 		updateTableInformation();
 	}
 
@@ -357,7 +356,7 @@ public class Table extends Thread implements Serializable {
 			}
 		}
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 7 (kollar efter BlackJack) avslutad.");
-		Thread.sleep(2000);
+		Thread.sleep(500);
 	}
 
 	//never used yet
@@ -388,7 +387,7 @@ public class Table extends Thread implements Serializable {
 				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
 					while(!playerList.get(i).getHand(j).getHasMadeInsuranceChoice()) {
 						try {
-							Thread.sleep(1000);
+							Thread.sleep(500);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
@@ -489,13 +488,13 @@ public class Table extends Thread implements Serializable {
 						updateTableInformation();
 
 						TextWindow.println("Tråd sover 2 sekunder.");
-						Thread.sleep(2000);
+						Thread.sleep(500);
 
 						playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 						TextWindow.println("Test choice" + playerList.get(i).getHand(j).getPlayerChoice().getChoice());
 						choice = 0;
 
-						Thread.sleep(2000);
+						Thread.sleep(500);
 					}
 					TextWindow.println("Runda slut för " + playerList.get(i).getUsername());
 				}
