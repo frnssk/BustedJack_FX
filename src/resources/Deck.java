@@ -25,7 +25,6 @@ public class Deck implements Serializable {
 				if(suit.toString().equalsIgnoreCase("hearts")) {
 					card.setFace("cards/hjärter" + i + ".png");
 					card.setVisibility(true);
-//					card.setSize(50, 100);
 				}
 				if(suit.toString().equalsIgnoreCase("spades")) {
 					card.setFace("cards/spader" + i + ".png");
