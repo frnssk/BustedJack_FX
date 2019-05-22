@@ -340,6 +340,7 @@ public class GameController {
 		btnConfirmBet.setText("Confirm: ");
 		btnConfirmBet.setDisable(false);
 		client.sendPlayerChoice(choice);
+		System.out.println("[GAME_CONTORLLER] == Du har tryck CHEAT.");
 	}
 
 	@FXML
@@ -357,10 +358,12 @@ public class GameController {
 		btnConfirmBet.setText("Confirm: ");
 		btnConfirmBet.setDisable(false);
 		client.sendPlayerChoice(choice);
+		System.out.println("[GAME_CONTORLLER] == Du har tryck DO NOT CHEAT.");
 	}
 
 	@FXML 
 	private void handleBust() {
+		System.out.println("[GAME_CONTORLLER] == Du har tryck BUST.");
 
 	}
 
@@ -369,22 +372,25 @@ public class GameController {
 		PlayerChoice playerChoice = new PlayerChoice(6);
 		playerChoice.setSplitChoice(true);
 		client.sendPlayerChoice(playerChoice);
+		System.out.println("[GAME_CONTORLLER] == Du har tryck SPLIT.");
 	}
 
 	@FXML 
 	private void handleDouble() {
 		client.sendPlayerChoice(new PlayerChoice(3));
+		System.out.println("[GAME_CONTORLLER] == Du har tryck DOUBLE.");
 	}
 
 	@FXML 
 	private void handleStay() {
 		client.sendPlayerChoice(new PlayerChoice(2));
+		System.out.println("[GAME_CONTORLLER] == Du har tryck STAY.");
 	}
 
 	@FXML 
 	private void handleHit() {
 		client.sendPlayerChoice(new PlayerChoice(1));
-		System.out.println("[GAME_CONTORLLER] == Någon har tryck HIT.");
+		System.out.println("[GAME_CONTORLLER] == Du har tryck HIT.");
 	}
 
 	public void updatePlayerList(ArrayList<Player> playerList) {
