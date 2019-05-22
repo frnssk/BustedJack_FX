@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 import communications.PlayerChoice;
 import communications.StartingInformation;
 import communications.TableID;
@@ -198,6 +200,7 @@ public class Table extends Thread implements Serializable {
 			TextWindow.println("Summa: " + playerList.get(i).getHand(0).getCurrentScore());
 		}
 		TextWindow.println("Summa dealer: " + dealer.getValue() + ", KORT= " + dealer.toString());
+		JOptionPane.showMessageDialog(null, dealer.getCard(0).getFront());
 	}
 
 	/*
@@ -359,7 +362,7 @@ public class Table extends Thread implements Serializable {
 		Card card = regularShoe.dealCard();
 		card.setVisibility(false);
 		dealer.addCard(card);
-		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 6 (dealer får kort " + card.toString());
+		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 6 (dealer fï¿½r kort " + card.toString());
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 6 (delar ut kort till dealer) avslutad.");
 		Thread.sleep(2000);
 		updateTableInformation();
@@ -671,11 +674,11 @@ public class Table extends Thread implements Serializable {
 
 	//as long as the dealer has less than 17, keeps on adding a card
 	private void letDealerPlay(){
-		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 12 (låter dealer spela) startad.");
+		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 12 (lï¿½ter dealer spela) startad.");
 		while(dealer.getValue() < 17) {
 			Card card = regularShoe.dealCard();
 			dealer.addCard(card);
-			TextWindow.println("Dealern får " + card.toString());
+			TextWindow.println("Dealern fï¿½r " + card.toString());
 			updateTableInformation();
 			try {
 				Thread.sleep(1500);
@@ -688,7 +691,7 @@ public class Table extends Thread implements Serializable {
 
 	//compare the scores of all the players to the dealer
 	private void compareDealerToPlayers() {
-		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 13 (jämför spelare mot dealer) startar.");
+		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 13 (jï¿½mfï¿½r spelare mot dealer) startar.");
 		//		boolean[] playerWin = new boolean[playerList.size()];
 		for(int i = 0; i < playerList.size(); i++) {
 			int hands = playerList.get(i).getNumberOfHands();
@@ -740,7 +743,7 @@ public class Table extends Thread implements Serializable {
 	}
 	// reset values of all players to start a new round
 	private void reset() {
-		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 15 Reset värden");
+		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 15 Reset vï¿½rden");
 		dealer.clear();
 		for(int i = 0; i < playerList.size() ; i++) {
 //			int hands =  playerList.get(i).getNumberOfHands();			
