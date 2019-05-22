@@ -21,6 +21,7 @@ public class Player implements Serializable{
 	private int balance = 0;
 	private PlayerChoice playerChoice;
 	private boolean hasMadeChoice;
+//	private boolean 
 	
 	public Player(String username) {
 		hands = new ArrayList<>();
