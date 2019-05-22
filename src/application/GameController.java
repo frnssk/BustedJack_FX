@@ -65,6 +65,8 @@ public class GameController {
 	private Label lblDealer;
 	@FXML
 	private Label lblDealerCardSum;
+	@FXML
+	private Label lblUpdate;
 
 	@FXML
 	private ImageView iwPlayer1Card1;
@@ -406,6 +408,10 @@ public class GameController {
 		for(int i = 0; i < numberOfPlayers; i++) {
 			lblPlayersArray[i].setText(playerList.get(i).getUsername());
 		}
+	}
+	
+	public void updateRoundMessage(String message) {
+		lblUpdate.setText(message);
 	}
 
 	public void updateRoundInformation(ArrayList<Player> playerList, DealerHand dealer) {

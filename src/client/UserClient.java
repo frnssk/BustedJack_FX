@@ -22,6 +22,7 @@ import communications.StartGameRequest;
 import communications.StartingInformation;
 import communications.TableID;
 import communications.UpdateClientInformation;
+import communications.UpdateUI;
 import javafx.application.Platform;
 import resources.DealerHand;
 import resources.Player;
@@ -297,6 +298,14 @@ public class UserClient {
 						Platform.runLater(() -> {
 							
 							gameController.updateRoundInformation(playerList, dealer);
+							System.out.println("[CLIENT] == UpdateRoundInfo skickad till gameController");
+						});
+					}
+					else if(obj instanceof UpdateUI) {
+						System.out.println("[CLIENT] == UpdateUI mottagen");
+						UpdateUI update = (UpdateUI) obj;
+						Platform.runLater(() -> {
+							gameController.updateRoundMessage(update.getText());
 							System.out.println("[CLIENT] == UpdateRoundInfo skickad till gameController");
 						});
 					}
