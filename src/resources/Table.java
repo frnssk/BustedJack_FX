@@ -160,8 +160,7 @@ public class Table extends Thread implements Serializable {
 			startGame();				//starts game and sets the balance for every player
 			sendStartingInformation();	//updates all the clients with time/rounds/miniBet
 			int i = 0;
-			int rounds = numberOfRounds;
-			while( i <= rounds) {
+			while( i <= numberOfRounds) {
 				//		testingChoices();
 				checkCheatChoice();			//controls that every player made a choice
 				checkBets();
@@ -188,6 +187,7 @@ public class Table extends Thread implements Serializable {
 				sendStartingInformation();
 			}
 		}catch(InterruptedException e) {}
+//		send exitgame
 	}
 
 	/*
@@ -423,11 +423,11 @@ public class Table extends Thread implements Serializable {
 					for(int k = 0; k < clientList.size(); k++) {
 						clientList.get(k).output(new UpdateUI(playerList.get(i).getUsername() + "'s turn to play hand: " + (j+1) + "..."));
 					}
-					//					boolean test = playerList.get(i).getHand(j).getHasMadePlayChoice();
 					boolean keepPlaying = true;
 					playerList.get(i).getHand(j).setDisplayValue(true);
+					
 					updateTableInformation();
-					//
+					
 					playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 					while(keepPlaying) {
 						if(playerList.get(i).getHand(j).hasBlackjack()) {
@@ -509,35 +509,19 @@ public class Table extends Thread implements Serializable {
 								newBalance -= playerList.get(i).getHand(j).getBet();
 								playerList.get(i).setBalance(newBalance);
 								TextWindow.println("Antal händer= " + playerList.get(i).getNumberOfHands());
-//								updateTableInformation();
-								//							if(playerList.get(i).getHand(j).size() == 1) { 					//if a player only has one card in one hand - adds new card
-								//								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());	//deals the actual card
-								//							}
 								playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 								updateTableInformation();
-								//								choice = 0;
 							}
 						}
 						if(!keepPlaying) {
 							TextWindow.println("[TABLE] " + playerList.get(i).getUsername() + " har spelat klart hand: " + j);
 							playerList.get(i).getHand(j).setDisplayValue(false);;
-							//
 							choice = 0;
 							updateTableInformation();
 						}
-				//		updateTableInformation();
-
-						//						TextWindow.println("Tråd sover 2 sekunder.");
-						//						Thread.sleep(1000);
-
-						//						playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-						//						TextWindow.println("Test choice" + playerList.get(i).getHand(j).getPlayerChoice().getChoice());
-						//						choice = 0;
-
 						Thread.sleep(1000);
 					}
 					TextWindow.println("Runda slut för " + playerList.get(i).getUsername());
-					//
 					playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 					TextWindow.println("Test choice" + playerList.get(i).getHand(j).getPlayerChoice().getChoice());
 
