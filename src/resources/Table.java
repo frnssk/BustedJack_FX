@@ -242,7 +242,7 @@ public class Table extends Thread implements Serializable {
 					updateTableInformation();
 				}else {
 					allPlayerChoices[i] = true;
-//					playerList.get(i).setHasMadeCheatChoice(true);
+					//					playerList.get(i).setHasMadeCheatChoice(true);
 				}
 			}
 			allPlayersReady = areAllTrue(allPlayerChoices);
@@ -287,7 +287,7 @@ public class Table extends Thread implements Serializable {
 			clientList.get(i).output(new UpdateUI("Dealing cards..."));
 		}
 	}
-	
+
 	//deals a single card to each of the players, depending on what choice they made
 	private void dealCardToPlayers() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 4 (delar ut kort) startar.");
@@ -353,11 +353,9 @@ public class Table extends Thread implements Serializable {
 				for(int j = 0; j < hands; j++) {
 					if(playerList.get(i).getHand(j).getCurrentScore() == 21) {
 						playerList.get(i).getHand(j).setBlackjack(true);
-						for(int k = 0; k < clientList.size(); k++) {
-							clientList.get(k).output(new UpdateUI(playerList.get(i).getUsername() + " got Black Jack!!!"));
-						}
+						clientList.get(i).output(new UpdateUI(playerList.get(i).getUsername() + " got Black Jack!!!"));
 					}
-					updateTableInformation();
+//					updateTableInformation();
 				}
 			}
 		}
@@ -420,12 +418,12 @@ public class Table extends Thread implements Serializable {
 
 		for(int i = 0; i < playerList.size(); i++) {
 			if(!playerList.get(i).isPlayerIsOut()) {
-//				TextWindow.println("[TABLE=" + getTableId() + "] >> " + playerList.get(i).getUsername() + "s tur.");
+				//				TextWindow.println("[TABLE=" + getTableId() + "] >> " + playerList.get(i).getUsername() + "s tur.");
 				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
 					for(int k = 0; k < clientList.size(); k++) {
 						clientList.get(k).output(new UpdateUI(playerList.get(i).getUsername() + "'s turn to play hand: " + (j+1) + "..."));
 					}
-//					boolean test = playerList.get(i).getHand(j).getHasMadePlayChoice();
+					//					boolean test = playerList.get(i).getHand(j).getHasMadePlayChoice();
 					boolean keepPlaying = true;
 					playerList.get(i).getHand(j).setDisplayValue(true);
 					//
@@ -457,10 +455,10 @@ public class Table extends Thread implements Serializable {
 								playerList.get(i).getHand(j).setFinished(true);
 								playerList.get(i).getHand(j).setDisplayValue(false);
 								//
-//								choice = 0;
+								//								choice = 0;
 								keepPlaying = false;	
 							}
-							
+
 						}else if(choice == 2) {
 							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 							TextWindow.println("FUCK SHIT UP");
@@ -512,7 +510,7 @@ public class Table extends Thread implements Serializable {
 								//								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());	//deals the actual card
 								//							}
 								playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-//								choice = 0;
+								//								choice = 0;
 							}
 						}
 						if(!keepPlaying) {
@@ -523,12 +521,12 @@ public class Table extends Thread implements Serializable {
 						}
 						updateTableInformation();
 
-//						TextWindow.println("Tråd sover 2 sekunder.");
-//						Thread.sleep(1000);
+						//						TextWindow.println("Tråd sover 2 sekunder.");
+						//						Thread.sleep(1000);
 
-//						playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-//						TextWindow.println("Test choice" + playerList.get(i).getHand(j).getPlayerChoice().getChoice());
-//						choice = 0;
+						//						playerList.get(i).setPlayerChoice(new PlayerChoice(0));
+						//						TextWindow.println("Test choice" + playerList.get(i).getHand(j).getPlayerChoice().getChoice());
+						//						choice = 0;
 
 						Thread.sleep(1000);
 					}
@@ -536,7 +534,7 @@ public class Table extends Thread implements Serializable {
 					//
 					playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 					TextWindow.println("Test choice" + playerList.get(i).getHand(j).getPlayerChoice().getChoice());
-					
+
 				}
 			}
 		}

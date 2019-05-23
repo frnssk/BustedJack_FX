@@ -236,6 +236,11 @@ public class UserClient {
 		public Connection(Socket socket) throws IOException {
 			output = new ObjectOutputStream(socket.getOutputStream());
 			input = new ObjectInputStream(socket.getInputStream());
+			
+			BufferedOutputStream output2 = new BufferedOutputStream(output);
+			BufferedInputStream input2 = new BufferedInputStream(input);
+			
+//			output2 = new BufferedOutputStream(output);
 		}
 
 		public void run() {
