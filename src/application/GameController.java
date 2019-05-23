@@ -452,7 +452,6 @@ public class GameController {
 			lblPlayer1Balance.setText("Balance: " + playerList.get(0).getBalance());
 			lblPlayer1Bet.setText("Bet: " + playerList.get(0).getBet());
 
-
 			int hands = playerList.get(0).getNumberOfHands();
 			int i = 0;
 			if(hands == 1) {
