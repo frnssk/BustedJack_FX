@@ -377,19 +377,22 @@ public class GameController {
 
 	@FXML 
 	private void handleDouble() {
-		client.sendPlayerChoice(new PlayerChoice(3));
+		PlayerChoice playerChoice = new PlayerChoice(3);
+		client.sendPlayerChoice(playerChoice);
 		System.out.println("[GAME_CONTORLLER] == Du har tryck DOUBLE.");
 	}
 
 	@FXML 
 	private void handleStay() {
-		client.sendPlayerChoice(new PlayerChoice(2));
+		PlayerChoice playerChoice = new PlayerChoice(2);
+		client.sendPlayerChoice(playerChoice);
 		System.out.println("[GAME_CONTORLLER] == Du har tryck STAY.");
 	}
 
 	@FXML 
 	private void handleHit() {
-		client.sendPlayerChoice(new PlayerChoice(1));
+		PlayerChoice playerChoice = new PlayerChoice(1);
+		client.sendPlayerChoice(playerChoice);
 		System.out.println("[GAME_CONTORLLER] == Du har tryck HIT.");
 	}
 

@@ -47,8 +47,12 @@ public class Player implements Serializable{
 		}
 		
 		if(this.playerChoice.getChoice() == 4) {
+			for(int i = 0; i < hands.size(); i++) {
+				hands.get(i).setBet(this.playerChoice.getBet());
+			
 			setBet(this.playerChoice.getBet());
 			setHasMadeBet(true);
+			}
 		}else if(this.playerChoice.getChoice() == 5) {
 			setCheatChoice(this.playerChoice.getCheatChoice());
 			setCheatChoice(cheatChoice);

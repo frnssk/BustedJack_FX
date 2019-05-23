@@ -210,6 +210,7 @@ public class UserClient {
 		try {
 			output.writeObject(choice);
 			output.flush();
+			output.reset();
 		}catch(IOException ioException) {}
 	}
 	
