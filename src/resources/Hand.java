@@ -28,6 +28,7 @@ public class Hand implements Serializable {
 	private boolean hasMadeBet;
 	private boolean hasMadePlayChoice;
 	private boolean finished = true;
+	private boolean displayValue;
 	
 	/*
 	 * Constructor
@@ -128,7 +129,7 @@ public class Hand implements Serializable {
 	}
 	
 	public Card getCard() {
-		return hand.remove(0);
+		return hand.remove(1);
 	}
 	
 	public boolean ableToSplit() {
@@ -235,6 +236,14 @@ public class Hand implements Serializable {
 			string += hand.get(i).toString() + ", ";
 		}
 		return string;
+	}
+
+	public boolean getDisplayValue() {
+		return displayValue;
+	}
+
+	public void setDisplayValue(boolean displayValue) {
+		this.displayValue = displayValue;
 	}
 
 }

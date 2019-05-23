@@ -297,7 +297,6 @@ public class UserClient {
 						ArrayList<Player> playerList = 	updateClientInformation.getPlayerList();
 						DealerHand dealer = updateClientInformation.getDealerHand();
 						Platform.runLater(() -> {
-							
 							gameController.updateRoundInformation(playerList, dealer);
 							System.out.println("[CLIENT] == UpdateRoundInfo skickad till gameController");
 						});
