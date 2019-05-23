@@ -143,11 +143,13 @@ public class GameController {
 	private UserClient client;
 
 	private boolean firstRound = true;
+	private boolean firstRoundBalance = true;
 
 	private int balance = 0;
 	private int minimumBet = 0;
 	private int currentBet = 0;
 	private int time = 0;
+	private int gameControllerBalance = 0;
 
 	private int numberOfPlayers = 0;
 
@@ -214,7 +216,8 @@ public class GameController {
 	}
 
 	private void updateBalance() {
-		balance -= currentBet;
+	//	balance -= currentBet;
+		gameControllerBalance -= currentBet;
 		doubleBet = currentBet;
 		//			lblPlayer1Balance.setText("Balance: " + balance);
 	}
@@ -222,10 +225,17 @@ public class GameController {
 	public void setTableId(int tableId) {
 		lblTableId.setText("Table ID: " + tableId);
 	}
+	public void setFirstRoundBalance(int balance) {
+		if(firstRoundBalance) {
+		gameControllerBalance = balance;
+		firstRoundBalance = false;
+		}
+	}
 
 	public void setStartingInformation(int rounds, int minutes, int minimumBet, int balance) {
 		setRounds(rounds);
 		this.balance = balance;
+		setFirstRoundBalance(balance);
 		lblTime.setText("Timer: " + minutes);
 		this.minimumBet = minimumBet;
 		lblMinimumBet.setText("Minimum bet: " + minimumBet);
@@ -380,7 +390,7 @@ public class GameController {
 
 	@FXML 
 	private void handleDouble() {
-		if(doubleBet > balance) {
+		if(doubleBet > gameControllerBalance) {
 			try {
 				mainApp.showAlert("Bet to high", "Your current balance is " + balance);
 			} catch (IOException e) {
@@ -443,6 +453,7 @@ public class GameController {
 		if(firstRound) {
 			btnCheat.setDisable(false);
 			btnDoNotCheat.setDisable(false);
+		//	btnSplit.setDisable(true);
 			btnStartGame.setDisable(true);
 			firstRound = false;
 			System.out.println("[GAME_CONTROLLER] == FirstRounds initiated");
@@ -456,12 +467,12 @@ public class GameController {
 			int hands = playerList.get(0).getNumberOfHands();
 			int i = 0;
 			if(hands == 1) {
-				lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i).getCurrentScore());
+				lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i).getCardValue() + playerList.get(0).getHand(i).getCurrentScore());
 			}else if(hands == 2) {
 				if(playerList.get(0).getHand(i).getDisplayValue()) {
-					lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i).getCurrentScore());
+					lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i).getCardValue() + playerList.get(0).getHand(i).getCurrentScore());
 				}else if(playerList.get(0).getHand(i+1).getDisplayValue()) {
-					lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i + 1).getCurrentScore());
+					lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i + 1).getCardValue() + playerList.get(0).getHand(i + 1).getCurrentScore());
 				}
 			}
 			System.out.println(playerList.get(0).getUsername() + ", SUMMA= " + playerList.get(0).getBalance() + ", BET= " + playerList.get(0).getBet());
@@ -472,12 +483,12 @@ public class GameController {
 			hands = playerList.get(1).getNumberOfHands();
 			i = 0;
 			if(hands == 1) {
-				lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i).getCurrentScore());
+				lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i).getCardValue() + playerList.get(1).getHand(i).getCurrentScore());
 			}else if(hands == 2) {
 				if(playerList.get(1).getHand(i).getDisplayValue()) {
-					lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i).getCurrentScore());
+					lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i).getCardValue() + playerList.get(1).getHand(i).getCurrentScore());
 				}else if(playerList.get(1).getHand(i+1).getDisplayValue()) {
-					lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i + 1).getCurrentScore());
+					lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i + 1).getCardValue() + playerList.get(1).getHand(i + 1).getCurrentScore());
 				}
 			}
 			System.out.println(playerList.get(1).getUsername() + ", SUMMA= " + playerList.get(1).getBalance() + ", BET= " + playerList.get(1).getBet());
@@ -492,12 +503,12 @@ public class GameController {
 			int hands = playerList.get(0).getNumberOfHands();
 			int i = 0;
 			if(hands == 1) {
-				lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i).getCurrentScore());
+				lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i).getCardValue() + playerList.get(0).getHand(i).getCurrentScore());
 			}else if(hands == 2) {
 				if(playerList.get(0).getHand(i).getDisplayValue()) {
-					lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i).getCurrentScore());
+					lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i).getCardValue() + playerList.get(0).getHand(i).getCurrentScore());
 				}else if(playerList.get(0).getHand(i+1).getDisplayValue()) {
-					lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i + 1).getCurrentScore());
+					lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i + 1).getCardValue() + playerList.get(0).getHand(i + 1).getCurrentScore());
 				}
 			}
 
@@ -507,12 +518,12 @@ public class GameController {
 			hands = playerList.get(1).getNumberOfHands();
 			i = 0;
 			if(hands == 1) {
-				lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i).getCurrentScore());
+				lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i).getCardValue() + playerList.get(1).getHand(i).getCurrentScore());
 			}else if(hands == 2) {
 				if(playerList.get(1).getHand(i).getDisplayValue()) {
-					lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i).getCurrentScore());
+					lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i).getCardValue() + playerList.get(1).getHand(i).getCurrentScore());
 				}else if(playerList.get(1).getHand(i+1).getDisplayValue()) {
-					lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i + 1).getCurrentScore());
+					lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i + 1).getCardValue() + playerList.get(1).getHand(i + 1).getCurrentScore());
 				}
 			}
 
@@ -522,12 +533,12 @@ public class GameController {
 			hands = playerList.get(2).getNumberOfHands();
 			i = 0;
 			if(hands == 1) {
-				lblPlayer3CardSum.setText("" + playerList.get(2).getHand(i).getCurrentScore());
+				lblPlayer3CardSum.setText("" + playerList.get(2).getHand(i).getCardValue() + playerList.get(2).getHand(i).getCurrentScore());
 			}else if(hands == 2) {
 				if(playerList.get(2).getHand(i).getDisplayValue()) {
-					lblPlayer3CardSum.setText("" + playerList.get(2).getHand(i).getCurrentScore());
+					lblPlayer3CardSum.setText("" + playerList.get(2).getHand(i).getCardValue() + playerList.get(2).getHand(i).getCurrentScore());
 				}else if(playerList.get(2).getHand(i+1).getDisplayValue()) {
-					lblPlayer3CardSum.setText("" + playerList.get(2).getHand(i + 1).getCurrentScore());
+					lblPlayer3CardSum.setText("" + playerList.get(2).getHand(i + 1).getCardValue() + playerList.get(2).getHand(i + 1).getCurrentScore());
 				}
 			}
 
@@ -540,12 +551,12 @@ public class GameController {
 			int hands = playerList.get(0).getNumberOfHands();
 			int i = 0;
 			if(hands == 1) {
-				lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i).getCurrentScore());
+				lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i).getCardValue() + playerList.get(0).getHand(i).getCurrentScore());
 			}else if(hands == 2) {
 				if(playerList.get(0).getHand(i).getDisplayValue()) {
-					lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i).getCurrentScore());
+					lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i).getCardValue() + playerList.get(0).getHand(i).getCurrentScore());
 				}else if(playerList.get(0).getHand(i+1).getDisplayValue()) {
-					lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i + 1).getCurrentScore());
+					lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i + 1).getCardValue() + playerList.get(0).getHand(i + 1).getCurrentScore());
 				}
 			}
 
@@ -555,12 +566,12 @@ public class GameController {
 			hands = playerList.get(1).getNumberOfHands();
 			i = 0;
 			if(hands == 1) {
-				lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i).getCurrentScore());
+				lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i).getCardValue() + playerList.get(1).getHand(i).getCurrentScore());
 			}else if(hands == 2) {
 				if(playerList.get(1).getHand(i).getDisplayValue()) {
-					lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i).getCurrentScore());
+					lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i).getCardValue() + playerList.get(1).getHand(i).getCurrentScore());
 				}else if(playerList.get(1).getHand(i+1).getDisplayValue()) {
-					lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i + 1).getCurrentScore());
+					lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i + 1).getCardValue() + playerList.get(1).getHand(i + 1).getCurrentScore());
 				}
 			}
 
@@ -570,12 +581,12 @@ public class GameController {
 			hands = playerList.get(2).getNumberOfHands();
 			i = 0;
 			if(hands == 1) {
-				lblPlayer3CardSum.setText("" + playerList.get(2).getHand(i).getCurrentScore());
+				lblPlayer3CardSum.setText("" + playerList.get(2).getHand(i).getCardValue() + playerList.get(2).getHand(i).getCurrentScore());
 			}else if(hands == 2) {
 				if(playerList.get(2).getHand(i).getDisplayValue()) {
-					lblPlayer3CardSum.setText("" + playerList.get(2).getHand(i).getCurrentScore());
+					lblPlayer3CardSum.setText("" + playerList.get(2).getHand(i).getCardValue() + playerList.get(2).getHand(i).getCurrentScore());
 				}else if(playerList.get(2).getHand(i+1).getDisplayValue()) {
-					lblPlayer3CardSum.setText("" + playerList.get(2).getHand(i + 1).getCurrentScore());
+					lblPlayer3CardSum.setText("" + playerList.get(2).getHand(i + 1).getCardValue() + playerList.get(2).getHand(i + 1).getCurrentScore());
 				}
 			}
 
@@ -586,12 +597,12 @@ public class GameController {
 			hands = playerList.get(3).getNumberOfHands();
 			i = 0;
 			if(hands == 1) {
-				lblPlayer4CardSum.setText("" + playerList.get(3).getHand(i).getCurrentScore());
+				lblPlayer4CardSum.setText("" + playerList.get(3).getHand(i).getCardValue() + playerList.get(3).getHand(i).getCurrentScore());
 			}else if(hands == 2) {
 				if(playerList.get(3).getHand(i).getDisplayValue()) {
-					lblPlayer4CardSum.setText("" + playerList.get(3).getHand(i).getCurrentScore());
+					lblPlayer4CardSum.setText("" + playerList.get(3).getHand(i).getCardValue() + playerList.get(3).getHand(i).getCurrentScore());
 				}else if(playerList.get(3).getHand(i+1).getDisplayValue()) {
-					lblPlayer4CardSum.setText("" + playerList.get(3).getHand(i + 1).getCurrentScore());
+					lblPlayer4CardSum.setText("" + playerList.get(3).getHand(i + 1).getCardValue() + playerList.get(3).getHand(i + 1).getCurrentScore());
 				}
 			}
 
@@ -659,6 +670,15 @@ public class GameController {
 
 	public void setClient(UserClient client) {
 		this.client = client;
+	}
+
+	public void ableToSplit(boolean bool) {
+		if(bool) {
+			btnSplit.setDisable(true);
+		}else {
+			btnSplit.setDisable(false);
+		}
+		
 	}
 
 }

@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
+import communications.AbleToSplit;
 import communications.PlayerChoice;
 import communications.StartingInformation;
 import communications.TableID;
@@ -159,9 +160,9 @@ public class Table extends Thread implements Serializable {
 			TextWindow.println("[TABLE=" + getTableId() + "]"+ " >> BustedJack 2019.");
 			startGame();				//starts game and sets the balance for every player
 			sendStartingInformation();	//updates all the clients with time/rounds/miniBet
-			int i = 0;
-			int rounds = numberOfRounds;
-			while( i <= rounds) {
+	//		int i = 0;
+	//		int rounds = numberOfRounds;
+			while( 0 < numberOfRounds) {
 				//		testingChoices();
 				checkCheatChoice();			//controls that every player made a choice
 				checkBets();
@@ -177,13 +178,14 @@ public class Table extends Thread implements Serializable {
 				flipDealerCard();			//flips the first card the dealer got, face-up
 				//			checkForSplit();			//check all the players and if they can split, and lets them if they want
 				//			checkInsurance();	//checks if the dealer got an ace, and if any player wants to buy insurance
+			//	ableToSplit();
 				checkPlayerChoices();		//lets the players play each hand
 				//		letPlayerBust();			//lets the players bust each other
 				letDealerPlay();			//if the dealer is <17, he keeps on hitting
 				compareDealerToPlayers();	//checks whether or not the players beat the dealer
 				payout();					//pays out if players won, takes the money if they lost
 				reset();
-				i++;
+			//	i++;
 				numberOfRounds -= 1;
 				sendStartingInformation();
 			}
@@ -414,6 +416,24 @@ public class Table extends Thread implements Serializable {
 		}
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 10 (kollar om insurance behÃ¶vs) avslutad.");
 	}
+	
+	private void ableToSplit() {
+		TextWindow.println("[TABLE=" + getTableId() + "] >> metod  (kollar om någon kan splitta) startad.");
+		for(int i = 0; i < playerList.size(); i++) {
+			for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
+				
+			
+			if(playerList.get(i).getHand(j).ableToSplit()) {
+				AbleToSplit ableToSplit = new AbleToSplit(true);
+			clientList.get(i).output(ableToSplit);
+			}else {
+				AbleToSplit ableToSplit = new AbleToSplit(false);
+				clientList.get(i).output(ableToSplit);
+			}
+		}
+		}
+	}
+	
 
 	private void checkPlayerChoices() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 11 (kollar vilka val spelare har gjort) startad.");
@@ -428,6 +448,7 @@ public class Table extends Thread implements Serializable {
 //					boolean test = playerList.get(i).getHand(j).getHasMadePlayChoice();
 					boolean keepPlaying = true;
 					playerList.get(i).getHand(j).setDisplayValue(true);
+					updateTableInformation();
 					//
 					playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 					while(keepPlaying) {
@@ -469,7 +490,9 @@ public class Table extends Thread implements Serializable {
 							//
 							choice = 0;
 							playerList.get(i).getHand(j).setDisplayValue(false);
+							Thread.sleep(500);
 							updateTableInformation();
+							
 							keepPlaying = false;
 						}else if(choice == 3) {
 							int bet = playerList.get(i).getBet();
@@ -492,9 +515,10 @@ public class Table extends Thread implements Serializable {
 							updateTableInformation();
 							keepPlaying = false;
 						}else if(choice == 6) {
+							if(playerList.get(i).getHand(j).ableToSplit()) {
 							boolean splitChoice = playerList.get(i).getHand(j).getSplitChoice();
 							TextWindow.println("SplitChoice = " + splitChoice);
-							if(splitChoice) {					//checks if a player wants to split a hand
+					//		if(splitChoice) {					//checks if a player wants to split a hand
 								TextWindow.println("Inside if-statement");
 								Card card = playerList.get(i).getHand(j).getCard();				//gets a card from the hand
 								playerList.get(i).addNewHand();									//creates new hand
@@ -515,12 +539,17 @@ public class Table extends Thread implements Serializable {
 								//								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());	//deals the actual card
 								//							}
 								playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-//								choice = 0;
+					//		}
+							}else {
+								playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 							}
 						}
 						if(!keepPlaying) {
 							TextWindow.println("[TABLE] " + playerList.get(i).getUsername() + " har spelat klart hand: " + j);
 							playerList.get(i).getHand(j).setFinished(true);
+							playerList.get(i).getHand(j).setDisplayValue(false);
+							updateTableInformation();
+							
 							//
 							choice = 0;
 						}

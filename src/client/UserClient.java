@@ -14,6 +14,7 @@ import application.GameController;
 import application.JoinTableController;
 import application.LogInController;
 import application.Main;
+import communications.AbleToSplit;
 import communications.GameInfo;
 import communications.LogOutRequest;
 import communications.LoginRequest;
@@ -262,7 +263,8 @@ public class UserClient {
 						System.out.println("[CLIENT] == Antal spelare i PlayerList = " + playerList.size());
 						
 						Platform.runLater(() -> {
-								gameController.updatePlayerList(playerList);			
+								gameController.updatePlayerList(playerList);
+							
 						});
 						System.out.println("[CLIENT] == Lista mottagen, skickad till controller. Antal = " + playerList.size());
 						try {
@@ -308,6 +310,13 @@ public class UserClient {
 						Platform.runLater(() -> {
 							gameController.updateRoundMessage(update.getText());
 							System.out.println("[CLIENT] == UpdateRoundInfo skickad till gameController");
+						});
+					}
+					else if(obj instanceof AbleToSplit) {
+						System.out.println("[CLIENT] == AbleToSplit mottagen");
+						AbleToSplit ableToSplit = (AbleToSplit) obj;
+						Platform.runLater(() -> {
+							gameController.ableToSplit(ableToSplit.getAbleToSplit());
 						});
 					}
 				}catch(IOException | ClassNotFoundException e) {

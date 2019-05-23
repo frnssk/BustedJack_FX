@@ -29,6 +29,8 @@ public class Hand implements Serializable {
 	private boolean hasMadePlayChoice;
 	private boolean finished = true;
 	private boolean displayValue;
+	private String cardValue = "";
+	private String Value = "";
 
 	
 	/*
@@ -102,6 +104,13 @@ public class Hand implements Serializable {
 		hand.add(card);
 	}
 	
+	public String getCardValue() {
+		for(int i = 0; i < hand.size(); i++) {
+			cardValue +=String.valueOf(hand.get(i).getValue()) + "/ ";
+	}
+		return cardValue + "\n";
+	}
+	
 	/*
 	 * Needed to calculate the value of all cards, adjusted for ACE
 	 */
@@ -134,7 +143,7 @@ public class Hand implements Serializable {
 	}
 	
 	public boolean ableToSplit() {
-		return hand.get(0).equals(hand.get(1));
+		return hand.get(0).getValue() == hand.get(1).getValue();
 	}
 	
 //	public void setSplitChoice() {
