@@ -153,6 +153,21 @@ public class Main extends Application {
 		primaryStage.setResizable(true);
 		primaryStage.show();
 	}
+	
+	public void showGameOver() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("GameOver.fxml"));
+		mainLayout = loader.load();
+		
+		GameOverController controller = loader.getController();
+		
+		controller.setMain(this);
+		
+		Scene scene = new Scene(mainLayout, 1000, 600);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.show();
+	}
 
 	public void showAlert(String title, String message) throws IOException {
 		Alert alert = new Alert(AlertType.INFORMATION);

@@ -662,6 +662,10 @@ public class GameController {
 			break;
 		}
 	}
+	
+	public void showGameOver() throws IOException {
+		mainApp.showGameOver();
+	}
 
 	public void setMain(Main main) {
 		mainApp = main;

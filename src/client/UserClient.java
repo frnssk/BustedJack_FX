@@ -16,6 +16,7 @@ import application.LogInController;
 import application.Main;
 import communications.AbleToSplit;
 import communications.GameInfo;
+import communications.GameOver;
 import communications.LogOutRequest;
 import communications.LoginRequest;
 import communications.PlayerChoice;
@@ -322,6 +323,16 @@ public class UserClient {
 						AbleToSplit ableToSplit = (AbleToSplit) obj;
 						Platform.runLater(() -> {
 							gameController.ableToSplit(ableToSplit.getAbleToSplit());
+						});
+					}
+					else if(obj instanceof GameOver) {
+						System.out.println("[CLINET] == GameOver recieved");
+						Platform.runLater(() -> {
+							try {
+								gameController.showGameOver();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 						});
 					}
 				}catch(IOException | ClassNotFoundException e) {
