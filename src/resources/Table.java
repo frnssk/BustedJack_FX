@@ -272,6 +272,7 @@ public class Table extends Thread implements Serializable {
 					updateTableInformation();
 				}
 				int bet = player.getBet();
+				playerList.get(i).getHand(0).setBet(bet);
 				TextWindow.println("[TABLE] >> " + player.getUsername() + ", bet = " + player.getBet());
 				int newBalance = player.getBalance();
 				newBalance -= bet;
@@ -492,6 +493,10 @@ public class Table extends Thread implements Serializable {
 								playerList.get(i).getHand(numberOfHands-1).addCard(card);			//adds the card to the newest hand
 								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());
 								playerList.get(i).getHand(j+1).addCard(regularShoe.dealCard());
+								playerList.get(i).getHand(j+1).setBet(playerList.get(i).getHand(j).getBet());
+								int newBalance = playerList.get(i).getBalance();
+								newBalance -= playerList.get(i).getHand(j).getBet();
+								playerList.get(i).setBalance(newBalance);
 								TextWindow.println("Antal händer= " + playerList.get(i).getNumberOfHands());
 								updateTableInformation();
 								//							if(playerList.get(i).getHand(j).size() == 1) { 					//if a player only has one card in one hand - adds new card
@@ -625,7 +630,7 @@ public class Table extends Thread implements Serializable {
 			for(int j = 0; j < hands; j++) {
 				int win = playerList.get(i).getHand(j).isHandWin();
 				if(win == 1) {
-					int bet = playerList.get(i).getBet();
+					int bet = playerList.get(i).getHand(j).getBet();
 					int payout = bet * 2;
 					playerList.get(i).setBalance(playerList.get(i).getBalance() + payout);
 					TextWindow.println(playerList.get(i).getUsername() + " vann");
@@ -636,7 +641,7 @@ public class Table extends Thread implements Serializable {
 						TextWindow.println(playerList.get(i).getUsername() + " fick black jack");
 					}
 				}else if(win == 0) {
-					int bet = playerList.get(i).getBet();
+					int bet = playerList.get(i).getHand(j).getBet();
 					int payout = bet;
 					playerList.get(i).setBalance(playerList.get(i).getBalance() + payout);
 				}

@@ -156,6 +156,7 @@ public class GameController {
 	private int numberOfCheats = 0;
 	private int cheatHeat = numberOfCheats / currentRound;
 	private int counter = 0;
+	private int doubleBet = 0;
 
 	@FXML
 	private void initialize() {
@@ -213,6 +214,7 @@ public class GameController {
 
 	private void updateBalance() {
 		balance -= currentBet;
+		doubleBet = currentBet;
 		//			lblPlayer1Balance.setText("Balance: " + balance);
 	}
 
@@ -377,9 +379,17 @@ public class GameController {
 
 	@FXML 
 	private void handleDouble() {
-		PlayerChoice playerChoice = new PlayerChoice(3);
-		client.sendPlayerChoice(playerChoice);
-		System.out.println("[GAME_CONTORLLER] == Du har tryck DOUBLE.");
+		if(doubleBet > balance) {
+			try {
+				mainApp.showAlert("Bet to high", "Your current balance is " + balance);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}			
+		}else {
+			PlayerChoice playerChoice = new PlayerChoice(3);
+			client.sendPlayerChoice(playerChoice);
+			System.out.println("[GAME_CONTORLLER] == Du har tryck DOUBLE.");
+		}
 	}
 
 	@FXML 
