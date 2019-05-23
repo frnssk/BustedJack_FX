@@ -28,6 +28,10 @@ public class Hand implements Serializable {
 	private boolean hasMadeBet;
 	private boolean hasMadePlayChoice;
 	private boolean finished = true;
+<<<<<<< HEAD
+=======
+	private boolean displayValue;
+>>>>>>> origin/rasmus3.0
 	
 	/*
 	 * Constructor
@@ -235,6 +239,14 @@ public class Hand implements Serializable {
 			string += hand.get(i).toString() + ", ";
 		}
 		return string;
+	}
+
+	public boolean getDisplayValue() {
+		return displayValue;
+	}
+
+	public void setDisplayValue(boolean displayValue) {
+		this.displayValue = displayValue;
 	}
 
 }

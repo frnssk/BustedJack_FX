@@ -427,6 +427,7 @@ public class Table extends Thread implements Serializable {
 				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
 					boolean test = playerList.get(i).getHand(j).getHasMadePlayChoice();
 					boolean keepPlaying = true;
+					playerList.get(i).getHand(j).setDisplayValue(true);
 					//
 					playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 					while(keepPlaying) {
@@ -453,6 +454,7 @@ public class Table extends Thread implements Serializable {
 							}
 							if(playerList.get(i).getHand(j).getCurrentScore() >= 21) {
 								playerList.get(i).getHand(j).setFinished(true);
+								playerList.get(i).getHand(j).setDisplayValue(false);
 								//
 								choice = 0;
 								keepPlaying = false;
@@ -464,6 +466,7 @@ public class Table extends Thread implements Serializable {
 							//
 							choice = 0;
 							keepPlaying = false;
+							playerList.get(i).getHand(j).setDisplayValue(false);
 						}else if(choice == 3) {
 							int bet = playerList.get(i).getBet();
 							playerList.get(i).getHand(j).setBet(bet*2);
@@ -482,6 +485,7 @@ public class Table extends Thread implements Serializable {
 							//
 							choice = 0;
 							keepPlaying = false;
+							playerList.get(i).getHand(j).setDisplayValue(false);
 						}else if(choice == 6) {
 							boolean splitChoice = playerList.get(i).getHand(j).getSplitChoice();
 							TextWindow.println("SplitChoice = " + splitChoice);
