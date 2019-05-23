@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -7,26 +12,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenuController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenuController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="1000.0" layoutX="190.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../../images/BJ_menu_2.0.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnGoToTable" layoutX="416.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleJoinTabel" prefWidth="150.0" text="Go to table" textAlignment="CENTER" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="420.0">
+      <Button id="button" fx:id="btnGoToTable" layoutX="416.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleJoinTabel" prefWidth="150.0" stylesheets="@application.css" text="Go to table" textAlignment="CENTER" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="420.0">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font></Button>
-      <Button fx:id="btnCreateTable" layoutX="441.0" layoutY="226.0" minWidth="150.0" mnemonicParsing="false" onAction="#handleCreateTable" text="Create new table" AnchorPane.leftAnchor="415.0" AnchorPane.rightAnchor="415.0">
+      <Button id="button" fx:id="btnCreateTable" layoutX="441.0" layoutY="226.0" minWidth="150.0" mnemonicParsing="false" onAction="#handleCreateTable" stylesheets="@application.css" text="Create new table" AnchorPane.leftAnchor="415.0" AnchorPane.rightAnchor="415.0">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font></Button>
-      <Button fx:id="btnQuit" layoutX="479.0" layoutY="406.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleQuit" text="Quit" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="440.0">
+      <Button id="button" fx:id="btnQuit" layoutX="479.0" layoutY="406.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleQuit" stylesheets="@application.css" text="Quit" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="440.0">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font></Button>
-      <Button fx:id="btnProfile" layoutX="474.0" layoutY="356.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleProfile" text="Profile" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="440.0">
+      <Button id="button" fx:id="btnProfile" layoutX="474.0" layoutY="356.0" minWidth="100.0" mnemonicParsing="false" onAction="#handleProfile" stylesheets="@application.css" text="Profile" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="440.0">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font></Button>

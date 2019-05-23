@@ -22,7 +22,7 @@
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font></Button>
-      <Button fx:id="btnCreateNewUser" layoutX="420.0" layoutY="483.0" mnemonicParsing="false" onAction="#handleCreateNewUser" prefHeight="50.0" prefWidth="160.0" stylesheets="@../Design/Style.css" text="Create new user" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="483.0">
+      <Button id="button" fx:id="btnCreateNewUser" layoutX="420.0" layoutY="483.0" mnemonicParsing="false" onAction="#handleCreateNewUser" prefHeight="50.0" prefWidth="160.0" stylesheets="@application.css" text="Create new user" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="483.0">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font></Button>

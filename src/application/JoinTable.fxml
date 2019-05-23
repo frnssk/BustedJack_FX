@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -8,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.JoinTableController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.JoinTableController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="1000.0" layoutX="229.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -21,17 +26,17 @@
          </font>
       </Label>
       <TextField fx:id="tfRoomId" layoutX="417.0" layoutY="225.0" />
-      <Button fx:id="btnGoToTable" layoutX="451.0" layoutY="286.0" mnemonicParsing="false" onAction="#handleGoToTable" text="Go To Table">
+      <Button id="button" fx:id="btnGoToTable" layoutX="451.0" layoutY="286.0" mnemonicParsing="false" onAction="#handleGoToTable" stylesheets="@application.css" text="Go To Table">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnRandomTable" layoutX="444.0" layoutY="348.0" mnemonicParsing="false" onAction="#handleRandomTable" text="Random Table">
+      <Button id="button" fx:id="btnRandomTable" layoutX="444.0" layoutY="348.0" mnemonicParsing="false" onAction="#handleRandomTable" stylesheets="@application.css" text="Random Table">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnMenu" layoutX="472.0" layoutY="412.0" mnemonicParsing="false" onAction="#handleMenu" text="Menu">
+      <Button id="button" fx:id="btnMenu" layoutX="472.0" layoutY="412.0" mnemonicParsing="false" onAction="#handleMenu" stylesheets="@application.css" text="Menu">
          <font>
             <Font name="Futura Medium" size="14.0" />
          </font>

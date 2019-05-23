@@ -459,7 +459,7 @@ public class Table extends Thread implements Serializable {
 								//
 //								choice = 0;
 								keepPlaying = false;	
-							}
+						}
 							
 						}else if(choice == 2) {
 							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
@@ -507,12 +507,12 @@ public class Table extends Thread implements Serializable {
 								newBalance -= playerList.get(i).getHand(j).getBet();
 								playerList.get(i).setBalance(newBalance);
 								TextWindow.println("Antal händer= " + playerList.get(i).getNumberOfHands());
-								updateTableInformation();
 								//							if(playerList.get(i).getHand(j).size() == 1) { 					//if a player only has one card in one hand - adds new card
 								//								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());	//deals the actual card
 								//							}
 								playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 //								choice = 0;
+								updateTableInformation();
 							}
 						}
 						if(!keepPlaying) {
@@ -521,7 +521,7 @@ public class Table extends Thread implements Serializable {
 							//
 							choice = 0;
 						}
-						updateTableInformation();
+					
 
 //						TextWindow.println("Tråd sover 2 sekunder.");
 //						Thread.sleep(1000);

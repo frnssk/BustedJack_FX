@@ -1,12 +1,15 @@
 package application;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import client.UserClient;
 import communications.PlayerChoice;
 import communications.StartGameRequest;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -14,7 +17,7 @@ import javafx.scene.image.ImageView;
 import resources.DealerHand;
 import resources.Player;
 
-public class GameController {
+public class GameController{
 	@FXML
 	private Label lblPlayer1;
 	@FXML

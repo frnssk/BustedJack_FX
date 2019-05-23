@@ -6,3 +6,20 @@
 	-fx-font-size: 18;
 	-fx-text-fill: black;
 }
+.buttonCheat{
+	
+	-fx-background-color: #d30f0f;
+	-fx-text-fill: black;
+	-fx-font-size: 13;
+}
+.buttonDontCheat{
+
+	-fx-background-color: #008000;
+	-fx-text-fill: black;
+	-fx-font-size: 13;	
+}
+.buttonGame{
+	-fx-background-color: #f5e65d;
+	-fx-font-size: 13;
+	-fx-text-fill: black;
+}
