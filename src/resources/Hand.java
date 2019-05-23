@@ -28,10 +28,8 @@ public class Hand implements Serializable {
 	private boolean hasMadeBet;
 	private boolean hasMadePlayChoice;
 	private boolean finished = true;
-<<<<<<< HEAD
-=======
 	private boolean displayValue;
->>>>>>> origin/rasmus3.0
+
 	
 	/*
 	 * Constructor
