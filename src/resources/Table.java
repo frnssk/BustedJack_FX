@@ -287,7 +287,7 @@ public class Table extends Thread implements Serializable {
 			clientList.get(i).output(new UpdateUI("Dealing cards..."));
 		}
 	}
-
+	
 	//deals a single card to each of the players, depending on what choice they made
 	private void dealCardToPlayers() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 4 (delar ut kort) startar.");
