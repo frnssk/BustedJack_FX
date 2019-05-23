@@ -463,23 +463,23 @@ public class GameController {
 					lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i + 1).getCurrentScore());
 				}
 			}
-			//			int i = 0;
-			//			int hands = playerList.get(0).getNumberOfHands();
-			//			if(playerList.get(0).getHand(i).getDisplayValue()) {
-			//				i++;
-			//				lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i + 1).getCurrentScore());
-			//			}else { 
-			//				lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i).getCurrentScore());
-			//			}
-
-			//			lblPlayer1CardSum.setText("" + playerList.get(0).getHand(0).getCurrentScore());
 			System.out.println(playerList.get(0).getUsername() + ", SUMMA= " + playerList.get(0).getBalance() + ", BET= " + playerList.get(0).getBet());
 
 			lblPlayer2Balance.setText("Balance: " + playerList.get(1).getBalance());
 			lblPlayer2Bet.setText("Bet: " + playerList.get(1).getBet());
 
 
-			//			lblPlayer2CardSum.setText("" + playerList.get(1).getHand(0).getCurrentScore());
+			hands = playerList.get(1).getNumberOfHands();
+			i = 0;
+			if(hands == 1) {
+				lblPlayer1CardSum.setText("" + playerList.get(1).getHand(i).getCurrentScore());
+			}else if(hands == 2) {
+				if(playerList.get(1).getHand(i).getDisplayValue()) {
+					lblPlayer1CardSum.setText("" + playerList.get(1).getHand(i).getCurrentScore());
+				}else if(playerList.get(1).getHand(i+1).getDisplayValue()) {
+					lblPlayer1CardSum.setText("" + playerList.get(1).getHand(i + 1).getCurrentScore());
+				}
+			}
 			System.out.println(playerList.get(1).getUsername() + ", SUMMA= " + playerList.get(1).getBalance() + ", BET= " + playerList.get(1).getBet());
 
 			lblDealerCardSum.setText("" + dealer.getValue());
