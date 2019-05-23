@@ -1,5 +1,7 @@
 package client;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -26,7 +28,6 @@ import communications.UpdateUI;
 import javafx.application.Platform;
 import resources.DealerHand;
 import resources.Player;
-import resources.Table;
 import resources.User;
 import server.Server.ClientHandler;
 
