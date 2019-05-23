@@ -29,6 +29,7 @@ public class Hand implements Serializable {
 	private boolean hasMadePlayChoice;
 	private boolean finished = true;
 	private boolean displayValue;
+
 	
 	/*
 	 * Constructor

@@ -444,16 +444,17 @@ public class Table extends Thread implements Serializable {
 							TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
 							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 							choice = 0;
+							updateTableInformation();
 							if(playerList.get(i).getHand(j).getCurrentScore() >= 21) {
 								if(playerList.get(i).getHand(j).getCurrentScore() > 21) {
 									for(int k = 0; k < clientList.size(); k++) {
 										clientList.get(i).output(new UpdateUI(playerList.get(i).getUsername() + " got fat!"));
 									}
 								}
-								updateTableInformation();
 								Thread.sleep(1500);
 								playerList.get(i).getHand(j).setFinished(true);
 								playerList.get(i).getHand(j).setDisplayValue(false);
+								updateTableInformation();
 								//
 								//								choice = 0;
 								keepPlaying = false;	
@@ -466,6 +467,7 @@ public class Table extends Thread implements Serializable {
 							//
 							choice = 0;
 							playerList.get(i).getHand(j).setDisplayValue(false);
+							updateTableInformation();
 							keepPlaying = false;
 						}else if(choice == 3) {
 							int bet = playerList.get(i).getBet();
@@ -485,6 +487,7 @@ public class Table extends Thread implements Serializable {
 							//
 							choice = 0;
 							playerList.get(i).getHand(j).setDisplayValue(false);
+							updateTableInformation();
 							keepPlaying = false;
 						}else if(choice == 6) {
 							boolean splitChoice = playerList.get(i).getHand(j).getSplitChoice();
@@ -519,7 +522,7 @@ public class Table extends Thread implements Serializable {
 							//
 							choice = 0;
 						}
-						updateTableInformation();
+				//		updateTableInformation();
 
 						//						TextWindow.println("Tråd sover 2 sekunder.");
 						//						Thread.sleep(1000);
