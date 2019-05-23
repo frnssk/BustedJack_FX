@@ -152,7 +152,7 @@ public class Server {
 
 		public ClientHandler(Socket socket) throws IOException {
 			this.socket = socket;
-			socket.setTcpNoDelay(true);
+			this.socket.setTcpNoDelay(true);
 			output = new ObjectOutputStream(socket.getOutputStream());
 			input = new ObjectInputStream(socket.getInputStream());
 			start();
@@ -162,7 +162,7 @@ public class Server {
 		public void output(Object obj) {
 			try {
 				output.writeObject(obj);
-				output.flush();
+//				output.flush();
 				output.reset();
 			} catch (IOException e) {
 				e.printStackTrace();

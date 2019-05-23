@@ -8,7 +8,7 @@ import resources.Card.Rank;
 
 public class Hand implements Serializable {
 
-	private static final long serialVersionUID = 9072394852087177248L;
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Card> hand; //Holds the card in a hand
 	private boolean hasBlackjack;
 	private boolean bustedHand;

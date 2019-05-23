@@ -7,7 +7,7 @@ import java.awt.image.*;
 
 public class Card implements Serializable {
 
-	private static final long serialVersionUID = 4817008418676203400L;
+	private static final long serialVersionUID = 1L;
 	private final Rank RANK;
 	private final Suit SUIT;
 	private ImageIcon face;

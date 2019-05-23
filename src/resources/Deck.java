@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 public class Deck implements Serializable {
 
-	private static final long serialVersionUID = 6801396353820734819L;
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Card> deck = new ArrayList<>();
 
 	public Deck() {
