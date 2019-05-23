@@ -1,5 +1,7 @@
 package server;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -150,8 +152,8 @@ public class Server {
 
 		public ClientHandler(Socket socket) throws IOException {
 			this.socket = socket;
-			output = new ObjectOutputStream(socket.getOutputStream());
-			input = new ObjectInputStream(socket.getInputStream());
+			output = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+			input = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
 			start();
 			TextWindow.println("[SERVER] >> New ClientHandler started");
 		}
