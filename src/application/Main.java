@@ -22,7 +22,10 @@ public class Main extends Application {
 	
 
 	public void start(Stage primaryStage) throws Exception {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/rasmus3.0
 //		client = new UserClient("localhost", 1200);
 		client = new UserClient("10.2.21.244", 1200);
 		this.primaryStage = primaryStage;
