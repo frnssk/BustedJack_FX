@@ -196,6 +196,7 @@ public class GameController {
 		lblRounds.setText("Rounds: " + rounds);
 	}
 
+	//Never used
 	public void updateRounds() {
 		lblRounds.setText("Rounds: " + (rounds--));
 		currentRound ++;
