@@ -453,9 +453,10 @@ public class GameController {
 			
 			
 			int i = 0;
-			if(playerList.get(0).getHand(i).getFinished()) {
+			int hands = playerList.get(0).getNumberOfHands();
+			if(playerList.get(0).getHand(i).getFinished() && hands > 1) {
+				i++;
 				lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i + 1).getCurrentScore());
-				i ++;
 			}else { 
 				lblPlayer1CardSum.setText("" + playerList.get(0).getHand(i).getCurrentScore());
 			}
