@@ -420,15 +420,12 @@ public class Table extends Thread implements Serializable {
 
 		for(int i = 0; i < playerList.size(); i++) {
 			if(!playerList.get(i).isPlayerIsOut()) {
-//				for(int k = 0; k < clientList.size(); k++) {
-//					clientList.get(k).output(new UpdateUI(playerList.get(i).getUsername() + " turn..."));
-//				}
-				TextWindow.println("[TABLE=" + getTableId() + "] >> " + playerList.get(i).getUsername() + "s tur.");
+//				TextWindow.println("[TABLE=" + getTableId() + "] >> " + playerList.get(i).getUsername() + "s tur.");
 				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
 					for(int k = 0; k < clientList.size(); k++) {
 						clientList.get(k).output(new UpdateUI(playerList.get(i).getUsername() + "'s turn to play hand: " + (j+1) + "..."));
 					}
-					boolean test = playerList.get(i).getHand(j).getHasMadePlayChoice();
+//					boolean test = playerList.get(i).getHand(j).getHasMadePlayChoice();
 					boolean keepPlaying = true;
 					playerList.get(i).getHand(j).setDisplayValue(true);
 					//
@@ -445,18 +442,16 @@ public class Table extends Thread implements Serializable {
 							Card card = regularShoe.dealCard();
 							TextWindow.println(playerList.get(i).getUsername() + " har valt HIT");
 							playerList.get(i).getHand(j).addCard(card);
-							TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername());
+							TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername() + " i hand: " + j);
 							TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
-							choice = 0;
 							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-							if(playerList.get(i).getHand(j).getCurrentScore() > 21) {
-
-								playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-								for(int k = 0; k < clientList.size(); k++) {
-									clientList.get(i).output(new UpdateUI(playerList.get(i).getUsername() + " got fat!"));
-								}
-							}
+							choice = 0;
 							if(playerList.get(i).getHand(j).getCurrentScore() >= 21) {
+								if(playerList.get(i).getHand(j).getCurrentScore() > 21) {
+									for(int k = 0; k < clientList.size(); k++) {
+										clientList.get(i).output(new UpdateUI(playerList.get(i).getUsername() + " got fat!"));
+									}
+								}
 								updateTableInformation();
 								Thread.sleep(1500);
 								playerList.get(i).getHand(j).setFinished(true);
@@ -468,11 +463,12 @@ public class Table extends Thread implements Serializable {
 							
 						}else if(choice == 2) {
 							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
+							TextWindow.println("FUCK SHIT UP");
 							//						playerList.get(i).getHand(j).setFinished(true);
 							//
 							choice = 0;
-							keepPlaying = false;
 							playerList.get(i).getHand(j).setDisplayValue(false);
+							keepPlaying = false;
 						}else if(choice == 3) {
 							int bet = playerList.get(i).getBet();
 							playerList.get(i).getHand(j).setBet(bet*2);
@@ -490,8 +486,8 @@ public class Table extends Thread implements Serializable {
 							//						playerList.get(i).getHand(j).setFinished(true);
 							//
 							choice = 0;
-							keepPlaying = false;
 							playerList.get(i).getHand(j).setDisplayValue(false);
+							keepPlaying = false;
 						}else if(choice == 6) {
 							boolean splitChoice = playerList.get(i).getHand(j).getSplitChoice();
 							TextWindow.println("SplitChoice = " + splitChoice);
@@ -501,9 +497,12 @@ public class Table extends Thread implements Serializable {
 								playerList.get(i).addNewHand();									//creates new hand
 								int numberOfHands = playerList.get(i).getNumberOfHands();		//checks how many hands a player has
 								playerList.get(i).getHand(numberOfHands-1).addCard(card);			//adds the card to the newest hand
-								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());
-								playerList.get(i).getHand(j+1).addCard(regularShoe.dealCard());
+								Card card1 = regularShoe.dealCard();
+								Card card2 = regularShoe.dealCard();
+								playerList.get(i).getHand(j).addCard(card1);
+								playerList.get(i).getHand(j+1).addCard(card2);
 								playerList.get(i).getHand(j+1).setBet(playerList.get(i).getHand(j).getBet());
+								TextWindow.println("[TABLE] >> Lägger till " + card1.toString() + " i hand 1, och " + card2.toString() + " i hand2");
 								int newBalance = playerList.get(i).getBalance();
 								newBalance -= playerList.get(i).getHand(j).getBet();
 								playerList.get(i).setBalance(newBalance);
@@ -513,8 +512,7 @@ public class Table extends Thread implements Serializable {
 								//								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());	//deals the actual card
 								//							}
 								playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-								//
-								choice = 0;
+//								choice = 0;
 							}
 						}
 						if(!keepPlaying) {
