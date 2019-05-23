@@ -426,7 +426,7 @@ public class Table extends Thread implements Serializable {
 				TextWindow.println("[TABLE=" + getTableId() + "] >> " + playerList.get(i).getUsername() + "s tur.");
 				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
 					for(int k = 0; k < clientList.size(); k++) {
-						clientList.get(k).output(new UpdateUI(playerList.get(i).getUsername() + "'s turn to play hand: " + j + "..."));
+						clientList.get(k).output(new UpdateUI(playerList.get(i).getUsername() + "'s turn to play hand: " + (j+1) + "..."));
 					}
 					boolean test = playerList.get(i).getHand(j).getHasMadePlayChoice();
 					boolean keepPlaying = true;
@@ -449,7 +449,7 @@ public class Table extends Thread implements Serializable {
 							TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
 							choice = 0;
 							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-							if(playerList.get(i).getHand(j).getCurrentScore() >= 21) {
+							if(playerList.get(i).getHand(j).getCurrentScore() > 21) {
 
 								playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 								for(int k = 0; k < clientList.size(); k++) {
