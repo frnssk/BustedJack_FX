@@ -472,12 +472,12 @@ public class GameController {
 			hands = playerList.get(1).getNumberOfHands();
 			i = 0;
 			if(hands == 1) {
-				lblPlayer1CardSum.setText("" + playerList.get(1).getHand(i).getCurrentScore());
+				lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i).getCurrentScore());
 			}else if(hands == 2) {
 				if(playerList.get(1).getHand(i).getDisplayValue()) {
-					lblPlayer1CardSum.setText("" + playerList.get(1).getHand(i).getCurrentScore());
+					lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i).getCurrentScore());
 				}else if(playerList.get(1).getHand(i+1).getDisplayValue()) {
-					lblPlayer1CardSum.setText("" + playerList.get(1).getHand(i + 1).getCurrentScore());
+					lblPlayer2CardSum.setText("" + playerList.get(1).getHand(i + 1).getCurrentScore());
 				}
 			}
 			System.out.println(playerList.get(1).getUsername() + ", SUMMA= " + playerList.get(1).getBalance() + ", BET= " + playerList.get(1).getBet());
