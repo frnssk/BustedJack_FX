@@ -153,8 +153,8 @@ public class Server {
 		public ClientHandler(Socket socket) throws IOException {
 			this.socket = socket;
 			socket.setTcpNoDelay(true);
-			output = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-			input = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
+			output = new ObjectOutputStream(socket.getOutputStream());
+			input = new ObjectInputStream(socket.getInputStream());
 			start();
 			TextWindow.println("[SERVER] >> New ClientHandler started");
 		}
