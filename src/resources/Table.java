@@ -240,6 +240,9 @@ public class Table extends Thread implements Serializable {
 					allPlayerChoices[i] = playerList.get(i).getHasMadeCheatChoice();
 					Thread.sleep(500);
 					updateTableInformation();
+				}else {
+					allPlayerChoices[i] = true;
+//					playerList.get(i).setHasMadeCheatChoice(true);
 				}
 			}
 			allPlayersReady = areAllTrue(allPlayerChoices);
@@ -269,11 +272,14 @@ public class Table extends Thread implements Serializable {
 					updateTableInformation();
 				}
 				int bet = player.getBet();
+				playerList.get(i).getHand(0).setBet(bet);
 				TextWindow.println("[TABLE] >> " + player.getUsername() + ", bet = " + player.getBet());
 				int newBalance = player.getBalance();
 				newBalance -= bet;
 				player.setBalance(newBalance);
 				TextWindow.println("[TABLE] >> " + player.getUsername() + ", summa = " + player.getBalance());
+			}else {
+				playerList.get(i).setHasMadeBet(true);
 			}
 		}
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 3 (kollar insatser) avslutad.");
@@ -281,7 +287,7 @@ public class Table extends Thread implements Serializable {
 			clientList.get(i).output(new UpdateUI("Dealing cards..."));
 		}
 	}
-
+	
 	//deals a single card to each of the players, depending on what choice they made
 	private void dealCardToPlayers() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 4 (delar ut kort) startar.");
@@ -414,13 +420,19 @@ public class Table extends Thread implements Serializable {
 
 		for(int i = 0; i < playerList.size(); i++) {
 			if(!playerList.get(i).isPlayerIsOut()) {
-				for(int k = 0; k < clientList.size(); k++) {
-					clientList.get(k).output(new UpdateUI(playerList.get(i).getUsername() + " turn..."));
-				}
+//				for(int k = 0; k < clientList.size(); k++) {
+//					clientList.get(k).output(new UpdateUI(playerList.get(i).getUsername() + " turn..."));
+//				}
 				TextWindow.println("[TABLE=" + getTableId() + "] >> " + playerList.get(i).getUsername() + "s tur.");
 				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
+					for(int k = 0; k < clientList.size(); k++) {
+						clientList.get(k).output(new UpdateUI(playerList.get(i).getUsername() + "'s turn to play hand: " + j + "..."));
+					}
 					boolean test = playerList.get(i).getHand(j).getHasMadePlayChoice();
 					boolean keepPlaying = true;
+					playerList.get(i).getHand(j).setDisplayValue(true);
+					//
+					playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 					while(keepPlaying) {
 						if(playerList.get(i).getHand(j).hasBlackjack()) {
 							TextWindow.println("[TABLE=" + getTableId() + "] >> " + playerList.get(i).getUsername() + " har blackjack");
@@ -435,7 +447,8 @@ public class Table extends Thread implements Serializable {
 							playerList.get(i).getHand(j).addCard(card);
 							TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername());
 							TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
-
+							choice = 0;
+							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 							if(playerList.get(i).getHand(j).getCurrentScore() >= 21) {
 
 								playerList.get(i).setPlayerChoice(new PlayerChoice(0));
@@ -444,24 +457,41 @@ public class Table extends Thread implements Serializable {
 								}
 							}
 							if(playerList.get(i).getHand(j).getCurrentScore() >= 21) {
+								updateTableInformation();
+								Thread.sleep(1500);
 								playerList.get(i).getHand(j).setFinished(true);
-
-								keepPlaying = false;
+								playerList.get(i).getHand(j).setDisplayValue(false);
+								//
+//								choice = 0;
+								keepPlaying = false;	
 							}
+							
 						}else if(choice == 2) {
 							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 							//						playerList.get(i).getHand(j).setFinished(true);
+							//
+							choice = 0;
 							keepPlaying = false;
+							playerList.get(i).getHand(j).setDisplayValue(false);
 						}else if(choice == 3) {
 							int bet = playerList.get(i).getBet();
 							playerList.get(i).getHand(j).setBet(bet*2);
+							//
+							playerList.get(i).setBet(bet*2);
+							int newBalance = playerList.get(i).getBalance();
+							newBalance -= bet;
+							playerList.get(i).setBalance(newBalance);
+							//
 							Card card = regularShoe.dealCard();
 							playerList.get(i).getHand(j).addCard(card);
 							TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername());
 							TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
 							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 							//						playerList.get(i).getHand(j).setFinished(true);
+							//
+							choice = 0;
 							keepPlaying = false;
+							playerList.get(i).getHand(j).setDisplayValue(false);
 						}else if(choice == 6) {
 							boolean splitChoice = playerList.get(i).getHand(j).getSplitChoice();
 							TextWindow.println("SplitChoice = " + splitChoice);
@@ -473,30 +503,42 @@ public class Table extends Thread implements Serializable {
 								playerList.get(i).getHand(numberOfHands-1).addCard(card);			//adds the card to the newest hand
 								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());
 								playerList.get(i).getHand(j+1).addCard(regularShoe.dealCard());
+								playerList.get(i).getHand(j+1).setBet(playerList.get(i).getHand(j).getBet());
+								int newBalance = playerList.get(i).getBalance();
+								newBalance -= playerList.get(i).getHand(j).getBet();
+								playerList.get(i).setBalance(newBalance);
 								TextWindow.println("Antal händer= " + playerList.get(i).getNumberOfHands());
 								updateTableInformation();
 								//							if(playerList.get(i).getHand(j).size() == 1) { 					//if a player only has one card in one hand - adds new card
 								//								playerList.get(i).getHand(j).addCard(regularShoe.dealCard());	//deals the actual card
 								//							}
 								playerList.get(i).setPlayerChoice(new PlayerChoice(0));
+								//
+								choice = 0;
 							}
 						}
 						if(!keepPlaying) {
 							TextWindow.println("[TABLE] " + playerList.get(i).getUsername() + " har spelat klart hand: " + j);
 							playerList.get(i).getHand(j).setFinished(true);
+							//
+							choice = 0;
 						}
 						updateTableInformation();
 
-						TextWindow.println("Tråd sover 2 sekunder.");
-						Thread.sleep(500);
+//						TextWindow.println("Tråd sover 2 sekunder.");
+//						Thread.sleep(1000);
 
-						playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-						TextWindow.println("Test choice" + playerList.get(i).getHand(j).getPlayerChoice().getChoice());
-						choice = 0;
+//						playerList.get(i).setPlayerChoice(new PlayerChoice(0));
+//						TextWindow.println("Test choice" + playerList.get(i).getHand(j).getPlayerChoice().getChoice());
+//						choice = 0;
 
-						Thread.sleep(500);
+						Thread.sleep(1000);
 					}
 					TextWindow.println("Runda slut för " + playerList.get(i).getUsername());
+					//
+					playerList.get(i).setPlayerChoice(new PlayerChoice(0));
+					TextWindow.println("Test choice" + playerList.get(i).getHand(j).getPlayerChoice().getChoice());
+					
 				}
 			}
 		}
@@ -598,7 +640,7 @@ public class Table extends Thread implements Serializable {
 			for(int j = 0; j < hands; j++) {
 				int win = playerList.get(i).getHand(j).isHandWin();
 				if(win == 1) {
-					int bet = playerList.get(i).getBet();
+					int bet = playerList.get(i).getHand(j).getBet();
 					int payout = bet * 2;
 					playerList.get(i).setBalance(playerList.get(i).getBalance() + payout);
 					TextWindow.println(playerList.get(i).getUsername() + " vann");
@@ -609,7 +651,7 @@ public class Table extends Thread implements Serializable {
 						TextWindow.println(playerList.get(i).getUsername() + " fick black jack");
 					}
 				}else if(win == 0) {
-					int bet = playerList.get(i).getBet();
+					int bet = playerList.get(i).getHand(j).getBet();
 					int payout = bet;
 					playerList.get(i).setBalance(playerList.get(i).getBalance() + payout);
 				}
