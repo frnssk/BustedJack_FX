@@ -240,6 +240,9 @@ public class Table extends Thread implements Serializable {
 					allPlayerChoices[i] = playerList.get(i).getHasMadeCheatChoice();
 					Thread.sleep(500);
 					updateTableInformation();
+				}else {
+					allPlayerChoices[i] = true;
+//					playerList.get(i).setHasMadeCheatChoice(true);
 				}
 			}
 			allPlayersReady = areAllTrue(allPlayerChoices);
@@ -274,6 +277,8 @@ public class Table extends Thread implements Serializable {
 				newBalance -= bet;
 				player.setBalance(newBalance);
 				TextWindow.println("[TABLE] >> " + player.getUsername() + ", summa = " + player.getBalance());
+			}else {
+				playerList.get(i).setHasMadeBet(true);
 			}
 		}
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 3 (kollar insatser) avslutad.");
@@ -505,8 +510,8 @@ public class Table extends Thread implements Serializable {
 						}
 						updateTableInformation();
 
-						TextWindow.println("Tråd sover 2 sekunder.");
-						Thread.sleep(1000);
+//						TextWindow.println("Tråd sover 2 sekunder.");
+//						Thread.sleep(1000);
 
 //						playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 //						TextWindow.println("Test choice" + playerList.get(i).getHand(j).getPlayerChoice().getChoice());
