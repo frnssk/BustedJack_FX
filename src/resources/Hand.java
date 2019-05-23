@@ -129,7 +129,7 @@ public class Hand implements Serializable {
 	}
 	
 	public Card getCard() {
-		return hand.remove(0);
+		return hand.remove(1);
 	}
 	
 	public boolean ableToSplit() {
