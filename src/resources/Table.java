@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-import javax.swing.JOptionPane;
-
+import communications.GameOver;
 import communications.PlayerChoice;
 import communications.StartingInformation;
 import communications.TableID;
@@ -186,8 +185,10 @@ public class Table extends Thread implements Serializable {
 				numberOfRounds -= 1;
 				sendStartingInformation();
 			}
+			for(int j = 0; j < clientList.size(); j++) {
+				clientList.get(j).output(new GameOver());
+			}
 		}catch(InterruptedException e) {}
-//		send exitgame
 	}
 
 	/*
