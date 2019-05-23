@@ -420,11 +420,14 @@ public class Table extends Thread implements Serializable {
 
 		for(int i = 0; i < playerList.size(); i++) {
 			if(!playerList.get(i).isPlayerIsOut()) {
-				for(int k = 0; k < clientList.size(); k++) {
-					clientList.get(k).output(new UpdateUI(playerList.get(i).getUsername() + " turn..."));
-				}
+//				for(int k = 0; k < clientList.size(); k++) {
+//					clientList.get(k).output(new UpdateUI(playerList.get(i).getUsername() + " turn..."));
+//				}
 				TextWindow.println("[TABLE=" + getTableId() + "] >> " + playerList.get(i).getUsername() + "s tur.");
 				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
+					for(int k = 0; k < clientList.size(); k++) {
+						clientList.get(k).output(new UpdateUI(playerList.get(i).getUsername() + "'s turn to play hand: " + j + "..."));
+					}
 					boolean test = playerList.get(i).getHand(j).getHasMadePlayChoice();
 					boolean keepPlaying = true;
 					playerList.get(i).getHand(j).setDisplayValue(true);
@@ -444,7 +447,8 @@ public class Table extends Thread implements Serializable {
 							playerList.get(i).getHand(j).addCard(card);
 							TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername());
 							TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
-
+							choice = 0;
+							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 							if(playerList.get(i).getHand(j).getCurrentScore() >= 21) {
 
 								playerList.get(i).setPlayerChoice(new PlayerChoice(0));
@@ -453,13 +457,15 @@ public class Table extends Thread implements Serializable {
 								}
 							}
 							if(playerList.get(i).getHand(j).getCurrentScore() >= 21) {
+								updateTableInformation();
+								Thread.sleep(1500);
 								playerList.get(i).getHand(j).setFinished(true);
 								playerList.get(i).getHand(j).setDisplayValue(false);
 								//
-								choice = 0;
-								keepPlaying = false;
-								
+//								choice = 0;
+								keepPlaying = false;	
 							}
+							
 						}else if(choice == 2) {
 							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 							//						playerList.get(i).getHand(j).setFinished(true);
