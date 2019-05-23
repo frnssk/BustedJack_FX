@@ -152,6 +152,7 @@ public class Server {
 
 		public ClientHandler(Socket socket) throws IOException {
 			this.socket = socket;
+			socket.setTcpNoDelay(true);
 			output = new ObjectOutputStream(new BufferedOutputStream(socket.getOutputStream()));
 			input = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
 			start();
