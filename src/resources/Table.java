@@ -444,24 +444,8 @@ public class Table extends Thread implements Serializable {
 							playerList.get(i).getHand(j).addCard(card);
 							TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername() + " i hand: " + j);
 							TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
-<<<<<<< HEAD
-							choice = 0;
-<<<<<<< HEAD
-							if(playerList.get(i).getHand(j).getCurrentScore() >= 21) {
-=======
-							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-							if(playerList.get(i).getHand(j).getCurrentScore() > 21) {
->>>>>>> origin/rasmus3.0
-
-								playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-								for(int k = 0; k < clientList.size(); k++) {
-									clientList.get(i).output(new UpdateUI(playerList.get(i).getUsername() + " got fat!"));
-								}
-							}
-=======
 							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 							choice = 0;
->>>>>>> origin/rasmus3.0
 							if(playerList.get(i).getHand(j).getCurrentScore() >= 21) {
 								if(playerList.get(i).getHand(j).getCurrentScore() > 21) {
 									for(int k = 0; k < clientList.size(); k++) {
