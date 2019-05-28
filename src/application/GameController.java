@@ -21,129 +21,75 @@ import resources.Player;
  *
  */
 public class GameController {
-	@FXML
-	private Label lblPlayer1;
-	@FXML
-	private Label lblPlayer2;
-	@FXML
-	private Label lblPlayer3;
-	@FXML
-	private Label lblPlayer4;
-	@FXML
-	private Label lblPlayer5;
+	@FXML private Label lblPlayer1;
+	@FXML private Label lblPlayer2;
+	@FXML private Label lblPlayer3;
+	@FXML private Label lblPlayer4;
+	@FXML private Label lblPlayer5;
 
 	private Label[] lblPlayersArray;
 
-	@FXML
-	private Label lblPlayer1CardSum;
-	@FXML
-	private Label lblPlayer2CardSum;
-	@FXML
-	private Label lblPlayer3CardSum;
-	@FXML
-	private Label lblPlayer4CardSum;
-	@FXML
-	private Label lblPlayer5CardSum;
+	@FXML private Label lblPlayer1CardSum;
+	@FXML private Label lblPlayer2CardSum;
+	@FXML private Label lblPlayer3CardSum;
+	@FXML private Label lblPlayer4CardSum;
+	@FXML private Label lblPlayer5CardSum;
 
-	@FXML
-	private Label lblPlayer1Balance;
-	@FXML
-	private Label lblPlayer2Balance;
-	@FXML
-	private Label lblPlayer3Balance;
-	@FXML
-	private Label lblPlayer4Balance;
-	@FXML
-	private Label lblPlayer5Balance;
+	@FXML private Label lblPlayer1Balance;
+	@FXML private Label lblPlayer2Balance;
+	@FXML private Label lblPlayer3Balance;
+	@FXML private Label lblPlayer4Balance;
+	@FXML private Label lblPlayer5Balance;
 
-	@FXML
-	private Label lblPlayer1Bet;
-	@FXML
-	private Label lblPlayer2Bet;
-	@FXML
-	private Label lblPlayer3Bet;
-	@FXML
-	private Label lblPlayer4Bet;
-	@FXML
-	private Label lblPlayer5Bet;
+	@FXML private Label lblPlayer1Bet;
+	@FXML private Label lblPlayer2Bet;
+	@FXML private Label lblPlayer3Bet;
+	@FXML private Label lblPlayer4Bet;
+	@FXML private Label lblPlayer5Bet;
 
-	@FXML
-	private Label lblDealer;
-	@FXML
-	private Label lblDealerCardSum;
-	@FXML
-	private Label lblUpdate;
+	@FXML private Label lblDealer;
+	@FXML private Label lblDealerCardSum;
+	@FXML private Label lblUpdate;
 
-	@FXML
-	private ImageView iwPlayer1Card1;
-	@FXML
-	private ImageView iwPlayer1Card2;
-	@FXML
-	private ImageView iwPlayer2Card1;
-	@FXML
-	private ImageView iwPlayer2Card2;
-	@FXML
-	private ImageView iwPlayer3Card1;
-	@FXML
-	private ImageView iwPlayer3Card2;
-	@FXML
-	private ImageView iwPlayer4Card1;
-	@FXML
-	private ImageView iwPlayer4Card2;
-	@FXML
-	private ImageView iwPlayer5Card1;
-	@FXML
-	private ImageView iwPlayer5Card2;
+	@FXML private ImageView iwPlayer1Card1;
+	@FXML private ImageView iwPlayer1Card2;
+	@FXML private ImageView iwPlayer2Card1;
+	@FXML private ImageView iwPlayer2Card2;
+	@FXML private ImageView iwPlayer3Card1;
+	@FXML private ImageView iwPlayer3Card2;
+	@FXML private ImageView iwPlayer4Card1;
+	@FXML private ImageView iwPlayer4Card2;
+	@FXML private ImageView iwPlayer5Card1;
+	@FXML private ImageView iwPlayer5Card2;
 
 	private ImageView[] iwCardsArray;
 
-	@FXML
-	private Label lblTime;
-	@FXML
-	private Label lblRounds;
-	@FXML
-	private Label lblTableId;
-	@FXML
-	private Label lblMinimumBet;
+	@FXML private Label lblTime;
+	@FXML private Label lblRounds;
+	@FXML private Label lblTableId;
+	@FXML private Label lblMinimumBet;
 
-	@FXML
-	private ProgressBar cheatHeatProgressBar;
-	@FXML
-	private Label lblCheatHeatPercent;
+	@FXML private ProgressBar cheatHeatProgressBar;
+	@FXML private Label lblCheatHeatPercent;
 
-	@FXML
-	private Button btnCheat;
-	@FXML
-	private Button btnDoNotCheat;
-	@FXML
-	private Button btnBust;
+	@FXML private Button btnCheat;
+	@FXML private Button btnDoNotCheat;
+	@FXML private Button btnBust;
 
-	@FXML
-	private Button btnSplit;
-	@FXML
-	private Button btnDouble;
-	@FXML
-	private Button btnStay;
-	@FXML
-	private Button btnHit;
+	@FXML private Button btnSplit;
+	@FXML private Button btnDouble;
+	@FXML private Button btnStay;
+	@FXML private Button btnHit;
 
-	@FXML
-	private Button btnIncreaseBet25;
-	@FXML
-	private Button btnIncreaseBet50;
-	@FXML
-	private Button btnIncreaseBet100;
-	@FXML
-	private Button btnIncreaseBet500;
-	@FXML
-	private Button btnConfirmBet;
-	@FXML
-	private Button btnClearBet;
+	@FXML private Button btnIncreaseBet25;
+	@FXML private Button btnIncreaseBet50;
+	@FXML private Button btnIncreaseBet100;
+	@FXML private Button btnIncreaseBet500;
+	@FXML private Button btnConfirmBet;
+	@FXML private Button btnClearBet;
 
-	@FXML
-	private Button btnStartGame;
-	@FXML
-	private Button btnExit;
+	@FXML private Button btnStartGame;
+	@FXML private Button btnExit;
 
 	private Main mainApp;
 	private UserClient client;
