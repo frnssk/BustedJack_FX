@@ -11,7 +11,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
 /**
- * Class used to control and communicate to the CreateTableScreen.fxml during a game
+ * Class used to control and communicate to the CreateTableScreen.fxml
  * Updated UI and send button action to client 
  * @author Isak Eklund
  *
