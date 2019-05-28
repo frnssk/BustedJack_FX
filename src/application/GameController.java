@@ -14,6 +14,12 @@ import javafx.scene.image.ImageView;
 import resources.DealerHand;
 import resources.Player;
 
+/**
+ * Class used to control and communicate to the GameTable.fxml during a game
+ * Updated UI and send button action to client 
+ * @author Isak Eklund
+ *
+ */
 public class GameController {
 	@FXML
 	private Label lblPlayer1;
