@@ -5,12 +5,13 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
-/*
+/**
  * This class will create an instance of the client, controller and user interface
  * Contains main method for the client side of the application
  * Is used to start the program
+ * @author Isak Eklund
+ * 
  */
-
 public class StartClient {
 	public static void main(String[] args) throws IOException {
 		UserClient client = new UserClient("localhost", 1200); //IP and port are hard coded for testing

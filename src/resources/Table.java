@@ -15,6 +15,14 @@ import resources.Card.Rank;
 import server.Server.ClientHandler;
 import server.TextWindow;
 
+/**
+ * The main logic of the game
+ * 
+ * @author Rasmus Öberg
+ * @author Isak Eklund
+ * 
+ *
+ */
 public class Table extends Thread implements Serializable {
 
 	private static final long serialVersionUID = 8653911597750749092L;
