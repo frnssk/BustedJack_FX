@@ -29,6 +29,7 @@ import resources.Table;
 import resources.User;
 
 /*
+ * Server which handles a number of clients and the users
  * @author RasmusOberg
  */
 public class Server {
@@ -137,7 +138,8 @@ public class Server {
 	}
 
 	/*
-	 * Starts a new Thread for every client
+	 * Starts a new Thread for every client, so that multiple users can use 
+	 * the server concurrently with a unique client
 	 * @author RasmusOberg
 	 */
 	public class ClientHandler extends Thread {
@@ -162,7 +164,7 @@ public class Server {
 		public void output(Object obj) {
 			try {
 				output.writeObject(obj);
-//				output.flush();
+				output.flush();
 				output.reset();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -178,11 +180,7 @@ public class Server {
 				try {
 					obj = input.readObject();
 					String choice = "";
-
-					/**
-					 * This is used to decode what the client is sending
-					 * Depending on what kind of object, the server responds accordingly
-					 */
+					
 					if(obj instanceof RegisterRequest) {
 						RegisterRequest registerRequest = (RegisterRequest)obj;
 						choice = registerNewUser(registerRequest);
@@ -238,7 +236,8 @@ public class Server {
 		}
 		
 		/*
-		 * used when a new user connects
+		 * Used to register a new user so that they can log in 
+		 * with the existing user next time
 		 */
 		public synchronized String registerNewUser(RegisterRequest registerRequest) {
 			String choice = "";
@@ -250,7 +249,6 @@ public class Server {
 					temporary.setPassword(registerRequest.getPassword());
 					userPasswords.put(registerRequest.getUsername(), registerRequest.getPassword());
 					updateUserDatabase(temporary);
-					//Adds the user and client to the UserHandler-HashMap
 					UserHandler.newUserConnect(temporary, this);
 					choice = "USER_TRUE";
 				}else { 
@@ -264,7 +262,7 @@ public class Server {
 		}
 		
 		/*
-		 * used to log in existing users
+		 * Used to log in existing users
 		 */
 		public synchronized String loginUser(LoginRequest loginRequest) {
 			String choice = "";
@@ -284,8 +282,8 @@ public class Server {
 			return choice;
 		}
 		
-		/*
-		 * Checks whether or not a user is registered
+		/**
+		 * Checks whether or not a user is registered, to make sure name duplicates doesn't occur
 		 */
 		private boolean isUserRegistered(String name) {
 			for(int i = 0; i < registeredUsers.size(); i++) {
@@ -298,18 +296,15 @@ public class Server {
 			return false;
 		}
 		
-		/*
-		 * Checks if the given password matches the password that is stored
-		 * Used to log in users
-		 */
 		private boolean passwordMatchUser(String username, char[] password) {
 			char[] array = userPasswords.get(username);
 			return Arrays.equals(array, password);
 		}
 
-		/*
-		 * Checks whether or not a username is already in use
-		 * Used to make sure a new user doesn't take an existing users name
+		/**
+		 * Used to make sure that 2 users doesn't register the same username
+		 * @param name - The name being tested 
+		 * @return - boolean 
 		 */
 		private boolean checkUsernameAvailability(String name) {
 			for(int i = 0; i < registeredUsers.size(); i++) {
@@ -321,9 +316,6 @@ public class Server {
 			return true;
 		}
 
-		/*
-		 * 
-		 */
 		public User getUser(String name) {
 			for(int i = 0; i < registeredUsers.size(); i++) {
 				User compare = registeredUsers.get(i);
@@ -335,9 +327,6 @@ public class Server {
 			return null;
 		}
 
-		/*
-		 * Checks whether or not a password is the required length
-		 */
 		public boolean isPasswordOkay(char[] password) {
 			if(password.length < 6 || password.length > 11) {
 				return false;
@@ -346,8 +335,10 @@ public class Server {
 			}
 		}
 		
-		/*
-		 * used to log out a user
+		/**
+		 * Used to logout a user/client
+		 * @param logoutRequest
+		 * @param clientHandler - to know which client it is
 		 */
 		public void logoutUser(LogOutRequest logoutRequest, ClientHandler clientHandler) {
 			clientHandler.isOnline = false;
@@ -355,8 +346,10 @@ public class Server {
 			UserHandler.removeActiveUser(this);
 		}
 		
-		/*
-		 * used to create a new table
+		/**
+		 * Used to create a new table
+		 * @param clientHandler - the user/client which creates it
+		 * @param gameInfo - the parametres the user used
 		 */
 		public synchronized void createNewTableAndAddPlayer(ClientHandler clientHandler, GameInfo gameInfo) {
 			Table table = new Table(gameInfo.getTime(), gameInfo.getRounds(), gameInfo.getBalance(), gameInfo.getMinBet(), gameInfo.getPrivateMatchStatus());
@@ -384,8 +377,10 @@ public class Server {
 			updateList(clientList, playerList);
 		}
 		
-		/*
-		 * Sets a unique ID to specific table
+		/**
+		 * Gives a table a unique ID, to keep track of how many tables are active
+		 * and to enable multiple tables
+		 * @param table - The table which needs an ID
 		 */
 		public synchronized void setTableId(Table table) {
 			table.setTableId(tableIdCounter);
@@ -393,9 +388,10 @@ public class Server {
 			tableIdCounter++;
 		}
 		
-		/*
-		 * used to find the table corresponding to the ID provided by the user
-		 * checks if the table even exists, if it does and all conditions are met - tries to add the player
+		/**
+		 * Used when a user wants to join a specific table
+		 * @param tableId - the ID of the table he wants to join
+		 * @param clientHandler - the user/client who made the choice
 		 */
 		public synchronized void addPlayerToTable(int tableId, ClientHandler clientHandler) {
 			String choice = "";
@@ -426,8 +422,11 @@ public class Server {
 				TextWindow.println("[SERVER] >> Bord med id: " + tableId + " finns ej.");
 			}
 		}
-		/*
-		 * used to add a player to an existing table
+		
+		/**
+		 * The actual adding of a player to a table
+		 * @param clientHandler - the user/client who wants to join
+		 * @param table - the table in question
 		 */
 		public synchronized void addPlayerOnExistingTable(ClientHandler clientHandler, Table table) {
 			User user = UserHandler.getUser(clientHandler);
@@ -444,6 +443,10 @@ public class Server {
 			updateList(clientList, playerList);
 		}
 		
+		/**
+		 * Used when a player wants to join any table
+		 * @param clientHandler - the user/client who wants to join
+		 */
 		public void addPlayerOnRandomTable(ClientHandler clientHandler) {
 			String choice = "";
 			User user = UserHandler.getUser(clientHandler);
@@ -488,17 +491,19 @@ public class Server {
 //			return choice;
 		}
 
-		/*
-		 * Used when a user tries to join a table
-		 * makes sure a user can't join a table that doesn't exist
+		/**
+		 * Makes sure noone can join a table that doesn't exist
+		 * @param tableId
+		 * @return
 		 */
 		public boolean doesTableExist(int tableId) {
 			return activeTables2.containsKey(tableId);
 		}
 
-		/*
-		 * used to set the choice a user made, converts it to the correct player and sets the choice
-		 * can be moved to a TableController-class
+		/**
+		 * Used to convey the choice a player made to the table
+		 * @param playerChoice - the choice he made
+		 * @param clientHandler - the client who made it
 		 */
 		public void makePlayerChoice(PlayerChoice playerChoice, ClientHandler clientHandler) {
 			Table table = clientAndTable.get(clientHandler);
@@ -508,8 +513,10 @@ public class Server {
 			TextWindow.println("[SERVER] >> " + player.getUsername() + " har gjort ett val: " + playerChoice.getChoice());
 		}
 
-		/*
-		 * used to update the player-list on all the clients whenever a new one connects
+		/**
+		 * Used to update the names of the players around the table
+		 * @param clientList - the list of clients who should receive it
+		 * @param playerList - the actual list of players who are being displayed
 		 */
 		public void updateList(ArrayList<ClientHandler> clientList, ArrayList<Player> playerList) {
 			for(int i = 0; i < clientList.size(); i++) {
@@ -523,8 +530,9 @@ public class Server {
 			}
 		}
 
-		/*
-		 * used to update all the clients with the latest actions on their table
+		/**
+		 * Used to update a client of what is going on on the table
+		 * @param playerList
 		 */
 		public void updateTableInformation(ArrayList<Player> playerList) {
 			try {
@@ -537,20 +545,29 @@ public class Server {
 	}
 
 
-	/*
-	 * HashMap containing all the online users
-	 * @author RasmusOberg
+	/**
+	 * HashMap containing all the active users/clients
+	 * @author rasmusoberg
+	 *
 	 */
 	private static class UserHandler {
 		private static HashMap<ClientHandler, User> activeUsers = new HashMap<>();
 
-		//connects a new client
+		/**
+		 * Used to add a newly registered user
+		 * @param user - the user
+		 * @param clientHandler - the client
+		 */
 		public synchronized static void newUserConnect(User user, ClientHandler clientHandler) {
 			activeUsers.put(clientHandler, user);
 			TextWindow.println("[NEW USER] >> \"" + user.getUsername() + "\" är nu registrerad.");
 		}
 
-		//adds new user to activeUsers-HashMap
+		/**
+		 * Used to register a newly logged on user
+		 * @param user 
+		 * @param clientHandler
+		 */
 		public synchronized static void addNewActiveUser(User user, ClientHandler clientHandler) {
 			activeUsers.put(clientHandler, user);
 			TextWindow.println("[NEW LOGIN] >> \"" + user.getUsername() + "\" är aktiv.");
@@ -560,12 +577,14 @@ public class Server {
 			return activeUsers;
 		}
 
-		//Used to get which user is connected to a specific client / clienthandler
 		public synchronized static User getUser(ClientHandler clientHandler) {
 			return activeUsers.get(clientHandler);
 		}
 
-		//Used to remove a user when he disconnects
+		/**
+		 * Used when a user logs off to remove from the Hashmap
+		 * @param clientHandler - the client which logged off
+		 */
 		public synchronized static void removeActiveUser(ClientHandler clientHandler) {
 			activeUsers.remove(clientHandler, getUser(clientHandler));
 			TextWindow.println("[NEW LOGOUT] >> " + getUser(clientHandler).getUsername() + " är ej längre aktiv.");
