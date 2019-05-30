@@ -8,6 +8,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+/**
+ * Controlling communication to MainMenu.fxml
+ * Used to update UI and send actions to client
+ * @author Isak Eklund
+ *
+ */
 public class MainMenuController {
 	@FXML private Button btnGoToTable;
 	@FXML private Button btnCreateTable;

@@ -40,12 +40,10 @@ import server.Server.ClientHandler;
  */
 public class UserClient {
 	private Socket socket;
-	private UserController controller;
 	private ObjectOutputStream output;
 	private ObjectInputStream input;
 	private String ip;
 	private int port;
-	private User user;
 	private boolean receiving = true;
 	private Connection connection;
 	private Object obj;
@@ -64,19 +62,6 @@ public class UserClient {
 	public UserClient(String ip, int port) throws IOException{
 		this.ip = ip;
 		this.port = port;
-//				try {
-//					socket = new Socket(ip, port);
-//					output = new ObjectOutputStream(socket.getOutputStream());
-//					input = new ObjectInputStream(socket.getInputStream());
-//				}catch(IOException ioException) {
-//					ioException.printStackTrace();
-//				}
-//				if(connection == null) {
-//					connection = new Connection(socket);
-//					connection.start();
-//				}
-//		connect();
-
 	}
 	
 	public void setMain(Main main) {
@@ -95,14 +80,6 @@ public class UserClient {
 		this.logInController = controller;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public void setUserController(UserController userController) {
-		this.controller = userController;
-	}
-	
 	public void setCreateNewUserController(CreateNewUserController controller) {
 		this.createNewUserController = controller;
 	}
@@ -127,18 +104,6 @@ public class UserClient {
 			}
 			receiving = true;
 		}
-		//		try {
-		//			socket = new Socket(ip, port);
-		//			output = new ObjectOutputStream(socket.getOutputStream());
-		//			input = new ObjectInputStream(socket.getInputStream());
-		//			receiving = true;
-		//		}catch(IOException ioException) {
-		//			ioException.printStackTrace();
-		//		}
-		//		if(connection == null) {
-		//			connection = new Connection(socket);
-		//			connection.start();
-		//		}
 	}
 
 	public void disconnect() {
@@ -238,11 +203,6 @@ public class UserClient {
 		public Connection(Socket socket) throws IOException {
 			output = new ObjectOutputStream(socket.getOutputStream());
 			input = new ObjectInputStream(socket.getInputStream());
-			
-			BufferedOutputStream output2 = new BufferedOutputStream(output);
-			BufferedInputStream input2 = new BufferedInputStream(input);
-			
-//			output2 = new BufferedOutputStream(output);
 		}
 
 		public void run() {
@@ -252,7 +212,7 @@ public class UserClient {
 
 					//For checking user name availability
 					if(obj instanceof String) {
-						String available = (String) obj; //byta namn? används till mer än att kolla namn
+						String available = (String) obj;
 						if(available.equals("LOGIN_SUCCES") || available.equals("LOGIN_FAIL") || available.equals("LOGIN_NOT_EXIST")) {
 							System.out.println("[CLIENT] == " + available);
 							logInController.checkLogIn(available);
@@ -336,7 +296,7 @@ public class UserClient {
 						});
 					}
 				}catch(IOException | ClassNotFoundException e) {
-//					e.printStackTrace();
+					e.printStackTrace();
 				}
 			}
 			try {
