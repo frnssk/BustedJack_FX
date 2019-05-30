@@ -2,7 +2,7 @@ package communications;
 
 /**
  * Create Achievement objects to send from server to client when a player have reached an Achievement.
- * @author fransisakeklund
+ * @author Isak Eklund
  *
  */
 public class Achievement {
