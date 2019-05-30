@@ -16,16 +16,10 @@ import server.Server.ClientHandler;
 import server.TextWindow;
 
 /**
-<<<<<<< HEAD
- * The main logic of the game
- * 
- * @author Rasmus Öberg
- * @author Isak Eklund
- * 
-=======
  * Class that represents a table, where a game of Busted Jack is played
- * @author rasmusoberg, simon lilja
->>>>>>> rasmus3.0
+ * @author Rasmus Öberg
+ * @author Simon Lilja
+ * @autohr Isak Eklund
  *
  */
 public class Table extends Thread implements Serializable {

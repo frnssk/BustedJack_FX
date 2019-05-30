@@ -28,7 +28,7 @@ import resources.Player;
 import resources.Table;
 import resources.User;
 
-/*
+/**
  * Server which handles a number of clients and the users
  * @author RasmusOberg
  */
