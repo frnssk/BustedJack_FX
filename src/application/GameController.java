@@ -119,6 +119,7 @@ public class GameController {
 	private void initialize() {
 		btnStartGame.setDisable(false);
 		btnExit.setDisable(true);
+		btnBust.setDisable(true);
 
 		iwCardsArray = new ImageView[10];
 		iwCardsArray[0] = iwPlayer1Card1;

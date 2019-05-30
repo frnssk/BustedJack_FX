@@ -159,7 +159,7 @@ public class Table extends Thread implements Serializable {
 			startGame();				//starts game and sets the balance for every player
 			sendStartingInformation();	//updates all the clients with time/rounds/miniBet
 			int i = 0;
-			while( i <= numberOfRounds) {
+			while( i < numberOfRounds) {
 				//		testingChoices();
 				checkCheatChoice();			//controls that every player made a choice
 				checkBets();
@@ -181,7 +181,7 @@ public class Table extends Thread implements Serializable {
 				compareDealerToPlayers();	//checks whether or not the players beat the dealer
 				payout();					//pays out if players won, takes the money if they lost
 				reset();
-				i++;
+//				i++;
 				numberOfRounds -= 1;
 				sendStartingInformation();
 			}
@@ -480,6 +480,8 @@ public class Table extends Thread implements Serializable {
 							playerList.get(i).setBet(bet*2);
 							int newBalance = playerList.get(i).getBalance();
 							newBalance -= bet;
+							//if(bet > balance)
+							//	sendErrorMessage to client[i]
 							playerList.get(i).setBalance(newBalance);
 							Card card = regularShoe.dealCard();
 							playerList.get(i).getHand(j).addCard(card);
