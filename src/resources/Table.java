@@ -16,11 +16,16 @@ import server.Server.ClientHandler;
 import server.TextWindow;
 
 /**
+<<<<<<< HEAD
  * The main logic of the game
  * 
  * @author Rasmus Öberg
  * @author Isak Eklund
  * 
+=======
+ * Class that represents a table, where a game of Busted Jack is played
+ * @author rasmusoberg, simon lilja
+>>>>>>> rasmus3.0
  *
  */
 public class Table extends Thread implements Serializable {
@@ -43,6 +48,14 @@ public class Table extends Thread implements Serializable {
 	private ArrayList<ClientHandler> clientList = new ArrayList<>(); //Holds all the clientHandlers
 	private HashMap<ClientHandler, Player> playerAndClient = new HashMap<>(); //Holds all the clientHandlers, with corresponding players
 
+	/**
+	 * Constructor which instantiates the table with a few given parameters
+	 * @param numberOfMinutes - the number of minutes the game should go on
+	 * @param numberOfRounds - the number of rounds the game should go on
+	 * @param startingMoney - the amount of money everyone starts with
+	 * @param minimumBet - the minimum amount of money everyone must bet
+	 * @param privateStatus - the value that decides if you can join by random or only by tableID
+	 */
 	public Table(int numberOfMinutes, int numberOfRounds, int startingMoney, int minimumBet, boolean privateStatus) {
 		this.numberOfMinutes = numberOfMinutes;
 		this.numberOfRounds = numberOfRounds;
@@ -58,9 +71,7 @@ public class Table extends Thread implements Serializable {
 	public void setPrivateStatus(boolean bool) {
 		this.privateStatus = bool;
 	}
-	/*
-	 * Returns the game-information
-	 */
+	
 	public int getMinutes() {
 		return numberOfMinutes;
 	}
@@ -77,80 +88,49 @@ public class Table extends Thread implements Serializable {
 		return privateStatus;
 	}
 
-	/*
-	 * Adds a new player to the table 
-	 */
 	public void addPlayer(Player player) {
 		playerList.add(player);
 		System.out.println("[TABLE] == Antal på bord = " + playerList.size());
 	}
 
-	/*
-	 * Adds a new client to the table
-	 */
 	public void addClient(ClientHandler clientHandler) {
 		clientList.add(clientHandler);
 	}
 
-	/*
-	 * Adds a client+player
-	 */
 	public void addClientAndPlayer(ClientHandler clientHandler, Player player) {
 		playerAndClient.put(clientHandler, player);
 	}
 
-	/*
-	 * Returns the hashMap containing clients/players
-	 */
 	public HashMap<ClientHandler, Player> getPlayerAndClient(){
 		return playerAndClient;
 	}
 
-	/*
-	 * returns the arrayList of players
-	 */
 	public ArrayList<Player> getPlayerList(){
 		return playerList;
 	}
 
-	/*
-	 * returns if the table-thread is running
-	 */
 	public boolean checkTableStarted() {
 		return this.isAlive();
 	}
 
-	/*
-	 * Used by server to set the ID
-	 */
 	public void setTableId(int id) {
 		this.tableID = id;
 	}
 
-	/*
-	 * returns the ID
-	 */
 	public int getTableId() {
 		return tableID;
 	}
-
-	/*
-	 * returns the amount of players, used to not add to many
-	 */
+	
 	public int getNumberOfPlayers() {
 		return this.playerList.size();
 	}
 
-	//TESTING
-	/*
-	 * Never used?
-	 */
 	public void setPlayerChoice(Player player, PlayerChoice playerChoice) {
 		player.setPlayerChoice(playerChoice);
 	}
 
-	/*
-	 * should be updated with the correct object
+	/**
+	 * Used to update all the clients on the table with the latest choice anyone has made
 	 */
 	public void updateTableInformation() {
 		System.out.println("Uppdaterar alla klienter");
@@ -160,36 +140,34 @@ public class Table extends Thread implements Serializable {
 		}
 	}
 
+	/**
+	 * The thread which runs the table, keeps on going as long as
+	 * the number of rounds is not reached
+	 */
 	public void run() {
 		try {
 			TextWindow.println("[TABLE=" + getTableId() + "]"+ " >> tråd för bordet startad.");
-			TextWindow.println("[TABLE=" + getTableId() + "]"+ " >> BustedJack 2019.");
-			startGame();				//starts game and sets the balance for every player
-			sendStartingInformation();	//updates all the clients with time/rounds/miniBet
+			startGame();				
+			sendStartingInformation();	
 			int i = 0;
 			while( i < numberOfRounds) {
-				//		testingChoices();
-				checkCheatChoice();			//controls that every player made a choice
+				checkCheatChoice();			
 				checkBets();
-				//		checkBetsMade();			//controls that every player made a bet
-				//		checkWhatPlayerBet();		//controls how much everyone bet
-				dealCardToPlayers();		//deals 1 card each
-				dealCardToDealer();			//deals one face-down-card to the dealer
-				dealCardToPlayers();		//deals a second card to all the players
-				resetPlayerCheatChoice();	//resets the cheat-choice for everyone
-				dealCardToDealer();			//deals a second face-down-card to the dealer
-				printAllCards();			//TESTING
-				checkForBlackjack();		//checks if anyone hit 21 in their first 2 cards
-				flipDealerCard();			//flips the first card the dealer got, face-up
-				//			checkForSplit();			//check all the players and if they can split, and lets them if they want
-				//			checkInsurance();	//checks if the dealer got an ace, and if any player wants to buy insurance
-				checkPlayerChoices();		//lets the players play each hand
-				//		letPlayerBust();			//lets the players bust each other
-				letDealerPlay();			//if the dealer is <17, he keeps on hitting
-				compareDealerToPlayers();	//checks whether or not the players beat the dealer
-				payout();					//pays out if players won, takes the money if they lost
+				dealCardToPlayers();	
+				dealCardToDealer();			
+				dealCardToPlayers();		
+				resetPlayerCheatChoice();	
+				dealCardToDealer();			
+				printAllCards();			
+				checkForBlackjack();		
+				flipDealerCard();			
+				//			checkInsurance();	
+				checkPlayerChoices();		
+				//		letPlayerBust();			
+				letDealerPlay();			
+				compareDealerToPlayers();	
+				payout();					
 				reset();
-//				i++;
 				numberOfRounds -= 1;
 				sendStartingInformation();
 			}
@@ -199,8 +177,8 @@ public class Table extends Thread implements Serializable {
 		}catch(InterruptedException e) {}
 	}
 
-	/*
-	 * Used to test that the deal-methods are working
+	/**
+	 * Used for debugging
 	 */
 	private void printAllCards() {
 		for(int i = 0; i < playerList.size(); i++) {
@@ -211,9 +189,6 @@ public class Table extends Thread implements Serializable {
 		TextWindow.println("Summa dealer: " + dealer.getValue() + ", KORT= " + dealer.toString());
 	}
 
-	/*
-	 * Starts the game, sets all the balances and shuffles the shoes
-	 */
 	private void startGame() {
 		TextWindow.println("[TABLE=" + getTableId() + "]" + " metod 1 (sätter startsumma) startad.");
 		for(int i = 0; i < playerList.size(); i++) {
@@ -228,9 +203,6 @@ public class Table extends Thread implements Serializable {
 		}
 	}
 
-	/*
-	 * send timer + rounds + minibet
-	 */
 	public void sendStartingInformation() {
 		StartingInformation startInfo = new StartingInformation(this.getMinutes(), this.getRounds(), this.getMinimumBet(), this.getStartingMoney());
 		for(int i = 0; i < clientList.size(); i++) {
@@ -238,7 +210,10 @@ public class Table extends Thread implements Serializable {
 		}
 	}
 
-	//checks that all players has made a choice to cheat or not
+	/**
+	 * Used to know what cheat-choice a player made, to deal from the correct shoe
+	 * @throws InterruptedException
+	 */
 	private void checkCheatChoice() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "]" + " metod 2 (kollar fusk-val) startad.");
 		boolean allPlayersReady = false;
@@ -251,7 +226,6 @@ public class Table extends Thread implements Serializable {
 					updateTableInformation();
 				}else {
 					allPlayerChoices[i] = true;
-					//					playerList.get(i).setHasMadeCheatChoice(true);
 				}
 			}
 			allPlayersReady = areAllTrue(allPlayerChoices);
@@ -264,7 +238,6 @@ public class Table extends Thread implements Serializable {
 		}
 	}
 
-	//the new, updated method to use
 	private void checkBets() {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 3 (kollar insatser) startad.");
 		for(int i = 0; i < playerList.size(); i++) {
@@ -297,7 +270,6 @@ public class Table extends Thread implements Serializable {
 		}
 	}
 
-	//deals a single card to each of the players, depending on what choice they made
 	private void dealCardToPlayers() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 4 (delar ut kort) startar.");
 		TextWindow.println("Size of playerlist: " + playerList.size());
@@ -330,7 +302,11 @@ public class Table extends Thread implements Serializable {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 4 (delar ut kort) avslutad.");
 	}
 
-	//used to reset players cheat-choice so no player only receives cards from the cheat-shoe
+	/**
+	 * Used to set the cheat-choice of all players to false, so that after the first 2 cards, all cards they
+	 * get come from the regular deck
+	 * @throws InterruptedException
+	 */
 	public void resetPlayerCheatChoice() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 5 (reset playerChoice) startad.");
 		for(int i = 0; i < playerList.size(); i++) {
@@ -341,7 +317,6 @@ public class Table extends Thread implements Serializable {
 		Thread.sleep(500);
 	}
 
-	//deals a single card to the dealer
 	private void dealCardToDealer() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 6 (delar ut kort till dealer) startad.");
 		Card card = regularShoe.dealCard();
@@ -353,7 +328,7 @@ public class Table extends Thread implements Serializable {
 		updateTableInformation();
 	}
 
-	//checks if a player has BlackJack, hand by hand, if not - he can continue playing
+	
 	private void checkForBlackjack() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 7 (kollar efter BlackJack) startad.");
 		for(int i = 0; i < playerList.size(); i++) {
@@ -364,7 +339,6 @@ public class Table extends Thread implements Serializable {
 						playerList.get(i).getHand(j).setBlackjack(true);
 						clientList.get(i).output(new UpdateUI(playerList.get(i).getUsername() + " got Black Jack!!!"));
 					}
-//					updateTableInformation();
 				}
 			}
 		}
@@ -372,7 +346,9 @@ public class Table extends Thread implements Serializable {
 		Thread.sleep(500);
 	}
 
-	//never used yet
+	/**
+	 * Haven't gotten this far as to implement the bust-function
+	 */
 	private void checkIsPlayerBust() {
 		for(int i = 0; i < playerList.size(); i++) {
 			int hands = playerList.get(i).getNumberOfHands();
@@ -383,8 +359,11 @@ public class Table extends Thread implements Serializable {
 			}
 		}
 	}
-
-	//should flip the first card the dealer got
+	
+	/**
+	 * The first card the dealer gets is dealt face-down, this flips it over to face-up
+	 * @throws InterruptedException
+	 */
 	private void flipDealerCard() {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 8 (flippar dealerns första kort) startad.");
 		dealer.getCard(0).setVisibility(true);
@@ -393,6 +372,9 @@ public class Table extends Thread implements Serializable {
 		updateTableInformation();
 	}
 
+	/**
+	 * Haven't got this far as to implement the insurance-function
+	 */
 	private void checkInsurance(){
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 10 (kollar om insurance behövs) startad.");
 		if(dealer.getCard(0).getRank() == Rank.ACE) {
@@ -422,12 +404,15 @@ public class Table extends Thread implements Serializable {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 10 (kollar om insurance behövs) avslutad.");
 	}
 
+	/**
+	 * The "play"-method
+	 * @throws InterruptedException
+	 */
 	private void checkPlayerChoices() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 11 (kollar vilka val spelare har gjort) startad.");
 
 		for(int i = 0; i < playerList.size(); i++) {
 			if(!playerList.get(i).isPlayerIsOut()) {
-				//				TextWindow.println("[TABLE=" + getTableId() + "] >> " + playerList.get(i).getUsername() + "s tur.");
 				for(int j = 0; j < playerList.get(i).getNumberOfHands(); j++) {
 					for(int k = 0; k < clientList.size(); k++) {
 						clientList.get(k).output(new UpdateUI(playerList.get(i).getUsername() + "'s turn to play hand: " + (j+1) + "..."));
@@ -466,16 +451,11 @@ public class Table extends Thread implements Serializable {
 								playerList.get(i).getHand(j).setFinished(true);
 								playerList.get(i).getHand(j).setDisplayValue(false);
 								updateTableInformation();
-								//
-								//								choice = 0;
 								keepPlaying = false;	
 							}
 
 						}else if(choice == 2) {
 							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-							TextWindow.println("FUCK SHIT UP");
-							//						playerList.get(i).getHand(j).setFinished(true);
-							//
 							choice = 0;
 							playerList.get(i).getHand(j).setDisplayValue(false);
 //							playerList.get(i).getHand(j+1).setDisplayValue(true);
@@ -496,7 +476,6 @@ public class Table extends Thread implements Serializable {
 							TextWindow.println("[TABLE] Lägger till kort: " + card.toString() + " hos " + playerList.get(i).getUsername());
 							TextWindow.println("[TABLE] Summa för: " + playerList.get(i).getUsername() + ", : " + playerList.get(i).getHand(j).getCurrentScore());
 							playerList.get(i).setPlayerChoice(new PlayerChoice(0));
-							//						playerList.get(i).getHand(j).setFinished(true);
 							choice = 0;
 							playerList.get(i).getHand(j).setDisplayValue(false);
 							updateTableInformation();
@@ -504,12 +483,12 @@ public class Table extends Thread implements Serializable {
 						}else if(choice == 6) {
 							boolean splitChoice = playerList.get(i).getHand(j).getSplitChoice();
 							TextWindow.println("SplitChoice = " + splitChoice);
-							if(splitChoice) {					//checks if a player wants to split a hand
+							if(splitChoice) {				
 								TextWindow.println("Inside if-statement");
-								Card card = playerList.get(i).getHand(j).getCard();				//gets a card from the hand
-								playerList.get(i).addNewHand();									//creates new hand
-								int numberOfHands = playerList.get(i).getNumberOfHands();		//checks how many hands a player has
-								playerList.get(i).getHand(numberOfHands-1).addCard(card);			//adds the card to the newest hand
+								Card card = playerList.get(i).getHand(j).getCard();				
+								playerList.get(i).addNewHand();									
+								int numberOfHands = playerList.get(i).getNumberOfHands();		
+								playerList.get(i).getHand(numberOfHands-1).addCard(card);			
 								Card card1 = regularShoe.dealCard();
 								Card card2 = regularShoe.dealCard();
 								playerList.get(i).getHand(j).addCard(card1);
@@ -542,24 +521,32 @@ public class Table extends Thread implements Serializable {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 11 (kollar vilka val spelare har gjort) avslutad.");
 	}
 
-	//	private void letPlayerBust() {
-	//		for(int i = 0; i < playerList.size(); i++) {
-	//			Player player = playerList.get(i);
-	//			if(player.getBustChoice()) {
-	//				Player playerToBust = player.getPlayerToBust();
-	//				Player bustedPlayer = bustPlayer(player, playerToBust);
-	//				if(playerToBust.getBustedStatus()) {
-	//					//player already busted, can't bust twice
-	//				}
-	//				if(bustedPlayer == null) {
-	//					//both players okey
-	//				}
-	//			}
-	//
-	//		}
-	//	}
+	/**
+	 * Not yet fully implemented
+	 */
+//		private void letPlayerBust() {
+//			for(int i = 0; i < playerList.size(); i++) {
+//				Player player = playerList.get(i);
+//				if(player.getBustChoice()) {
+//					Player playerToBust = player.getPlayerToBust();
+//					Player bustedPlayer = bustPlayer(player, playerToBust);
+//					if(playerToBust.getBustedStatus()) {
+//						//player already busted, can't bust twice
+//					}
+//					if(bustedPlayer == null) {
+//						//both players okey
+//					}
+//				}
+//	
+//			}
+//		}
 
-	//the "battle" between the player who busted another, and the busted
+	/**
+	 * Not yet fully implemented, should simulate that one player "busts" another because of cheating too much
+	 * @param player1 - the player who busted another
+	 * @param player2 - the busted player
+	 * @return - the player who gets busted
+	 */
 	private Player bustPlayer(Player player1, Player player2) {
 		int player1CheatHeat = player1.getCheatHeat();
 		int player2CheatHeat = player2.getCheatHeat();
@@ -573,14 +560,21 @@ public class Table extends Thread implements Serializable {
 		}
 	}
 
-	//generates a random number(1-100 to simulate %), and checks if the players cheatheat is lower/higher
+	/**
+	 * The "bust-battle", randomizes who wins and who loses
+	 * @param cheatHeatTest - the current cheatheat of a player
+	 * @return
+	 */
 	private boolean willPlayerBust(int cheatHeatTest) {
 		int chance = new Random().nextInt(100)+1;
 
 		return cheatHeatTest < chance;
 	}
 
-	//as long as the dealer has less than 17, keeps on adding a card
+	/**
+	 * In blackjack, the dealer must keep on hitting until he reaches at least 17
+	 * This simulates that
+	 */
 	private void letDealerPlay(){
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 12 (l�ter dealer spela) startad.");
 		while(dealer.getValue() < 17) {
@@ -600,21 +594,26 @@ public class Table extends Thread implements Serializable {
 	}
 
 
-	//compare the scores of all the players to the dealer
+	/**
+	 * Checks if a player beat the dealer, to know if a player should win money or lose money
+	 */
 	private void compareDealerToPlayers() {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 13 (j�mf�r spelare mot dealer) startar.");
-		//		boolean[] playerWin = new boolean[playerList.size()];
 		for(int i = 0; i < playerList.size(); i++) {
 			int hands = playerList.get(i).getNumberOfHands();
 			for(int j = 0; j < hands; j++) {
 				int win = compareHands(playerList.get(i).getHand(j).getCurrentScore(), dealer.getValue());
 				playerList.get(i).getHand(j).setHandIsWin(win);
-				//				playerList.get(i).getHand(j).setHandIsWin(compareHands(playerList.get(i).getHand(j).getCurrentScore(), dealer.getValue()));
 			}
 		}
 	}
 
-	//should return true if player win, false if dealer wins
+	/**
+	 * The actual comparison, based on blackjack-rules
+	 * @param playerHandValue - value of the players cards
+	 * @param dealerHandValue - values of the dealers cards
+	 * @return
+	 */
 	private int compareHands(int playerHandValue, int dealerHandValue) {
 		if(playerHandValue == 21 && dealerHandValue != 21) {
 			return 1;
@@ -627,7 +626,6 @@ public class Table extends Thread implements Serializable {
 		}else {
 			return -1;
 		}
-		//check all the winning conditions
 	}
 
 	private void payout() {
@@ -660,23 +658,20 @@ public class Table extends Thread implements Serializable {
 		updateTableInformation();
 	}
 
-	// reset values of all players to start a new round
+	/**
+	 * Starts a new round, resetting all the values
+	 * @throws InterruptedException
+	 */
 	private void reset() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 15 Reset v�rden");
 		dealer.clear();
 		for(int i = 0; i < playerList.size() ; i++) {
-			//			int hands =  playerList.get(i).getNumberOfHands();			
-			//			for(int j = hands -1; j > 0; j--) {
 			playerList.get(i).setPlayerChoice(new PlayerChoice(0));
 			playerList.get(i).setBet(0);
 			playerList.get(i).removeHands();
 			playerList.get(i).addNewHand();
 			playerList.get(i).setHasMadeCheatChoice(false);
 			playerList.get(i).setHasMadeBet(false);
-			//				playerList.get(i).getHand(j).setHandIsWin(0);
-			//				playerList.get(i).getHand(j).setBlackjack(false);
-			//				playerList.get(i).getHand(j).clear();
-
 			updateTableInformation();
 		}
 		updateTableInformation();
@@ -689,10 +684,7 @@ public class Table extends Thread implements Serializable {
 			clientList.get(i).output(new UpdateUI("Make a cheat-choice"));
 		}
 	}
-	//		updateTableInformation();
-	//	}
 
-	//checks if all the values in a boolean array are true
 	public boolean areAllTrue(boolean[] array){
 		for(boolean b : array) if(!b) {
 			return false;
