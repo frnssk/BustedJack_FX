@@ -162,10 +162,7 @@ public class Table extends Thread implements Serializable {
 				compareDealerToPlayers();	
 				payout();					
 				reset();
-<<<<<<< HEAD
 		//		i++;
-=======
->>>>>>> development
 				numberOfRounds -= 1;
 				sendStartingInformation();
 			}

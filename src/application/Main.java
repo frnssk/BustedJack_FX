@@ -31,13 +31,8 @@ public class Main extends Application {
 	 */
 	public void start(Stage primaryStage) throws Exception {
 
-<<<<<<< HEAD
 	//	client = new UserClient("localhost", 1200);
 		client = new UserClient("10.2.28.62", 1200);
-=======
-		client = new UserClient("localhost", 1200);
-		//		client = new UserClient("10.2.10.126", 1200);
->>>>>>> development
 
 		this.primaryStage = primaryStage;
 		showStartView();
