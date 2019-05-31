@@ -183,7 +183,7 @@ public class Table extends Thread implements Serializable {
 		}
 		TextWindow.println("Summa dealer: " + dealer.getValue() + ", KORT= " + dealer.toString());
 	}
-
+	
 	private void startGame() {
 		TextWindow.println("[TABLE=" + getTableId() + "]" + " metod 1 (sätter startsumma) startad.");
 		for(int i = 0; i < playerList.size(); i++) {
@@ -197,7 +197,10 @@ public class Table extends Thread implements Serializable {
 			clientList.get(i).output(new UpdateUI("Make a cheat-choice"));
 		}
 	}
-
+	
+	/**
+	 * Used to update all the clients on the table with the table starting information.
+	 */
 	public void sendStartingInformation() {
 		StartingInformation startInfo = new StartingInformation(this.getMinutes(), this.getRounds(), this.getMinimumBet(), this.getStartingMoney());
 		for(int i = 0; i < clientList.size(); i++) {
@@ -232,7 +235,9 @@ public class Table extends Thread implements Serializable {
 			clientList.get(i).output(new UpdateUI("Place your bets"));
 		}
 	}
-
+	/**
+	 * used to check that each player has made a bet and how much.
+	 */
 	private void checkBets() {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 3 (kollar insatser) startad.");
 		for(int i = 0; i < playerList.size(); i++) {
@@ -311,7 +316,7 @@ public class Table extends Thread implements Serializable {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 5 (reset playerChoice avslutad.");
 		Thread.sleep(500);
 	}
-
+	
 	private void dealCardToDealer() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 6 (delar ut kort till dealer) startad.");
 		Card card = regularShoe.dealCard();
@@ -323,7 +328,10 @@ public class Table extends Thread implements Serializable {
 		updateTableInformation();
 	}
 
-	
+	/**
+	 * used to check if a player got blackjack, if a players hand value == 21.
+	 * @throws InterruptedException
+	 */
 	private void checkForBlackjack() throws InterruptedException {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 7 (kollar efter BlackJack) startad.");
 		for(int i = 0; i < playerList.size(); i++) {
