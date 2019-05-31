@@ -11,6 +11,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+/**
+ * Class used to control and communicate to the CreateNewUser.fxml when creating a new user
+ * Updated UI and send button action to client 
+ * @author Isak Eklund
+ *
+ */
 public class CreateNewUserController {
 	@FXML
 	private Label lblUsername;
@@ -33,12 +39,21 @@ public class CreateNewUserController {
 		mainApp.showStartView();
 	}
 	
+	/**
+	 * Sends given info to client to create a new user
+	 * @throws IOException
+	 */
 	@FXML
 	private void handleCreateUser() throws IOException {
 		createRegisterRequest(tfUsername.getText(), pfPassword.getText());
 		mainApp.setUsername(tfUsername.getText());
 	}
 	
+	/**
+	 * updates ui depending on response from server
+	 * Update UI depending on if the username and password is correct
+	 * @param string
+	 */
 	public void checkRequest(String string) {
 		if(string.equals("USERNAME_FALSE")) {
 			Platform.runLater(() -> {
@@ -75,16 +90,29 @@ public class CreateNewUserController {
 		}
 	}
 	
+	/**
+	 * Sends a RegisterRequest to the client
+	 * @param username - The entered username
+	 * @param passwordString - the entered password
+	 */
 	public void createRegisterRequest(String username, String passwordString) {
 		char[] password = passwordString.toCharArray();
 		RegisterRequest request = new RegisterRequest(username, password);
 		client.sendRegisterRequest(request);
 	}
 
+	/**
+	 * Connects the main class
+	 * @param main
+	 */
 	public void setMain(Main main) {
 		mainApp = main;
 	}
 
+	/**
+	 * Connects the clients 
+	 * @param client
+	 */
 	public void setClient(UserClient client) {
 		this.client = client;
 	}

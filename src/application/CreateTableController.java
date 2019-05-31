@@ -10,37 +10,38 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
+/**
+ * Class used to control and communicate to the CreateTableScreen.fxml
+ * Updated UI and send button action to client 
+ * @author Isak Eklund
+ *
+ */
 public class CreateTableController {
 
-	@FXML
-	private TextField tfBalance;
-
-	@FXML
-	private TextField tfRounds;
-
-	@FXML
-	private Button btnCreateTable;
-
-	@FXML
-	private Button btnBack;
-
-	@FXML
-	private TextField tfTime;
-
-	@FXML
-	private TextField tfMinimumBet;
-
-	@FXML
-	private CheckBox checkBoxPrivateMatch;
-
+	@FXML private TextField tfBalance;
+	@FXML private TextField tfRounds;
+	@FXML private Button btnCreateTable;
+	@FXML private Button btnBack;
+	@FXML private TextField tfTime; 
+	@FXML private TextField tfMinimumBet;
+	@FXML private CheckBox checkBoxPrivateMatch;
 	private Main mainApp;
 	private UserClient client;
 
+	/**
+	 * Sends user back to main menu
+	 * @throws IOException
+	 */
 	@FXML
 	public void handleBtnBack() throws IOException {
 		mainApp.showMainMenu();
 	}
 
+	/**
+	 * Takes parameters from UI and sends a GameInfo object to the client
+	 * Shows error message if there is anything wrong
+	 * @throws IOException
+	 */
 	@FXML
 	public void handleBtnCreateTable() throws IOException {
 		int rounds = Integer.parseInt(tfRounds.getText());
@@ -68,10 +69,19 @@ public class CreateTableController {
 			mainApp.showGame();
 		}
 	}
+	
+	/**
+	 * Connects main class to the UI
+	 * @param main
+	 */
 	public void setMain(Main main) {
 		mainApp = main;
 	}
 
+	/**
+	 * Connets the client to the UI
+	 * @param client
+	 */
 	public void setClient(UserClient client) {
 		this.client = client;
 	}

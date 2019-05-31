@@ -2,6 +2,11 @@ package communications;
 
 import java.io.Serializable;
 
+/**
+ * Empty object for communication with the server when a game is over
+ * @author Isak Eklund
+ *
+ */
 public class GameOver implements Serializable {
 
 	/**

@@ -2,6 +2,11 @@ package communications;
 
 import java.io.Serializable;
 
+/**
+ * Stores all info for creating a new user
+ * @author Isak EKlund
+ *
+ */
 public class RegisterRequest implements Serializable {
 	/**
 	 * 
@@ -10,6 +15,11 @@ public class RegisterRequest implements Serializable {
 	private String username;
 	private char[] password;
 	
+	/**
+	 * Constructor takes all info for creating a new user
+	 * @param username - The entered unsername
+	 * @param password - The entered password
+	 */
 	public RegisterRequest(String username, char[] password) {
 		this.username = username;
 		this.password = password;

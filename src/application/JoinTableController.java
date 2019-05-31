@@ -9,25 +9,27 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+/**
+ * Class used to control and communicate to the JoinTable.fxml
+ * Updated UI and send button action to client 
+ * @author Isak Eklund
+ *
+ */
 public class JoinTableController {
-	@FXML
-	private Label lblEnterRoomId;
-	@FXML
-	private TextField tfRoomId;
-	@FXML
-	private Button btnGoToTable;
-	@FXML
-	private Button btnRandomTable;
-	@FXML
-	private Button btnMenu;
+	@FXML private Label lblEnterRoomId;
+	@FXML private TextField tfRoomId;
+	@FXML private Button btnGoToTable;
+	@FXML private Button btnRandomTable;
+	@FXML private Button btnMenu;
 
 	private Main mainApp;
 	private UserClient client;
 
-	@FXML
-	private void initialize() {
-	}
-
+	/**
+	 * Sends player to correct table given an entered int
+	 * Shows error if no number is entered
+	 * @throws IOException
+	 */
 	@FXML
 	private void handleGoToTable() throws IOException {
 		String tableId = tfRoomId.getText();
@@ -44,16 +46,29 @@ public class JoinTableController {
 		}
 	}
 
+	/**
+	 * Sends a request to join a random table
+	 * @throws IOException
+	 */
 	@FXML
 	private void handleRandomTable() throws IOException {
 		client.sendRandomTableRequest();
 	}
 
+	/**
+	 * Send user back to main menu
+	 * @throws IOException
+	 */
 	@FXML
 	private void handleMenu() throws IOException {
 		mainApp.showMainMenu();
 	}
 
+	/**
+	 * Handles the response from the server. 
+	 * Depending on response, an error message is showed or the user is sent to the correct table
+	 * @param string
+	 */
 	public void checkTableId(String string) {
 		if(string.equals("TABLE_FALSE")) {
 			Platform.runLater(() -> {
@@ -98,10 +113,18 @@ public class JoinTableController {
 		}
 	}
 
+	/**
+	 * Connects main to the UI
+	 * @param main
+	 */
 	public void setMain(Main main) {
 		mainApp = main;
 	}
 
+	/**
+	 * Connects client to the UI
+	 * @param client
+	 */
 	public void setClient(UserClient client) {
 		this.client = client;
 	}

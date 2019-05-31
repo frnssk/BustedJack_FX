@@ -6,12 +6,6 @@ public class PlayerChoice implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private int choice;
-	//1 = hit
-	//2 = stay
-	//3 = double
-	//4 = bet, + setBet
-	//5 = cheat
-	//6 = split
 	private int bet;
 	private boolean cheatChoice = true; //remove =true
 	private boolean splitChoice;
