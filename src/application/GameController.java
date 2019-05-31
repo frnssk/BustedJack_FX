@@ -288,8 +288,8 @@ public class GameController {
 	 */
 	@FXML 
 	private void handleCheat() {
-		numberOfCheats++;
-		setCheatHeat(cheatHeat);
+//		numberOfCheats++;
+	//	setCheatHeat(cheatHeat);
 		PlayerChoice choice = new PlayerChoice(5);
 		choice.setCheatChoice(true); //Tells server that we will cheat 
 
@@ -310,7 +310,7 @@ public class GameController {
 	 */
 	@FXML
 	private void handleDoNotCheat() {
-		setCheatHeat(cheatHeat);
+//		setCheatHeat(cheatHeat);
 		PlayerChoice choice = new PlayerChoice(5);
 		choice.setCheatChoice(false);//Tells server that we will NOT cheat 
 
