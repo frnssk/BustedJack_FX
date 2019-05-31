@@ -13,9 +13,7 @@ import resources.Player;
  */
 
 public class UpdateClientInformation implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Player> playerlist;
 	private DealerHand dealerhand;

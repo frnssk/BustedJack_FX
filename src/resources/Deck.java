@@ -8,7 +8,8 @@ import javax.swing.JOptionPane;
 
 /**
  * Class to simulate a regular deck of cards, containing 52 different cards
- * @author rasmusoberg
+ * @author Rasmus Ã–berg
+ * @author Isak Eklund
  *
  */
 
@@ -23,7 +24,7 @@ public class Deck implements Serializable {
 			for(Card.Rank rank : Card.Rank.values()) {
 				Card card = new Card(rank, suit);
 				if(suit.toString().equalsIgnoreCase("hearts")) {
-					card.setFace("cards/hjärter" + i + ".png");
+					card.setFace("cards/hjï¿½rter" + i + ".png");
 					card.setVisibility(true);
 				}
 				if(suit.toString().equalsIgnoreCase("spades")) {
@@ -35,7 +36,7 @@ public class Deck implements Serializable {
 					card.setVisibility(true);
 				}
 				if(suit.toString().equalsIgnoreCase("clubs")) {
-					card.setFace("cards/klöver" + i + ".png");
+					card.setFace("cards/klï¿½ver" + i + ".png");
 					card.setVisibility(true);
 				}
 				i++;

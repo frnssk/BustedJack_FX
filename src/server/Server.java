@@ -30,7 +30,7 @@ import resources.User;
 
 /**
  * Server which handles a number of clients and the users
- * @author RasmusOberg
+ * @author Rasmus Öberg
  */
 public class Server {
 

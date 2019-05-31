@@ -7,7 +7,8 @@ import java.awt.image.*;
 
 /**
  * Class that represents a playing card, containing a rank, a suit and a picture
- * @author rasmusoberg
+ * @author Rasmus Öberg
+ * @author Isak Eklund
  *
  */
 public class Card implements Serializable {

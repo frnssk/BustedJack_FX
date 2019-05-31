@@ -13,9 +13,6 @@ public class LogOutRequest implements Serializable {
 		return username;
 	}
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2900146325645039838L;
 
 }

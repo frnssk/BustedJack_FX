@@ -19,6 +19,8 @@ import resources.Player;
  * Updated UI and send button action to client 
  * @author Isak Eklund
  * @author Simon Lilja
+ * @author Christoffer Palvin
+ * @author Rasmus Öberg
  *
  */
 public class GameController {

@@ -5,6 +5,12 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 import resources.Callback;
 
+/**
+ * Makes the server prints viewable in a separate window
+ * @author Isak Eklund
+ * @author Rasmus Öberg
+ *
+ */
 public class ServerUI extends JPanel implements Callback {
 	private Server server;
 	private JTextArea taLiveUpdate = new JTextArea();
@@ -19,9 +25,6 @@ public class ServerUI extends JPanel implements Callback {
 		spLiveLog.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		
 		pane.add(taLiveUpdate, BorderLayout.CENTER);
-		
-//		pane.add(spLiveLog, BorderLayout.CENTER);
-//		server.addServerListener(this);
 	}
 	
 	public void logActivity(String string) {

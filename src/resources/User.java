@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * User-class to hold the users names, passwords, rating and achievements
- * @author rasmusoberg
+ * @author Rasmus Öberg
  *
  */
 public class User implements Serializable {

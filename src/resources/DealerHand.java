@@ -7,7 +7,7 @@ import resources.Card.Rank;
 
 /**
  * Class that represents a dealers stack of cards
- * @author rasmusoberg
+ * @author Rasmus Öberg
  * @author Simon Lilja
  *
  */

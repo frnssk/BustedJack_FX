@@ -38,6 +38,8 @@ import server.Server.ClientHandler;
  *  Contains one inner class for handling incoming data from the server 
  *  @author Isak Eklund
  *  @author Christoffer Palvin
+ *  @author Simon Lilja
+ *  @author Rasmus Öberg
  */ 
 public class UserClient {
 	private Socket socket;
@@ -198,6 +200,8 @@ public class UserClient {
 	 * Runs on a separate thread 
 	 * @author Isak Eklund
 	 * @author Simon Lilja
+	 * @author Rasmus Öberg
+	 * @author Christoffer Palvin
 	 *
 	 */
 	private class Connection extends Thread {

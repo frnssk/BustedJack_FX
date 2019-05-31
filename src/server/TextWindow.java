@@ -3,6 +3,11 @@ import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
 
+/**
+ * Window to show events on server
+ * @author Isak Eklund
+ *
+ */
 public class TextWindow {
 	private static JFrame frame = new JFrame();
 	private static JTextArea ta = new JTextArea();

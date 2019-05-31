@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Create PlayerChoice objects to send from server to client when a player have made a play choice
- * @author rasmusoberg
+ * @author Rasmus Öberg
  * @author Simon Lilja
  *
  */
@@ -56,6 +56,10 @@ public class PlayerChoice implements Serializable{
 	public String toString() {
 		return "int choice" + choice;
 	}
+	
+	/**
+	 * Resets all values to 0
+	 */
 	public void reset() {
 		this.bet = 0;
 		this.choice = 0;

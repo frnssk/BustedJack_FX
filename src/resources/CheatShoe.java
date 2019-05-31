@@ -5,7 +5,7 @@ import java.util.*;
 
 /**
  * A shoe is a collection of decks
- * @author rasmusoberg
+ * @author Rasmus Öberg
  *
  */
 public class CheatShoe implements Serializable {

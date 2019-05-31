@@ -4,13 +4,10 @@ import java.io.Serializable;
 
 /**
  * Stores all info for creating a new user
- * @author Isak EKlund
+ * @author Isak Eklund
  *
  */
 public class RegisterRequest implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2001217030614121593L;
 	private String username;
 	private char[] password;

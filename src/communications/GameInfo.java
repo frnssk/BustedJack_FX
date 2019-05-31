@@ -8,9 +8,6 @@ import java.io.Serializable;
  * @author Christoffer Palvin
  */
 public class GameInfo implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int time;
 	private int rounds;

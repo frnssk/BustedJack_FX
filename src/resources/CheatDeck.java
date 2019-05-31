@@ -5,7 +5,7 @@ import java.util.*;
 
 /**
  * Class to simulate a cheat-deck, which only contains high-value cards
- * @author rasmusoberg
+ * @author Rasmus Öberg
  *
  */
 

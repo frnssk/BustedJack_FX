@@ -6,7 +6,7 @@ import java.util.Stack;
 
 /**
  * Class that simulates the Shoe of the deck, which holds a given number of decks
- * @author rasmusoberg
+ * @author Rasmus Öberg
  *
  */
 
