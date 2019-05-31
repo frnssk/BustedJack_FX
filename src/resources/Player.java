@@ -5,11 +5,13 @@ import java.util.ArrayList;
 
 import communications.PlayerChoice;
 
+/**
+ * Class that represents a player
+ * @author rasmusoberg
+ *
+ */
 public class Player implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int betMade;
 	private String username;
@@ -29,14 +31,14 @@ public class Player implements Serializable{
 		hands.add(new Hand());
 	}
 	
-	/*
-	 * Used by server when a client makes a choice, connects the client to
-	 * a player and sets the corresponding choice
+	/**
+	 * Used when a user/client makes a choice, to forward the choice
+	 * to the correct hand, if a player is playing multiple hands
+	 * @param playerChoice
 	 */
 	public void setPlayerChoice(PlayerChoice playerChoice) {
 		this.playerChoice = playerChoice;
 		System.out.println("PlayerChoice mottagit = " + this.playerChoice.getChoice());
-//		hands.get(0).setPlayerChoice(this.playerChoice);
 		for(int i = 0; i < hands.size(); i++) {
 			boolean handIsReady = false;
 			while(!handIsReady) {
@@ -45,7 +47,6 @@ public class Player implements Serializable{
 			}
 			
 		}
-		
 		if(this.playerChoice.getChoice() == 4) {
 			for(int i = 0; i < hands.size(); i++) {
 				hands.get(i).setBet(this.playerChoice.getBet());
@@ -72,34 +73,34 @@ public class Player implements Serializable{
 		return hasMadeChoice;
 	}
 	
-	//used to add a new hand when player is splitting
+	/**
+	 * When a player wants to split, he needs to get another hand
+	 */
 	public void addNewHand() {
 		hands.add(new Hand());
 	}
-	//used to know how many hands a player is playing
+
 	public int getNumberOfHands() {
 		return hands.size();
 	}
-	//used to make plays on one specific hand
+
 	public Hand getHand(int index) {
 		return hands.get(index);
 	}
 	
-	//used to set/get the players cheat-heat
 	public void setCheatHeat(int cheatHeat) {
 		this.cheatHeat = cheatHeat;
 	}
+	
 	public int getCheatHeat() {
 		return cheatHeat;
 	}
 	
-	//CORRECTION == should be determined by "setPlayerChoice"
 	public void setCheatChoice(boolean choiceMade) {
 		cheatChoice = choiceMade;
 		hasMadeCheatChoice = true;
 	}
 	
-	//used by table to check that the player has made a choice
 	public boolean getHasMadeCheatChoice() {
 		return hasMadeCheatChoice;
 	}
@@ -108,12 +109,10 @@ public class Player implements Serializable{
 		this.hasMadeCheatChoice = bool;
 	}
 	
-	//used by table to decide if the player wants card from regular or cheat deck
 	public boolean getCheatChoice() {
 		return cheatChoice;
 	}
 	
-	//used by server to set how much the player wants to bet
 	public void setBet(int betMade) {
 		this.betMade = betMade;
 	}
@@ -121,7 +120,6 @@ public class Player implements Serializable{
 		return betMade;
 	}
 	
-	//used by the table when the round starts to set a balance
 	public void setBalance(int newBalance) {
 		this.balance = newBalance;
 	}
@@ -129,7 +127,6 @@ public class Player implements Serializable{
 		return balance;
 	}
 	
-	//used by table to know when it can move on
 	public void setHasMadeBet(boolean choice) {
 		this.hasMadeBet = choice;
 	}
@@ -137,14 +134,10 @@ public class Player implements Serializable{
 		return hasMadeBet;
 	}
 	
-	//checks if the player has made a bet
 	public boolean getBetMade() {
-		return (betMade != 0); //returns true if the betMade is not 0
+		return (betMade != 0); 
 	}
 	
-	/*
-	 * returns the players name
-	 */
 	public String getUsername() {
 		return username;
 	}

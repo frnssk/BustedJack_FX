@@ -2,6 +2,11 @@ package resources;
 
 import java.io.Serializable;
 
+/**
+ * User-class to hold the users names, passwords, rating and achievements
+ * @author rasmusoberg
+ *
+ */
 public class User implements Serializable {
 
 	private static final long serialVersionUID = -1211450706513529840L;
@@ -11,6 +16,10 @@ public class User implements Serializable {
 	private int balance;
 	private String title;
 	
+	/**
+	 * Constructor
+	 * @param name
+	 */
 	public User(String name) {
 		this.username = name;
 		this.rating = 1200;

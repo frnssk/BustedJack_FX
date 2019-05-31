@@ -6,21 +6,23 @@ import java.util.ArrayList;
 import communications.PlayerChoice;
 import resources.Card.Rank;
 
+/**
+ * Class that holds a number of cards, used by the player-class
+ * @author rasmusoberg
+ *
+ */
 public class Hand implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Card> hand; //Holds the card in a hand
 	private boolean hasBlackjack;
 	private boolean bustedHand;
-//	private boolean wantToSplit = false;
-//	private boolean hasMadeSplitChoice = false;
 	private boolean hasMadeInsuranceChoice = false;
 	private boolean insuranceChoice = false;
 	private int handIsWin;
 	private int payout;
 	private int bet;
 	private boolean hasMadeEndingChoice;
-	
 	private PlayerChoice playerChoice;
 	private int playChoice;
 	private int betMade;
@@ -33,30 +35,27 @@ public class Hand implements Serializable {
 	private String Value = "";
 
 	
-	/*
-	 * Constructor
+	/**
+	 * Constructor which creates a new ArrayList to hold the cards
 	 */
 	public Hand() {
 		hand = new ArrayList<>();
 	}
 	
-	/*
-	 * Used by the server --> player to set a choice for the hand
+	/**
+	 * Used when a user/client has made a choice on a hand, to determine what action should be done on it
+	 * @param playerChoice - the choice made
 	 */
 	public void setPlayerChoice(PlayerChoice playerChoice) {
 		this.playerChoice = playerChoice;
 		int choice = this.playerChoice.getChoice();
 		setPlayChoice(choice);
-//		setHasMadePlayChoice(true);
 	}
 
 	public PlayerChoice getPlayerChoice() {
 		return playerChoice;
 	}
 	
-	/*
-	 * Used to know that a player has made a choice, and is ready
-	 */
 	public void setHasMadePlayChoice(boolean bool) {
 		this.hasMadePlayChoice = bool;
 	}
@@ -67,11 +66,6 @@ public class Hand implements Serializable {
 	public void setPlayChoice(int choice) {
 		setHasMadePlayChoice(true);
 		this.playChoice = choice;
-//		if(choice == 4) {
-//			//bet
-//			setHasMadeBet(true);
-//			setBet(playerChoice.getBet());
-//		}
 	}
 	
 	public void setFinished(boolean bool) {
@@ -93,13 +87,15 @@ public class Hand implements Serializable {
 	public boolean getHasMadeEndingChoice() {
 		return hasMadeEndingChoice;
 	}
+	
+	/**
+	 * Used to clarify that a choice has been made that renders this hand unable to continue
+	 * @param hasMadeEndingChoice
+	 */
 	public void setHasMadeEndingChoice(boolean hasMadeEndingChoice) {
 		this.hasMadeEndingChoice = hasMadeEndingChoice;
 	}
 
-	/*
-	 * Adds a new card to the hand
-	 */
 	public void addCard(Card card) {
 		hand.add(card);
 	}
@@ -111,9 +107,6 @@ public class Hand implements Serializable {
 		return cardValue + "\n";
 	}
 	
-	/*
-	 * Needed to calculate the value of all cards, adjusted for ACE
-	 */
 	public int getCurrentScore() {
 		int currentScore = 0;
 		for(int i = 0; i < hand.size(); i++) {
@@ -125,8 +118,10 @@ public class Hand implements Serializable {
 		return currentScore;
 	}
 
-	/*
-	 * needed to adjust the value if a hand is soft/hard
+	/**
+	 * Need to determine if a hand contains an Ace, and in that
+	 * case adjust the value if the score reaches 21 or over
+	 * @return
 	 */
 	public boolean containsAce() {
 		boolean contains = false;
@@ -146,23 +141,9 @@ public class Hand implements Serializable {
 		return hand.get(0).getValue() == hand.get(1).getValue();
 	}
 	
-//	public void setSplitChoice() {
-//		this.hasMadeSplitChoice = true;
-//	}
-	
 	public boolean getSplitChoice() {
 		return playerChoice.getSplitChoice();
 	}
-//	
-//	public boolean wantToSplit() {
-//		return wantToSplit;
-//	}
-//	
-//	//ui have to send a boolean depending on what button the user presser
-//	public void setWantToSplit(boolean wantToSplit) {
-//		this.wantToSplit = wantToSplit;
-//		setSplitChoice();
-//	}
 	
 	public void setHasMadeInsuranceChoice() {
 		hasMadeInsuranceChoice = true;
@@ -193,8 +174,10 @@ public class Hand implements Serializable {
 		this.payout = payout;
 	}
 	
-	/*
-	 * Needed to declare if a hand has beaten the dealer, saving for when the payout will happen
+	/**
+	 * Uses an int to determine if a hand has beat the dealer, and therefore how much 
+	 * the hand has won (different value for win/blackjack/push/lose)
+	 * @param win
 	 */
 	public void setHandIsWin(int win) {
 		handIsWin = win;
@@ -202,14 +185,8 @@ public class Hand implements Serializable {
 
 	public int isHandWin() {
 		return handIsWin;
-		//1 = playerWin
-		//-1 = dealerWin
-		//0 - push
 	}
 
-	/*
-	 * Needed to to specify a win of 150%
-	 */
 	public void setBlackjack(boolean hasBlackjack) {
 		this.hasBlackjack = hasBlackjack;
 	}
@@ -226,16 +203,10 @@ public class Hand implements Serializable {
 		return bustedHand;
 	}
 
-	/*
-	 * Needed to count all the cards on the hand
-	 */
 	public int size() {
 		return hand.size();
 	}
 
-	/*
-	 * Clears the hand of all the cards
-	 */
 	public void clear() {
 		hand.clear();
 	}
@@ -248,6 +219,11 @@ public class Hand implements Serializable {
 		return string;
 	}
 
+	/**
+	 * Display-value determines if a hand should be displayed in the UI
+	 * or that that UI should display the next one
+	 * @return
+	 */
 	public boolean getDisplayValue() {
 		return displayValue;
 	}

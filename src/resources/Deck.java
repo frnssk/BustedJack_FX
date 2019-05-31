@@ -44,18 +44,12 @@ public class Deck implements Serializable {
 		}
 	}
 
-	/*
-	 * Deals the top card of the deck
-	 */
 	public Card dealCard() {
 		Card card = deck.get(deck.size() - 1);
 		deck.remove(card);
 		return card;
 	}
 
-	/*
-	 * Returns the size of the deck
-	 */
 	public int getSize() {
 		return deck.size();
 	}
@@ -68,24 +62,5 @@ public class Deck implements Serializable {
 		}
 		return str;
 	}
-	
-//	public void showCards(){
-//		for(int i = 0; i < deck.size(); i++) {
-//			ImageIcon image = deck.get(i).getFront();
-//			JOptionPane.showMessageDialog(null, new ImageIcon("cards/baksida.png"));
-//			JOptionPane.showMessageDialog(null, image);
-//			try {
-//				Thread.sleep(1000);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
-//
-//	public static void main(String[] args) {
-//		Deck deck = new Deck();
-//		System.out.println(deck.toString());
-//		deck.showCards();
-//	}
 
 }
