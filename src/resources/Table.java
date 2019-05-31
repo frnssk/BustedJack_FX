@@ -181,7 +181,7 @@ public class Table extends Thread implements Serializable {
 				compareDealerToPlayers();	//checks whether or not the players beat the dealer
 				payout();					//pays out if players won, takes the money if they lost
 				reset();
-				i++;
+		//		i++;
 				numberOfRounds -= 1;
 				sendStartingInformation();
 			}
