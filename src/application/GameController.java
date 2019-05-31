@@ -18,7 +18,7 @@ import resources.Player;
  * Class used to control and communicate to the GameTable.fxml during a game
  * Updated UI and send button action to client 
  * @author Isak Eklund
- *
+ * @author Christoffer Palvin
  */
 public class GameController {
 	@FXML private Label lblPlayer1;

@@ -37,7 +37,8 @@ import server.Server.ClientHandler;
  *  Class responsible for all connection to the server, from the user side.  
  *  Contains one inner class for handling incoming data from the server 
  *  @author Isak Eklund
- */
+ *  @author Christoffer Palvin
+ */ 
 public class UserClient {
 	private Socket socket;
 	private ObjectOutputStream output;

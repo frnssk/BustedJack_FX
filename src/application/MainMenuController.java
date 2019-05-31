@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
  * Controlling communication to MainMenu.fxml
  * Used to update UI and send actions to client
  * @author Isak Eklund
- *
+ * @author Christoffer Palvin
  */
 public class MainMenuController {
 	@FXML private Button btnGoToTable;

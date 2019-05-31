@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
  * Class used to control and communicate to the JoinTable.fxml
  * Updated UI and send button action to client 
  * @author Isak Eklund
- *
+ * @author Christoffer Palvin
  */
 public class JoinTableController {
 	@FXML private Label lblEnterRoomId;

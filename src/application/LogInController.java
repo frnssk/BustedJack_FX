@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  * Class used to control and communicate to the LogIn.fxml
  * Updated UI and send button action to client 
  * @author Isak Eklund
- *
+ * @author Christoffer Palvin
  */
 public class LogInController extends Dialog{
 	@FXML private Label lblUserName;
