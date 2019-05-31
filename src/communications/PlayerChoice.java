@@ -2,6 +2,13 @@ package communications;
 
 import java.io.Serializable;
 
+/**
+ * Create PlayerChoice objects to send from server to client when a player have made a play choice
+ * @author rasmusoberg
+ * @author Simon Lilja
+ *
+ */
+
 public class PlayerChoice implements Serializable{
 
 	private static final long serialVersionUID = 1L;

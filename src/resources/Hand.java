@@ -9,7 +9,7 @@ import resources.Card.Rank;
 /**
  * Class that holds a number of cards, used by the player-class
  * @author rasmusoberg
- *
+ * @author Simon Lilja
  */
 public class Hand implements Serializable {
 

@@ -8,7 +8,7 @@ import communications.PlayerChoice;
 /**
  * Class that represents a player
  * @author rasmusoberg
- *
+ * @author Simon Lilja
  */
 public class Player implements Serializable{
 	

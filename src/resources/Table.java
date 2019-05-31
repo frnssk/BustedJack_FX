@@ -622,6 +622,9 @@ public class Table extends Thread implements Serializable {
 			return -1;
 		}
 	}
+	/**
+	 * Checks each players hands if they got black jack or if they beat the dealer and updates each players balance.
+	 */
 
 	private void payout() {
 		TextWindow.println("[TABLE=" + getTableId() + "] >> metod 14 (delar ut pengar) startar.");

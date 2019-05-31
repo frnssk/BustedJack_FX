@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import resources.DealerHand;
 import resources.Player;
 
+/**
+ * Object including all info for updating each clients UI
+ * @author Simon Lilja
+ *
+ */
+
 public class UpdateClientInformation implements Serializable {
 	/**
 	 * 

@@ -8,6 +8,7 @@ import resources.Card.Rank;
 /**
  * Class that represents a dealers stack of cards
  * @author rasmusoberg
+ * @author Simon Lilja
  *
  */
 public class DealerHand implements Serializable{

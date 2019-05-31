@@ -196,6 +196,7 @@ public class UserClient {
 	 * Inner class that let the client listen for incoming data from the server
 	 * Runs on a separate thread 
 	 * @author Isak Eklund
+	 * @author Simon Lilja
 	 *
 	 */
 	private class Connection extends Thread {

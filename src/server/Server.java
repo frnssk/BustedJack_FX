@@ -137,10 +137,11 @@ public class Server {
 		}
 	}
 
-	/*
+	/**
 	 * Starts a new Thread for every client, so that multiple users can use 
 	 * the server concurrently with a unique client
 	 * @author RasmusOberg
+	 * @author Simon Lilja
 	 */
 	public class ClientHandler extends Thread {
 		/**
