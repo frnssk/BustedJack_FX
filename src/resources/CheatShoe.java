@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * Class to hold a number of cheat-decks
+ * A shoe is a collection of decks
  * @author rasmusoberg
  *
  */
@@ -14,6 +14,10 @@ public class CheatShoe implements Serializable {
 	private Stack<Card> cheatShoe = new Stack<>();
 	private Stack<Card> usedCards = new Stack<>();
 	
+	/**
+	 * A shoe is a collection of decks
+	 * @param numberOfDecks
+	 */
 	public CheatShoe(int numberOfDecks) {
 		for(int i = 0; i < numberOfDecks; i++) {
 			addCheatDeck(new CheatDeck());
@@ -26,9 +30,6 @@ public class CheatShoe implements Serializable {
 		return card;
 	}
 	
-	/*
-	 * Adds a cheat-deck to the shoe
-	 */
 	private void addCheatDeck(CheatDeck cheatDeck) {
 		for(int i = 0; i < cheatDeck.size(); i++) {
 			cheatShoe.add(cheatDeck.dealCard());
@@ -39,9 +40,6 @@ public class CheatShoe implements Serializable {
 		return cheatShoe.size();
 	}
 	
-	/*
-	 * Shuffles the deck of cheat-cards
-	 */
 	public void shuffle() {
 		Collections.shuffle(cheatShoe);
 	}

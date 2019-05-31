@@ -14,8 +14,10 @@ public class CheatDeck implements Serializable {
 	private static final long serialVersionUID = 5746633204212909460L;
 	private ArrayList<Card> cheatDeck = new ArrayList<>();
 	private int i = 0;
-	/*
-	 * Adds all the cards with values above 8, or aces
+	
+	/**
+	 * Instantiates a cheat-deck, ignoring all the cards with 8 or lower
+	 * to make sure that when you cheat you'll only get a high-value card
 	 */
 	public CheatDeck() {
 		for(Card.Suit suit : Card.Suit.values()) {
@@ -28,18 +30,12 @@ public class CheatDeck implements Serializable {
 		}
 	}
 	
-	/*
-	 * Deals the card on the top of the deck
-	 */
 	public Card dealCard() {
 		Card card = cheatDeck.get(cheatDeck.size() - 1);
 		cheatDeck.remove(card);
 		return card;
 	}
 	
-	/*
-	 * Returns the size of the deck
-	 */
 	public int size() {
 		return cheatDeck.size();
 	}

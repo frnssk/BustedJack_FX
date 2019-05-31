@@ -5,6 +5,11 @@ import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.image.*;
 
+/**
+ * Class that represents a playing card, containing a rank, a suit and a picture
+ * @author rasmusoberg
+ *
+ */
 public class Card implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -14,11 +19,14 @@ public class Card implements Serializable {
 	private ImageIcon back;
 	private ImageIcon front;
 
-	
+	/**
+	 * Constructor
+	 * @param rank - the rank of the card
+	 * @param suit - the suit of the card
+	 */
 	public Card(Rank rank, Suit suit){
 		RANK = rank;
 		SUIT = suit;
-//		this.face = null;
 		this.back = new ImageIcon("cards/baksida.png");
 	}
 	
@@ -30,14 +38,11 @@ public class Card implements Serializable {
 		this.face = new ImageIcon(image);
 	}
 	
-	public void setSize(int x, int y) {
-		ImageIcon card = this.getFront();
-		Image image = card.getImage();
-		Image newImage = image.getScaledInstance(x, y, java.awt.Image.SCALE_SMOOTH);
-		card = new ImageIcon(newImage);
-		
-	}
-	
+	/**
+	 * Because the dealers cards are shown face-down initially, it's needed to be
+	 * able to hide the front of the card
+	 * @param sideToShow
+	 */
 	public void setVisibility(boolean sideToShow) {
 		if(sideToShow) {
 			this.front = face;
@@ -63,8 +68,11 @@ public class Card implements Serializable {
 	}
 	
 
-	/*
-	 * Different ranks a card can have, and the values of each rank
+	/**
+	 * Represents the different value a card can have, Ace through King, with specialized
+	 * Blackjack-values on the highest of cards
+	 * @author rasmusoberg
+	 *
 	 */
 	public enum Rank {
 		ACE(1), TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9), TEN(10), JACK(10), QUEEN(10), KING(10);
@@ -76,8 +84,10 @@ public class Card implements Serializable {
 		}
 	}
 	
-	/*
-	 * Different suits a card can have
+	/**
+	 * Represents the different suits a card can belong to
+	 * @author rasmusoberg
+	 *
 	 */
 	public enum Suit {
 		HEARTS, SPADES, DIAMONDS, CLUBS;

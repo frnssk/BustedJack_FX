@@ -5,12 +5,19 @@ import java.util.ArrayList;
 
 import resources.Card.Rank;
 
+/**
+ * Class that represents a dealers stack of cards
+ * @author rasmusoberg
+ *
+ */
 public class DealerHand implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Card> dealerHand;
-//	private int currentScore;
 	
+	/**
+	 * Constructor
+	 */
 	public DealerHand() {
 		this.dealerHand = new ArrayList<>();
 	}
@@ -34,6 +41,11 @@ public class DealerHand implements Serializable{
 		return currentScore;
 	}
 	
+	/**
+	 * Used to modify the score if the dealer gets "fat" with an Ace
+	 * on the hand
+	 * @return
+	 */
 	public boolean containsAce() {
 		boolean contains = false;
 		for(int i = 0; i < dealerHand.size(); i++) {
