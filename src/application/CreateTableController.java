@@ -61,7 +61,7 @@ public class CreateTableController {
 			try {
 				mainApp.showAlert("Alert", "You need to fill all the parameters with a valid number");
 			} catch (IOException e) {
-			//	e.printStackTrace();
+				e.printStackTrace();
 			}
 		} else{
 			GameInfo gameInfo = new GameInfo(time, rounds, balance, minimumBet, privateMatch);

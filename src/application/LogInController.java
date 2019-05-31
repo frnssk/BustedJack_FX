@@ -64,7 +64,6 @@ public class LogInController extends Dialog{
 				try {
 					mainApp.showMainMenu();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			});

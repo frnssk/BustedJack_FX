@@ -144,9 +144,6 @@ public class Server {
 	 * @author Simon Lilja
 	 */
 	public class ClientHandler extends Thread {
-		/**
-		 * 
-		 */
 		private Socket socket;
 		private ObjectOutputStream output;
 		private ObjectInputStream input;
@@ -489,7 +486,6 @@ public class Server {
 				}
 			}
 			updateList(clientList, playerList);
-//			return choice;
 		}
 
 		/**

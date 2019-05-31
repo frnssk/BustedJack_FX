@@ -163,7 +163,6 @@ public class Table extends Thread implements Serializable {
 				compareDealerToPlayers();	
 				payout();					
 				reset();
-		//		i++;
 				numberOfRounds -= 1;
 				sendStartingInformation();
 			}

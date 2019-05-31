@@ -245,12 +245,6 @@ public class GameController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-//		} else if(currentBet > balance) {
-//			try {
-//				mainApp.showAlert("Bet to high", "Your current balance is " + balance);
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
 		} else {
 			btnConfirmBet.setText("Waiting...");
 			btnConfirmBet.setDisable(true);
@@ -291,8 +285,6 @@ public class GameController {
 	 */
 	@FXML 
 	private void handleCheat() {
-//		numberOfCheats++;
-	//	setCheatHeat(cheatHeat);
 		PlayerChoice choice = new PlayerChoice(5);
 		choice.setCheatChoice(true); //Tells server that we will cheat 
 
@@ -348,17 +340,9 @@ public class GameController {
 	 */
 	@FXML 
 	private void handleDouble() {
-//		if(doubleBet > gameControllerBalance) {
-//			try {
-//				mainApp.showAlert("Bet to high", "Your current balance is " + balance);
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}			
-//		}else {
-			PlayerChoice playerChoice = new PlayerChoice(3);
-			client.sendPlayerChoice(playerChoice);
-			System.out.println("[GAME_CONTORLLER] == Du har tryck DOUBLE.");
-	//	}
+		PlayerChoice playerChoice = new PlayerChoice(3);
+		client.sendPlayerChoice(playerChoice);
+		System.out.println("[GAME_CONTORLLER] == Du har tryck DOUBLE.");
 	}
 
 	@FXML 
@@ -729,7 +713,7 @@ public class GameController {
 	}
 	
 	/**
-	 * Shows a new scen when the game is over
+	 * Shows a new scene when the game is over
 	 * @throws IOException
 	 */
 	public void showGameOver() throws IOException {
