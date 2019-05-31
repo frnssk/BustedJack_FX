@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 /**
  * Class used to show when the game is over
  * @author Isak Eklund
- *
+ * @author Christoffer Palvin
  */
 public class GameOverController {
 	private Main mainApp;

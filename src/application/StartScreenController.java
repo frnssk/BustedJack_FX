@@ -11,7 +11,7 @@ import javafx.stage.Stage;
  * Class used to control and communicate to the StartScreen.fxml
  * Updated UI and send button action to client 
  * @author Isak Eklund
- *
+ * @author Christoffer Palvin
  */
 public class StartScreenController {
 	@FXML private Button btnLogIn;

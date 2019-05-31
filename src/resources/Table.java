@@ -19,7 +19,8 @@ import server.TextWindow;
  * Class that represents a table, where a game of Busted Jack is played
  * @author Rasmus Öberg
  * @author Simon Lilja
- * @autohr Isak Eklund
+ * @author Isak Eklund
+ * @author Christoffer Palvin
  *
  */
 public class Table extends Thread implements Serializable {

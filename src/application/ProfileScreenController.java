@@ -13,7 +13,7 @@ import javafx.scene.control.TextArea;
  * Class used to control and communicate to the ProfileScreen.fxml
  * Updated UI and send button action to client 
  * @author Isak Eklund
- *
+ * @author Christoffer Palvin
  */
 public class ProfileScreenController {
 	@FXML private TableView<?> TableViewAchievements;

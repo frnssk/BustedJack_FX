@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Object including all info required to start a new game
  * @author Isak Eklund
- *
+ * @author Christoffer Palvin
  */
 public class GameInfo implements Serializable{
 	/**

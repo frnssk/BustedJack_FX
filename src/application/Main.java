@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  * The main class for controlling JavaFX and FXML files.
  * Used to create a main stage and switching scene depending on user action
  * @author Isak Eklund
- *
+ * @author Christoffer Palvin
  */
 public class Main extends Application {
 	private UserClient client;
