@@ -24,7 +24,7 @@ public class Deck implements Serializable {
 			for(Card.Rank rank : Card.Rank.values()) {
 				Card card = new Card(rank, suit);
 				if(suit.toString().equalsIgnoreCase("hearts")) {
-					card.setFace("cards/hjÃ¤rter" + i + ".png");
+					card.setFace("cards/hjärter" + i + ".png");
 					card.setVisibility(true);
 				}
 				if(suit.toString().equalsIgnoreCase("spades")) {
@@ -36,7 +36,7 @@ public class Deck implements Serializable {
 					card.setVisibility(true);
 				}
 				if(suit.toString().equalsIgnoreCase("clubs")) {
-					card.setFace("cards/klÃ¶ver" + i + ".png");
+					card.setFace("cards/klöver" + i + ".png");
 					card.setVisibility(true);
 				}
 				i++;
